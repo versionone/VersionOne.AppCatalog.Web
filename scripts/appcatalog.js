@@ -9,7 +9,7 @@ $(function () {
             var list = $('#divResults');
             if (list == null || typeof (dataItems) === 'undefined' || dataItems.length == 0) return;
             $.each(dataItems,
-                function (item) {
+                function () {
                     list.append('<p>' + this.Name + ' - ' + this.Source + ' - ' + this.SourceUrl + '</p>');
                 });
             throw 'test';
