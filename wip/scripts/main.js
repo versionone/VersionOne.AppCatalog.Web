@@ -4,7 +4,8 @@ requirejs.config({
     shim: {
         'handlebars' : {
             exports: 'Handlebars'
-        }
+        },
+        'jquery.flexslider': {}
     }
 });
 
@@ -13,7 +14,8 @@ require([
         'jquery',
         'v1appCatalogEntries',
         'moment',
-        'jquery.mobile'
+        'jquery.mobile',
+        'jquery.flexslider'
     ],
     function(
         Handlebars,
@@ -47,6 +49,13 @@ require([
         $('#updates').collapsible();
         $('.qualityBand').popup();
         $('.download').button();
+
+        $(document).ready(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
 
         /*
         require(['v1assetEditor'], function(v1assetEditor) {
