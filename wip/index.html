@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VersionOne App Catalog</title>
+    <link rel='stylesheet' href='Content/jquery.mobile-1.3.0.min.css' type='text/css' />
+    <link rel='stylesheet' href='Content/jquery.mobile.v1.css' type='text/css' />
+    <script 
+        data-main="Scripts/main.js"
+        src="Scripts/require.js"
+        type="text/JavaScript">
+    </script>
+</head>
+<body>
+<div data-role='page' id='appCatalogEntryDetail' data-theme='b'>
+    <div data-role='header' data-position='fixed' style='text-align:center;padding-top:5px' data-theme='b'>
+        <div>&nbsp;
+            <img style='background:white;width:120px;padding:2px;margin-left:6px;' src='Content/images/logo.png' border='0' align='left' /><span class='ui-block-b' style='font-size:120%;'>&nbsp;&nbsp;VersionOne App Catalog</span>
+        </div>
+        <div>&nbsp;
+        </div>
+    </div>        
+    <div data-role='content' class='sideGradient' data-theme='b'>
+        <div id='appCatalogEntriesContainer'></div>
+    </div>
+    <div id='qualityBandsPlaceHolder'></div>
+</div>
+
+<script id='appCatalogEntryTmpl' type='text/x-handlebars-template'>
+    <div class="ui-grid-solo"><h1>{{name}}</h1></div>
+    <div class='ui-grid-a ui-responsive'>
+        <div class='ui-block-a'>
+            <p><a href='{{support.href}}'>{{support.title}}</a></p>
+            <p>Cost: {{cost}}</p>
+            <p>{{description}}</p>
+        </div>
+        <div class='ui-block-b'>
+            <div style='padding:5px; padding-top:0px; margin-left:5px; border:1px solid darkgray;background:#eeeeee;'>
+                {{#each textLinks}}
+                    <p><a href='{{href}}'>{{title}}</a></p>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div data-role="collapsible" data-content-theme="d" id="updates">
+        <h4>All Releases</h4>                
+        {{#each updates}}                
+            <div class='ui-grid-a ui-responsive'>
+                <div class="ui-block-a">                        
+                    <p>{{dateFormat date}} - {{version}}</p>
+                    <p>{{description}}</p>
+                </div>
+                <div class="ui-block-b">
+                    <p>Quality Band: <a 
+                        href="#qualityBand{{qualityBand}}"
+                        data-rel="popup"
+                        data-role="button"
+                        data-transition="pop"
+                        data-icon="info"
+                        data-theme="e"
+                        >{{qualityBand}}</a>
+                    </p>
+                    <p>
+                        <a href="{{downloadUrl}}" class='download' data-role="button" data-theme='b' data-inline='true' data->Download</a>
+                    </p>                    
+                </div>
+            </div>
+            <hr />
+        {{/each}}
+    </div>      
+</script>
+<script id='qualityBandsTmpl' type='text/x-handlebars-template'>
+    {{#each qualityBands}}
+        <div data-role="popup" id="qualityBand{{name}}" class="ui-content qualityBand" data-theme="e" style="max-width:350px;">
+            <b>{{name}} quality band</b>: {{shortDesc}} <a href='href' target='_blank'>more..</a>
+        </div>
+    {{/each}}
+</script>
+</body>
+</html>
