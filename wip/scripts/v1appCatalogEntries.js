@@ -2,8 +2,9 @@ define(function() {
     var obj =
     {
         "staticId": "http://versionone.com/v1clarityppm",
-        "name": "V1ClarityPPM",
+        "name": "V1ClarityPPM22",
         "source": "VersionOne, Inc.",
+        "summary": "Synchronize Clairty PPM items with VersionOne work items",
         "description": "V1ClarityPPM is a set of maps and processes for the Pervasive Data Integrator that can be used as building blocks for integrating VersionOne and Clarity PPM. Although these maps and processes require the commercial Pervasive Data Integrator product, the maps and processes themselves are free, licensed under a modified BSD license, which reflects our intent that anyone can use the maps and processes without any obligations.",
         "cost": "Free",
         "support": {
@@ -12,20 +13,24 @@ define(function() {
         },
         "textLinks": [
             {
-                "title": "Download Latest Preview",
-                "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip"
+                "title": "DDDownload Latest Preview",
+                "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
+                "icon" : "57-download"
             },
             {
                 "title": "Source Code",
-                "href": "https://github.com/versionone/V1ClarityPPM"
+                "href": "https://github.com/versionone/V1ClarityPPM",
+                "icon": "179-notepad"
             },
             {
                 "title": "Documentation",
-                "href": "https://github.com/versionone/V1ClarityPPM/blob/master/README.md"
+                "href": "https://github.com/versionone/V1ClarityPPM/blob/master/README.md",
+                "icon" : "21-skull"
             },
             {
                 "title": "Modified BSD (3-clause) License",
-                "href": "https://github.com/versionone/V1ClarityPPM/blob/master/LICENSE.md"
+                "href": "https://github.com/versionone/V1ClarityPPM/blob/master/LICENSE.md",
+                "icon": "196-radiation"
             }
         ],
         "visualLinks": [

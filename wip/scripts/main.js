@@ -49,6 +49,7 @@ require([
         $('#updates').collapsible();
         $('.qualityBand').popup();
         $('.download').button();
+        $('.textLinks').listview();
 
         $(document).ready(function() {
             $('.flexslider').flexslider({
