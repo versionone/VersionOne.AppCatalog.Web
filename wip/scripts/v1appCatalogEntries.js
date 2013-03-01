@@ -2,7 +2,7 @@ define(function() {
     var obj =
     {
         "staticId": "http://versionone.com/v1clarityppm",
-        "name": "V1ClarityPPM22",
+        "name": "V1ClarityPPM",
         "source": "VersionOne, Inc.",
         "summary": "Synchronize Clairty PPM items with VersionOne work items",
         "description": "V1ClarityPPM is a set of maps and processes for the Pervasive Data Integrator that can be used as building blocks for integrating VersionOne and Clarity PPM. Although these maps and processes require the commercial Pervasive Data Integrator product, the maps and processes themselves are free, licensed under a modified BSD license, which reflects our intent that anyone can use the maps and processes without any obligations.",
@@ -13,7 +13,7 @@ define(function() {
         },
         "textLinks": [
             {
-                "title": "DDDownload Latest Preview",
+                "title": "Download Latest Preview",
                 "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
                 "icon" : "57-download"
             },
