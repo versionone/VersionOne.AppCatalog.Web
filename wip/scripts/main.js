@@ -36,15 +36,14 @@ require([
             };
         });
 
-        var source   = $("#appCatalogEntryTmpl").html();
-        var template = Handlebars.compile(source);
-        var html    = template(v1appCatalogEntries);
-        $('#appCatalogEntriesContainer').html(html);
-
-        var source   = $("#qualityBandsTmpl").html();
-        var template = Handlebars.compile(source);
-        var html    = template(v1appCatalogEntries);
-        $('#qualityBandsPlaceHolder').html(html);
+        function runTemplate(source, target) {
+            var source   = $(source).html();
+            var template = Handlebars.compile(source);
+            var html    = template(v1appCatalogEntries);
+            $(target).html(html);
+        }
+        runTemplate("#appCatalogEntryTmpl", '#appCatalogEntriesContainer');
+        runTemplate("#qualityBandsTmpl", '#qualityBandsPlaceHolder');
 
         $('#updates').collapsible();
         $('.qualityBand').popup();
@@ -52,6 +51,7 @@ require([
         $('.textLinks').listview();
 
         $(document).ready(function() {
+            runTemplate('#visualLinksTmpl', '#visualLinks');
             $('.flexslider').flexslider({
                 animation: "slide",
                 controlNav: "thumbnails"

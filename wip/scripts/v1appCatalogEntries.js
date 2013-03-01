@@ -35,9 +35,25 @@ define(function() {
         ],
         "visualLinks": [
             {
-                "title": "Video",
-                "href": "http://vtv.v1host.com/permalink/?title=Clarity&category=Integrations&edition=enterprise&release=undefined"
-            }
+                "title": "Home",             
+                "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
+                "thumb-href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
+            },
+            {
+                "title": "Chart",                
+                "href": "content/gallery/ppm-roadmap-large.jpg",
+                "thumb-href": "content/gallery/ppm-roadmap-large.jpg"
+            },
+            {
+                "title": "Graph",                
+                "href": "content/gallery/7f7c7269-69b3-49d3-959e-5575acbbe6db.JPG",
+                "thumb-href": "content/gallery/7f7c7269-69b3-49d3-959e-5575acbbe6db.JPG"
+            },
+            {
+                "title": "More graphs",                
+                "href": "content/gallery/a64a08b6-b31c-4bd4-b51c-4cf50a9faa76.JPG",
+                "thumb-href": "content/gallery/a64a08b6-b31c-4bd4-b51c-4cf50a9faa76.JPG"
+            }            
         ],
         "qualityBands": [
             {
