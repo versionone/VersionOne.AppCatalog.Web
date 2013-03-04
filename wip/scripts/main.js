@@ -71,12 +71,13 @@ require([
         }
 
         $('#entryList').change(function(evt, target) {
-            $('#appCatalogEntry').fadeOut();
-            $('#appCatalogEntry').empty();
             var selectedIndex = $(this).val();
-            var entry = v1appCatalogEntries[selectedIndex];
-            bindCatalogEntry(entry);
-            $('#appCatalogEntry').fadeIn();
+            $('#appCatalogEntry').fadeOut('fast', function() {
+                $('#appCatalogEntry').empty();                
+                var entry = v1appCatalogEntries[selectedIndex];
+                bindCatalogEntry(entry);
+                $('#appCatalogEntry').fadeIn();
+            });
         });       
 	}
 );
