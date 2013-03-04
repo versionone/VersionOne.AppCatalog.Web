@@ -42,30 +42,41 @@ require([
             var html    = template(v1appCatalogEntries);
             $(target).html(html);
         }
-        runTemplate("#appCatalogEntryTmpl", '#appCatalogEntriesContainer');
-        runTemplate("#qualityBandsTmpl", '#qualityBandsPlaceHolder');
 
-        $('#updates').collapsible();
-        $('.qualityBand').popup();
-        $('.download').button();
-        $('.textLinks').listview();
+        function runTemplate2(source, target, data) {
+            var source   = $(source).html();
+            var template = Handlebars.compile(source);
+            var html    = template(data);
+            $(target).html(html);
+        }
 
-        $(document).ready(function() {
-            runTemplate('#visualLinksTmpl', '#visualLinks');
+        runTemplate("#appCatalogEntryListTmpl", '#appCatalogEntryList');
+
+        var first = v1appCatalogEntries[0];
+        bindCatalogEntry(first);
+
+        function bindCatalogEntry(entry) {
+            runTemplate2("#appCatalogEntryTmpl", '#appCatalogEntry', entry);
+            $('.updates').collapsible();
+            $('.download').button();
+            $('.textLinks').listview();    
+            $('.qualityBand').popup();
+
+            var visualLinks = { visualLinks: entry.visualLinks };
+            runTemplate2('#visualLinksTmpl', '.visualLinks', visualLinks);
             $('.flexslider').flexslider({
                 animation: "slide",
                 controlNav: "thumbnails"
             });
-        });
+        }
 
-        /*
-        require(['v1assetEditor'], function(v1assetEditor) {
-            $.mobile.initializePage();            
-            window.v1AssetEditor = new v1assetEditor(v1config);
-            window.v1AssetEditor.on("assetFormCreated", function(assetForm) {
-                window.v1RequestForm = assetForm;
-            });
-        });
-        */
+        $('#entryList').change(function(evt, target) {
+            $('#appCatalogEntry').fadeOut();
+            $('#appCatalogEntry').empty();
+            var selectedIndex = $(this).val();
+            var entry = v1appCatalogEntries[selectedIndex];
+            bindCatalogEntry(entry);
+            $('#appCatalogEntry').fadeIn();
+        });       
 	}
 );

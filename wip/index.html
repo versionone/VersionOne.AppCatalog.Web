@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<head>
+<head> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>VersionOne App Catalog</title>
@@ -22,17 +22,34 @@
         </div>
         <div>&nbsp;
         </div>
-    </div>        
+    </div>
     <div data-role='content' class='sideGradient' data-theme='b'>
-        <div id='appCatalogEntriesContainer'></div>
+        <div id='appCatalogEntryList'></div>
+        <div id='appCatalogEntry'></div>
     </div>
     <div id='qualityBandsPlaceHolder'></div>
 </div>
 
+<script id='appCatalogEntryListTmpl' type='text/x-handlebars-template'>
+<div data-role="fieldcontain">
+    <label for="entryList" class="select">Select:</label>
+    <select name="entryList" id="entryList">
+        {{#each this}}
+            <option value="{{@index}}">{{name}}</option>
+        {{/each}}
+    </select>
+</div>
+</script>
+
 <script id='appCatalogEntryTmpl' type='text/x-handlebars-template'>
     <p><b style='font-size:125%'>{{name}}</b> {{summary}}</p>
+    {{#each qualityBands}}
+        <div data-role="popup" id="qualityBand{{name}}" class="ui-content qualityBand" data-theme="e" style="max-width:350px;">
+            <b>{{name}} quality band</b>: {{shortDesc}} <a href='href' target='_blank'>more..</a>
+        </div>
+    {{/each}}    
     <div class='ui-grid-a ui-responsive'>
-        <div class='ui-block-a' style='padding-right: 5px;' id='visualLinks'>
+        <div class='ui-block-a visualLinks' style='padding-right: 5px;'>
         </div>
         <div class='ui-block-b' style='background:#fcfcfc; padding:5px; border:1px solid #eeeeee'>
             <h2>Details</h2>
@@ -49,7 +66,7 @@
                     </li>
                 {{/each}}
             </ul>
-            <div data-role="collapsible" data-theme='e' data-content-theme="d" id="updates">
+            <div data-role="collapsible" data-theme='e' data-content-theme="d" class="updates">
                 <h4>All Releases</h4>                
                 {{#each updates}}                
                     <div class='ui-grid-a ui-responsive'>
@@ -76,25 +93,18 @@
                 {{/each}}
             </div>            
         </div>
-    </div>     
+    </div>
 </script>
 <script id='visualLinksTmpl' type='text/x-handlebars-template'>
 <div class="flexslider" style='xmax-width:600px'>
   <ul class="slides">
     {{#each visualLinks}}
-    <li data-thumb="{{thumb-href}}">
-      <img src="{{href}}" alt="{{title}}" title="{{title}}"/>
-    </li>
+        <li data-thumb="{{thumb-href}}">
+          <img src="{{href}}" alt="{{title}}" title="{{title}}"/>
+        </li>
     {{/each}}
   </ul>
 </div>  
-</script>
-<script id='qualityBandsTmpl' type='text/x-handlebars-template'>
-    {{#each qualityBands}}
-        <div data-role="popup" id="qualityBand{{name}}" class="ui-content qualityBand" data-theme="e" style="max-width:350px;">
-            <b>{{name}} quality band</b>: {{shortDesc}} <a href='href' target='_blank'>more..</a>
-        </div>
-    {{/each}}
 </script>
 </body>
 </html>
