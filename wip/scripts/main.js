@@ -21,7 +21,8 @@ require([
         Handlebars,
         $,
         v1appCatalogEntries,
-        moment)
+        moment
+    )
     {
         // format an ISO date using Moment.js
         // http://momentjs.com/
@@ -36,6 +37,38 @@ require([
             };
         });
 
+        var selectedEntry = null;
+        
+        // Main module execution
+        var appName = qs('app');
+        if (appName != null) {        
+            $.each(v1appCatalogEntries, function(index, item) {
+                if (item.name.toLowerCase() == appName.toLowerCase()) {
+                    selectedEntry = item;
+                    bindCatalogEntry(selectedEntry);
+                }
+            });
+        }
+
+        if (selectedEntry == null) {
+            runTemplate("#appCatalogEntryListTmpl", '#appCatalogEntryList');
+        }
+        else {
+            $('#appCatalogEntryList').remove();
+        }
+
+        function qs(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+                if (decodeURIComponent(pair[0]) == variable) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+            console.log('Query variable %s not found', variable);
+        }
+
         function runTemplate(source, target) {
             var source   = $(source).html();
             var template = Handlebars.compile(source);
@@ -49,11 +82,6 @@ require([
             var html    = template(data);
             $(target).html(html);
         }
-
-        runTemplate("#appCatalogEntryListTmpl", '#appCatalogEntryList');
-
-        var first = v1appCatalogEntries[0];
-        bindCatalogEntry(first);
 
         function bindCatalogEntry(entry) {
             runTemplate2("#appCatalogEntryTmpl", '#appCatalogEntry', entry);

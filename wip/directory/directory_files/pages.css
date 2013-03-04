@@ -1,0 +1,1336 @@
+@charset "utf-8";
+.subLayout { margin: 0; padding: 0; list-style: none; }
+.subLayout li { float: left; }
+
+.whyversionone-list { margin: 10px 0 0 0; padding: 0; list-style: none; }
+.whyversionone-list li { margin-bottom: 8px; padding: 15px 15px 15px 65px; border: solid #efefef; border-width: 1px 2px 2px 1px; }
+.whyversionone-list li h3 { float: left; margin: 0; padding: 30px 0 0 0; font-size: 14px; font-weight: normal; color: #00496b; width: 200px; text-align: right; }
+.whyversionone-list li ul { float: left; margin: 0; padding: 0; list-style: none; width: 440px; }
+.whyversionone-list li ul li { border: 0; background: url(/images/global/whyversionone-list-icon.gif) no-repeat 4px 50%; margin: 0 0 5px 30px; padding: 5px 0 5px 25px; }
+.whyversionone-list li a { display: block; background: url(/images/global/requestnow-btn.gif) no-repeat top right; height: 25px; text-indent: -9000em; overflow: hidden; }
+.whyversionone-list li a:hover { background-position: bottom right; }
+
+.ProductsIntro-banner { background: url(/images/global/product-banner.jpg) no-repeat; }
+#ProductsIntro { margin-bottom: 15px; height: 285px; text-indent: -9000em; overflow: hidden; }
+#ProductsIntro .agileLifeCycleGraph { float: left; background: url(/images/global/agileLifeCycleGraph.gif) no-repeat; width: 257px; height: 189px; }
+#ProductsIntro .agileLifeCycleGraph a { display: block; width: 257px; height: 189px; text-indent: -9000em; }
+#ProductsIntro .list { float: right; padding: 20px 0 0 0; width: 50%; }
+#ProductsIntro .list ul { margin: 0; padding: 0; list-style: none; }
+#ProductsIntro .list ul li { padding: 5px 10px 5px 20px; background: url(/images/global/Product-bullet-list.gif) no-repeat 5px 9px; }
+.products-graph-indicator { margin: 0 0 10px 10px; }
+
+.productvideo-btn { margin: 0 auto; display: block; background: url(/images/Products_planning/productvideo-btn.gif) no-repeat top; width: 217px; height: 30px; text-indent: -9000em; overflow: hidden; }
+.productvideo-btn:hover { background-position: bottom; }
+.roadmappingvideo-btn { margin: 0 auto; display: block; background: url(/images/global/roadmappingvideo-btn.gif) no-repeat top; width: 217px; height: 30px; text-indent: -9000em; overflow: hidden; }
+.roadmappingvideo-btn:hover { background-position: bottom; }
+.enterpriseatasheet-btn { float: left; margin: 0 0 0 15px; display: block; background: url(/images/global/enterpriseatasheet-btn.gif) no-repeat top; width: 217px; height: 30px; text-indent: -9000em; overflow: hidden; }
+.enterpriseatasheet-btn:hover { background-position: bottom; }
+
+.teamvideo-btn { float: left; margin: 0 0 0 45px; display: block; background: url(/images/global/teamvideo-btn.gif) no-repeat top; width: 217px; height: 30px; text-indent: -9000em; overflow: hidden; }
+.teamvideo-btn:hover { background-position: bottom; }
+.teamdatasheet-btn { float: left; margin: 0 0 0 15px; display: block; background: url(/images/global/teamdatasheet-btn.gif) no-repeat top; width: 217px; height: 30px; text-indent: -9000em; overflow: hidden; }
+.teamdatasheet-btn:hover { background-position: bottom; }
+
+.ultimatedatasheet-btn { display: block; background: url(/images/global/ultimatedatasheet-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.ultimatedatasheet-btn:hover { background-position: bottom; }
+
+.ProductOverview { position: relative; }
+.ProductOverview .billboard { padding: 15px 15px 20px 15px; background: url(/images/product-overview/billboard-blue-gradient.png) no-repeat bottom; }
+.ProductOverview .editions { background: url(/images/product-overview/icon-pattern.png) 50px 20px no-repeat; }
+.ProductOverview .billboard h2 { margin: 0; padding: 0; background: url(/images/product-overview/title-agile-management.png) no-repeat; text-indent: -9000em; overflow: hidden; width: 282px; height: 45px; }
+.ProductOverview .billboard h3 span { display: block; font-size: 15px; font-weight: normal; }
+.ProductOverview .billboard .team-edition { margin: 0; font-size: 28px; padding: 0 0 0 48px !important; background: url(/images/product-overview/team-edition.png) 0 5px no-repeat; }
+.ProductOverview .billboard .catalyst-edition { margin: 0; font-size: 28px; padding: 0 0 0 48px !important; background: url(/images/product-overview/catalyst-edition.png) 0 5px no-repeat; }
+.ProductOverview .billboard .enterprise-edition { margin: 0; font-size: 28px; padding: 0 0 0 48px !important; background: url(/images/product-overview/enterprise-edition.png) 0 5px no-repeat; }
+.ProductOverview .billboard .ultimate-edition { margin: 0; font-size: 28px; padding: 0 0 0 48px !important; background: url(/images/product-overview/ultimate-edition.png) 0 5px no-repeat; }
+.ProductOverview .billboard ul { margin: 0; padding: 0; list-style: none; }
+.ProductOverview .billboard ul li { padding: 5px 0 5px 35px; font-size: 13px; color: #333; }
+.ProductOverview .billboard .inner { margin: 0 0 0 25px; padding: 10px 0 0 0; list-style: disc; }
+.ProductOverview .billboard .inner li { padding: 5px 0 5px 1px !important; font-size: 13px; color: #333; }
+.ProductOverview .billboard ul .centralize { background: url(/images/product-overview/centralize-icon.png) no-repeat left; }
+.ProductOverview .billboard ul .simplify { background: url(/images/product-overview/simplify-icon.png) no-repeat left; }
+.ProductOverview .billboard ul .improve { background: url(/images/product-overview/improve-icon.png) no-repeat left; }
+.ProductOverview .billboard ul .accelerate { background: url(/images/product-overview/accelerate-icon.png) no-repeat left; }
+.ProductOverview .billboard .product-overview-video-btn { position: absolute; top: -15px; right: -15px; }
+.ProductOverview .billboard .mini-product-overview-video-btn { position: absolute; top: 0; right: 0; }
+.ProductOverview .billboard .try-versionone { margin: 23px 0 0 0; display: block; background: url(/images/product-overview/try-versionone-btn.png) no-repeat; width: 321px; height: 46px; text-indent: -9000em; overflow: hidden; }
+.ProductOverview .billboard .try-versionone:hover { background-position: bottom; }
+.productoverview-list { padding: 15px; }
+.productoverview-list ul { margin: 0; padding: 0; list-style: none; }
+.productoverview-list ul li .inner { padding: 20px 15px 15px 50px; }
+.productoverview-list .portfolio-management { background: url(/images/product-overview/portfolio-management-icon.png) no-repeat 0 20px; }
+.productoverview-list .product-planning { background: url(/images/product-overview/product-planning-icon.png) no-repeat 0 20px; }
+.productoverview-list .release-planning { background: url(/images/product-overview/release-planning-icon.png) no-repeat 10px 20px; }
+.productoverview-list .idea-management { background: url(/images/product-overview/idea-management-icon.png) no-repeat 10px 20px; }
+.productoverview-list .sprint-planning { background: url(/images/product-overview/sprint-planning-icon.png) no-repeat 5px 20px; }
+.productoverview-list .tracking { background: url(/images/product-overview/tracking-icon.png) no-repeat 0 20px; }
+.productoverview-list .review { background: url(/images/product-overview/review-icon.png) no-repeat 5px 20px; }
+.productoverview-list .reporting-and-analytics { background: url(/images/product-overview/reporting-and-analytics-icon.png) no-repeat 5px 20px; }
+.productoverview-list .test-management { background: url(/images/product-overview/test-management-icon.png) no-repeat 10px 20px; }
+.productoverview-list .collaboration { background: url(/images/product-overview/collaboration-icon.png) no-repeat 0 20px; }
+.productoverview-list .open-source-integration { background: url(/images/product-overview/open-source-integration-icon.png) no-repeat 3px 20px; }
+.productoverview-list .product-roadmapping { background: url(/images/product-overview/product-roadmapping-icon.png) no-repeat 0 20px; }
+.productoverview-list ul li { float: left; width: 50%; font-size: 13px; color: #585858; }
+.productoverview-list ul li h2 { font-size: 16px !important; font-weight: bold !important; color: #00496b !important; }
+.productoverview-list ul li a { color: #1777a4; }
+
+.ProductOverview  { font-size: 13px; }
+
+.products-list { }
+.products-list ul { margin: 0; padding: 0; list-style: none; }
+.products-list li { float: left; padding: 12px 12px 16px 12px; width: 45%; }
+.products-list li h2 { color: #00496b !important; }
+.products-list li a { display: block; background: url(/images/global/inner-learnmore-btn.gif) no-repeat; width: 93px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.products-list li a:hover { background-position: bottom; }
+.products-list li p { padding-top: 0; }
+.products-list .productplanning-icon { background: url(/images/global/productplanning-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .consolidatedreporting-icon { background: url(/images/global/consolidatedreporting-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .releaseplanning-icon { background: url(/images/global/releaseplanning-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .review-icon { background: url(/images/global/review-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .sprintplanning-icon { background: url(/images/global/sprintplanning-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .tracking-icon { background: url(/images/global/tracking-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .ideasmanagement-icon { background: url(/images/global/ideasmanagement-icon.jpg) no-repeat !important; padding: 5px 0 10px 30px !important; }
+.products-list .programmanagement-icon { background: url(/images/global/programmanagement-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .security-icon { background: url(/images/global/security-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .opensource-icon { background: url(/images/global/opensource-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .testmanagement-icon { background: url(/images/global/testmanagement-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .customreporting-icon { background: url(/images/global/customreporting-icon.jpg) no-repeat; padding !important: 5px 0 8px 30px !important; }
+.products-list .productroadmapping-icon { background: url(/images/global/productroadmapping-icon.jpg) no-repeat !important; padding: 5px 0 8px 30px !important; }
+.products-list .collaboration-icon { background: url(/images/global/collaboration-icon.jpg) no-repeat 0 3px !important; padding: 5px 0 8px 30px !important; }
+
+.releasevideo-btn { display: block; background: url(/images/release_planning/releasevideo-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.releasevideo-btn:hover { background-position: bottom; }
+
+.sprintvideo-btn { display: block; background: url(/images/sprint_planning/sprintvideo-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.sprintvideo-btn:hover { background-position: bottom; }
+
+.portfolio-management-btn { display: block; background: url(/images/portfolio-management/portfolio-management-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.portfolio-management-btn:hover { background-position: bottom; }
+
+
+.sprinttracking-btn { display: block; background: url(/images/global/sprinttracking-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.sprinttracking-btn:hover { background-position: bottom; }
+.execvideo-btn { display: block; margin-left: 40px; float: left; background: url(/images/tracking/execvideo-btn.gif) no-repeat top; height: 30px; width: 250px; text-indent: -9000em; overflow: hidden; }
+.execvideo-btn:hover { background-position: bottom; }
+.sprintreportvideo-btn { display: block; float: left; background: url(/images/tracking/sprintreportvideo-btn.gif) no-repeat top; height: 30px; width: 240px; text-indent: -9000em; overflow: hidden; }
+.sprintreportvideo-btn:hover { background-position: bottom; }
+
+.retrovideo-btn { display: block; background: url(/images/review/retrovideo-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.retrovideo-btn:hover { background-position: bottom; }
+
+.regressionvideo-btn { display: block; background: url(/images/global/regressionvideo-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.regressionvideo-btn:hover { background-position: bottom; }
+
+.analyticsvideo-btn { display: block; background: url(/images/global/analyticsvideo-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+.analyticsvideo-btn:hover { background-position: bottom; }
+
+.banner-resources h2 { margin: 0; padding: 0; width: 1px; height: lpx; text-indent: -9000em; overflow: hidden; }
+.banner-resources { background: url(/images/global/banner-resources.jpg) no-repeat 50%; height: 190px; } 
+.banner-resources p { margin: 0 0 0 26px; padding: 98px 0 0 0; font-size: 11px; color: #ffcaae; width: 60%; line-height: 1.4em; }
+
+.aboutus-banner { margin: 0 0 10px 0; background: url(/images/global/banner-aboutus.jpg) no-repeat; height: 179px; text-indent: -9000em; overflow: hidden; }
+
+.resources-overview { margin: 0; padding: 0; list-style: none; }
+.resources-overview li { float: left; padding: 15px 10px 30px 10px; width: 30%; }
+.resources-overview li h3 { margin: 0 0 0 52px; padding: 8px 0 0 0; font-size: 16px; color: #60554f; }
+.resources-overview li p { margin: 0 0 0 52px; padding: 2px 0 6px 0; color: #7e7571; }
+.resources-overview li a { display: block; margin: 0 0 0 52px; background: url(/images/global/clickhere-mini.gif) no-repeat top right; height: 25px; text-indent: -9000em; overflow: hidden; }
+.resources-overview li a:hover { background-position: bottom right; }
+
+.resources-overview li.agile-mini { background: url(/images/global/101-icon.gif) no-repeat 5px 12px; }
+.resources-overview li.whitepapers-mini { background: url(/images/global/whitepapers-icon.gif) no-repeat 20px 18px; }
+.resources-overview li.events-mini { background: url(/images/global/events-icon.gif) no-repeat 22px 18px; }
+.resources-overview li.newsletters-mini { background: url(/images/global/newsletters-icon.gif) no-repeat 10px 13px; }
+.resources-overview li.agiletraining-mini { background: url(/images/global/agiletraining-icon.gif) no-repeat 25px 20px; }
+.resources-overview li.toolkit-mini { background: url(/images/global/toolkit-icon.gif) no-repeat 22px 13px; }
+.resources-overview li.webinars-mini { background: url(/images/global/webinars-icon.gif) no-repeat 8px 13px; }
+
+.whitepapers-list { margin: 10px 0 0 0; padding: 0; list-style: none; }
+.whitepapers-list li { margin-bottom: 8px; padding: 15px 15px 15px 65px; background: url(/images/global/whitepapers-icon.gif) no-repeat 15px 15px; border: solid #efefef; border-width: 1px 2px 2px 1px; }
+.whitepapers-list li h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #00496b; }
+.whitepapers-list li ul li { border: 0; background: none; margin: 0 0 5px 30px; padding: 5px 0; }
+.whitepapers-list li a { display: block; background: url(/images/global/requestnow-btn.gif) no-repeat top right; height: 25px; text-indent: -9000em; overflow: hidden; }
+.whitepapers-list li a:hover { background-position: bottom right; }
+
+.webinars-panel { float: left; padding: 10px; width: 46%; }
+
+.webinars-list { margin: 10px 0 0 0; padding: 4px 0 0 0; list-style: none; border: 1px solid #f3f3f3; }
+.webinars-list li { margin: 0 0 5px 0; padding: 4px 10px 10px 10px; }
+.webinars-list .registernow-btn { display: block; background: url(/images/global/registernow-btn.gif) no-repeat; width: 93px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.webinars-list .registernow-btn:hover { background-position: bottom; }
+.webinars-list .requestnow-btn { display: block; background: url(/images/global/requestnow-btn.gif) no-repeat; width: 93px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.webinars-list .requestnow-btn:hover { background-position: bottom; }
+
+.subscribetoagilechronicles-btn { display: block; float: right; background: url(/Resources/Agile_Chronicles/images/subscribetoagilechronicles-btn.gif) no-repeat; width: 246px; height: 60px; text-indent: -9000em; overflow: hidden; }
+.subscribetoagilechronicles-btn:hover { background-position: bottom; }
+/*
+.newsletter-list { margin: 0; padding: 10px 0 0 0; list-style: none; }
+.newsletter-list li {  }
+.newsletter-list li h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #00496b; }
+.newsletter-list li ul li { border: 0; background: none; margin: 0 0 5px 30px; padding: 5px 0; }
+.newsletter-list li a.subscribe-btn { display: block; float: right; margin-left: 5px; background: url(/images/global/mini-subscribe-btn.gif) no-repeat; width: 110px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.newsletter-list li a.subscribe-btn:hover { background-position: bottom; }
+.newsletter-list li a.viewlatest-btn { display: block; float: right; margin-left: 5px; background: url(/images/global/viewlatest-btn.gif) no-repeat; width: 110px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.newsletter-list li a.viewlatest-btn:hover { background-position: bottom; }
+*/
+.productblog-list { margin: 0 auto 10px auto; padding: 15px 15px 15px 65px; background: url(/images/compare/new-icon.gif) no-repeat 20px 17px; border: solid #efefef; border-width: 1px 2px 2px 1px; width: 480px; }
+.productblog-list h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #00496b; }
+.productblog-list ul li { border: 0; background: none; margin: 0 0 5px 30px; padding: 5px 0; }
+
+.newsletter-list { margin: 0 auto 10px auto; padding: 15px 15px 15px 65px; background: url(/images/global/newsletters-icon.gif) no-repeat 15px 15px; border: solid #efefef; border-width: 1px 2px 2px 1px; width: 480px; }
+.newsletter-list h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #00496b; }
+.newsletter-list ul li { border: 0; background: none; margin: 0 0 5px 30px; padding: 5px 0; }
+
+.newsletter-panel { float: left; padding: 10px 10px 0 0; width: 18%; }
+.newsletter-panel ul { margin: 0; padding: 8px 0 0 0; list-style: none; }
+.newsletter-panel ul li { }
+.newsletter-panel ul li a { display: block; padding: 5px 8px; border-bottom: 1px dotted #efefef; }
+.newsletter-panel ul li a:hover { background: #60554f; color: #fff; }
+
+.news-lt { float: left; margin-left: 25px; padding-right: 10px; width: 70%; border-right: 1px solid #efefef; }
+.news-lt code { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; font-size: 11px; }
+.news-rt { float: left; padding-left: 15px; width: 21%; }
+
+.news-rt .freedownload-btn { display: block; margin: 8px auto 0 auto; background: url(/Resources/Agile_Chronicles/images/freedownload-btn.gif) no-repeat; width: 110px; height: 25px; text-indent: -9000em; overflow: hidden; } 
+.news-rt .freedownload-btn:hover { background-position: bottom; }
+.news-rt .learnmore-btn { display: block; margin: 8px auto 0 auto; background: url(/Resources/Agile_Chronicles/images/learnmore-btn.gif) no-repeat; width: 93px; height: 25px; text-indent: -9000em; overflow: hidden; } 
+.news-rt .learnmore-btn:hover { background-position: bottom; }
+
+.layout { float: right; background: url(/images/global/layout-box.png) no-repeat 90px 5px; width: 50%; text-align: right; padding: 17px 30px 0 0; height: 45px; }
+.layout label { display: block; float: right; padding: 3px 0 0 0; }
+.layout .flow-icon { display: block; float: right; margin: 0 0 0 5px; background: url(/images/global/flow-icon.gif) no-repeat; width: 20px; height: 20px; text-indent: -9000em; overflow: hidden; }
+.layout .flow-icon-u { display: block; float: right; margin: 0 0 0 5px; background: url(/images/global/flow-icon-u.gif) no-repeat; width: 20px; height: 20px; text-indent: -9000em; overflow: hidden; }
+.layout .list-icon { display: block; float: right; margin: 0 0 0 5px; background: url(/images/global/list-icon.gif) no-repeat; width: 20px; height: 20px; text-indent: -9000em; overflow: hidden; }
+.layout .list-icon-u { display: block; float: right; margin: 0 0 0 5px; background: url(/images/global/list-icon-u.gif) no-repeat; width: 20px; height: 20px; text-indent: -9000em; overflow: hidden; }
+
+.aboutus-menu { float: left; width: 300px; height: 320px; }
+
+.archive-form { margin: 0; padding: 15px 15px 0 15px; text-align: right; }
+
+dl.news-list { margin: 0; padding: 15px 0 0 0; }
+dl.news-list  dt { margin: 0; padding: 2px 0; float: left; background: #60554f; width: 50px; text-align: center; color: #dcdcdc; border: 1px solid #efefef; }
+dl.news-list  dt span { display: block; margin: 2px 0; padding: 2px 0; background: #80746d; font-size: 18px; color: #fff; border-top: 1px solid #958a83; border-bottom: 1px solid #958a83; }
+dl.news-list  dd { margin: 0 0 4px 65px; padding: 0; background: #efefef; border-bottom: 1px solid #efefef; }
+dl.news-list  dd .inner { margin: 0 2px 1px 0; padding: 5px 0 10px 10px; background: #fff; border: solid #f3f3f3; border-width: 1px 0 0 1px; }
+dl.news-list  dd .inner h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #cb632a; }
+
+.pressrelease-list { margin: 0; padding: 15px 0 0 0; list-style: none; }
+.pressrelease-list li { margin: 0 0 5px 0; padding: 10px; border: solid #f3f3f3; border-width: 1px 2px 2px 1px; }
+.pressrelease-list li h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #cb632a; }
+.pressrelease-list li h3 span { display: block; padding-top: 8px; font-size: 13px; color: #00496b; }
+.pressrelease-list img.mini-logo { margin: 0 0 15px 15px; }
+.pressrelease-list .requestnow-btn { display: block; background: url(/images/global/requestnow-btn.gif) no-repeat; width: 93px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.pressrelease-list .requestnow-btn:hover { background-position: bottom; }
+.pressrelease-list .downloadnow-btn { display: block; background: url(/images/global/downloadnow-btn.gif) no-repeat; width: 110px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.pressrelease-list .downloadnow-btn:hover { background-position: bottom; }
+
+.customer-list { margin: 0; padding: 0; list-style: none; }
+.customer-list li { float: left; }
+
+.banner-services { background: url(/images/global/banner-services.jpg) no-repeat 50%; height: 190px; text-indent: -9000em; overflow: hidden; }
+h4 { margin: 0; padding: 8px 8px 0 8px; font-size: 16px; font-weight: normal; color: #00496b; }
+h5 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #78082d; }
+.card { margin: 8px 0; padding: 8px; border: solid #efefef; border-width: 1px 2px 2px 1px; }
+.trainingdetail-list { padding: 0 8px; background: #ffffee; border: 1px solid #efefef; }
+.trainingdetail-list ul { margin: 0; padding: 0; list-style: none; }
+.trainingdetail-list ul li { float: left; padding: 3px 10px 3px 15px; width: 20%; }
+.trainingdetail-list ul li.length-icon { background: url(/images/global/length-icon.gif) no-repeat 0 6px; }
+.trainingdetail-list ul li.location-icon { background: url(/images/global/location-icon.gif) no-repeat 0 6px; }
+.trainingdetail-list ul li.price-icon { background: url(/images/global/price-icon.gif) no-repeat 5px 6px; }
+.trainingdetail-list ul li.contact-icon { background: url(/images/global/sm-email-icon.gif) no-repeat 0px 6px; }
+.trainingdetail-list ul li.blank-icon { background: url(/images/global/blank-icon.gif) no-repeat 0px 6px; }
+
+.contactus-layout { margin: 0; padding: 0; list-style: none; }
+.contactus-layout li { float: left; }
+.contactus-layout .logo { margin-right: 15px; background: url(/images/global/contactus-v1-logo.gif) no-repeat 50%; width: 40%; height: 220px; border-right: 1px solid #efefef; text-indent: -9000em; overflow: hidden; }
+
+.form-w-title { float: right; width: 50%; }
+
+#twitter_update_list { margin: 0; padding: 0; list-style: none; }
+#twitter_update_list li { padding: 10px 10px 10px 50px; background: url(/images/global/twitter-bird.gif) no-repeat 5px 50%; border-bottom: 1px solid #efefef; }
+
+.partners-banner { background: url(/images/global/banner-partners.jpg) no-repeat 50%; height: 190px; text-indent: -9000em; overflow: hidden; } 
+
+.banner-agile { margin-top: 0; background: url(/images/global/banner-agile101.jpg) no-repeat; height: 307px; text-indent: -9000em; overflow: hidden; }
+
+.agile-overview { margin: 0; padding: 0; list-style: none; }
+.agile-overview li { float: left; padding: 5px 0; width: 33%; }
+.agile-overview li h3 { margin: 0 0 0 52px; padding: 8px 0 0 0; font-size: 14px; color: #60554f; }
+.agile-overview li p { margin: 0 0 0 52px; padding: 2px 0 6px 0; color: #c3bebb; }
+.agile-overview li a { display: block; margin: 0 0 0 52px; background: url(/images/global/clickhere-mini.gif) no-repeat; height: 25px; text-indent: -9000em; overflow: hidden; }
+.agile-overview li a:hover { background-position: bottom left; }
+
+.agile-overview li.gettingstarted-mini { background: url(/images/global/101-icon.gif) no-repeat 0 7px; }
+.agile-overview li.customermanagement-mini { background: url(/images/global/101-icon.gif) no-repeat 0 7px; }
+.agile-overview li.programmerpract-mini { background: url(/images/global/101-icon.gif) no-repeat 0 7px; }
+
+.gettingstarted-list { margin: 0; padding: 0; list-style: none; }
+.gettingstarted-list li { float: left; width: 48%; }
+.gettingstarted-list .inner { background: url(/images/global/101sub-icon.gif) no-repeat 0 20px; padding: 20px 20px 20px 40px; border: solid #efefef; border-width: 1px 0 0 0; }
+.gettingstarted-list .inner .learnmore-btn { display: block; background: url(/images/global/inner-learnmore-btn.gif) no-repeat; width: 93px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.gettingstarted-list .inner a.learnmore-btn:hover { background-position: bottom; }
+
+.community-table { border-collapse: collapse; margin-bottom: 10px; border: 1px solid #efefef; border-bottom: 0; width: 100%; }
+.community-table td { padding: 8px; text-align: left; border-bottom: 1px solid #efefef; }
+.community-table tr.altrow { background: #fafafa; }
+
+.valuedriven-table { border-collapse: collapse; margin-bottom: 10px; border: 1px solid #efefef; border-bottom: 0; }
+.valuedriven-table td { padding: 8px; text-align: left; border-bottom: 1px solid #efefef; }
+.valuedriven-table tr.altrow { background: #fafafa; }
+
+.scoring-table { border-collapse: collapse; margin-bottom: 10px; border: 1px solid #efefef; border-bottom: 0; }
+.scoring-table td { padding: 8px; text-align: left; border-bottom: 1px solid #efefef; }
+.scoring-table tr.altrow { background: #fafafa; }
+
+.consultingpartners-box { float: left; margin-top: 10px; background: #013954 url(/images/global/partners-sub-box-bottom.gif) no-repeat bottom; width: 280px; }
+.consultingpartners-box h3 { margin: 0; padding: 0; font-size: 18px; color: #fff; }
+.consultingpartners-box ul { margin: 0; padding: 0; list-style: none; }
+.consultingpartners-box ul li { padding: 7px 0; }
+
+.technologypartners-box { float: right; margin-top: 10px; background: #013954 url(/images/global/partners-sub-box-bottom.gif) no-repeat bottom; width: 280px; }
+.technologypartners-box h3 { margin: 0; padding: 0; font-size: 18px; color: #fff; }
+.technologypartners-box ul { margin: 0; padding: 0; list-style: none; }
+.technologypartners-box ul li { padding: 7px 0; }
+
+.consultingpartners-box .inner, .technologypartners-box .inner { padding: 15px; background: url(/images/global/partners-sub-box-top.gif) no-repeat; color: #fff; }
+
+.jointhecommunitynow-btn { display: block; float: left; margin-top: 10px; margin-right: 12px; background: url(/images/global/jointhecommunitynow-btn.gif) no-repeat; width: 106px; height: 61px; text-indent: -9000em; overflow: hidden; }
+.findaconsultingpartner-btn { display: block; float: left; margin-top: 10px; background: url(/images/global/findaconsultingpartner-btn.gif) no-repeat; width: 106px; height: 61px; text-indent: -9000em; overflow: hidden; }
+.findatechnologypartner-btn { display: block; float: left; margin-top: 10px; background: url(/images/global/findatechnologypartner-btn.gif) no-repeat; width: 106px; height: 61px; text-indent: -9000em; overflow: hidden; }
+.consultingpartners-box a:hover, .technologypartners-box a:hover { background-position: bottom; }
+
+.webinar-layout { margin: 0 auto; padding: 0; list-style: none; width: 566px; }
+.webinar-layout li { float: left;  }
+.webinar-layout a { display: block; width: 283px; height: 154px; text-indent: -9000em; }
+.webinar-layout .webinars-agileprojectmanage-btn a { background: url(/images/global/webinars-agileprojectmanage-btn.jpg) no-repeat; }
+.webinar-layout .webinars-agilebestpract-btn a { background: url(/images/global/webinars-agilebestpract-btn.jpg) no-repeat; }
+.webinar-layout .webinars-agile-btn a { background: url(/images/global/webinars-agile101-btn.jpg) no-repeat; }
+.webinar-layout .webinars-agilemanager-btn a { background: url(/images/global/webinars-agilemanager-btn.jpg) no-repeat; }
+.webinar-layout a:hover { background-position: bottom; }
+
+.whoneedstools-list { margin: 10px 0 0 0; padding: 0; list-style: none; }
+.whoneedstools-list li { margin-bottom: 8px; padding: 15px 15px 15px 100px; border: solid #efefef; border-width: 1px 2px 2px 1px; }
+.whoneedstools-list li h2 { margin: 0; padding: 0; font-size: 14px !important; font-weight: normal; color: #00496b !important; }
+.whoneedstools-list li h2 span { display: block; font-size: 13px !important; color: #60554f !important; }
+.whoneedstools-list li.one { background: url(/images/global/whoneedstools-1.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.two { background: url(/images/global/whoneedstools-2.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.three { background: url(/images/global/whoneedstools-3.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.four { background: url(/images/global/whoneedstools-4.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.five { background: url(/images/global/whoneedstools-5.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.six { background: url(/images/global/whoneedstools-6.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.seven { background: url(/images/global/whoneedstools-7.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.eight { background: url(/images/global/whoneedstools-8.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.nine { background: url(/images/global/whoneedstools-9.gif) no-repeat 30px 50%; }
+.whoneedstools-list li.ten { background: url(/images/global/whoneedstools-10.gif) no-repeat 10px 50%; }
+
+.events-box { float: left; margin: 0 0 0 15px; padding: 0; list-style: none; width: 247px; }
+.events-box li { }
+.events-box li a { display: block; font-size: 14px; width: 247px; text-decoration: none; }
+.events-box li a span { display: block; }
+.events-box li a.all-btn { background: url(/images/global/all-btn.gif) no-repeat; height: 42px; }
+.events-box li a.all-btn span { padding: 16px 0 0 50px; }
+.events-box li a.community-btn { background: url(/images/global/community-btn.gif) no-repeat; height: 30px; }
+.events-box li a.community-btn span { padding: 5px 0 0 50px; }
+.events-box li a.conference-btn { background: url(/images/global/conference-btn.gif) no-repeat; height: 31px; }
+.events-box li a.conference-btn span { padding: 8px 0 0 50px; }
+.events-box li a.partners-btn { background: url(/images/global/partner-btn.gif) no-repeat; height: 30px; }
+.events-box li a.partners-btn span { padding: 6px 0 0 50px; }
+.events-box li a.online-btn { background: url(/images/global/online-btn.gif) no-repeat; height: 42px; }
+.events-box li a.online-btn span { padding: 7px 0 0 50px; }
+.events-box li a:hover { background-position: bottom; }
+.mini-map { float: left; background: url(/images/global/mini-map.gif) no-repeat; width: 280px; height: 175px; }
+
+.events-tabbed-menu { margin: 0; padding: 0; list-style: none; }
+.events-tabbed-menu li { float: left; margin-right: 10px; }
+.events-tabbed-menu li .tab { background: url(/images/global/events-tabbed-bg.gif) no-repeat; font-size: 12px; width: 184px; height: 28px; }
+.events-tabbed-menu span { float: left; display: block; padding: 5px 0 0 10px; }
+.events-tabbed-menu a { float: right; display: block; margin: 4px 5px 0 0; background: url(/images/global/events-tabbed-x.gif) no-repeat; width: 18px; height: 19px; text-indent: -9000em; }
+.events-tabbed-menu a:hover { background-position: bottom; }
+
+dl.events-list { margin: 0; padding: 15px 0 0 0; }
+dl.events-list dt { margin: 0; padding: 2px 0; float: left; background: #60554f; width: 50px; text-align: center; color: #dcdcdc; border: 1px solid #efefef; }
+dl.events-list dt span { display: block; margin: 2px 0; padding: 2px 0; background: #80746d; font-size: 12px; color: #fff; border-top: 1px solid #958a83; border-bottom: 1px solid #958a83; }
+dl.events-list dd { margin: 0 0 4px 65px; padding: 0; background: #efefef; border-bottom: 1px solid #efefef; }
+dl.events-list dd div { margin: 0 2px 1px 0; padding: 5px 0 10px 10px; background: #fff; border: solid #f3f3f3; border-width: 1px 0 0 1px; }
+dl.events-list dd div span.price { display: block; float: right; margin: 0 5px 10px 10px; padding: 5px 10px; background: #efefef; font-size: 11px; color: #333; border: 1px solid #ddd; }
+dl.events-list dd div h3 { margin: 0; padding: 0; font-size: 16px; font-weight: normal; color: #cb632a; }
+dl.events-list dd div h3 span { display: block; font-size: 12px; color: #60554f; }
+dl.events-list dd div a { display: inline; padding: 2px; background-image: none; }
+dl.events-list dd div a:hover {  }
+
+.premierIcon { margin: 4px 0 0 0; padding: 0; }
+.premierIcon ul { list-style: none; margin: 0; padding: 0; }
+.premierIcon li { padding: 4px 0 10px 30px; background: url(/images/partnerdirectory/premierePartnerStar_icon.png) no-repeat; }
+
+.partnerdirectory-list { margin: 0; padding: 15px 0 0 0; list-style: none; }
+.partnerdirectory-list div.profile { margin-bottom: 15px; padding-bottom: 8px; background: #fafafa; border: solid #f3f3f3; border-width: 1px 2px 2px 1px; position: relative; }
+.partnerdirectory-list div.profile .premierPartner { position: absolute; top: -8px; left: -11px; }
+.partnerdirectory-list div.profile .top { margin-bottom: 8px; padding: 10px; background: #fff; border-bottom: 1px solid #efefef; }
+.partnerdirectory-list div.profile a.mini-logo { display: block; float: left; width: 48%; }
+.partnerdirectory-list div.profile a.learnmore-btn { display: block; float:right; background: url(/images/global/inner-learnmore-btn.gif) no-repeat; width: 93px; height: 25px; text-indent: -9000em; overflow: hidden; }
+.partnerdirectory-list div.profile a.learnmore-btn:hover { background-position: bottom; }
+.partnerdirectory-list div.profile ul { margin: 0; padding: 0; list-style: none; }
+.partnerdirectory-list div.profile ul li { padding: 2px 5px 2px 10px; }
+.partnerdirectory-list div.profile strong { display: block; padding-bottom: 5px; }
+.partnerdirectory-list div.profile .spec-panel { float: left; padding: 10px; border-right: 1px solid #efefef; width: 45%; }
+.partnerdirectory-list div.profile .res-panel { float: left; padding: 10px; width: 45%; }
+
+/* Partner Profiles */
+.partner-lt-panel { float: left; width: 62%; }
+.partner-lt-panel h3 { margin: 0; font-size: 14px; font-weight: normal; color: #00496b; border-bottom: 1px solid #ccc; }
+.partner-lt-panel ul { margin: 0 0 0 15px; padding: 4px 0 0 0; }
+.partner-lt-panel ul li { padding: 4px 4px 4px 0; }
+.partner-lt-panel .sub-panel { float: left; margin-top: 10px; width: 48%; border-top: 1px solid #efefef; }
+.partner-rt-panel { float: right; width: 34%; }
+.partner-rt-panel .box { margin-bottom: 8px; padding: 5px; background: #dcdcdc; border: 1px solid #efefef; color: #60554f; }
+.partner-rt-panel .box a { color: #60554f; }
+.partner-rt-panel .box ul {  margin: 0 0 0 18px; padding: 4px 0 0 0; }
+.partner-rt-panel .box ul li { padding: 2px 4px 2px 0px; }
+
+.partner-lt-panel .businessfocus-icon { background: url(/images/global/partner-businessfocus-icon.png) no-repeat 0 14px; padding: 10px 0 5px 16px; }
+.partner-lt-panel .methodologies-icon { background: url(/images/global/partner-methodologies-icon.png) no-repeat 0 13px; padding: 10px 0 5px 16px; }
+.partner-lt-panel .resourceslinks-icon { background: url(/images/global/partner-resourceslinks-icon.png) no-repeat 0 13px; padding: 10px 0 5px 16px; }
+.partner-lt-panel .integration-icon { background: url(/images/global/partner-integration-icon.png) no-repeat 0 13px; padding: 10px 0 5px 20px; }
+.partner-lt-panel .productlinks-icon { background: url(/images/global/partner-productlinks-icon.png) no-repeat 0 13px; padding: 10px 0 5px 20px; }
+.partner-rt-panel .contactinformation-icon { background: url(/images/global/partner-contactinformation-icon.png) no-repeat 5px 8px; padding: 5px 0 5px 22px; border-bottom: 1px solid #fff; }
+.partner-rt-panel .geography-icon { background: url(/images/global/partner-geography-icon.png) no-repeat 5px 8px; padding: 5px 0 5px 22px; border-bottom: 1px solid #fff; }
+.partner-rt-panel .specialization-icon { background: url(/images/global/partner-specialization-icon.png) no-repeat 5px 7px; padding: 5px 0 5px 22px; border-bottom: 1px solid #fff; }
+/* end Partner Profiles */
+
+.inner-calls { float: right; margin: 0; padding: 15px 15px 15px 30px; list-style: none; }
+.inner-calls li { padding: 10px 0; }
+.inner-calls a { display: block; width: 245px; height: 60px; text-indent: -9000em; overflow: hidden; }
+.inner-calls a.inner-referaclient-btn { background: url(/images/global/inner-referaclient-btn.gif) no-repeat; }
+.inner-calls a.promotionaloffer-btn { background: url(/images/global/5050promotionaloffer-btn.gif) no-repeat; }
+.inner-calls a.agiletool-btn { background: url(/images/global/agiletool-btn.gif) no-repeat; width: 246px; height: 60px; }
+.inner-calls a:hover { background-position: bottom; }
+
+.PartnerForm { margin: 0; padding: 0; }
+.PartnerForm h2 { padding-bottom: 30px; }
+.PartnerForm label { display: block; padding-top: 5px; float: left; clear: both; margin-right: 10px; width: 150px; text-align: right; }
+.PartnerForm label.error { display: block; padding-top: 5px; float: left; margin-right: 10px; width: 150px; text-align: right; color: #8D0A39; clear: none; }
+.PartnerForm label span { color: #f00; }
+.PartnerForm input, .PartnerForm select, .PartnerForm textarea { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; font-size: 11px; color: #60554f; }
+.PartnerForm input { float: left; padding: 6px; width: 200px; }
+.PartnerForm textarea { float: left; padding: 6px; width: 250px; height: 100px; }
+.PartnerForm select { float: left; }
+.PartnerForm div { border-bottom: 1px solid #efefef; padding: 8px; }
+.PartnerForm div:hover { background: #fafafa; }
+.PartnerForm div.clear { border: 0; padding: 0; clear: both; }
+
+.banner-becomeapartner { display: block; background: url(/images/global/banner-becomeapartner.jpg) no-repeat 50% top; height: 194px; text-indent: -9000em; overflow: hidden; }
+.banner-becomeapartner:hover { background-position: bottom; }
+.whyversionone-lt { float: left; padding-top: 15px; width: 52%; border-top: 1px solid #efefef; }
+.partnerbenefits-rt { float: left; padding-top: 15px; width: 47%; border-top: 1px solid #efefef; }
+
+.casestudies-list { margin: 0; padding: 15px 0 0 0; list-style: none; }
+.casestudies-list li { margin: 0 0 5px 0; padding: 10px; border: solid #f3f3f3; border-width: 1px 2px 2px 1px; }
+.casestudies-list li h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #cb632a; }
+.casestudies-list blockquote { margin: 0; padding: 12px 0 15px 0; font-size: 13px; color: #00496b; }
+.casestudies-list span { display: block; text-align: right; font-size: 11px; font-weight: bold; color: #60554f; padding: 5px 0 8px 0; }
+
+#comparechart { background: url(/images/compare/compare-bg.gif) repeat-x; }
+#comparechart h4 { margin: 0; padding: 0; font-size: 14px; color: #78082d; }
+#comparechart .team, #comparechart .enterprise, #comparechart .ultimate { padding: 0; vertical-align: bottom; }
+#comparechart .team h3, #comparechart .enterprise h3, #comparechart .ultimate h3 { margin: 0; padding: 0; height: 80px; text-indent: -9000em; overflow: hidden; }
+#comparechart .team h3 { background: url(/images/compare/team.gif) no-repeat bottom; }
+#comparechart .enterprise h3 { background: url(/images/compare/enterprise.gif) no-repeat bottom; }
+#comparechart .ultimate h3 { background: url(/images/compare/ultimate.gif) no-repeat bottom; }
+#comparechart table { border-collapse: collapse; width: 100%; }
+#comparechart .tl { padding: 0; background: url(/images/compare/left-bg.gif) repeat-y right; vertical-align: top; }
+#comparechart .tl .img { background: url(/images/compare/top-left.gif) no-repeat top right; height: 5px; }
+#comparechart .tr { padding: 0; background: url(/images/compare/right-bg.gif) repeat-y right; vertical-align: top; }
+#comparechart .tr .img { background: url(/images/compare/top-right.gif) no-repeat top right; height: 5px; }
+#comparechart .left { padding: 0 0 1px 0; background: url(/images/compare/left-bg.gif) repeat-y right; text-align: left; }
+#comparechart .left a { display: block; margin: 0 4px 0 0; background: #60554f url(/images/compare/link-tl.gif) no-repeat top left; color: #fff; text-decoration: none; }
+#comparechart .left a span { display: block; padding: 8px; background: url(/images/compare/link-bl.gif) no-repeat bottom left; }
+#comparechart .left a:hover { background-color: #cb632a; color: #fff; }
+#comparechart .right { background: url(/images/compare/right-bg.gif) repeat-y right; }
+#comparechart td { padding: 8px; color: #666; text-align: center; }
+#comparechart .title { padding: 8px; font-size: 12px; color: #00486b; }
+#comparechart .description { vertical-align: top; font-size: 10px; color: #666; }
+#comparechart .bl { padding: 0; background: url(/images/compare/left-bg.gif) repeat-y right; vertical-align: bottom; }
+#comparechart .bl .img { background: url(/images/compare/bottom-left.gif) no-repeat bottom right; height: 7px; }
+#comparechart .br { padding: 0; background: url(/images/compare/right-bg.gif) repeat-y right; vertical-align: bottom; }
+#comparechart .br .img { background: url(/images/compare/bottom-right.gif) no-repeat bottom right; height: 7px; }
+#comparechart .bottom-corner { background: url(/images/compare/bottom.gif) repeat-x bottom; }
+#comparechart .bottom { background: url(/images/compare/bottom.gif) repeat-x bottom; }
+#comparechart .divider { border: solid #efefef; border-width: 1px 0; }
+#comparechart .border-top { border: solid #efefef; border-width: 1px 0 0 0; }
+#comparechart .border-right { border: solid #efefef; border-width: 0 1px 0 0; }
+#comparechart .requestnow-btn { display: block; background: url(/images/compare/requestnow-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+#comparechart .requestnow-btn:hover { background-position: bottom; }
+#comparechart .trial-btn { display: block; background: url(/images/compare/trial-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+#comparechart .trial-btn:hover { background-position: bottom; }
+#comparechart .cta-btn { display: block; background: url(/images/compare/cta-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+#comparechart .cta-btn:hover { background-position: bottom; }
+#comparechart h5 { margin: 0; padding: 0; font-size: 13px; font-weight: normal; color: #cb632a; }
+#comparechart h6 { margin: 0; padding: 0; font-size: 13px; font-weight: normal; color: #78082d; }
+
+#new-comparechart { background: url(/images/compare/compare-bg.gif) repeat-x; }
+#new-comparechart h4 { margin: 0 5px 0 0; padding: 0; font-size: 13px; color: #78082d; }
+#new-comparechart td h6 { margin: 0 5px 0 0; padding: 5px 0 4px 5px; background: #00496b; font-size: 13px; color: #fff; }
+#new-comparechart .team, #new-comparechart .enterprise, #new-comparechart .ultimate { padding: 0; vertical-align: bottom; }
+#new-comparechart .team h3, #new-comparechart .enterprise h3, #new-comparechart .ultimate h3 { margin: 0; padding: 0; height: 80px; text-indent: -9000em; overflow: hidden; }
+#new-comparechart .team h3 { background: url(/images/compare/team.gif) no-repeat bottom; }
+#new-comparechart .enterprise h3 { background: url(/images/compare/enterprise.gif) no-repeat bottom; }
+#new-comparechart .ultimate h3 { background: url(/images/compare/ultimate.gif) no-repeat bottom; }
+#new-comparechart table { border-collapse: collapse; width: 100%; }
+#new-comparechart .tl { padding: 0; background: url(/images/compare/left-bg.gif) repeat-y right; vertical-align: top; }
+#new-comparechart .tl .img { background: url(/images/compare/top-left.gif) no-repeat top right; height: 5px; }
+#new-comparechart .tr { padding: 0; background: url(/images/compare/right-bg.gif) repeat-y right; vertical-align: top; }
+#new-comparechart .tr .img { background: url(/images/compare/top-right.gif) no-repeat top right; height: 5px; }
+#new-comparechart .left { padding: 0 0 1px 0; background: url(/images/compare/left-bg.gif) repeat-y right; text-align: left; }
+#new-comparechart .left a { display: block; margin: 0 4px 0 0; background: #60554f url(/images/compare/link-tl.gif) no-repeat top left; color: #fff; text-decoration: none; }
+#new-comparechart .left a span { display: block; padding: 8px; background: url(/images/compare/link-bl.gif) no-repeat bottom left; }
+#new-comparechart .left a:hover { background-color: #cb632a; color: #fff; }
+#new-comparechart .right { background: url(/images/compare/right-bg.gif) repeat-y right; }
+#new-comparechart td { padding: 8px; color: #666; text-align: center; }
+#new-comparechart td label { position: relative; display: block; margin-right: 5px; padding: 5px 42px 5px 10px; border: solid #efefef; border-width: 1px 0 0 0; }
+#new-comparechart td label span { display: block; position: absolute; top: 6px; right: 5px; background: url(/images/compare/new-icon.gif) no-repeat; width: 33px; height: 14px; }
+#new-comparechart td label a.new { display: block; position: absolute; top: 6px; right: 5px; background-image: url(/images/compare/new-icon.gif); background-repeat: no-repeat; background-color: #fff; width: 33px; height: 14px; }
+#new-comparechart td label a.new:hover { display: block; position: absolute; top: 6px; right: 5px; background-image: url(/images/compare/new-icon.gif); background-repeat: no-repeat; background-color: #fff; width: 33px; height: 14px; }
+#new-comparechart td label.question { display: inline-block; background: url(/images/compare/question-icon.gif) no-repeat 150px; }
+#new-comparechart .title { padding: 8px; font-size: 12px; color: #00486b; }
+#new-comparechart .description { vertical-align: top; font-size: 10px; color: #666; }
+#new-comparechart .bl { padding: 0; background: url(/images/compare/left-bg.gif) repeat-y right; vertical-align: bottom; }
+#new-comparechart .bl .img { background: url(/images/compare/bottom-left.gif) no-repeat bottom right; height: 7px; }
+#new-comparechart .br { padding: 0; background: url(/images/compare/right-bg.gif) repeat-y right; vertical-align: bottom; }
+#new-comparechart .br .img { background: url(/images/compare/bottom-right.gif) no-repeat bottom right; height: 7px; }
+#new-comparechart .bottom-corner { background: url(/images/compare/bottom.gif) repeat-x bottom; }
+#new-comparechart .bottom { background: url(/images/compare/bottom.gif) repeat-x bottom; }
+#new-comparechart .divider { border: solid #efefef; border-width: 1px 0; }
+#new-comparechart .border-top { border: solid #efefef; border-width: 1px 0 0 0; }
+#new-comparechart .border-right { border: solid #efefef; border-width: 0 1px 0 0; }
+#new-comparechart .signupfree-btn { display: block; background: url(/images/compare/signupfree-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+#new-comparechart .signupfree-btn:hover { background-position: bottom; }
+#new-comparechart .trial-btn { display: block; background: url(/images/compare/trial-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+#new-comparechart .trial-btn:hover { background-position: bottom; }
+#new-comparechart .contact-btn { display: block; background: url(/images/compare/contact-btn.gif) no-repeat top; height: 30px; text-indent: -9000em; overflow: hidden; }
+#new-comparechart .contact-btn:hover { background-position: bottom; }
+#new-comparechart h5 { margin: 0; padding: 0; font-size: 13px; font-weight: normal; color: #cb632a; }
+#new-comparechart h6 { margin: 0; padding: 0; font-size: 13px; font-weight: normal; color: #78082d; }
+
+#cp-content { padding: 20px; border-bottom: 1px solid #ccc; }
+#cp-content h2 { margin: 0; padding: 0; font-size: 16px; font-weight: normal; color: #cb632a; }
+
+#cp-menu { background: #78082d; border: 1px solid #650525; }
+#cp-menu ul { margin: 0; padding: 0; list-style: none; }
+#cp-menu ul li { float: left; }
+#cp-menu ul li a { display: block; padding: 10px; color: #fff; text-decoration: none; }
+#cp-menu ul li a:hover { background: #470319; }
+
+.add-box { text-align: right; padding: 0 0 15px 0; }
+.add-box a { display: inline-block; float: right; margin-bottom: 1px; padding: 4px 6px; background: #aaa; color: #fff; text-decoration: none; text-align: center; }
+.add-box a:hover { background: #cb632a; }
+.c-dg { margin: 15px 0; width: 100%; border-collapse: collapse; border: solid #dcdcdc; border-width: 1px 1px 0 0; }
+.c-dg caption { background: #78082d; padding: 10px; font-size: 13px; color: #fff; text-align: left; font-weight: bold; }
+.c-dg th { padding: 6px; background: #60554f; text-align: left; color: #fff; vertical-align: top; }
+.c-dg tr:hover { background: #fafafa; }
+.c-dg td { padding: 6px; vertical-align: top; border: solid #dcdcdc; border-width: 0 0 1px 1px; }
+.c-dg td.actions { text-align: right; }
+.c-dg td.actions a { display: inline-block; margin: 0 0 1px 1px; padding: 4px 6px; background: #aaa; color: #fff; text-decoration: none; text-align: center; }
+.c-dg td.actions a:hover { background: #cb632a; }
+
+.integrations-overview-banner { position: relative; padding: 10px 0 20px 22px; background: url(/images/Integrations/blue-fade.jpg) bottom no-repeat; }
+.integrations-overview-banner h2 { margin: 0 0 15px 0 !important; padding: 0; font-size: 26px !important; font-weight: bold !important; color: #00496b !important; }
+.integrations-overview-banner ul { margin: 0; padding: 0 0 0 0; list-style: none; }
+.integrations-overview-banner li { margin: 0; padding: 5px 0 5px 35px; font-size: 13px; color: #333; }
+
+.integrations-overview-banner .integrations-visual { position: absolute; top: 0px; right: 0px; z-index: 0; }
+.integrations-overview-banner .open-web-service-icon { background: url(/images/Integrations/open-web-service-icon.png) 5px 50% no-repeat; }
+.integrations-overview-banner .flexible-integration-icon { background: url(/images/Integrations/flexible-integration-icon.png) 0 50% no-repeat; }
+.integrations-overview-banner .pre-built-integrations-icon { background: url(/images/Integrations/pre-built-integrations-icon.png) 0 50% no-repeat; }
+.integrations-overview-banner .for-all-editions-icon { background: url(/images/Integrations/for-all-editions-icon.png) 0 50% no-repeat; }
+.integrations-overview-banner .extensible-api-icon { background: url(/images/Integrations/extensible-api-icon.png) 0 50% no-repeat; }
+.integrations-overview-banner .free-pre-built-icon { background: url(/images/Integrations/free-pre-built-icon.png) 0 50% no-repeat; }
+.integrations-overview-banner .free-access-to-connectors-icon { background: url(/images/Integrations/free-access-to-connectors-icon.png) 0 50% no-repeat; }
+.integrations-overview-banner .data-mart-icon { background: url(/images/Integrations/data-mart-icon.png) 0 50% no-repeat; }
+.integrations-overview-banner .integrations-graph { display: block; width: 336px; height: 201px; float: right; }
+.integrations-overview-banner .try-versionone { margin: 24px 0 0 0; display: block; background: url(/images/product-overview/try-versionone-btn.png) no-repeat; width: 321px; height: 46px; text-indent: -9000em; overflow: hidden; }
+.integrations-overview-banner .try-versionone:hover { background-position: bottom; }
+.integrations-and-connectors-title { margin: 0 20px; padding: 0; background: url(/images/Integrations/integrations-and-connectors-title.png) bottom left no-repeat; height: 45px; text-indent: -9000em; overflow: hidden; }
+
+.integrations-pdf-btn { float: right; margin-bottom: 8px; display: block; background: url(/images/Integrations/download-btn.gif) no-repeat; width: 236px; height: 38px; text-indent: -9000em; overflow: hidden; }
+.integrations-pdf-btn:hover { background-position: bottom; }
+
+.integrations-txt { padding: 0 11px 20px 11px; }
+.integrations-txt h3 { padding-top: 15px; font-size: 25px; font-weight: normal; }
+.integrations-txt p { font-size: 13px; color: #333; }
+.integrations-txt ul { margin-left: 30px; padding: 15px; }
+.integrations-txt ul li { font-size: 13px; color: #333; padding-bottom: 8px; }
+
+.app-dir-title {
+	padding: 15px 25px 20px 25px;
+	background: url(/images/integrations/app-dir-title-gradient.png) bottom repeat-x;
+}
+.app-dir-title .description {
+	float: left;
+	width: 58%;
+}
+.app-dir-title .apps-and-growing {
+	float: right;
+	margin-top: 15px;
+	border: 1px solid #efefef;
+	background: #fff;
+	box-shadow: 0 0 20px #ddd;
+	-webkit-box-shadow: 0 0 20px #ddd;
+	-mox-box-shadow: 0 0 20px #ddd;
+	-o-box-shadow: 0 0 20px #ddd;
+	width: 277px;
+}
+.app-dir-title .apps-and-growing h3 {
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #dedfdf;
+	background: #fcfcfc;
+	font-size: 16px;
+	padding: 10px 0 10px 15px;
+}
+.app-dir-title .apps-and-growing h3 strong {
+	font-size: 22px;
+	color: #00496b;
+}
+.app-dir-title .apps-and-growing ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.app-dir-title .apps-and-growing li {
+	padding: 5px 5px 5px 15px;
+}
+.app-dir-title .apps-and-growing span {
+	display: inline;
+	margin-left: 8px;
+	background: #bbb;
+	color: #fff;
+	padding: 2px 4px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+}
+.app-dir-title .apps-and-growing .inner {
+	background: url(/images/integrations/apps-and-growing-box-gradient.gif) no-repeat;
+	padding: 10px 0;
+}
+.integration-title {
+	padding: 13px 55px 13px 25px;
+	background: #fcfcfc;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	position: relative;
+}
+.integration-title h4 {
+	margin: 0 !important; padding: 0 !important;
+	font-size: 20px !important;
+	color: #78082d !important;
+	font-weight: bold;
+}
+.integration-title p {
+	margin: 0; padding: 0;
+	font-size: 12px;
+	color: #797370;
+}
+.integration-title a {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	dispay: block;
+	width: 32px;
+	height: 32px;
+	background: #ccc url(/images/integrations/up-arrow.png) 50% 50% no-repeat;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-webkit-transition: all 0.2s ease-in;
+	-moz-transition: all 0.2s ease-in;
+	-o-transition: all 0.2s ease-in;
+	transition: all 0.2s ease-in;
+}
+.integration-title a:hover {
+	top: 10px;
+	background: #666 url(/images/integrations/up-arrow.png) 50% 50% no-repeat;
+}
+.integration-list {
+}
+.integration-list .alt {
+	background: #fcfcfc;
+}
+.integration-list .integration {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f1f1f1;
+}
+.integration-list .integration:hover, 
+.integration-list .integration:focus {
+	box-shadow: 0 0 20px #ddd;
+	-webkit-box-shadow: 0 0 20px #ddd;
+	-mox-box-shadow: 0 0 20px #ddd;
+	-o-box-shadow: 0 0 20px #ddd;
+	position: relative;
+	z-index: 20;
+}
+.integration-list .integration .logo,
+.integration-list .integration .disc {
+	float: left;
+}
+.integration-list .integration .link {
+	float: right;
+}
+.integration-list .integration .logo,
+.integration-list .integration .disc,
+.integration-list .integration .link {
+	padding: 0 25px;
+}
+.integration-list .integration .logo {
+	padding-right: 10px;
+}
+.integration-list .integration .disc {
+	padding-top: 15px;
+	padding-left: 10px;
+	font-size: 14px;
+}
+.integration-list .integration .link {
+	padding-top: 10px;
+}
+.integration-list .integration .link a {
+	display: inline-block;
+	min-width: 46px;
+	text-align: center;
+	text-decoration: none;
+	color: #444;
+	font-family: "Segoe UI", Lucida Sans Unicode, Lucida Grande, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	height: 27px;
+	padding: 0 8px;
+	line-height: 27px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-transition: all 0.218s;
+	-moz-transition: all 0.218s;
+	-ms-transition: all 0.218s;
+	-o-transition: all 0.218s;
+	transition: all 0.218s;
+	border: 1px solid gainsboro;
+	background-color: whiteSmoke;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(whiteSmoke),to(#F1F1F1));
+	background-image: -webkit-linear-gradient(top,whiteSmoke,#F1F1F1);
+	background-image: -moz-linear-gradient(top,whiteSmoke,#F1F1F1);
+	background-image: -ms-linear-gradient(top,whiteSmoke,#F1F1F1);
+	background-image: -o-linear-gradient(top,whiteSmoke,#F1F1F1);
+	background-image: linear-gradient(top,whiteSmoke,#F1F1F1);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+.integration-list .integration .link a:hover {
+	border: 1px solid #c6c6c6;
+	color: #333;
+	text-decoration: none;
+	-webkit-transition: all 0.0s;
+	-moz-transition: all 0.0s;
+	-ms-transition: all 0.0s;
+	-o-transition: all 0.0s;
+	transition: all 0.0s;
+	background-color: #f8f8f8;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(#f8f8f8),to(#f1f1f1));
+	background-image: -webkit-linear-gradient(top,#f8f8f8,#f1f1f1);
+	background-image: -moz-linear-gradient(top,#f8f8f8,#f1f1f1);
+	background-image: -ms-linear-gradient(top,#f8f8f8,#f1f1f1);
+	background-image: -o-linear-gradient(top,#f8f8f8,#f1f1f1);
+	background-image: linear-gradient(top,#f8f8f8,#f1f1f1);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+ 
+
+#integrations-overview { margin: 0 auto; width: 587px; }
+#integrations-overview h4 { margin: 0; padding: 0; height: 38px; clear: both; }
+#integrations-overview h4 a { display: block; height: 38px; text-indent: -9000em; overflow: hidden; }
+#integrations-overview .freeaddons h4 a { background: transparent url(/images/Integrations/freeaddons-btn.gif) no-repeat top; }
+#integrations-overview .crm h4 a { background: transparent url(/images/CRM/crm-btn.gif) no-repeat top; }
+#integrations-overview .continuousintegrations h4 a { background: transparent url(/images/Integrations/continuousintegrations-btn.gif) no-repeat top; }
+#integrations-overview .testmanagement h4 a { background: transparent url(/images/Integrations/testmanagement-btn.gif) no-repeat top; }
+#integrations-overview .ide h4 a { background: transparent url(/images/Integrations/ide-btn.gif) no-repeat top; }
+#integrations-overview .sourcecodemanagement h4 a { background: transparent url(/images/Integrations/sourcecodemanagement-btn.gif) no-repeat top; }
+#integrations-overview .defectmanagement h4 a { background: transparent url(/images/Integrations/defectmanagement-btn.gif) no-repeat top; }
+#integrations-overview .requirementsmanagement h4 a { background: transparent url(/images/Integrations/requirementsmanagement-btn.gif) no-repeat top; }
+#integrations-overview .productmanagement h4 a { background: transparent url(/images/Integrations/productmanagement-btn.gif) no-repeat top; }
+/* #integrations-overview h4 a:hover { background-position: bottom; } */
+#integrations-overview .panel { margin-bottom: 4px; background: url(/images/Integrations/logo-panel.gif); height: 53px; }
+#integrations-overview .panel:hover { background-position: bottom; }
+#integrations-overview .panel ul { margin: 0; padding: 0; list-style: none; }
+#integrations-overview .panel ul li { float: left; }
+
+#integrations-overview .panel-lg { margin-bottom: 4px; background: url(/images/Integrations/logo-panel-lg.png); height: 100px;  }
+#integrations-overview .panel-lg:hover { background-position: bottom; }
+#integrations-overview .panel-lg ul { margin: 0; padding: 0; list-style: none; }
+#integrations-overview .panel-lg ul li { float: left; }
+
+#integrations-overview .freeaddons .panel ul li { padding: 13px 0 0 10px; }
+#integrations-overview .continuousintegrations .panel ul li { padding: 13px 0 0 14px; }
+#integrations-overview .testmanagement .panel-lg ul li { padding: 13px 0 0 14px; }
+#integrations-overview .ide .panel ul li { padding: 13px 0 0 14px; }
+#integrations-overview .sourcecodemanagement .panel ul li { padding: 13px 0 0 6px; }
+#integrations-overview .defectmanagement .panel-lg ul li { padding: 13px 0 0 6px; }
+#integrations-overview .requirementsmanagement .panel ul li { padding: 13px 0 0 6px; }
+#integrations-overview .productmanagement .panel ul li { padding: 13px 0 0 14px; }
+
+.integrations-logos { margin: 0; padding: 5px 15px 50px 15px; list-style: none; }
+.integrations-logos li { float: left; padding: 10px; }
+
+.areyouagile-list { margin: 10px 0 0 0; padding: 0; list-style: none; }
+.areyouagile-list li { margin-bottom: 8px; padding: 15px 15px 15px 100px; border: solid #efefef; border-width: 1px 2px 2px 1px; }
+.areyouagile-list li h3 { margin: 0; padding: 0; font-size: 14px; font-weight: normal; color: #00496b; }
+.areyouagile-list li h3 span { display: block; font-size: 13px; color: #60554f; }
+.areyouagile-list li.one { background: url(/images/global/whoneedstools-1.gif) no-repeat 39px 50%; }
+.areyouagile-list li.two { background: url(/images/global/whoneedstools-2.gif) no-repeat 30px 50%; }
+.areyouagile-list li.three { background: url(/images/global/whoneedstools-3.gif) no-repeat 29px 50%; }
+.areyouagile-list li.four { background: url(/images/global/whoneedstools-4.gif) no-repeat 26px 50%; }
+.areyouagile-list li.five { background: url(/images/global/whoneedstools-5.gif) no-repeat 30px 50%; }
+.areyouagile-list li.six { background: url(/images/global/whoneedstools-6.gif) no-repeat 29px 50%; }
+.areyouagile-list li.seven { background: url(/images/global/whoneedstools-7.gif) no-repeat 32px 50%; }
+.areyouagile-list li.eight { background: url(/images/global/whoneedstools-8.gif) no-repeat 30px 50%; }
+.areyouagile-list li.nine { background: url(/images/global/whoneedstools-9.gif) no-repeat 30px 50%; }
+.areyouagile-list li.ten { background: url(/images/global/whoneedstools-10.gif) no-repeat 8px 50%; }
+
+.agile_training_filters { padding: 15px 0 0 0; border-bottom: 1px solid #efefef; }
+
+.agile_training_choose { margin: 0 0 20px 10px; width: 75%; }
+.agile_training_choose span { display: block; float: left; padding-top: 5px; font-size: 12px; color: #000; width: 120px; }
+.agile_training_choose .selection { position: relative; z-index: 900; float: left; background: url(/images/training/large-select-box.gif) no-repeat; width: 272px; height: 29px; }
+.agile_training_choose .selection a { display: block; padding: 6px 6px 6px 12px; font-size: 14px; color: #333; text-decoration: none; }
+.agile_training_choose .selection .dropdown { display: none; }
+.agile_training_choose .selection .dropdown a { color: #00496b; border-top: 1px solid #efefef; }
+.agile_training_choose .selection .dropdown a small { font-size: 10px; color: #666; }
+.agile_training_choose .selection .dropdown a small strong { font-size: 11px; }
+.agile_training_choose .selection .dropdown a.bold { background: #fafafa; color: #78082d; }
+.agile_training_choose .selection .dropdown a.viewall { padding: 10px; font-size: 15px; color: #222; text-align: center; }
+.agile_training_choose .selection .dropdown a:hover { background: #f5f5f5; color: #000; }
+.agile_training_choose .selection:hover .dropdown { display: block; z-index: 850; position: absolute; top: 8px; left: 0; padding: 15px 0 0 0; background: #fff; width: 270px; border: 1px solid #ccc; border-top: 0; }
+.agile_training_choose .selection .dropshadow { display: none; }
+/*.agile_training_choose .selection:hover .dropshadow { display: block; z-index: 900; position: absolute; top: -7px; left: -15px; background: url(/images/training/choosecategory-dropshadow.png); width: 302px; height: 354px; }*/
+
+.agile_training_region { float: left; margin-left: 10px; width: 190px; }
+.agile_training_region span { display: block; float: left; padding-top: 3px; font-size: 12px; color: #424343; width: 50px; }
+.agile_training_region .selection { position: relative; z-index: 900; float: left; background: url(/images/training/small-select-box.gif) no-repeat; width: 121px; height: 23px; }
+.agile_training_region .selection a { display: block; padding: 4px 4px 4px 12px; font-size: 13px; color: #333; text-decoration: none; }
+.agile_training_region .selection .dropdown { display: none; }
+.agile_training_region .selection .dropdown a { padding: 6px 4px 6px 12px; color: #00496b; border-top: 1px solid #efefef; }
+.agile_training_region .selection .dropdown a.bold { background: #fafafa; color: #78082d; }
+.agile_training_region .selection .dropdown a.viewall { padding: 10px; font-size: 13px; color: #222; text-align: center; }
+.agile_training_region .selection .dropdown a:hover { background: #f5f5f5; color: #000; }
+.agile_training_region .selection:hover .dropdown { display: block; z-index: 900; position: absolute; top: 6px; left: 0; padding: 15px 0 0 0; background: #fff; width: 119px; border: 1px solid #ccc; border-top: 0; }
+.agile_training_region .selection .dropshadow { display: none; }
+.agile_training_region .selection:hover .dropshadow { display: block; z-index: 800; position: absolute; top: 0; left: 0; background: url(/images/training/small-dropshadow.png); width: 151px; height: 226x; }
+
+.agile_training_deploy { float: left; width: 200px; }
+.agile_training_deploy span { display: block; float: left; padding-top: 3px; font-size: 12px; color: #424343; width: 60px; }
+.agile_training_deploy .selection { position: relative; float: left; z-index: 800; background: url(/images/training/small-select-box.gif) no-repeat; width: 121px; height: 23px; }
+.agile_training_deploy .selection a { display: block; padding: 4px 4px 4px 12px; font-size: 13px; color: #333; text-decoration: none; }
+.agile_training_deploy .selection .dropdown { display: none; }
+.agile_training_deploy .selection .dropdown a { padding: 6px 4px 6px 12px; color: #00496b; border-top: 1px solid #efefef; }
+.agile_training_deploy .selection .dropdown a.bold { background: #fafafa; color: #78082d; }
+.agile_training_deploy .selection .dropdown a.viewall { padding: 10px; font-size: 13px; color: #222; text-align: center; }
+.agile_training_deploy .selection .dropdown a:hover { background: #f5f5f5; color: #000; }
+.agile_training_deploy .selection:hover .dropdown { display: block; z-index: 800; position: absolute; top: 6px; left: 0; padding: 15px 0 0 0; background: #fff; width: 119px; border: 1px solid #ccc; border-top: 0; }
+.agile_training_deploy .selection .dropshadow { display: none; }
+.agile_training_deploy .selection:hover .dropshadow { display: block; z-index: 700; position: absolute; top: 0; left: 0; background: url(/images/training/small-dropshadow.png); width: 151px; height: 226x; }
+
+.month-picker { padding: 15px 15px 5px 10px; }
+.month-picker span { display: block; float: left; padding-top: 10px; font-size: 12px; color: #000; width: 113px; }
+.month-picker a { float: left; margin-right: 10px; display: block; background: url(/images/training/month-picker.png) no-repeat; width: 57px; height: 57px; text-indent: -9000em; overflow: hidden; }
+.month-picker a.apr { background-position: 0 -57px; }
+.month-picker a.apr:hover { background-position: 0 0; }
+.month-picker a.apr-selected { background-position: 0 0; }
+.month-picker a.may { background-position: -61px -57px; }
+.month-picker a.may:hover { background-position: -61px 0; }
+.month-picker a.may-selected { background-position: -61px 0; }
+.month-picker a.jun { background-position: -120px -57px; }
+.month-picker a.jun:hover { background-position: -120px 0; }
+.month-picker a.jun-selected { background-position: -120px 0; }
+.month-picker a.jul { background-position: -179px -57px; }
+.month-picker a.jul:hover { background-position: -179px 0; }
+.month-picker a.jul-selected { background-position: -179px 0; }
+.month-picker a.aug { background-position: -239px -57px; }
+.month-picker a.aug:hover { background-position: -239px 0; }
+.month-picker a.aug-selected { background-position: -239px 0; }
+.month-picker a.sep { background-position: -299px -57px; }
+.month-picker a.sep:hover { background-position: -299px 0; }
+.month-picker a.sep-selected { background-position: -299px 0; }
+.month-picker a.oct { background-position: -359px -57px; }
+.month-picker a.oct:hover { background-position: -359px 0; }
+.month-picker a.oct-selected { background-position: -359px 0; }
+.month-picker a.nov { background-position: -419px -57px; }
+.month-picker a.nov:hover { background-position: -419px 0; }
+.month-picker a.nov-selected { background-position: -419px 0; }
+.month-picker a.dec { background-position: -479px -57px; }
+.month-picker a.dec:hover { background-position: -479px 0; }
+.month-picker a.dec-selected { background-position: -479px 0; }
+
+
+.month-picker a.jan { background-position: -537px -57px; }
+.month-picker a.jan:hover { background-position: -537px 0; }
+.month-picker a.jan-selected { background-position: -537px 0; }
+
+.month-picker a.feb { background-position: -597px -57px; }
+.month-picker a.feb:hover { background-position: -597px 0; }
+.month-picker a.feb-selected { background-position: -597px 0; }
+
+.month-picker a.mar { background-position: -657px -57px; }
+.month-picker a.mar:hover { background-position: -657px 0; }
+.month-picker a.mar-selected { background-position: -657px 0; }
+
+.month-picker a.viewall { display: block; margin: 0; padding: 0; background: none; width: 85px; height: 15px; text-indent: 0; overflow: none; }
+
+.pdufilter { float: left; display: block; padding: 4px; font-size: 12px; width: 110px; }
+
+.agile_training_category { margin-bottom: 15px; padding: 10px 0; }
+.agile_training_category h4 { margin: 0; padding: 10px 0 10px 23px; background: url(/images/training/agile-training-category-icon.gif) no-repeat 0 50%; font-size: 16px; color: #78082d; }
+.agile_training_category h4 small { font-size: 12px; color: #666; }
+.agile_training_category h4 small strong { color: #333; }
+.agile_training_category table { margin-left: 8px; border-left: 1px solid #ccc; border-collapse: collapse; width: 100%; }
+.agile_training_category td { padding: 6px; font-size: 13px; color: #555; border-bottom: 1px solid #efefef; }
+.agile_training_category strong a { color: #00496b; font-weight: normal; text-decoration: underline; }
+.agile_training_category strong a:hover { text-decoration: none; }
+.agile_training_category tr:hover { background: #f5f5f5; }
+.agile_training_category .highlight { background: #78082d; }
+.agile_training_category .highlight:hover { background: #78082d; }
+.agile_training_category .highlight td { color: #fff; }
+.agile_training_category .highlight td a { color: #fff; }
+
+#training_services { padding-top: 10px; }
+#training_services .trainingandservices_banner { background: #f8f8f8 url(/images/training/trainingandservices_banner.png) no-repeat 15px 15px; border-bottom: 1px solid #ededed; height: 156px; }
+#training_services .trainingandservices_banner span { display: block; padding: 70px 0 0 18px; font-size: 13px; color: #5496ac; line-height: 1.4em; }
+#training_services .menu ul { margin: 0; padding: 0; list-style: none; }
+#training_services .menu ul li { float: left; }
+#training_services .menu ul li a { display: block; padding: 15px; background: #fff url(/images/training/training_link_bg.gif) repeat-x bottom; border: 1px solid #c3c2c3; text-decoration: none; }
+#training_services .menu ul li a h1 { margin: 0; padding: 0; font-size: 18px; color: #00496b; }
+#training_services .menu ul li a .desc { height: 100px; }
+#training_services .menu ul li a span { display: block; margin: 0 auto; background: url(/images/training/learnmore-lg-btn.gif) no-repeat; width: 144px; height: 30px; text-indent: -9000em; overflow: hidden; }
+#training_services .menu ul li a:hover span { background-position: bottom; }
+
+#webinar-series-list { margin: 0; padding: 0; list-style: none; }
+#webinar-series-list li { position: relative; padding: 15px 15px 15px 40px; border-bottom: 1px solid #efefef; }
+#webinar-series-list .what { position: absolute; top: 14px; left: -44px; background: url(/images/webinar_series/what.png) no-repeat; width: 71px; height: 23px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list .who { position: absolute; top: 40px; left: -44px; background: url(/images/webinar_series/who.png) no-repeat; width: 71px; height: 23px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list .who2 { position: absolute; top: 65px; left: -44px; background: url(/images/webinar_series/who.png) no-repeat; width: 71px; height: 23px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list .role { position: absolute; top: 40px; left: -44px; background: url(/images/webinar_series/role.png) no-repeat; width: 71px; height: 23px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list .why { position: absolute; top: 73px; left: -44px; background: url(/images/webinar_series/why.png) no-repeat; width: 71px; height: 23px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list h3 { margin: 0; padding: 0 0 10px 0; font-size: 14px; font-weight: normal; color: #00496b; }
+#webinar-series-list p { margin-bottom: 8px; }
+#webinar-series-list .watchnow { float: left; display: block; background: url(/images/webinar_series/watchnow-btn.gif) no-repeat; width: 86px; height: 20px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list .watchnow:hover { background-position: bottom; }
+#webinar-series-list .readmore { float: left; display: block; margin: 0 0 0 5px; background: url(/images/webinar_series/readmore-btn.gif) no-repeat; width: 86px; height: 20px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list .readmore:hover { background-position: bottom; }
+#webinar-series-list .viewfullbio { float: none; display: left; margin: 0 0 0 5px; background: url(/images/webinar_series/viewfullbio-btn.gif) no-repeat; width: 86px; height: 20px; text-indent: -9000em; overflow: hidden; }
+#webinar-series-list .viewfullbio:hover { background-position: bottom; }
+.howvusesv-title { display: block; margin-bottom: 20px; background: url(/images/webinar_series/title-howv1usesv1.gif) no-repeat; width: 386px; height: 86px; text-indent: -9000em; overflow: hidden; }
+.dog { margin: 10px 0 0 10px; }
+.howcusev-title { display: block; margin-bottom: 20px; background: url(/images/webinar_series/title-howcusev1.gif) no-repeat bottom; width: 454px; height: 55px; text-indent: -9000em; overflow: hidden; }
+.next-webinar-btn { position: relative; display: block; margin: 10px 15px 0 15px; padding: 15px 20px 15px 40px; background: url(/images/webinar_series/alert.png) no-repeat 10px 50%; text-decoration: none; font-size: 12px; border-top: 1px solid #efefef; }
+.next-webinar-btn span { position: absolute; top: 9px; right: 95px; display: block; background: url(/images/webinar_series/registernow-btn.png) no-repeat; width: 106px; height: 29px; }
+.next-webinar-btn:hover { background-color: #fffcec; }
+
+.homegrown-grid { margin: 15px 0; width: 100%; border-collapse: collapse; }
+.homegrown-grid th { background: #00496b; padding: 8px; color: #fff; border-bottom: 2px solid #efefef; }
+.homegrown-grid td { padding: 8px; border-bottom: 1px solid #efefef; text-align: center; }
+.homegrown-grid .gd-title { font-weight: bold; text-align: left; color: #333; font-weight: normal; }
+.homegrown-grid .alt { background: #fafafa; }
+
+.agile-tool-comparison-dg { margin: 15px 0 0 0; width: 100%; border-collapse: collapse; }
+.agile-tool-comparison-dg th { padding: 15px 6px 6px 6px; border-left: 1px solid #ebebeb; vertical-align: bottom; color: #000; font-weight: normal; text-align: center; }
+.agile-tool-comparison-dg td { padding: 6px; border-left: 1px solid #ebebeb; text-align: center; }
+.agile-tool-comparison-dg .section-title { position: relative; padding: 12px 0; font-size: 14px; font-weight: bold; color: #000; border: 0; border-top: 2px solid #cbcbcb; text-align: left; }
+.agile-tool-comparison-dg td.title { padding-left: 15px; padding-right: 10px; width: 30%; color: #333; border-left: 1px solid #2c92c1; text-align: left; }
+.agile-tool-comparison-dg .noborder { border: 0; }
+.agile-tool-comparison-dg .alt-row { background: #fafafa; }
+
+.alm-title-icon div,
+.colaboration-title-icon div,
+.reporting-analytics-title-icon div,
+.scalability-title-icon div,
+.open-platform-title-icon div,
+.deployment-and-setup-title-icon div,
+.service-and-support-title-icon div,
+.cost-title-icon div,
+.functionality-title-icon div,
+.kanban-board-icon div,
+.cards-icon div,
+.wip-icon div { position: relative; height: 15px; }
+
+.agile-tool-comparison-dg span { position: absolute; top: -20px; left: -50px; width: 52px; height: 56px; }
+.alm-title-icon span { background: url(/images/global/alm-title-icon.png) no-repeat; }
+.colaboration-title-icon span { background: url(/images/global/colaboration-title-icon.png) no-repeat; }
+.reporting-analytics-title-icon span { background: url(/images/global/reporting-analytics-title-icon.png) no-repeat; }
+.scalability-title-icon span { background: url(/images/global/scalability-title-icon.png) no-repeat; }
+.open-platform-title-icon span { background: url(/images/global/open-platform-title-icon.png) no-repeat; }
+.deployment-and-setup-title-icon span { background: url(/images/global/deployment-and-setup-title-icon.png) no-repeat; }
+.service-and-support-title-icon span { background: url(/images/global/service-and-support-title-icon.png) no-repeat; }
+.cost-title-icon span { background: url(/images/global/cost-title-icon.png) no-repeat; }
+.functionality-title-icon span { background: url(/images/global/functionality-title-icon.png) no-repeat; }
+.kanban-board-icon span { background: url(/images/global/kanban-board-icon.png) no-repeat; }
+.cards-icon span { background: url(/images/global/cards-icon.png) no-repeat; }
+.wip-icon span { background: url(/images/global/wip-icon.png) no-repeat; }
+
+.headerIcon { float: left; padding: 5px 15px 0 0; margin: 0; }
+.header1 { font-weight: bold; color: #000; font-size: 20px; margin: 0; padding: 0; }
+.header2 { color: #000; font-size: 14px; margin: 0; padding: 0; }
+
+.deploymentHeader { border-bottom: solid 1px #e5e5e5; border-top: solid 1px #e5e5e5; padding: 10px 0 10px 0; margin: 10px 0 15px 0; }
+.emptyCell { width: 146px; }
+.deploymentTable { border-collapse: collapse; margin: auto; padding: 0; width: 550px; text-align: center; }
+.tableHead { border: 1px solid #e5e5e5; margin: 0; padding: 0; background: url(/images/Deployment_Options/border.gif) repeat-x bottom; }
+.deploymentTable th { margin: 0; padding: 0; }
+.deploymentTable th h4 { position: relative;  vertical-align: middle; font-size: 14px; font-weight: bold; margin: 0; }
+.thHeader { padding: 5px 10px 5px 10px; }
+.thHeader2 { padding: 5px 30px 5px 10px; }
+.cellBorder { display: block; border-right: 1px solid #e5e5e5; margin: 5px; padding: 0; }
+.rowBorder { border-top: 1px solid #e5e5e5; }
+.globeIcon { float: left; margin: 0; padding: 5px 10px 0 10px; }
+.cityscapeIcon { float: left; margin: 0; padding: 5px 8px 0 10px; }
+.onHeader { margin: 0; padding: 3px 0 0 0; }
+.thArrow { position: absolute; left: 88px; bottom: -13px; }
+.thArrow2 { position: absolute; left: 88px; bottom: -13px; }
+.headerIcon2 { float: left; margin: 0; padding: 0 15px 0 0; }
+.paragraphs { color: #000; }
+
+/* Getting Started */
+.getting-started { padding: 25px 0; }
+.getting-started .box { padding: 25px 25px 25px 55px; background: url(../images/getting-started/tilte-bar-divider.gif) no-repeat; font-size: 12px; color: #000; }
+.getting-started h3 { margin: 0; padding: 0; font-size: 28px; font-weight: normal; color: #00496b; }
+.getting-started .usagescenarios li, .getting-started .nextsteps li { padding-bottom: 8px; }
+.getting-started .getstarted-alert { display: block; float: right; margin: 0 10px 10px 10px; background: url(../images/getting-started/tip-getstarted-alert.gif) no-repeat; width: 246px; height: 88px; text-indent: -9000em; overflow: hidden; }
+.getting-started .scenario { float: left; padding: 5px 0; width: 33%; }
+.getting-started .scenario ul { margin: 0; padding: 0; list-style: none; }
+.getting-started .scenario li { margin-bottom: 8px; padding: 30px 0 13px 15px; border-left: 3px solid #00496b; }
+.getting-started .scenario li:hover { background-color: #fafafa; border-left: 3px solid #78082d; }
+.getting-started .scenario h4 { margin: 0; padding: 0 0 5px 0; font-size: 12px; font-weight: bold; color: #00496b; }
+.getting-started .scenario a { display: block; background: url(../images/getting-started/scenario-btn.gif) no-repeat; width: 107px; height: 23px; text-indent: -9000em; overflow: hidden; }
+.getting-started .scenario a:hover { background-position: bottom; }
+.getting-started .scenario .seeui { display: block; background: url(../images/getting-started/seeui-btn.gif) no-repeat; width: 96px; height: 23px; text-indent: -9000em; overflow: hidden; }
+.getting-started .scenario .seeui:hover { background-position: bottom; }
+.getting-started .scenario .zero { background: #fffee8 url(../images/getting-started/zero.gif) no-repeat 15px 6px; }
+.getting-started .scenario .one { background: url(../images/getting-started/one.gif) no-repeat 15px 6px; }
+.getting-started .scenario .two { background: url(../images/getting-started/two.gif) no-repeat 15px 6px; }
+.getting-started .scenario .three { background: url(../images/getting-started/three.gif) no-repeat 15px 6px; }
+.getting-started .scenario .four { background: url(../images/getting-started/four.gif) no-repeat 15px 6px; }
+.getting-started .scenario .five { background: url(../images/getting-started/five.gif) no-repeat 15px 6px; }
+.getting-started .scenario .six { background: url(../images/getting-started/six.gif) no-repeat 15px 6px; }
+.getting-started .scenario .seven { background: url(../images/getting-started/seven.gif) no-repeat 15px 6px; }
+.getting-started .scenario .eight { background: url(../images/getting-started/eight.gif) no-repeat 15px 6px; }
+.getting-started .scenario .nine { background: url(../images/getting-started/nine.gif) no-repeat 15px 6px; }
+.getting-started .scenario .ten { background: url(../images/getting-started/ten.gif) no-repeat 15px 6px; }
+.getting-started .scenario .eleven { background: url(../images/getting-started/eleven.gif) no-repeat 15px 6px; }
+.getting-started .scenario .twelve { background: url(../images/getting-started/twelve.gif) no-repeat 15px 6px; }
+.getting-started .notes { padding-left: 40px; }
+.getting-started .notes h6 { margin: 0; padding: 0; background: url(../images/getting-started/note-title-bar.png) no-repeat; height: 52px; text-indent: -9000em; overflow: hidden; }
+.getting-started .notes .col { float: left; width: 33%; font-size: 12px; color: #000; height: 100px; }
+.getting-started .notes .col p { padding: 10px 15px; }
+.getting-started .border { background: url(../images/getting-started/dotted-border.gif) repeat-y right; }
+.getting-started .ctas {  }
+.getting-started .ctas ul { margin: 0 0 0 200px; padding: 0; list-style: none; }
+.getting-started .ctas li { float: left; margin-right: 10px; }
+.getting-started .ctas a { display: block; height: 32px; text-indent: -9000em; overflow: hidden; }
+.getting-started .ctas .readproductwhitepapers-btn { background: url(../images/getting-started/readproductwhitepapers-btn.gif) no-repeat; width: 264px; }
+.getting-started .ctas .watchproductwebinars-btn { background: url(../images/getting-started/watchproductwebinars-btn.gif) no-repeat; width: 247px; }
+.getting-started .ctas a:hover { background-position: bottom; }
+/* end Getting Started */
+
+/* Intro Call */
+.intro-call { padding: 25px 0; }
+.intro-call .why-boxes { position: relative; height: 457px; }
+.intro-call .why-boxes .col1 { position: absolute; left: -20px; top: 0; }
+.intro-call .why-boxes .col2 { position: absolute; left: 320px; top: 0; }
+.intro-call .why-boxes .col3 { position: absolute; left: 660px; top: 0; }
+.intro-call .why-boxes .home { position: absolute; left: -20px; top: 0; z-index: 1000; display: block; width: 1000px; height: 350px; }
+.intro-call .why-boxes .customers { position: absolute; left: -20px; top: 350px; z-index: 1000; display: block; width: 1000px; height: 100px; }
+.intro-call h2 { margin: 0; padding: 10px 0; font-size: 20px; font-weight: normal; color: #8da65a; } 
+.intro-call h2 strong { font-weight: bold; }
+.intro-call ul { margin: 0; padding: 0; list-style: none; }
+.intro-call ul li { padding: 5px 5px 5px 40px; font-size: 16px; color: #000; }
+.intro-call .explore-icon { background: url(../images/intro-call/explore-icon.png) no-repeat 0 5px; }
+.intro-call .discuss-icon { background: url(../images/intro-call/discuss-icon.png) no-repeat 0 5px; }
+.intro-call .determine-icon { background: url(../images/intro-call/determine-icon.png) no-repeat 0 5px; }
+.intro-call .ctas { padding: 0 0 25px 0; }
+.intro-call .ctas ul { margin: 0; padding: 0; list-style: none; }
+.intro-call .ctas ul li { float: left; width: 25%; }
+/* end Intro Call */
+
+
+
+.flow-list .tip { display: inline; position: relative; color: #00496b; }
+.flow-list h3 { margin: 0; padding: 0; font-size: 16px; font-weight: normal; color: #cb632a; }
+.flow-list .tip .pop { display: none; padding: 0; margin: 0; }
+.flow-list .tip:hover .pop { display: block; position: absolute; top: -190px; left: -110px; z-index: 200; background: url(/images/lean/pop.png) no-repeat; width: 306px; height: 197px; font-size: 12px; color: #000; text-decoration: none; }
+.flow-list .tip:hover .pop .inner { padding: 25px; text-decoration: none; }
+.flow-list .tip:hover .pop .inner strong { font-size: 16px; }
+.flow-list h2 .tip { color: #cb632a; }
+
+/* Agile & Scrum Project Management */
+.getting-started .agile-mgmt-billboard { position: relative; background: url(/images/agile-project-management/billboard-bg-gradient.jpg) no-repeat bottom; height: 223px; }
+.getting-started .agile-mgmt-billboard h2 { margin: 0; padding: 15px 0 0 0 !important; font-size: 24px !important; color: #78082d !important; line-height: 1.2em; }
+.getting-started .agile-mgmt-billboard p { width: 50%; line-height: 1.2em; }
+.getting-started .agile-mgmt-billboard img { position: absolute; top: 0; right: 0; }
+
+.getting-started .scrum-mgmt-billboard { position: relative; background: url(/images/scrum-project-management/billboard-bg-gradient.jpg) no-repeat bottom; height: 233px; }
+.getting-started .scrum-mgmt-billboard h2 { margin: 0; padding: 15px 0 0 0 !important; font-size: 24px !important; color: #78082d !important; line-height: 1.2em; }
+.getting-started .scrum-mgmt-billboard p { width: 50%; line-height: 1.2em; }
+.getting-started .scrum-mgmt-billboard img { position: absolute; top: 10px; right: 0; }
+
+.getting-started .kanban-billboard { position: relative; background: url(/images/what-is-kanban-agile/billboard-bg-gradient.jpg) no-repeat bottom; height: 290px; }
+.getting-started .kanban-billboard h2 { margin: 0; padding: 15px 0 0 0 !important; font-size: 24px !important; color: #78082d !important; line-height: 1.2em; }
+.getting-started .kanban-billboard p { width: 50%; line-height: 1.2em; }
+.getting-started .kanban-billboard li { width: 50%; line-height: 1.2em; font-size: 12px; color: #000; }
+.getting-started .kanban-billboard img { position: absolute; top: 0; right: 0; }
+
+.getting-started .mgmt-box { padding: 20px 40px; }
+.getting-started .mgmt-box h2 { position: relative; margin: 0; padding: ; font-size: 24px !important; color: #00496b !important; line-height: 1.2em; }
+.getting-started .mgmt-box ul li { padding-bottom: 5px; font-size: 13px; color: #000; }
+.getting-started .mgmt-box img { position: absolute; top: 5px; left: -39px; }
+.getting-started .mgmt-box img.norm { position: inherit; }
+.getting-started .mgmt-box table { border-collapse: collapse; width: 100%; }
+.getting-started .mgmt-box th { background: #ecf6fa; vertical-align: top; padding: 15px 5px 5px 5px; font-size: 15px; color: #000; border-top: 1px solid #efefef; border-bottom: 1px solid #ccc; }
+.getting-started .mgmt-box td { vertical-align: middle; padding: 5px; font-size: 13px; color: #000; border-bottom: 1px solid #efefef; }
+
+.reasons { position: relative; padding-bottom: 30px; }
+.reasons .ctas { position: absolute; top: 10px; right: 15px; width: 216px; }
+.reasons .ctas a { display: block; margin-bottom: 5px; }
+.reasons .billboard { padding: 20px 0 0 0; background: url(/images/upgrade-to-catalyst/billboard-bg.jpg) no-repeat bottom; }
+.reasons .billboard h1 { margin: 0; padding: 0; background: url(/images/upgrade-to-catalyst/top-10-reasons.png) no-repeat; }
+.reasons .billboard h1 span { display: block; padding: 69px 0 0 95px; font-size: 25px !important; color: #000 !important; line-height: 1.4em !important; }
+.reasons .billboard h1 span strong { font-size: 37px !important; color: #000 !important; }
+.reasons .billboard p { font-size: 14px; color: #282828; }
+
+.reasons .billboard-ultimate { padding: 0 0 0 0; background: url(/images/upgrade-to-catalyst/billboard-bg.jpg) no-repeat bottom; }
+.reasons .billboard-ultimate h1 { margin: 0 !important; padding: 40px 0 0 0 !important; }
+.reasons .billboard-ultimate h1 span { display: block; padding: 0 0 0 0 !important; font-size: 25px !important; color: #000 !important; line-height: 1.4em !important; }
+.reasons .billboard-ultimate h1 span strong { font-size: 37px !important; color: #000 !important; }
+.reasons .billboard-ultimate p { font-size: 14px; color: #282828; }
+
+.reasons .get-catalyst-now-btn { display: block; width: 239px; height: 47px; background: url(/images/upgrade-to-catalyst/get-catalyst-now-btn.png) no-repeat; text-align: center; text-decoration: none; font-size: 17px; color: #fff; }
+.reasons .get-catalyst-now-btn span { display: block; padding: 12px 0 0 0; }
+.reasons .get-enterprise-now-btn { display: block; width: 239px; height: 47px; background: url(/images/upgrade-to-enterprise/get-enterprise-now-btn.png) no-repeat; text-align: center; text-decoration: none; font-size: 17px; color: #fff; }
+.reasons .get-enterprise-now-btn span { display: block; padding: 12px 0 0 0; }
+.reasons .features { padding: 20px 0; }
+.reasons .features ul { margin: 0; padding: 0; list-style: none; }
+.reasons .features li { float: left; width: 50%; padding-bottom: 20px; }
+.reasons .features h2 { padding: 0 0 10px 70px !important; font-size: 18px !important; color: #00496b !important; }
+.reasons .features p { padding: 0 40px 0 70px; font-size: 14px !important; color: #282828 !important; }
+.reasons .features .more-projects { background: url(/images/upgrade-to-catalyst/more-projects.png) 10px 0 no-repeat; }
+.reasons .features .more-users { background: url(/images/upgrade-to-catalyst/more-users.png) no-repeat; }
+.reasons .features .better-visibility { background: url(/images/upgrade-to-catalyst/better-visibility.png) 15px 0 no-repeat; }
+.reasons .features .cross-projects { background: url(/images/upgrade-to-catalyst/cross-projects.png) no-repeat; }
+.reasons .features .enhanced-reporting { background: url(/images/upgrade-to-catalyst/enhanced-reporting.png) 18px 0 no-repeat; }
+.reasons .features .continual-process { background: url(/images/upgrade-to-catalyst/continual-process.png) 18px 0 no-repeat; }
+.reasons .features .custom-workflow { background: url(/images/upgrade-to-catalyst/custom-workflow.png) 15px 0 no-repeat; }
+.reasons .features .grow-with-versionone { background: url(/images/upgrade-to-catalyst/grow-with-versionone.png) no-repeat; }
+.reasons .features .issue-management { background: url(/images/upgrade-to-catalyst/issue-management.png) 18px 0 no-repeat; }
+.reasons .features .easy-data { background: url(/images/upgrade-to-catalyst/easy-data.png) 5px 0 no-repeat; }
+
+.reasons .features .ultimate-teams { background: url(/images/upgrade-to-enterprise/ultimate-teams.png) 18px 0 no-repeat; }
+.reasons .features .program-management { background: url(/images/upgrade-to-enterprise/program-management.png) 18px 0 no-repeat; }
+.reasons .features .advanced-reporting { background: url(/images/upgrade-to-enterprise/advanced-reporting.png) 15px 0 no-repeat; }
+.reasons .features .epic-management { background: url(/images/upgrade-to-enterprise/epic-management.png) 18px 0 no-repeat; }
+.reasons .features .flexible-setup { background: url(/images/upgrade-to-enterprise/flexible-setup.png) 18px 0 no-repeat; }
+.reasons .features .project-forecasting { background: url(/images/upgrade-to-enterprise/project-forecasting.png) 18px 0 no-repeat; }
+.reasons .features .custom-workspaces { background: url(/images/upgrade-to-enterprise/custom-workspaces.png) 15px 0 no-repeat; }
+.reasons .features .team-member { background: url(/images/upgrade-to-enterprise/team-member.png) 18px 0 no-repeat; }
+.reasons .features .role-and-project { background: url(/images/upgrade-to-enterprise/role-and-project.png) 18px 0 no-repeat; }
+.reasons .features .grow-with-versionone { background: url(/images/upgrade-to-enterprise/grow-with-versionone.png) 5px 0 no-repeat; }
+
+.reasons .features .Organization-Wide-Visibility { background: url(/images/upgrade-to-ultimate/Organization-Wide-Visibility-icon.png) 26px 0 no-repeat; }
+.reasons .features .Agile-Portfolio-Management { background: url(/images/upgrade-to-ultimate/Agile-Portfolio-Management-icon.png) 18px 0 no-repeat; }
+.reasons .features .Customer-Ideas-Management { background: url(/images/upgrade-to-ultimate/Customer-Ideas-Management-icon.png) 26px 0 no-repeat; }
+.reasons .features .Regression-Test-Management { background: url(/images/upgrade-to-ultimate/Regression-Test-Management-icon.png) 26px 0 no-repeat; }
+.reasons .features .Product-Roadmapping { background: url(/images/upgrade-to-ultimate/Product-Roadmapping-icon.png) 26px 0 no-repeat; }
+
+.reasons .features .all-in-one { background: url(/images/why-versionone/all-in-one.png) 22px 0 no-repeat; }
+.reasons .features .product-leadership { background: url(/images/why-versionone/product-leadership.png) 35px 0 no-repeat; }
+.reasons .features .thought-leadership { background: url(/images/why-versionone/thought-leadership.png) 20px 0 no-repeat; }
+.reasons .features .training { background: url(/images/why-versionone/training.png) 28px 0 no-repeat; }
+.reasons .features .open-platform { background: url(/images/why-versionone/open-platform.png) 28px 0 no-repeat; }
+.reasons .features .cloud { background: url(/images/why-versionone/cloud.png) 28px 0 no-repeat; }
+.reasons .features .easy-to-adopt { background: url(/images/why-versionone/easy-to-adopt.png) 28px 0 no-repeat; }
+.reasons .features .note-card { background: url(/images/why-versionone/note-card.png) 28px 0 no-repeat; }
+.reasons .features .grow-with-us { background: url(/images/why-versionone/grow-with-us.png) 20px 0 no-repeat; }
+
+.reasons .footer-cta { margin: 0; padding: 0; list-style: none; }
+.reasons .footer-cta li { float: left; font-size: 17px; color: #aaa; font-weight: bold; }
+.reasons .footer-cta li a { color: #00496b; }
+.reasons .footer-cta .txt { padding: 10px 0 0 20px; }
+.reasons .footer-cta .get-catalyst-now-btn { display: block; width: 239px; height: 47px; background: url(/images/upgrade-to-catalyst/get-catalyst-now-btn.png) no-repeat; text-align: center; text-decoration: none; font-size: 17px; color: #fff; }
+.reasons .footer-cta .get-catalyst-now-btn span { display: block; padding: 12px 0 0 0; font-weight: normal; }
+
+/* government */
+.government { position: relative; padding-bottom: 30px; }
+.government .ctas { position: absolute; top: 10px; right: 15px; width: 216px; }
+.government .ctas a { display: block; margin-bottom: 5px; }
+.government .billboard { padding: 0 0 15px 0; background: url(/images/government/blue-fade.jpg) no-repeat bottom; }
+.government .billboard h1 { margin: 0; padding: 0; background: url(/images/government/seal-icon.png) 0 10px no-repeat; }
+.government .billboard h1 span { display: block; padding: 5px 0 0 70px; font-size: 31px !important; color: #000 !important; line-height: 1em !important; }
+.government .billboard h1 span strong { display: block; font-size: 37px !important; color: #000 !important; }
+.government .billboard p { font-size: 14px; color: #282828; }
+
+.government .billboard-ultimate { padding: 0 0 0 0; background: url(/images/upgrade-to-catalyst/billboard-bg.jpg) no-repeat bottom; }
+.government .billboard-ultimate h1 { margin: 0 !important; padding: 40px 0 0 0 !important; }
+.government .billboard-ultimate h1 span { display: block; padding: 0 0 0 0 !important; font-size: 25px !important; color: #000 !important; line-height: 1.4em !important; }
+.government .billboard-ultimate h1 span strong { font-size: 37px !important; color: #000 !important; }
+.government .billboard-ultimate p { font-size: 14px; color: #282828; }
+
+.government .get-enterprise-now-btn { display: block; width: 239px; height: 47px; background: url(/images/upgrade-to-enterprise/get-enterprise-now-btn.png) no-repeat; text-align: center; text-decoration: none; font-size: 17px; color: #fff; }
+.government .get-enterprise-now-btn span { display: block; padding: 12px 0 0 0; }
+
+.government .features { padding: 10px 0; }
+.government .details { width: 65%; }
+.government .features ul { margin: 0; padding: 0; list-style: none; }
+.government .features li { padding: 15px 0; font-size: 14px; color: #000; }
+
+.government .features .all-in-one-agile-management-tool-icon { padding-left: 40px; background: url(/images/government/all-in-one-agile-management-tool-icon.png) 0 17px no-repeat; }
+.government .features .complete-transparency { padding-left: 40px; background: url(/images/government/complete-transparency.png) 0 17px no-repeat; }
+.government .features .advanced-reporting { padding-left: 40px; background: url(/images/government/advanced-reporting.png) 0 17px no-repeat; }
+.government .features .configurable-security { padding-left: 40px; background: url(/images/government/configurable-security.png) 5px 17px no-repeat; }
+.government .features .easy-to-adopt { padding-left: 40px; background: url(/images/government/easy-to-adopt.png) 0 17px no-repeat; }
+.government .features .customizable-workflow { padding-left: 40px; background: url(/images/government/customizable-workflow.png) 0 17px no-repeat; }
+.government .features .deployment-flexibility { padding-left: 40px; background: url(/images/government/deployment-flexibility.png) 5px 17px no-repeat; }
+.government .features .grow-with-us { padding-left: 40px; background: url(/images/government/grow-with-us.png) 0 17px no-repeat; }
+
+.government .features h3 { margin: 0; padding: 0 0 10px 0; font-weight: normal; font-size: 31px; color: #00496b; }
+.government .features h2 { padding: 0 0 10px 70px !important; font-size: 18px !important; color: #00496b !important; }
+.government .features p { font-size: 14px !important; color: #282828 !important; }
+
+.government .expert-training-and-coaching { padding: 15px 240px 15px 10px; background: url(/images/government/expert-training-and-coaching-bg.png) no-repeat; }
+
+.government .standard-gargin { font-size: 12px; }
+.government .standard-gargin h4 { margin: 0; padding: 0 0 10px 0; font-weight: bold; font-size: 13px; color: #000; }
+.government .standard-gargin .compliance { float: left; padding: 15px 0 0 0; width: 31%; border-top: 2px solid #ddd; }
+.government .standard-gargin .agile-in-government { margin-left: 10px; padding: 15px 0 0 0; float: left; width: 31%; border-top: 2px solid #ddd; }
+.government .standard-gargin .codes { margin-left: 10px; padding: 15px 0 0 0; float: left; width: 31%; border-top: 2px solid #ddd; }
+.government .standard-gargin ul { list-style: disc; margin-left: 25px; }
+.government .standard-gargin li { padding: 8px 0; font-size: 12px; }
+
+.government .aside { position: absolute; top: 120px; right: 0; width: 331px; }
+.government .aside .contact { text-align: right; padding: 0 15px 0 0; }
+.government .aside .contact h5 { margin: 0; padding: 0; font-size: 17px; color: #000; }
+.government .aside .contact a { font-size: 15px; display: inline-block; background: url(/images/government/email-icon.png) 0 50% no-repeat; padding: 0 0 0 25px; }
+.government .aside .validation { 
+	margin: 15px 0 0 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #cfd5d8;
+	background: #fff;
+	-moz-box-shadow: 0 0 10px #ccc;
+	-webkit-box-shadow: 0 0 10px #ccc;
+	box-shadow: 0 0 10px #ccc;
+}
+.government .aside blockquote {
+	position: relative;
+	margin: 0;
+	padding: 15px;
+	background: #f4fcff;
+	color: #4f4f4f;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	text-align: right;
+	line-height: 1.6em;
+}
+.government .aside blockquote .quote {
+	font-size: 50px;
+	color: #ccc;
+	position: absolute;
+	top: 25px;
+	left: 5px;
+}
+.government .aside blockquote span {
+	display: block;
+	padding-top: 10px;
+}
+.government .aside .customers {
+	text-align: center;
+	background: url(/images/government/customers-divider-gradient.gif) repeat-x;
+}
+.government .aside .customers h3 {
+	margin: 0;
+	padding: 15px 0;
+	font-size: 13px;
+	color: #666;
+	text-align: center;
+}
+.government .aside .customers img {
+	margin: 0 auto 15px auto;
+}
+/* end government */
+
+.how-catalyst-compares { position: relative; padding-bottom: 30px; }
+.how-catalyst-compares .ctas { position: absolute; top: 10px; right: 15px; width: 235px; }
+.how-catalyst-compares .ctas a { display: block; margin-bottom: 5px; }
+.how-catalyst-compares .billboard { padding: 20px 0; background: url(/images/how-catalyst-edition-compares/billboard-bg.jpg) no-repeat bottom; }
+.how-catalyst-compares .billboard h1 { margin: 0; padding: 0; }
+.how-catalyst-compares .billboard h1 span { display: block; font-size: 30px !important; color: #000 !important; line-height: 1.2em !important; }
+.how-catalyst-compares .billboard h1 span strong { font-size: 40px !important; color: #000 !important; }
+.how-catalyst-compares .billboard p { padding: 0 100px 0 15px; font-size: 14px; color: #282828; }
+.how-catalyst-compares .details { padding: 10px 0; }
+.how-catalyst-compares .details h3 { margin: 0; padding: 0 0 22px 0; font-size: 25px !important; color: #000 !important; text-align: center; }
+.how-catalyst-compares .details .grid {
+	margin-left: 35px;
+	display: inline-block;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	box-shadow: 0 0 10px rgba(0,0,0,0.2); 
+}
+.how-catalyst-compares .details .grid ul { margin: 0; padding: 0; list-style: none; }
+.how-catalyst-compares .details .grid ul li { float: left; border-bottom: 1px solid #e2e5e6; height: 40px; line-height: 1.6em; }
+.how-catalyst-compares .details .grid ul .title { width: 507px; border-right: 1px solid #e2e5e6; }
+.how-catalyst-compares .details .grid ul .title span { display: block; padding: 12px 5px 5px 15px; font-size: 14px; color: #282828; }
+.how-catalyst-compares .details .grid ul img { display: block; margin: 4px auto 0 auto; }
+.how-catalyst-compares .details .grid ul .yes { width: 213px; border-right: 1px solid #e2e5e6; }
+.how-catalyst-compares .details .grid ul .no { width: 174px; }
+.how-catalyst-compares .details .grid .row-lg li { float: left; border-bottom: 1px solid #e2e5e6; height: 75px; }
+.how-catalyst-compares .details .grid .alt li { background: #f8fdff; }
+.how-catalyst-compares .compare-types { float: right; margin-right: 20px; padding: 10px 0; }
+.how-catalyst-compares .compare-types ul { margin: 0; padding: 0; list-style: none; }
+.how-catalyst-compares .compare-types ul li { float: left; }
+.how-catalyst-compares .compare-types img {  }
+.how-catalyst-compares .compare-types span { display: block; font-size: 18px; color: #615750; padding: 9px 0 0 0; }
+.how-catalyst-compares .footer-cta { padding: 5px 0 55px 0; margin-right: 30px; text-align: right; font-size: 15px; font-weight: bold; color: #282828; }
+.how-catalyst-compares .footer-cta a { color: #00496b; }
+.numbers { position: relative; }
+.numbers .one,
+.numbers .two,
+.numbers .three,
+.numbers .four,
+.numbers .five,
+.numbers .six,
+.numbers .seven,
+.numbers .eight,
+.numbers .nine,
+.numbers .ten { position: absolute; left: 5px; }
+.numbers .one { top: -435px; }
+.numbers .two { top: -395px; }
+.numbers .three { top: -352px; }
+.numbers .four { top: -312px; }
+.numbers .five { top: -271px; }
+.numbers .six { top: -230px; }
+.numbers .seven { top: -190px; }
+.numbers .eight { top: -149px; }
+.numbers .nine { top: -108px; }
+.numbers .ten { top: -65px; }

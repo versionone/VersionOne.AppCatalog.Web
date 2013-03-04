@@ -1,0 +1,12 @@
+<html>
+<body style='margin:0;padding:0'>
+	<center>
+		<iframe id='appCatalog' height='525' width='725'></iframe>
+		<script type="text/javascript">	
+			var doc = document.getElementById('appCatalog');
+			console.log(window.location);
+			doc.src = 'http://localhost/app/wip/index.html' + window.location.search;
+		</script>		
+	</center>
+</body>
+</html>
