@@ -1,4 +1,3 @@
-https://github.com/versionone/VersionOne.Requestor.NET/blob/master/blog/part02/requestor-07-update.png?raw=true
 define(function() {
     var obj =
     [
