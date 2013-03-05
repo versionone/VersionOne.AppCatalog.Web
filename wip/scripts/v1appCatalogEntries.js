@@ -17,22 +17,22 @@ define(function() {
                 {
                     "title": "Download Latest Preview",
                     "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
-                    "icon" : "57-download"
+                    "icon" : "downloading_updates"
                 },
                 {
                     "title": "Source Code",
                     "href": "https://github.com/versionone/V1ClarityPPM",
-                    "icon": "179-notepad"
+                    "icon": "zip"
                 },
                 {
                     "title": "Documentation",
                     "href": "https://github.com/versionone/V1ClarityPPM/blob/master/README.md",
-                    "icon" : "21-skull"
+                    "icon" : "1"
                 },
                 {
                     "title": "Modified BSD (3-clause) License",
                     "href": "https://github.com/versionone/V1ClarityPPM/blob/master/LICENSE.md",
-                    "icon": "196-radiation"
+                    "icon": "license"
                 }
             ],
             "visualLinks": [
@@ -106,22 +106,22 @@ define(function() {
                 {
                     "title": "Download Latest Code",
                     "href": "https://github.com/versionone/VersionOne.Requestor.NET",
-                    "icon" : "57-download"
+                    "icon" : "downloading_updates"
                 },
                 {
                     "title": "Source Code",
                     "href": "https://github.com/versionone/VersionOne.Requestor.NET",
-                    "icon": "179-notepad"
+                    "icon": "zip"
                 },
                 {
                     "title": "Documentation",
                     "href": "https://github.com/versionone/VersionOne.Requestor.NET",
-                    "icon" : "21-skull"
+                    "icon" : "1"
                 },
                 {
                     "title": "Read Blog Series",
                     "href": "http://blogs.versionone.com/agile-development/2013/02/07/feature-requestor-what-and-why/",
-                    "icon": "196-radiation"
+                    "icon": "license"
                 }
             ],
             "visualLinks": [

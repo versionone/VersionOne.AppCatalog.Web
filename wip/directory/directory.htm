@@ -40,19 +40,42 @@
 				imgLargeFlag: "_l"
 			});
 
-            $('.appCatalogLink').click(function() {
-                var app = $(this).attr('data-href');
-                console.log(app);
+            function makeExternalIFrameForAppEntry(appName) {
                 var html =
 "<html>\
 <body style='margin:0;padding:0'>\
     <center>\
-        <iframe src='http://localhost/app/wip/index.html?app=" + app + "' height='525' width='725'></iframe>\
+        <iframe src='http://localhost/app/wip/index.html?app=" + appName + "' height='525' width='725'></iframe>\
     </center>\
 </body>\
-</html>";
+</html>";    
+                return html;
+            }
 
-                jQuery.facebox(html);
+            function makeInternalFrameForAppEntry(appName) {
+                var html =
+"<center style='display:none'>\
+        <iframe src='http://localhost/app/wip/index.html?app=" + appName + "' height='525' width='725'></iframe>\
+    </center>";    
+                return html;
+            }            
+
+            $('.appCatalogLink').click(function() {
+                var appName = $(this).attr('data-href');
+                jQuery.facebox(makeExternalIFrameForAppEntry(appName));
+            });
+
+            $('.appCatalogCollapsible').click(function() {
+                var elem = $(this);
+                var target = elem.parent().parent().next();
+                if (target.children().length == 0) {
+                    var appName = elem.attr('data-href');
+                    var html = $(makeInternalFrameForAppEntry(appName));
+                    target.append(html);
+                    html.fadeIn('slow');
+                } else {
+                    target.empty();
+                }
             });
 		});
 	</script>
@@ -96,6 +119,10 @@
 <script type="text/javascript">
 var WRInitTime=(new Date()).getTime();
 </script>
+<link href="css/ui-lightness/jquery-ui-1.10.1.custom.css" rel="stylesheet">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/jquery-ui-1.10.1.custom.js"></script>
+
     
     <div id="lpeCDiv_45524" class="lpeCElement"><div class="lpContentsItem rawHtmlSpan"><!-- BEGIN ProvideSupport.com Graphics Chat Button Code --> 
     <div><div id="ciyiC5" style="z-index:100;position:absolute"></div><div id="scyiC5" style="display:inline"><a href="http://www.versionone.com/platform/#" onclick="psyiC5ow(); return false;"><img name="psyiC5image" src="./directory_files/online-1781731303.png" width="57" height="169" border="0"></a></div><div id="sdyiC5" style="display:none"><script type="text/javascript" src="./directory_files/safe-standard.js"></script></div><script type="text/javascript">var seyiC5=document.createElement("script");seyiC5.type="text/javascript";var seyiC5s=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/versionone/safe-standard.js?ps_h=yiC5&ps_t="+new Date().getTime();setTimeout("seyiC5.src=seyiC5s;document.getElementById('sdyiC5').appendChild(seyiC5)",1)</script><noscript>&lt;div style="display:inline"&gt;&lt;a href="http://www.providesupport.com?messenger=versionone"&gt;Live Support&lt;/a&gt;&lt;/div&gt;</noscript> 
@@ -475,7 +502,7 @@ var WRInitTime=(new Date()).getTime();
                                             <div class="logo"><a href="http://community.versionone.com/Downloads/Lists/Platform%20Downloads/DispForm.aspx?ID=42"><img src="./directory_files/CA-Clarity-Project-and-Portfolio-Management.png" alt="CA Clarity Project and Portfolio Management" title="CA Clarity Project and Portfolio Management"></a></div>
                                             <div class="disc">CA Clarity Project and Portfolio Management</div>
                                             <div class="link">
-                                                <button data-href="V1ClarityPPM" class='appCatalogLink'>Learn More</button>
+                                                <button data-href="V1ClarityPPM" class='appCatalogCollapsible'>Learn More</button>
                                                 <!--
                                                 <a href="http://localhost/app/wip/iframe.html?app=V1ClarityPPM" rel="facebox">Learn More</a>
                                                 -->
@@ -486,16 +513,19 @@ var WRInitTime=(new Date()).getTime();
 	                                        <div class="clear"></div>
                                         </div>
                                         <div class="integration">
-                                            <div class="logo"><a href="http://community.versionone.com/Downloads/Lists/Platform%20Downloads/DispForm.aspx?ID=43"><img src="./directory_files/Chili-Project.png" alt="Chili Project" title="Chili Project"></a></div>
-                                            <div class="disc">Chili Project</div>
-                                            <div class="link">
-                                                <button data-href="VersionOne%20Feature%20Requestor" class='appCatalogLink'>Learn More</button>     
-                                                <!--
-                                                <a href="http://localhost/app/wip/iframe.html?app=VersionOne%20Feature%20Requestor" rel="facebox">Learn More</a>
-                                            -->
-                                                <!--
-                                                <a href="http://community.versionone.com/Downloads/Lists/Platform%20Downloads/DispForm.aspx?ID=43">Learn More</a> -->
+                                            <div>
+                                                <div class="logo"><a href="http://community.versionone.com/Downloads/Lists/Platform%20Downloads/DispForm.aspx?ID=43"><img src="./directory_files/Chili-Project.png" alt="Chili Project" title="Chili Project"></a></div>
+                                                <div class="disc">Chili Project</div>
+                                                <div class="link">
+                                                    <button data-href="VersionOne%20Feature%20Requestor" class='appCatalogCollapsible'>Learn More</button>
+                                                    <!--
+                                                    <a href="http://localhost/app/wip/iframe.html?app=VersionOne%20Feature%20Requestor" rel="facebox">Learn More</a>
+                                                -->
+                                                    <!--
+                                                    <a href="http://community.versionone.com/Downloads/Lists/Platform%20Downloads/DispForm.aspx?ID=43">Learn More</a> -->
+                                                </div>
                                             </div>
+                                            <div></div>
 	                                        <div class="clear"></div>
                                         </div>
                                         <div class="integration alt">

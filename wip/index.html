@@ -24,14 +24,14 @@
 </div>
 
 <script id='appCatalogEntryListTmpl' type='text/x-handlebars-template'>
-<div data-role="fieldcontain">
-    <label for="entryList" class="select">Select:</label>
-    <select name="entryList" id="entryList">
-        {{#each this}}
-            <option value="{{@index}}">{{name}}</option>
-        {{/each}}
-    </select>
-</div>
+    <div data-role="fieldcontain">
+        <label for="entryList" class="select">Select:</label>
+        <select name="entryList" id="entryList">
+            {{#each this}}
+                <option value="{{@index}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
 </script>
 
 <script id='appCatalogEntryTmpl' type='text/x-handlebars-template'>
@@ -40,7 +40,7 @@
         <div data-role="popup" id="qualityBand{{name}}" class="ui-content qualityBand" data-theme="e" style="max-width:350px;">
             <b>{{name}} quality band</b>: {{shortDesc}} <a href='href' target='_blank'>more..</a>
         </div>
-    {{/each}}    
+    {{/each}}
     <div class='ui-grid-a ui-responsive'>
         <div class='ui-block-a visualLinks' style='padding-right: 5px;'>
         </div>
@@ -48,7 +48,7 @@
             <h2>Details</h2>
             <p><a href='{{support.href}}'>{{support.title}}</a></p>
             <p><b>Cost:</b> {{cost}}</p>
-            <p>{{description}}</p>        
+            <p>{{description}}</p>
             <ul data-role="listview" data-inset="true" data-inline="true" class='textLinks'>
                 {{#each textLinks}}
                     <li>
@@ -60,10 +60,10 @@
                 {{/each}}
             </ul>
             <div data-role="collapsible" data-theme='e' data-content-theme="d" class="updates">
-                <h4>All Releases</h4>                
-                {{#each updates}}                
+                <h4>All Releases</h4>
+                {{#each updates}}
                     <div class='ui-grid-a ui-responsive'>
-                        <div class="ui-block-a">                        
+                        <div class="ui-block-a">
                             <p>{{dateFormat date}} - {{version}}</p>
                             <p>{{description}}</p>
                         </div>
@@ -78,26 +78,34 @@
                                 >{{qualityBand}}</a>
                             </p>
                             <p>
-                                <a href="{{downloadUrl}}" class='download' data-role="button" data-theme='b' data-inline='true' data-icon='download'>Download</a>
-                            </p>                    
+                                <a 
+                                    href="{{downloadUrl}}"
+                                    class='download'
+                                    data-role="button"
+                                    data-theme='b'
+                                    data-inline='true' 
+                                    ui-icon-nodisc
+                                    data-iconshadow='false'
+                                    data-icon='download'>Download</a>
+                            </p>
                         </div>
                     </div>
                     <hr />
                 {{/each}}
-            </div>            
+            </div>
         </div>
     </div>
 </script>
 <script id='visualLinksTmpl' type='text/x-handlebars-template'>
-<div class="flexslider" style='xmax-width:600px'>
-  <ul class="slides">
-    {{#each visualLinks}}
-        <li data-thumb="{{thumb-href}}">
-          <img src="{{href}}" alt="{{title}}" title="{{title}}"/>
-        </li>
-    {{/each}}
-  </ul>
-</div>  
+    <div class="flexslider" style='xmax-width:600px'>
+      <ul class="slides">
+        {{#each visualLinks}}
+            <li data-thumb="{{thumb-href}}">
+              <img src="{{href}}" alt="{{title}}" title="{{title}}"/>
+            </li>
+        {{/each}}
+      </ul>
+    </div>
 </script>
 </body>
 </html>
