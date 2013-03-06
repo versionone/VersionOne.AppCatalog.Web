@@ -1,4 +1,3 @@
-VersionOne.AppCatalog.Web
-=========================
+# VersionOne Application Catalog
 
-Version One App Catalog - web interface for integration with MindTouch
+The VersionOne Application Catalog makes it easy for developers to publish information about their product in a way that reaches VersionOne customers with attractive presentation.
