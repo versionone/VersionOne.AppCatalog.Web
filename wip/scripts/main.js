@@ -122,7 +122,7 @@ require([
                 navContainer: '#navContainer',
                 namespace: "centered-btns",
                 before: function() {
-                  _V_("video").pause();
+                    _V_("video").pause();
                 }
             });
         });
