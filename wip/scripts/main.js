@@ -5,7 +5,9 @@ requirejs.config({
         'handlebars' : {
             exports: 'Handlebars'
         },
-        'jquery.flexslider': {}
+        'jquery.flexslider': {},
+        'video': ['jquery'],
+        'responsiveslides.min': ['jquery']
     }
 });
 
@@ -14,6 +16,8 @@ require([
         'jquery',
         'v1appCatalogEntries',
         'moment',
+        'video',
+        'responsiveslides.min',
         'jquery.mobile',
         'jquery.flexslider'
     ],
@@ -35,6 +39,10 @@ require([
             } else {
                 return context; // moment plugin not available. return data as is.
             };
+        });
+
+        Handlebars.registerHelper('renderContent', function(content){
+          return new Handlebars.SafeString(content);
         });
 
         var selectedEntry = null;
@@ -92,10 +100,6 @@ require([
 
             var visualLinks = { visualLinks: entry.visualLinks };
             runTemplate2('#visualLinksTmpl', '.visualLinks', visualLinks);
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
-            });
         }
 
         $('#entryList').change(function(evt, target) {
@@ -106,6 +110,32 @@ require([
                 bindCatalogEntry(entry);
                 $('#appCatalogEntry').fadeIn();
             });
-        });       
-	}
+        });
+
+        $(function () {
+            $(".rslides").responsiveSlides({
+                auto: false,
+                pager: true,
+                nav: true,
+                speed: 500,
+                maxwidth: 800,
+                namespace: "centered-btns",
+                before: function() {
+                  _V_("video").pause();
+                }
+            });
+        });
+        
+        _V_("video").ready(function(){
+            var myPlayer = this;
+            var aspectRatio = 504/640;
+            
+            function resizeVideoJS(){
+                var width = document.getElementById(myPlayer.id).parentElement.offsetWidth;
+                myPlayer.width(width).height(width * aspectRatio);
+            }
+            resizeVideoJS();
+            window.onresize = resizeVideoJS;
+        });
+    }
 );

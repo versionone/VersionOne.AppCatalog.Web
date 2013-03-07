@@ -4,10 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>VersionOne App Catalog</title>
+    <link rel='stylesheet' href='content/themes.css' type='text/css' />
     <link rel='stylesheet' href='content/jquery.mobile-1.3.0.min.css' type='text/css' />
     <link rel='stylesheet' href='content/jquery.mobile.v1.css' type='text/css' />
     <link rel='stylesheet' href='content/flexslider.css' type='text/css' />
-    <link rel='stylesheet' href='content/appcatalog.css' type='text/css' />
+    <link rel='stylesheet' href='content/appcatalog.css' type='text/css' />      
+    <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+    <link href="content/responsiveslides.css" rel="stylesheet" />
     <script 
         data-main="scripts/main.js"
         src="scripts/require.js"
@@ -77,15 +80,16 @@
                                 data-theme="e"
                                 >{{qualityBand}}</a>
                             </p>
-                            <p>
+                            <p 
+                                ui-icon-nodisc='ui-icon-nodisc'
+                                data-iconshadow='false'
+                            >
                                 <a 
                                     href="{{downloadUrl}}"
                                     class='download'
                                     data-role="button"
                                     data-theme='b'
                                     data-inline='true' 
-                                    ui-icon-nodisc
-                                    data-iconshadow='false'
                                     data-icon='download'>Download</a>
                             </p>
                         </div>
@@ -97,14 +101,22 @@
     </div>
 </script>
 <script id='visualLinksTmpl' type='text/x-handlebars-template'>
-    <div class="flexslider" style='xmax-width:600px'>
-      <ul class="slides">
-        {{#each visualLinks}}
-            <li data-thumb="{{thumb-href}}">
-              <img src="{{href}}" alt="{{title}}" title="{{title}}"/>
-            </li>
-        {{/each}}
-      </ul>
+    <div id="wrapper">
+        <div class="rslides_container">
+          <ul class="rslides">
+            {{#each visualLinks}}
+                {{#if isCustom}}
+                    <li>
+                        {{renderContent content}}
+                    </li>
+                {{else}}
+                    <li>
+                      <img src="{{href}}" alt="{{title}}" title="{{title}}"/>
+                    </li>
+                {{/if}}
+            {{/each}}
+          </ul>
+        </div>
     </div>
 </script>
 </body>

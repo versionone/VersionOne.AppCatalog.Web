@@ -36,6 +36,19 @@ define(function() {
             ],
             "visualLinks": [
                 {
+                    title: "Video",
+                    isCustom: true,
+                    content: 
+"<video id='video'\
+    class='video-js vjs-default-skin'\
+    controls preload='none'\
+    poster='content/gallery/ClaritySplash.png'\
+    data-setup='{}'>\
+    <!-- <source src='content/gallery/Clarity.mp4' type='video/mp4' /> -->\
+    <source src='http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv' type='video/flv'>\
+</video>"
+                },
+                {
                     "title": "Home",             
                     "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
                     "thumb-href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
