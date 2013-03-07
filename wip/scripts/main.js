@@ -119,7 +119,7 @@ require([
                 nav: true,
                 speed: 500,
                 maxwidth: 800,
-                navConainre: '#navConainer',
+                navContainer: '#navConainer',
                 namespace: "centered-btns",
                 before: function() {
                   _V_("video").pause();
