@@ -39,7 +39,7 @@ define(function() {
                     title: "Video",
                     isCustom: true,
                     content: 
-"<video id='video'\
+"<video id='video1' \
     class='video-js vjs-default-skin'\
     controls preload='none'\
     poster='content/gallery/ClaritySplash.png'\
@@ -48,6 +48,18 @@ define(function() {
     <source src='http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv' type='video/flv'>\
 </video>"
                 },
+                {
+                    title: "Video",
+                    isCustom: true,
+                    content: 
+"<video id='video2' \
+    class='video-js vjs-default-skin'\
+    controls preload='none'\
+    poster='content/gallery/TeamRoomSplash.png'\
+    data-setup='{}'>\
+    <source src='http://www.versionone.tv.s3.amazonaws.com/TeamRoom/TeamRoom.flv' type='video/flv'>\
+</video>"
+                },                
                 {
                     "title": "Home",             
                     "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",

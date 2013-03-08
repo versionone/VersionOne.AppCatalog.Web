@@ -122,21 +122,29 @@ require([
                 navContainer: '#navContainer',
                 namespace: "centered-btns",
                 before: function() {
-                    _V_("video").pause();
+                    videoControl(function(video) {
+                        video.pause();
+                    });
                 }
             });
         });
         
-        _V_("video").ready(function(){
-            var myPlayer = this;
+        function videoControl(callback) {
+            $('.video-js').each(function() {
+                var id = $(this).attr('id');
+                var video = _V_(id);
+                callback(video);
+            });
+        }
+
+        function resizeVideoJS(){
             var aspectRatio = 504/640;
-            
-            function resizeVideoJS(){
-                var width = document.getElementById(myPlayer.id).parentElement.offsetWidth;
-                myPlayer.width(width).height(width * aspectRatio);
-            }
-            resizeVideoJS();
-            window.onresize = resizeVideoJS;
-        });
+            videoControl(function(video) {
+                var width = document.getElementById(video.id).parentElement.offsetWidth;
+                video.width(width).height(width * aspectRatio);
+            });
+        }
+        resizeVideoJS();
+        window.onresize = resizeVideoJS;
     }
 );
