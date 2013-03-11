@@ -40,7 +40,7 @@
 <script id='appCatalogEntryTmpl' type='text/x-handlebars-template'>
     <p><b style='font-size:125%'>{{name}}</b> {{summary}}</p>
     {{#each qualityBands}}
-        <div data-role="popup" id="qualityBand{{name}}" class="ui-content qualityBand" data-theme="c" style="max-width:350px;">
+        <div data-role='popup' id='qualityBand{{name}}' class='ui-content qualityBand' data-theme='c' style='max-width:350px;'>
             <b>{{name}} quality band</b>: {{shortDesc}} <a href='href' target='_blank'>more..</a>
         </div>
     {{/each}}
@@ -52,7 +52,7 @@
             <p><a href='{{support.href}}'>{{support.title}}</a></p>
             <p><b>Cost:</b> {{cost}}</p>
             <p>{{description}}</p>
-            <ul data-role="listview" data-theme='b' data-inset="true" data-inline="true" class='textLinks'>
+            <ul data-role="listview" data-theme='a' data-inset='true' data-inline='true' class='textLinks'>
                 {{#each textLinks}}
                     <li>
                         <a href="{{href}}">
@@ -62,7 +62,7 @@
                     </li>
                 {{/each}}
             </ul>
-            <div data-role="collapsible" data-theme='b' data-content-theme='c' class="updates">
+            <div data-role='collapsible' data-theme='a' class="updates">
                 <h4>All Releases</h4>
                 {{#each updates}}
                     <div class='ui-grid-a ui-responsive'>
@@ -77,7 +77,6 @@
                                 data-role="button"
                                 data-transition="pop"
                                 data-icon="info"
-                                data-theme="c"
                                 >{{qualityBand}}</a>
                             </p>
                             <p 
@@ -87,8 +86,7 @@
                                 <a 
                                     href="{{downloadUrl}}"
                                     class='download'
-                                    data-role="button"
-                                    data-theme='b'
+                                    data-role='button'
                                     data-inline='true' 
                                     data-icon='download'>Download</a>
                             </p>
