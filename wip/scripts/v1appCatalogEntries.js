@@ -16,17 +16,17 @@ define(function() {
                 {
                     "title": "Download Latest Preview",
                     "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
-                    "icon" : "downloading_updates"
+                    "icon" : "download"
                 },
                 {
                     "title": "Source Code",
                     "href": "https://github.com/versionone/V1ClarityPPM",
-                    "icon": "zip"
+                    "icon": "code"
                 },
                 {
                     "title": "Documentation",
                     "href": "https://github.com/versionone/V1ClarityPPM/blob/master/README.md",
-                    "icon" : "1"
+                    "icon" : "documentation"
                 },
                 {
                     "title": "Modified BSD (3-clause) License",
@@ -130,17 +130,17 @@ define(function() {
                 {
                     "title": "Download Latest Code",
                     "href": "https://github.com/versionone/VersionOne.Requestor.NET",
-                    "icon" : "downloading_updates"
+                    "icon" : "download"
                 },
                 {
                     "title": "Source Code",
                     "href": "https://github.com/versionone/VersionOne.Requestor.NET",
-                    "icon": "zip"
+                    "icon": "code"
                 },
                 {
                     "title": "Documentation",
                     "href": "https://github.com/versionone/VersionOne.Requestor.NET",
-                    "icon" : "1"
+                    "icon" : "documentation"
                 },
                 {
                     "title": "Read Blog Series",

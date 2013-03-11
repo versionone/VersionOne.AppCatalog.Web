@@ -155,7 +155,7 @@
 .ui-icon-lock  { background:  url(images/54-lock.png) 50% 50% no-repeat;  background-size: 20px 24px; }
 .ui-icon-network  { background:  url(images/55-network.png) 50% 50% no-repeat;  background-size: 24px 24px; }
 .ui-icon-cloud  { background:  url(images/56-cloud.png) 50% 50% no-repeat;  background-size: 24px 16px; }
-.ui-icon-download  { background: url(images/downloading_updates.png) 50% 50% no-repeat; background-size: 14px 14px; }
+.ui-icon-download  { background: url(images/download.png) 50% 50% no-repeat; background-size: 14px 14px; }
 .ui-icon-bookmark  { background:  url(images/58-bookmark.png) 50% 50% no-repeat; background-size: 10px 26px; }
 .ui-icon-flag  { background:  url(images/59-flag.png) 50% 50% no-repeat;  background-size: 18px 26px; }
 .ui-icon-signpost  { background:  url(images/60-signpost.png) 50% 50% no-repeat; background-size: 22px 28px; }
