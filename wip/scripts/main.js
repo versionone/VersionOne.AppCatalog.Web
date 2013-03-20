@@ -120,7 +120,7 @@ require([
                 speed: 500,
                 maxwidth: 800,
                 navContainer: '#navContainer',
-                namespace: "transparent-btns",
+                namespace: 'transparent-btns',
                 before: function() {
                     videoControl(function(video) {
                         video.pause();

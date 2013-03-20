@@ -140,7 +140,7 @@ define(function() {
                 {
                     "title": "Documentation",
                     "href": "https://github.com/versionone/VersionOne.Requestor.NET",
-                    "icon" : "documentation"
+                    "icon" : "documentation1"
                 },
                 {
                     "title": "Read Blog Series",

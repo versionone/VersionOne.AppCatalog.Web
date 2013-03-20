@@ -9,7 +9,7 @@
     <link rel='stylesheet' href='content/jqthemes/v1.min.css' type='text/css' />
     <link rel='stylesheet' href='content/flexslider.css' type='text/css' />
     <link rel='stylesheet' href='content/appcatalog.css' type='text/css' />      
-    <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+     <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
     <link href="content/responsiveslides.css" rel="stylesheet" />
     <script 
         data-main="scripts/main.js"
@@ -56,7 +56,7 @@
                 {{#each textLinks}}
                     <li>
                         <a href="{{href}}">
-                            <img src="content/images/{{icon}}.png" class="ui-li-icon">
+                            <img src="content/images/{{type}}.png" class="ui-li-icon">
                             {{title}}
                         </a>
                     </li>
@@ -101,7 +101,7 @@
 <script id='visualLinksTmpl' type='text/x-handlebars-template'>    
     <div id="wrapper">        
         <div class="rslides_container">
-            <div id="navContainer" style='background:lightgray'></div>        
+            <div id="navContainer" style='background:lightgray'></div>
             <ul class="rslides">
             {{#each visualLinks}}
                 {{#if isCustom}}
