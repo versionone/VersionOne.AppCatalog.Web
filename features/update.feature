@@ -1,4 +1,5 @@
 Feature: Add or Update an Application in the Catalog
+	// TODO: Update is confusing.
 	As a developer building an application extending or integrating with VersionOne,
 	I want to easily publish updates about my application
 	So that VersionOne customers can easily find attractive and compelling information about my application.
