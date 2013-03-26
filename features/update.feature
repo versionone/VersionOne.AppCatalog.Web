@@ -41,3 +41,7 @@ Feature: Add or Update an Application in the Catalog
 		When I make a catalog update with an attribute fooBar
 		Then my update fails.
 		
+	Scenario: Make an update where the quality band has an undefined value
+		Given quality bands of "mature", "sapling", and "seed"
+		When I make a catalog update with a quality band of "branch"
+		Then my update fails.

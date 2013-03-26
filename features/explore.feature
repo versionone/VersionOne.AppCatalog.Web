@@ -44,4 +44,21 @@ Feature: Explore an Application Detail Page from the Catalog
 		When I view the application detail page
 		Then I do not see any text links
 
-	Scenario: Explore All Releases
+	Scenario: Release section is collapsed by default
+		When I view the application detail page
+		Then I do not see any details for releases
+
+	Scenario: Expand Release section
+		Given an update with 7 releases
+		When I expand the all release section
+		Then I see 7 release slugs
+
+	Scenario: Hide optional attributes when not provided
+		Given an update record without <optional> attribute
+		When I view the list of releases
+		Then <indicator> element is not displayed
+			| optional     | indicator          |
+			| Version      | text field         |
+			| Download     | button             |
+			| Quality Band | label and pop-over |
+
