@@ -47,7 +47,15 @@ require([
 
         var selectedEntry = null;
         
+        $.get('http://appcatalog.azurewebsites.net/appcatalog/entries?staticId=http://versionone.com/v1clarityppm')
+        .done(function(data) {
+            console.log(data);
+            bindCatalogEntry(data);
+            $('#appCatalogEntryList').remove();
+        });
+        
         // Main module execution
+        /*
         var appName = qs('app');
         if (appName != null) {        
             $.each(v1appCatalogEntries, function(index, item) {
@@ -57,13 +65,13 @@ require([
                 }
             });
         }
-
         if (selectedEntry == null) {
             runTemplate("#appCatalogEntryListTmpl", '#appCatalogEntryList');
         }
         else {
             $('#appCatalogEntryList').remove();
-        }
+        }        
+        */
 
         function qs(variable) {
             var query = window.location.search.substring(1);
