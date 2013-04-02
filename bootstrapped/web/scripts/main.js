@@ -5,7 +5,6 @@
       handlebars: {
         exports: 'Handlebars'
       },
-      video: ['jquery'],
       'underscore-min': {
         exports: '_'
       },
@@ -15,29 +14,33 @@
       },
       'responsiveslides.min': ['jquery'],
       'bootstrap.min': ['jquery'],
-      'utils': {}
+      video: ['jquery']
     }
+  });
+
+  define('catalogApp', [], function() {
+    return {};
   });
 
   'Now, we configure this `main` module by specifing which modules it needs to operate by calling the \n`require` function and passing in an array of modules to inject. \n\nNotice that we only declare three formal arguments because those are the only ones we actually need to \nreference in our initialization function, but since event handler and other UI code requires the other \nlibraries, we ensure that they get loaded now before initialization.';
 
-  require(['handlebars', 'jquery', 'moment', 'entryModel', 'backbone-min', 'bootstrap.min', 'entryDetailsView', 'video', 'responsiveslides.min'], function(Handlebars, $, moment, EntryModel) {
+  require(['handlebars', 'jquery', 'moment', 'entryModel', 'catalogApp', 'entryViews', 'backbone-min', 'bootstrap.min', 'video', 'responsiveslides.min'], function(Handlebars, $, moment, EntryModel, catalogApp) {
     'When all the modules are injected, we will use jQuery\'s AJAX support through `$.get` to fetch the \ndata from our Windows Azure hosted REST service. Internally, the web service pulls the data out of MongoDB, \nwhich is itself hosted via MongoLabs.\n\nBut, we do need to declare and initialize our functions first.';
     'To load external template files, we use this function, which relies on some great asynchronous convenience \nfunctions in jQuery';
-    var bindCatalogEntry, initializeMediaSlider, resizeVideoJS, runTemplate, videoControl;
+    var bindCatalogEntry, initializeMediaSlider, resizeVideoJS, runTemplate, templateLoader, videoControl;
 
-    window.templateLoader = {
-      load: function(views, callback) {
+    templateLoader = {
+      load: function(viewNames, callback) {
         var deferreds;
 
         deferreds = [];
-        $.each(views, function(index, view) {
-          if (window[view]) {
+        $.each(viewNames, function(index, view) {
+          if (catalogApp[view]) {
             return deferreds.push($.get("tpl/" + view + ".html", function(data) {
               var template;
 
               template = Handlebars.compile(data);
-              return window[view].prototype.template = template;
+              return catalogApp[view].prototype.template = template;
             }, "html"));
           } else {
             return alert(view + " not found");
@@ -46,25 +49,25 @@
         return $.when.apply(null, deferreds).done(callback);
       }
     };
-    window.Router = Backbone.Router.extend({
+    catalogApp.Router = Backbone.Router.extend({
       routes: {
         "entries/:id": "entryDetails",
         "": "home"
       },
       home: function() {
-        return alert('Please specify a full addres, like [site]/entries/v1clarityppm');
+        return this.entryDetails('v1clarityppm');
       },
       entryDetails: function(id) {
         var entry;
 
-        entry = new EntryModel({
+        entry = new catalogApp.EntryModel({
           id: "http://versionone.com/" + id
         });
         return entry.fetch({
           success: function(data) {
             resizeVideoJS();
             initializeMediaSlider();
-            $("#content").html(new EntryDetailsView({
+            $("#content").html(new catalogApp.EntryDetailsView({
               model: data
             }).render().el);
             return bindCatalogEntry(data.attributes);
@@ -142,7 +145,7 @@
     return templateLoader.load(['EntryDetailsView', 'EntryDetailsInfoView', 'EntryUpdatesView'], function() {
       var app;
 
-      app = new window.Router();
+      app = new catalogApp.Router();
       return Backbone.history.start();
     });
   });

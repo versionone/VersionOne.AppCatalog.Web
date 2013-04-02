@@ -4,10 +4,10 @@ RequireJS to wrap scripts so that other modules can use them as injected, modula
 
 For `Video.js` and `ResponseSlives.js`, specify that they depend upon `jQuery`.
 '''
+
 requirejs.config shim:
   handlebars:
-    exports: 'Handlebars'  
-  video: ['jquery']
+    exports: 'Handlebars'
   'underscore-min':
     exports: '_'
   'backbone-min': 
@@ -15,7 +15,10 @@ requirejs.config shim:
     exports: 'Backbone'
   'responsiveslides.min': ['jquery']
   'bootstrap.min': ['jquery']
-  'utils': {}
+  video: ['jquery']
+
+define 'catalogApp', [], () ->
+  return {}
 
 '''
 Now, we configure this `main` module by specifing which modules it needs to operate by calling the 
@@ -30,13 +33,14 @@ require [
   'handlebars', 
   'jquery', 
   'moment',
-  'entryModel',  
+  'entryModel',
+  'catalogApp',
+  'entryViews',
   'backbone-min',
   'bootstrap.min',
-  'entryDetailsView'  
   'video', 
   'responsiveslides.min',
-  ], (Handlebars, $, moment, EntryModel) ->
+  ], (Handlebars, $, moment, EntryModel, catalogApp) ->
   '''
   When all the modules are injected, we will use jQuery's AJAX support through `$.get` to fetch the 
   data from our Windows Azure hosted REST service. Internally, the web service pulls the data out of MongoDB, 
@@ -49,31 +53,31 @@ require [
   To load external template files, we use this function, which relies on some great asynchronous convenience 
   functions in jQuery
   '''
-  window.templateLoader = load: (views, callback) ->
+  templateLoader = load: (viewNames, callback) ->
     deferreds = []
-    $.each views, (index, view) ->
-      if window[view]
+    $.each viewNames, (index, view) ->
+      if catalogApp[view]
         deferreds.push $.get("tpl/" + view + ".html", (data) ->
           template = Handlebars.compile(data)
           # This creates a property inside the view by the same name:
-          window[view]::template = template
+          catalogApp[view]::template = template
         , "html")
       else
         alert view + " not found"
     $.when.apply(null, deferreds).done callback
 
-  window.Router = Backbone.Router.extend({
+  catalogApp.Router = Backbone.Router.extend({
     routes: 
+      "": "home"      
       "entries/:id": "entryDetails"
-      "": "home"
     home: () ->
-      alert('Please specify a full addres, like [site]/entries/v1clarityppm')
+      this.entryDetails('v1clarityppm') # redirect to a known good id
     entryDetails: (id) ->
-      entry = new EntryModel(id: "http://versionone.com/" + id)    
+      entry = new catalogApp.EntryModel(id: "http://versionone.com/" + id)    
       entry.fetch success: (data) ->
         resizeVideoJS()
         initializeMediaSlider()
-        $("#content").html new EntryDetailsView(model: data).render().el
+        $("#content").html new catalogApp.EntryDetailsView(model: data).render().el
         # todo: betterize this:
         bindCatalogEntry data.attributes
   })
@@ -156,5 +160,5 @@ require [
   window.onresize = resizeVideoJS
   resizeVideoJS()
   templateLoader.load ['EntryDetailsView', 'EntryDetailsInfoView', 'EntryUpdatesView'], ->
-    app = new window.Router()  
+    app = new catalogApp.Router()  
     Backbone.history.start()
