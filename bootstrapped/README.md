@@ -58,7 +58,7 @@ their spell on us.
 
 # Loading the app from main
 
-This brings us to `scripts/main.coffee`, from which all else flows. While the code may change if you look at the HEAD revision, the rest of this post refers to [this commit of main.coffee](https://github.com/versionone/VersionOne.AppCatalog.Web/blob/f99bf8ad058a357dfdafd0696e77a0c929518ddc/bootstrapped/web/scripts/main.coffee).
+This brings us to `scripts/main.coffee`, from which all else flows. While the code may change if you look at the HEAD revision, the rest of this post refers to [this commit of main.coffee](https://github.com/versionone/VersionOne.AppCatalog.Web/tree/a3da61d96c018d3689d4827d4d329b9e44d84c91/bootstrapped/web).
 
 First, we configure RequireJS with some `shim` settings to set up Handlebars, Underscoe, Backbone, ResponsiveSlides, and Bootstrap to behave as if they supported AMD natively.
 
