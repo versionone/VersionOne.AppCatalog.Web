@@ -1,0 +1,26 @@
+<style type='text/css'>
+    .qualityBand {
+        display:none;
+    }
+</style>
+<p>
+    <h1>{{name}}</h1>
+    {{summary}}
+</p>
+{{#each qualityBands}}
+<div id='qualityBand{{name}}' class='qualityBand' style='max-width:350px;'>
+    <div id='qualityBand{{name}}_title'>
+        {{name}}
+    </div>
+    <div id='qualityBand{{name}}_content'>
+        {{shortDesc}} <a href='href' target='_blank'>more..</a>
+    </div>
+</div>
+{{/each}}
+<div>
+    <div class='visualLinks'></div>
+    <div>
+        <div class='details'></div>
+        <div class='updates'></div>
+    </div>
+</div>

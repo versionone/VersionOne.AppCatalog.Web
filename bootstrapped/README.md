@@ -1,0 +1,1 @@
+This is a Backbone + Bootstrap version of the App Catalog. See http://coenraets.org/blog/2012/02/sample-app-with-backbone-js-and-twitter-bootstrap/ for the original code I adapted to make this.
