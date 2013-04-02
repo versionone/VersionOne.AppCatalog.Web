@@ -10,6 +10,16 @@ Here are some highlights about how it works.
 
 The index.html contains just a basic shell and links to some style files. All script loading is done with [RequireJS](http://requirejs.org/) and its configured `scripts\main.js` file. RequireJS supports the [Asynchronous Module Definition pattern](http://requirejs.org/docs/whyamd.html), and also provides some shimmery for scripts, like Backbone and Underscore themselves, which do not support the pattern. We'll see that next.
 
+Just note the little, inconspicuous line:
+
+```html
+<div id="content" class="span12>"></div>
+```
+This single div will be where we inject the HTML into the app once our Backbone and Handlebars magic cast 
+their spell on us.
+
+# Full index.html shell content
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
