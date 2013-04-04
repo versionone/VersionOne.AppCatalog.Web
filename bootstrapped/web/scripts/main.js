@@ -12,22 +12,61 @@
         deps: ['underscore-min'],
         exports: 'Backbone'
       },
-      'responsiveslides.min': ['jquery'],
+      'responsiveslides': ['jquery'],
       'bootstrap.min': ['jquery'],
       video: ['jquery']
     }
   });
 
   define('catalogApp', [], function() {
-    return {};
+    var catalogApp;
+
+    catalogApp = {
+      templates: {},
+      associateViewWithTemplate: function(viewName, template) {
+        return this[viewName].prototype.template = template;
+      },
+      renderView: function(viewName, data) {
+        var content, val;
+
+        if (this[viewName] != null) {
+          val = new this[viewName]({
+            model: data
+          }).render().el;
+          return val;
+        } else {
+          content = this.renderTemplate(viewName, data);
+          return content;
+        }
+      },
+      createTemplate: function(name, source) {
+        var template;
+
+        template = Handlebars.compile(source);
+        return this.templates[name] = template;
+      },
+      renderTemplateSafeString: function(name, data) {
+        var content;
+
+        content = this.templates[name](data);
+        return new Handlebars.SafeString(content);
+      },
+      renderTemplate: function(name, data) {
+        var content;
+
+        content = this.templates[name](data);
+        return content;
+      }
+    };
+    return catalogApp;
   });
 
   'Now, we configure this `main` module by specifing which modules it needs to operate by calling the \n`require` function and passing in an array of modules to inject. \n\nNotice that we only declare three formal arguments because those are the only ones we actually need to \nreference in our initialization function, but since event handler and other UI code requires the other \nlibraries, we ensure that they get loaded now before initialization.';
 
-  require(['handlebars', 'jquery', 'moment', 'entryModel', 'catalogApp', 'entryViews', 'backbone-min', 'bootstrap.min', 'video', 'responsiveslides.min'], function(Handlebars, $, moment, EntryModel, catalogApp) {
+  require(['handlebars', 'jquery', 'moment', 'entryModel', 'catalogApp', 'responsiveslides', 'entryViews', 'mediaView', 'backbone-min', 'bootstrap.min'], function(Handlebars, $, moment, EntryModel, catalogApp) {
     'When all the modules are injected, we will use jQuery\'s AJAX support through `$.get` to fetch the \ndata from our Windows Azure hosted REST service. Internally, the web service pulls the data out of MongoDB, \nwhich is itself hosted via MongoLabs.\n\nBut, we do need to declare and initialize our functions first.';
     'To load external template files, we use this function, which relies on some great asynchronous convenience \nfunctions in jQuery';
-    var bindCatalogEntry, initializeMediaSlider, resizeVideoJS, runTemplate, templateLoader, videoControl;
+    var runTemplate, templateLoader;
 
     templateLoader = {
       load: function(viewNames, callback) {
@@ -40,10 +79,16 @@
               var template;
 
               template = Handlebars.compile(data);
-              return catalogApp[view].prototype.template = template;
+              return catalogApp.associateViewWithTemplate(view, template);
             }, "html"));
           } else {
-            return alert(view + " not found");
+            console.log(view + " not found, adding to catalogApp.templates instead");
+            if (!catalogApp.templates) {
+              catalogApp.templates = {};
+            }
+            return deferreds.push($.get("tpl/" + view + ".html", function(data) {
+              return catalogApp.createTemplate(view, data);
+            }, "html"));
           }
         });
         return $.when.apply(null, deferreds).done(callback);
@@ -65,34 +110,11 @@
         });
         return entry.fetch({
           success: function() {
-            resizeVideoJS();
-            initializeMediaSlider();
-            $("#content").html(new catalogApp.EntryDetailsView({
-              model: entry
-            }).render().el);
-            return bindCatalogEntry(data.attributes);
+            return $("#content").html(catalogApp.renderView('EntryDetailsView', entry));
           }
         });
       }
     });
-    'The most important function is `bindCatalogEntry`. It takes care of formating the catalog entry and \npopulating / configuring the templated items with data, delegating most of the work to Handlebars templates, \nand calling a few jQuery Mobile functions to enhance the HTML controls in their JQM-ified selves.';
-    bindCatalogEntry = function(entry) {};
-    initializeMediaSlider = function() {
-      return $('.rslides').responsiveSlides({
-        auto: false,
-        pager: true,
-        nav: true,
-        speed: 500,
-        maxwidth: 800,
-        navContainer: '#navContainer',
-        namespace: 'centered-btns',
-        before: function() {
-          return videoControl(function(video) {
-            return video.pause();
-          });
-        }
-      });
-    };
     'This utility function makes calling Handlebars templates easier.';
     runTemplate = function(source, target, data) {
       var html, template;
@@ -116,37 +138,14 @@
     Handlebars.registerHelper('renderContent', function(content) {
       return new Handlebars.SafeString(content);
     });
-    'The `videoControl` function uses jQuery to match all elements with a class of `video-js` \nso that we can pause and resize all instances of videos on the screen at once when navigating \nwith the `ResponseSlives.js` plugin.';
-    videoControl = function(callback) {
-      return $('.video-js').each(function() {
-        var id, video;
-
-        id = $(this).attr('id');
-        'The crazy `_V_` function comes from the Video.js library, and it requires an id attribute \non elements to match.';
-        video = _V_(id);
-        return callback(video);
-      });
-    };
-    'And, this provides responsive support for resizing the videos or images when the browser window size changes.';
-    resizeVideoJS = function() {
-      var aspectRatio;
-
-      aspectRatio = 504 / 640;
-      return videoControl(function(video) {
-        var width;
-
-        width = document.getElementById(video.id).parentElement.offsetWidth;
-        return video.width(width).height(width * aspectRatio);
-      });
-    };
     'Load the app now:';
-    window.onresize = resizeVideoJS;
-    resizeVideoJS();
-    return templateLoader.load(['EntryDetailsView', 'EntryDetailsInfoView', 'EntryUpdatesView'], function() {
-      var app;
+    return templateLoader.load(['EntryDetailsView', 'TitleView', 'MediaView', 'QualifiersView', 'CallToActionView', 'EntryDetailsInfoView', 'EntryUpdatesView'], function() {
+      return $(function() {
+        var app;
 
-      app = new catalogApp.Router();
-      return Backbone.history.start();
+        app = new catalogApp.Router();
+        return Backbone.history.start();
+      });
     });
   });
 

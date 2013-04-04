@@ -13,12 +13,38 @@ requirejs.config shim:
   'backbone-min': 
     deps: ['underscore-min']
     exports: 'Backbone'
-  'responsiveslides.min': ['jquery']
+  'responsiveslides': ['jquery']
   'bootstrap.min': ['jquery']
   video: ['jquery']
 
 define 'catalogApp', [], () ->
-  return {}
+  catalogApp = 
+    templates: {}
+    
+    associateViewWithTemplate: (viewName, template)->
+      @[viewName]::template = template
+
+    renderView: (viewName, data) ->
+      if @[viewName]?
+        val = new @[viewName](model: data).render().el
+        return val
+      else
+        content = @renderTemplate viewName, data
+        return content
+
+    createTemplate: (name, source)->
+      template = Handlebars.compile(source)
+      @templates[name] = template
+
+    renderTemplateSafeString: (name, data)->
+      content = @templates[name](data)
+      return new Handlebars.SafeString(content)
+
+    renderTemplate: (name, data)->
+      content = @templates[name](data)
+      return content
+
+  return catalogApp
 
 '''
 Now, we configure this `main` module by specifing which modules it needs to operate by calling the 
@@ -31,15 +57,15 @@ libraries, we ensure that they get loaded now before initialization.
 
 require [
   'handlebars', 
-  'jquery', 
+  'jquery',
   'moment',
   'entryModel',
   'catalogApp',
+  'responsiveslides',
   'entryViews',
+  'mediaView',
   'backbone-min',
   'bootstrap.min',
-  'video', 
-  'responsiveslides.min',
   ], (Handlebars, $, moment, EntryModel, catalogApp) ->
   '''
   When all the modules are injected, we will use jQuery's AJAX support through `$.get` to fetch the 
@@ -60,10 +86,15 @@ require [
         deferreds.push $.get("tpl/" + view + ".html", (data) ->
           template = Handlebars.compile(data)
           # This creates a property inside the view by the same name:
-          catalogApp[view]::template = template
+          catalogApp.associateViewWithTemplate view, template
         , "html")
       else
-        alert view + " not found"
+        console.log view + " not found, adding to catalogApp.templates instead"
+        if not catalogApp.templates
+          catalogApp.templates = {}
+        deferreds.push $.get("tpl/" + view + ".html", (data) ->
+          catalogApp.createTemplate(view, data)
+        , "html")
     $.when.apply(null, deferreds).done callback
 
   catalogApp.Router = Backbone.Router.extend({
@@ -75,35 +106,9 @@ require [
     entryDetails: (id) ->
       entry = new catalogApp.EntryModel(id: "http://versionone.com/" + id)    
       entry.fetch success: ->
-        resizeVideoJS()
-        initializeMediaSlider()
-        $("#content").html new catalogApp.EntryDetailsView(model: entry).render().el
-        # todo: betterize this:
-        bindCatalogEntry data.attributes
+        $("#content").html catalogApp.renderView 'EntryDetailsView', entry
   })
-
-  '''
-  The most important function is `bindCatalogEntry`. It takes care of formating the catalog entry and 
-  populating / configuring the templated items with data, delegating most of the work to Handlebars templates, 
-  and calling a few jQuery Mobile functions to enhance the HTML controls in their JQM-ified selves.
-  '''
-  bindCatalogEntry = (entry) ->
-    # TODO fix these:
-    #visualLinks = visualLinks: entry.visualLinks
-    #runTemplate '#visualLinksTmpl', '.visualLinks', visualLinks
-
-  initializeMediaSlider = ->
-    $('.rslides').responsiveSlides
-      auto: false
-      pager: true
-      nav: true
-      speed: 500
-      maxwidth: 800
-      navContainer: '#navContainer'
-      namespace: 'centered-btns'
-      before: ->
-        videoControl (video) ->
-          video.pause()
+ 
   '''
   This utility function makes calling Handlebars templates easier.
   '''
@@ -128,37 +133,12 @@ require [
       return context
 
   Handlebars.registerHelper 'renderContent', (content) ->
-    new Handlebars.SafeString(content)  
-
-  '''
-  The `videoControl` function uses jQuery to match all elements with a class of `video-js` 
-  so that we can pause and resize all instances of videos on the screen at once when navigating 
-  with the `ResponseSlives.js` plugin.
-  '''
-  videoControl = (callback) ->
-    $('.video-js').each ->
-      id = $(this).attr('id')
-      '''
-      The crazy `_V_` function comes from the Video.js library, and it requires an id attribute 
-      on elements to match.
-      '''      
-      video = _V_(id)
-      callback video
-
-  '''
-  And, this provides responsive support for resizing the videos or images when the browser window size changes.
-  '''
-  resizeVideoJS = ->
-    aspectRatio = 504 / 640 # TODO determine how to properly handle this
-    videoControl (video) ->
-      width = document.getElementById(video.id).parentElement.offsetWidth
-      video.width(width).height width * aspectRatio
+    new Handlebars.SafeString(content)
 
   '''
   Load the app now:
   '''
-  window.onresize = resizeVideoJS
-  resizeVideoJS()
-  templateLoader.load ['EntryDetailsView', 'EntryDetailsInfoView', 'EntryUpdatesView'], ->
-    app = new catalogApp.Router()  
-    Backbone.history.start()
+  templateLoader.load ['EntryDetailsView', 'TitleView', 'MediaView', 'QualifiersView', 'CallToActionView', 'EntryDetailsInfoView', 'EntryUpdatesView'], ->
+    $ ->
+      app = new catalogApp.Router()
+      Backbone.history.start()

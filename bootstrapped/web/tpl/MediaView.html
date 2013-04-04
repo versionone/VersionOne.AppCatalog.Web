@@ -1,0 +1,13 @@
+<div class='mediaView'>
+    <div id='wrapper'>
+        <ul class='rslides'>            
+        {{#each this}}
+            {{#if isCustom}}
+                <li>{{renderContent content}}</li>
+            {{else}}
+                <li><img src='{{href}}' alt='{{title}}' title='{{title}}' /></li>
+            {{/if}}
+        {{/each}}
+        </ul>
+    </div>
+</div>
