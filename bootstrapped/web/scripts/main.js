@@ -51,8 +51,8 @@
     };
     catalogApp.Router = Backbone.Router.extend({
       routes: {
-        "entries/:id": "entryDetails",
-        "": "home"
+        "": "home",
+        "entries/:id": "entryDetails"
       },
       home: function() {
         return this.entryDetails('v1clarityppm');
@@ -64,11 +64,11 @@
           id: "http://versionone.com/" + id
         });
         return entry.fetch({
-          success: function(data) {
+          success: function() {
             resizeVideoJS();
             initializeMediaSlider();
             $("#content").html(new catalogApp.EntryDetailsView({
-              model: data
+              model: entry
             }).render().el);
             return bindCatalogEntry(data.attributes);
           }

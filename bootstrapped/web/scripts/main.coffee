@@ -70,14 +70,14 @@ require [
     routes: 
       "": "home"      
       "entries/:id": "entryDetails"
-    home: () ->
+    home: ->
       this.entryDetails('v1clarityppm') # redirect to a known good id
     entryDetails: (id) ->
       entry = new catalogApp.EntryModel(id: "http://versionone.com/" + id)    
-      entry.fetch success: (data) ->
+      entry.fetch success: ->
         resizeVideoJS()
         initializeMediaSlider()
-        $("#content").html new catalogApp.EntryDetailsView(model: data).render().el
+        $("#content").html new catalogApp.EntryDetailsView(model: entry).render().el
         # todo: betterize this:
         bindCatalogEntry data.attributes
   })
