@@ -1,0 +1,224 @@
+@charset "utf-8";
+@import url("bootstrap.css");
+@import url("bootstrap-responsive.css");
+
+/* V1 - custom Bootstrap - Styles */
+
+	body {
+		/* fonts used are matched to the VersionOne Corporate Website */
+		/* Segoe UI Weights are Thin: 200, Regular:400, SemiBold: 600,  Bold: 800 */
+		/* the fallback font Lucida Sans Unicode does not have font set weights so it will follow the browser */
+  		font-family: "Segoe UI",Lucida Sans Unicode,Lucida Grande,sans-serif;
+		font-weight: 400; /* defaulting to semi-bold */
+  		/* font-size uses the bootstrap default of 14px */
+		background: #f8f8f8;
+		color: #454545;
+		}
+		
+	a, .btn-link {
+  		color: #00496B;
+		}
+		
+	h1 {
+		font-weight:200;
+		color: #212121;
+	}
+	
+	h2, h3 {
+		font-weight: 400;
+		color: #212121;
+	}
+	
+	p a {
+		text-decoration: underline;
+	}
+	 a.btn {
+		text-decoration: none;
+	}
+	
+	/* V1 corp colors */
+	
+	.colors .v1-red {
+			background-color: #8E073A;
+	}
+	
+	.colors .link-blue {
+			background-color: #00496B;
+	}
+	
+	.colors .help-orange {
+			background-color: #DB692B;
+	}
+	
+	.colors .lite-blue {
+			background-color: #ACCBDC;
+	}
+	
+	.colors .faint-gray {
+			background-color: #F2F2F2;
+			color: inherit;
+	}
+	
+	.colors .medium-gray {
+			background-color: #AAA;
+	}
+		
+	/* nav bar styling */
+
+	.navbar .brand {
+				letter-spacing: -0.03em;
+				font-size: 1.5em;
+		}
+		
+	.navbar-inverse .navbar-inner {
+				background-color: black;
+			    background-image: none;
+		}
+		
+	.navbar-inverse .nav .active > a,
+	.navbar-inverse .nav .active > a:hover,
+	.navbar-inverse .nav .active > a:focus,
+	.nav-pills > .active > a,
+	.nav-pills > .active > a:hover,
+	.nav-pills > .active > a:focus,
+	.nav-list > .active > a,
+	.nav-list > .active > a:hover,
+	.nav-list > .active > a:focus {
+  				background-color: #8E073A; /* VersionOne Red Accent */
+				background-image: none;
+				box-shadow: none;
+		}
+		
+	.navbar-inverse .navbar-inner li a:hover {
+			background-color: rgba(255,255,255,0.2);
+			transition: background-color 0.4s;
+	}
+		
+	.navbar-inverse .navbar-inner li a {
+			transition: color 0.4s;
+			transition: background-color 0.4s;
+	}
+	
+	/* Buttons - being careful not to override the addtional button styles the selector used below only styles the button in its default state*/
+	
+		.btn {
+  			color: #00496b;
+			box-shadow: inset 0 1px 0 #fff;
+		}
+
+		.btn:hover,
+		.btn:focus,
+		.btn:active,
+		.btn.active,
+		.btn.disabled,
+		.btn[disabled] {
+			color:#0088cc;
+			border-color: #88ccff;
+		}
+		
+	.btn-primary {
+			background-color: #8E073A; /* VersionOne Red Accent */
+			background-image: none;
+			box-shadow: none;
+			color:#fff;
+			border: none;
+	}
+		
+	.btn-primary, 
+	.btn-primary:hover,
+	.nav > li > a, 
+	.nav > li > a:hover,
+	.nav > li > a:focus {
+				transition: background-color 0.4s;
+	}
+	
+	.nav > li > a:hover,
+	.nav > li > a:focus {
+			color: #777;
+			background-color: #eee;
+	}
+		
+	.btn-primary:hover,
+	.btn-primary:focus,
+	.btn-primary:active,
+	.btn-primary.active,
+	.btn-primary.disabled,
+	.btn-primary[disabled]  {
+				background-color: #00496B; /* link-blue */
+				color: #fff;
+	}
+		
+	.navbar-inverse .navbar-link {
+  				color: #ccc;
+		}
+		
+	.navbar-inverse .navbar-text {
+				color: #aaa;
+	}
+	
+	.well, .hero-unit {
+ 		 background-color: #fff;
+		 border: 0;
+  		 box-shadow: 0 0 4px #e3e3e3;
+	}
+	
+	.hero-unit h1 {
+		font-size: 2.6em;
+		letter-spacing: -0.03em;
+		color: #212121;
+	}
+	
+	.hero-unit p {
+		margin: 10px 0;
+	}
+	
+	.colors div {
+		padding: 0.8em;
+		color: #fff;
+		width: 150px;
+	}
+	
+	/* table */
+	
+	.table th,
+	.table td {
+  		padding: 8px;
+  		line-height: 20px;
+  		text-align: left;
+  		vertical-align: top;
+  		border-top: 1px solid #dddddd;
+	}
+
+	.table th {
+  		font-size: 1.2em;
+		font-weight: 400;
+		background: #eee;
+	}
+	
+	.table-striped tbody > tr:nth-child(odd) > td,
+	.table-striped tbody > tr:nth-child(odd) > th {
+  	background-color: #eee;
+	}
+	
+	/* Form Elements */
+	
+	label, select, button, input[type="button"], input[type="reset"], input[type="submit"], input[type="radio"], input[type="checkbox"] {
+			vertical-align: text-top;
+	}
+	
+	code {
+		overflow: auto;
+		width: 100%;
+		display: block;
+		padding: 0.5em;
+		color: #8E073A;
+	}
+	
+	.block-children > * {
+		display: block;
+	}
+	
+	/* scaffolding fix */
+	.row-fluid [class*="span"] {
+			overflow: hidden;
+	}

@@ -1,0 +1,72 @@
+
+<div class="container-fluid">
+    <div class="row-fluid" id="content">
+		<div class="row-fluid" id="top">
+		    <div class="span6 entryTitle">
+		    	<div class='titleView'>
+				    <h1 class='title'>{{app.name}}</h1>
+				    <div class='version'></div>
+				    <div class='author'></div>
+				    <div class='summary'>{{app.summary}}</div>
+				    <div class='callToAction'><a href="{{app.textLinks[0].href}}" class='btn download'>{{app.textLinks[0].title}}</a></div>
+				</div>
+		    </div>
+		</div>
+		<div class="row-fluid">
+		    <div class="span6 qualifiers">
+				<div class='cost'><b class='costLabel'>Cost:</b> {{app.cost}}</div>
+			</div>
+		    <div class="span6 media">
+				<div class='mediaView'>
+				    <div id='wrapper'>
+				        <ul class='rslides' ng-repeat = "visual in app.visualLinks | filter: {isCustom: 'false'}">            
+				                <li><img src='{{visual.href}}' alt='{{visual.title}}' title='{{visual.title}}' /></li>
+				        </ul>
+				    </div>
+				</div>
+		    </div>
+		</div>
+		<div class="row-fluid" id="description">
+		    <div class="span6 details">
+				<h2>Details</h2>
+				<p><a href='{{app.support.href}}'>{{app.support.title}}</a></p>
+				<p>{{app.description}}</p>
+				<ul class='textLinks nav nav-tabs nav-stacked' ng-repeat = "link in app.textLinks">
+			        <li>
+			            <a href="{{link.href}}">
+			                <img src="img/{{link.type}}.png">
+			                {{link.title}}
+			            </a>
+			        </li>
+				</ul>
+		    </div>
+		</div>
+		<div class="row-fluid" id="releases">
+		    <div class="span6 updates">
+				<h2>All Releases</h2>
+				<div ng-repeat = "update in app.updates">
+				    <div>
+				        <div>
+				            <p>{{update.date | date:'fullDate'}} - {{update.version}}</p>
+				            <p>{{update.description}}</p>
+				        </div>
+				        <div>
+				            <p>Quality Band: <a 
+				                data-qualityBand='{{update.qualityBand}}'
+				                class='qualityBandPopover'
+				                >{{update.qualityBand}}</a>
+				            </p>
+				            <p>
+				                <a
+				                    href="{{w.downloadUrl}}"
+				                    class='btn download'
+				                >Download</a>
+				            </p>
+				        </div>
+				    </div>
+				    <hr />
+				</div>
+		    </div>
+		</div>
+	</div>
+</div>
