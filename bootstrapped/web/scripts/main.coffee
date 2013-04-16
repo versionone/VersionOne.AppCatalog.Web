@@ -104,7 +104,7 @@ require [
     home: ->
       this.entryDetails('v1clarityppm') # redirect to a known good id
     entryDetails: (id) ->
-      entry = new catalogApp.EntryModel(id: "http://versionone.com/" + id)    
+      entry = new catalogApp.EntryModel(id: id)
       entry.fetch success: ->
         $("#content").html catalogApp.renderView 'EntryDetailsView', entry
   })

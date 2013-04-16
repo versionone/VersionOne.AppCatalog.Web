@@ -106,7 +106,7 @@
         var entry;
 
         entry = new catalogApp.EntryModel({
-          id: "http://versionone.com/" + id
+          id: id
         });
         return entry.fetch({
           success: function() {
