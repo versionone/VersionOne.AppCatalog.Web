@@ -17,13 +17,15 @@
 				<div class='cost'><b class='costLabel'>Cost:</b> {{app.cost}}</div>
 			</div>
 		    <div class="span6 media">
-				<div class='mediaView'>
-				    <div id='wrapper'>
-				        <ul class='rslides' ng-repeat = "visual in app.visualLinks | filter: {isCustom: 'false'}">            
-				                <li><img src='{{visual.href}}' alt='{{visual.title}}' title='{{visual.title}}' /></li>
-				        </ul>
-				    </div>
-				</div>
+		    	<carousel interval=-1>
+		    		<slide ng-repeat = "visual in app.visualLinks | filter: {isCustom: 'false'}" active="visual.active">
+		    			<img ng-src="{{visual.href}}" style="margin: auto;" />
+		    			<div class="carousel-caption">
+		    				<h4>{{visual.title}}</h4>
+		    				<p>{{visual.title}}</p>
+		    			</div>
+		    		</slide>
+		    	</carousel>
 		    </div>
 		</div>
 		<div class="row-fluid" id="description">
@@ -31,10 +33,10 @@
 				<h2>Details</h2>
 				<p><a href='{{app.support.href}}'>{{app.support.title}}</a></p>
 				<p>{{app.description}}</p>
-				<ul class='textLinks nav nav-tabs nav-stacked' ng-repeat = "link in app.textLinks">
-			        <li>
+				<ul class='textLinks nav nav-tabs nav-stacked'>
+			        <li ng-repeat = "link in app.textLinks">
 			            <a href="{{link.href}}">
-			                <img src="img/{{link.type}}.png">
+			                <img ng-src="img/{{link.type}}.png">
 			                {{link.title}}
 			            </a>
 			        </li>
