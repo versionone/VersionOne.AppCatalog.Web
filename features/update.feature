@@ -1,5 +1,6 @@
 Feature: Add or Update an Application in the Catalog
 	// TODO: Update is confusing.
+	// TODO: These expectations are no different than unit tests. At this time, publishing requires someone to write JSON. Therefore, it seems better to construct actual JSON examples. Alternatively, specify the rules in the schema, as long as that is readable.
 	As a developer building an application extending or integrating with VersionOne,
 	I want to easily publish updates about my application
 	So that VersionOne customers can easily find attractive and compelling information about my application.
@@ -18,7 +19,7 @@ Feature: Add or Update an Application in the Catalog
 	Scenario: Make an update with a short description that is shorter than 140 characters
 		When I publish a shortDesc
 			"a quick summary"
-		Then my update fails.
+		Then my update succeeds.
 
 	Scenario: Make an update with a short description that is longer than 140 characters
 		When I publish a shortDesc
