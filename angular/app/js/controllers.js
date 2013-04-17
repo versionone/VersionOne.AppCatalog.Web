@@ -3,8 +3,10 @@
 /* Controllers */
 
 angular.module('appCatalog.controllers', []).
-  controller('ListCtrl', [function() {
-
+  controller('ListCtrl', ['$scope', 'App', function($scope,App) {
+  		App.query(function(apps) {
+  			$scope.apps = apps
+  		});
   }])
   .controller('DetailsCtrl', ['$scope','$routeParams','App',function($scope,$routeParams,App) {
   		App.get( {staticId:$routeParams.appId}, function(app) {
