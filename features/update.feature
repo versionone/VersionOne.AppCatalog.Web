@@ -6,13 +6,28 @@ Feature: Add or Update an Application in the Catalog
 
 	The instructions for creating an application entry contain a human readable schema defining required items.
 
-	Scenario: Make an update with required items
-		When I make a catalog update with required items:
-			| staticId    |
+	Scenario: Publish title section with required items
+		When I publish to the catalog with required items:
 			| name        |
+			| shortDesc   |
 			| description |
 			| cost        |
 			| support     |
+		Then my update succeeds.
+
+	Scenario: Make an update with a short description that is shorter than 140 characters
+		When I publish a shortDesc
+			"a quick summary"
+		Then my update fails.
+
+	Scenario: Make an update with a short description that is longer than 140 characters
+		When I publish a shortDesc
+			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+		Then my update fails.
+
+	Scenario: Make an update with required items
+		When I make a catalog update with required items:
+			| staticId    |
 			| updates     |
 			| visualLinks |
 		Then my update succeeds.
