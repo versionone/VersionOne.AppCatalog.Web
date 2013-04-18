@@ -1,1 +1,1 @@
-./node_modules/coffee-script/bin/coffee -c main.coffee
+../node_modules/coffee-script/bin/coffee -c main.coffee
