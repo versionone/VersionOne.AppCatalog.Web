@@ -3,7 +3,7 @@
   define(["backbone-min", "catalogApp"], function(Backbone, catalogApp) {
     catalogApp.EntryModel = Backbone.Model.extend({
       url: function() {
-        return "http://appcatalog.azurewebsites.net/appcatalog/entries?staticId=" + this.id;
+        return "http://appcatalog.azurewebsites.net/entry?id=" + this.id;
       }
     });
     return catalogApp.EntryModel;

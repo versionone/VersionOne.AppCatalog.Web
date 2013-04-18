@@ -6,13 +6,14 @@
         exports: 'Handlebars'
       },
       video: ['jquery'],
-      'responsiveslides.min': ['jquery']
+      'responsiveslides.min': ['jquery'],
+      'bootstrap.min': ['jquery']
     }
   });
 
   'Now, we configure this `main` module by specifing which modules it needs to operate by calling the \n`require` function and passing in an array of modules to inject. \n\nNotice that we only declare three formal arguments because those are the only ones we actually need to \nreference in our initialization function, but since event handler and other UI code requires the other \nlibraries, we ensure that they get loaded now before initialization.';
 
-  require(["handlebars", "jquery", "moment", "video", "responsiveslides.min", "jquery.mobile"], function(Handlebars, $, moment) {
+  require(['handlebars', 'jquery', 'moment', 'video', 'responsiveslides.min', 'jquery.mobile', 'bootstrap.min'], function(Handlebars, $, moment) {
     'When all the modules are injected, we will use jQuery\'s AJAX support through `$.get` to fetch the \ndata from our Windows Azure hosted REST service. Internally, the web service pulls the data out of MongoDB, \nwhich is itself hosted via MongoLabs.\n\nBut, we do need to declare and initialize our functions first.';
     'The most important function is `bindCatalogEntry`. It takes care of formating the catalog entry and \npopulating / configuring the templated items with data, delegating most of the work to Handlebars templates, \nand calling a few jQuery Mobile functions to enhance the HTML controls in their JQM-ified selves.';
     var appName, bindCatalogEntry, getQueryStringParam, initializeMediaSlider, resizeVideoJS, runTemplate, videoControl;

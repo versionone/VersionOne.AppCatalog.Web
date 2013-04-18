@@ -9,6 +9,7 @@ requirejs.config shim:
     exports: 'Handlebars'  
   video: ['jquery']
   'responsiveslides.min': ['jquery']
+  'bootstrap.min': ['jquery']
 
 '''
 Now, we configure this `main` module by specifing which modules it needs to operate by calling the 
@@ -19,7 +20,7 @@ reference in our initialization function, but since event handler and other UI c
 libraries, we ensure that they get loaded now before initialization.
 '''
 
-require ["handlebars", "jquery", "moment", "video", "responsiveslides.min", "jquery.mobile"], (Handlebars, $, moment) ->
+require ['handlebars', 'jquery', 'moment', 'video', 'responsiveslides.min', 'jquery.mobile', 'bootstrap.min'], (Handlebars, $, moment) ->
   '''
   When all the modules are injected, we will use jQuery's AJAX support through `$.get` to fetch the 
   data from our Windows Azure hosted REST service. Internally, the web service pulls the data out of MongoDB, 
