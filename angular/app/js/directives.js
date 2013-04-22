@@ -46,26 +46,49 @@ angular.module('appCatalog.directives', []).
 			restrict: 'E',
 			scope: { contents: '=contents' },
 			replace: true,
-			template: "<div class='media'><carousel interval=-1>" +
-		    		"<slide ng-repeat = 'visual in contents' active='visual.active'>" +
-		    		"	<img ng-src='{{visual.href}}' style='margin: auto;' />" +
-		    		"	<div class='carousel-caption'>" +
-		    		"		<h4>{{visual.title}}</h4>" +
-		    		"		<p>{{visual.title}}</p>" +
-		    		"	</div>" +
+			/*Temporarily exclude custom elements, because they don't display correctly yet*/
+			template: "<div><carousel interval=-1>" +
+		    		"<slide ng-repeat = 'slide in contents | filter: isCustom=false' active='slide.active'>" +
+		    		"<v1slide item=slide />" +
 		    		"</slide>" +
 		    	"</carousel></div>"
 		};
 	}).
+	directive('v1slide', ['$compile', function(compile) {
+		return {
+			restrict: 'E',
+			scope: {slide: '=item'},
+			link: function(scope, element, attrs) {
+				var strTemplate = '<div>';
+				var item = scope.slide;
+				if (item.isCustom) {
+					strTemplate += item.content;
+				}
+				else
+				{
+					strTemplate += "<img ng-src='{{slide.href}}'/>"
+				}
+				strTemplate += 	
+					"	<div class='carousel-caption'>" +
+		    		"		<h4>{{slide.title}}</h4>" +
+		    		"		<p>{{slide.title}}</p>" +
+		    		"	</div>" +
+		    		"</div>"
+		    	var e = angular.element(strTemplate);
+            	compile(e.contents())(scope);
+
+            	element.replaceWith(e);
+			}
+		}
+	}]).
 	directive('updates', function() {
 		return {
 			restrict: 'E',
 			transclude: false,
 			scope: { app: '=appl' },
 			replace: true,
-			template: "<div><h2>All Releases</h2>" +
+			template: "<div><h2>Updates</h2>" +
 				"<div ng-repeat = 'update in app.updates'>" +
-				"    <div>" +
 				"        <div>" +
 				"            <p>{{update.date | date:'fullDate'}} - {{update.version}}</p>" +
 				"            <p>{{update.description}}</p>" +
@@ -83,8 +106,7 @@ angular.module('appCatalog.directives', []).
 				"                >Download</a>" +
 				"            </p>" +
 				"        </div>" +
-				"    </div>" +
-				"    <hr />" +
+				"    <hr ng-show=' ! $last '/>" +
 				"</div></div>"
 		};
 	}).
