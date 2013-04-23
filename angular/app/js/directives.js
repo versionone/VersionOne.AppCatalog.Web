@@ -8,24 +8,14 @@ angular.module('appCatalog.directives', []).
 		return {
 			restrict: 'E',
 			transclude: false,
-			scope: { app: '=appl' },
+			scope: { src: '=appl' },
 			replace: true,
 			template: "<div class='titleView'>" +
-				    "<h1 class='title'>{{app.name}}</h1>" +
-				    "<div class='version'></div>" +
-				    "<div class='author'></div>" +
-				    "<div class='summary'>{{app.summary}}</div>" +
-				    "<div class='callToAction'><a href='{{app.textLinks[0].href}}'' class='btn download'>{{app.textLinks[0].title}}</a>" +
+				    "<h1 class='title'>{{src.name}}</h1>" +
+				    "<div class='summary'>{{src.shortDescription}}</div>" +
+				    "<div class='cost'>Cost: {{src.pricing}}</div>" +
+				    "<div class='support'>Supported by <a href='{{src.support.href}}' target='_blank'>{{src.support.text}}</a></div>" +
 				    "</div>"
-		};
-	}).
-	directive('qualifiers', function() {
-		return {
-			restrict: 'E',
-			transclude: false,
-			scope: { app: '=appl' },
-			replace: true,
-			template: "<div class='qualifiers cost'><b class='costLabel'>Cost:</b> {{app.cost}}</div>"
 		};
 	}).
 	directive('description', function() {
