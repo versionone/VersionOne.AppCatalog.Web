@@ -22,12 +22,11 @@ angular.module('appCatalog.directives', []).
 		return {
 			restrict: 'E',
 			transclude: false,
-			scope: { app: '=appl' },
+			scope: { src: '=appl' },
 			replace: true,
 			template: "<div class='description'>" +
 					"<h2>Details</h2>" +
-					"<p><a href='{{app.support.href}}'>{{app.support.title}}</a></p>" +
-					"<p>{{app.description}}</p>" +
+					"<p>{{src.description}}</p>" +
 				"</div>"
 		};
 	}).
@@ -104,15 +103,31 @@ angular.module('appCatalog.directives', []).
 		return {
 			restrict: 'E',
 			transclude: false,
-			scope: { app: '=appl'},
+			scope: { src: '=appl'},
 			replace: true,
 			template: "<ul class='textLinks nav nav-tabs nav-stacked'>" +
-				    "    <li ng-repeat = 'link in app.textLinks'>" +
+				    "    <li ng-repeat = 'link in src'>" +
 				    "        <a href='{{link.href}}'>" +
-				    "            <img ng-src='img/{{link.type}}.png'>" +
+				    "            <img ng-src='{{getLinkIcon(link.type)}}'>" +
 				    "            {{link.title}}" +
 				    "        </a>" +
 				    "    </li>" +
-					"</ul>" 
+					"</ul>",
+			controller: function($scope) {
+				$scope.getLinkIcon = function(linktype) {
+				    switch(linktype) {
+			          case "download":
+			            return "img/download.png";
+			          case "code":
+			            return "img/code.png";
+			          case "documentation":
+			            return "img/documentation.png";
+			          case "license":
+			            return "img/license.png";
+			          default:
+			            return "img/genericlink.png";
+			        }
+        		}
+			}
 		};
 	});
