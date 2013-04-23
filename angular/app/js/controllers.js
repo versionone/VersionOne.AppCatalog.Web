@@ -12,4 +12,9 @@ angular.module('appCatalog.controllers', []).
   		App.get( {id:$routeParams.appId}, function(app) {
   			$scope.app = app;
   		});
+  }])
+  .controller('ProtoCtrl', ['$scope','App',function($scope,App) {
+      App.get( {id:'v1ClarityPPM.old'}, function(app) {
+        $scope.app = app;
+      });
   }]);
