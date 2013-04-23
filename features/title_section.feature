@@ -1,7 +1,7 @@
 Feature: Title Section
-	As a potential consumer of a VersionOne application,
-	I want to 
-	So that I can make a quick decision whether to learn more about that application.
+	As a potential consumer of a VersionOne-related product,
+	I want to read key pieces of information
+	So that I can make a quick decision whether to learn more about that product.
 
 	Scenario: Read Title Section for a Free Integration from VersionOne
 		Given a catalog entry for <app>

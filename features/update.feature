@@ -14,17 +14,17 @@ Feature: Add or Update an Application in the Catalog
 			| description |
 			| cost        |
 			| support     |
-		Then my update succeeds.
+		Then my publish succeeds.
 
-	Scenario: Make an update with a short description that is shorter than 140 characters
+	Scenario: Make an publish with a short description that is shorter than 140 characters
 		When I publish a shortDesc
 			"a quick summary"
-		Then my update succeeds.
+		Then my publish succeeds.
 
-	Scenario: Make an update with a short description that is longer than 140 characters
+	Scenario: Make an publish with a short description that is longer than 140 characters
 		When I publish a shortDesc
 			"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
-		Then my update fails.
+		Then my publish fails.
 
 	Scenario: Make an update with required items
 		When I make a catalog update with required items:
