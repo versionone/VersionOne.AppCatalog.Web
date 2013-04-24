@@ -25,7 +25,13 @@ var sample_data = {
             "_id": "516d9a4824a05b20580000a7",
             "type": "download",
             "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
-            "title": "Download Latest Preview"
+            "title": "Download Latest Stable Release"
+        },
+        {
+            "_id": "516d9a4824a05b20580000a7",
+            "type": "download",
+            "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
+            "title": "Download Latest Nightly Build"
         },
         {
             "_id": "516d9a4824a05b20580000a6",
@@ -65,6 +71,7 @@ describe('directives', function() {
       scope = $rootScope.$new();
       elm = angular.element("<apptitle appl='testapp.titleSection'>");
       $compile(elm)(scope);
+      scope.testapp = sample_data;
       scope.$digest();
     }));
 
@@ -72,19 +79,52 @@ describe('directives', function() {
       var titles = elm.find('h1.title');
       var summary = elm.find('div.summary');
 
+      expect(titles.eq(0).text()).toBe(sample_data.titleSection.name);
+      expect(summary.eq(0).text()).toBe(sample_data.titleSection.shortDescription);
+    });
+  });
 
-      expect(titles.length).toBe(1);
-      expect(titles.eq(0).text()).toBe('');
+  describe('description', function() {
+    var elm, scope;
 
-      expect(summary.length).toBe(1);
-      expect(summary.eq(0).text()).toBe('');
+    beforeEach(inject(function($rootScope, $compile) {
+      scope = $rootScope.$new();
+      elm = angular.element("<description appl='testapp.descriptionSection'>");
+      $compile(elm)(scope);
+      scope.testapp = sample_data;
+      scope.$digest();
+    }));
 
-      scope.$apply(function() {
-        scope.testapp = sample_data;
-      });
-;
-      expect(titles.eq(0).text()).toBe('Progessive Test Data');
-      expect(summary.eq(0).text()).toBe('This is a test entry for use during development.');
+    it('should bind its content', function() {
+      var desc = elm.find('p');
+      expect(desc.eq(0).text()).toBe(sample_data.descriptionSection.description);
+    });
+  });
+
+  describe('textlinks', function() {
+    var elm, scope;
+
+    beforeEach(inject(function($rootScope, $compile) {
+      scope = $rootScope.$new();
+      elm = angular.element("<textlinks appl='testapp.linksSection'>");
+      $compile(elm)(scope);
+      scope.testapp = sample_data;
+      scope.$digest();
+    }));
+
+    it('should have the right number of entries', function() {
+      var items = elm.find('li');
+      expect(items.length).toBe(sample_data.linksSection.length);
+     });
+
+    it('should allow multiple entries of the same type', function() {
+      var images = elm.find('img');
+      expect(images.eq(0).attr('ng-src')).toBe(images.eq(1).attr('ng-src'));
+    });
+
+    it('should use the default icon for unknown types', function() {
+      var images = elm.find('img');
+      expect(images.eq(5).attr('ng-src')).toBe('img/genericlink.png');
     });
   });
 });
