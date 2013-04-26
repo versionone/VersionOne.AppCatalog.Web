@@ -7,6 +7,14 @@
   padding: 0 0 0.5em;
 }
 
+.btn {
+  margin-top: .5em;
+}
+
+.btn span {
+  vertical-align: middle;
+}
+
 .cost {
   display: inline-block;
   width: 30%;
@@ -14,4 +22,22 @@
 .support {
   display: inline-block;
   width: 65%;
+}
+
+.update .header {
+  font-weight: bold;
+}
+
+.update .left {
+  display: inline-block;
+  width: 40%;
+}
+
+.update .right {
+  display: inline-block;
+  width: 58%;
+}
+
+.update hr {
+  margin: .5em 0 1em 0;
 }
