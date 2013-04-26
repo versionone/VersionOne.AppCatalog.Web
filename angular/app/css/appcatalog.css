@@ -26,6 +26,7 @@
 
 .update .header {
   font-weight: bold;
+  font-size: 125%;
 }
 
 .update .left {
@@ -38,6 +39,13 @@
   width: 58%;
 }
 
+.update p {
+  margin-top: .5em;
+}
 .update hr {
   margin: .5em 0 1em 0;
+}
+
+.quality-band span {
+  font-weight: bold;
 }
