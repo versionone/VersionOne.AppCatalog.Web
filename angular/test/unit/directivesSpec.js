@@ -1,7 +1,3 @@
-'use strict';
-
-/* jasmine specs for directives go here */
-
 var sample_data = {
     "_id": {
         "$oid": "51704a732e7b36a8e55400a5"
@@ -57,6 +53,76 @@ var sample_data = {
             "href": "https://github.com/versionone/V1ClarityPPM/blob/master",
             "title": "Sample configuration"
         }
+    ],
+    "updatesSection": [
+        {
+            "date": {
+                "$date": "2013-02-13T17:45:00.000Z"
+            },
+            "description": "stabilizing timesheet workflow",
+            "version": "0.3.2.13",
+            "releaseNotes": "http://example.com",
+            "qualityBand": "mature",
+            "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
+            "_id": {
+                "$oid": "516d9a4824a05b205800009a"
+            }
+        },
+        {
+            "date": {
+                "$date": "2013-01-13T17:45:00.000Z"
+            },
+            "description": "better timesheet support",
+            "version": "0.3.3.5",
+            "releaseNotes": "http://example.com",
+            "qualityBand": "sapling",
+            "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
+            "_id": {
+                "$oid": "516d9a4824a05b2058000099"
+            }
+        },
+        {
+            "date": {
+                "$date": "2013-01-13T17:45:00.000Z"
+            },
+            "description": "initial public release",
+            "version": "0.2.1.10",
+            "releaseNotes": "http://example.com",
+            "qualityBand": "sapling",
+            "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
+            "_id": {
+                "$oid": "516d9a4824a05b2058000099"
+            }
+        }
+    ],
+    "mediaSection": [
+        {
+            "title": "Home",
+            "caption": "The home image",
+            "mime": "image/png",
+            "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
+            "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
+        },
+        {
+            "mime": "image/png",
+            "href": "content/gallery/ppm-roadmap-large.jpg",
+            "thumbhref": "content/gallery/ppm-roadmap-large.jpg"
+        },
+        {
+            "title": "Video",
+            "caption": "This ia a video",
+            "mime": "video/flv",
+            "href": "http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv",
+            "thumbhref": "content/gallery/ClaritySplash.png"
+        },
+        {
+            "title": "Junk",
+            "caption": "You shouldn't see this!",
+            "mime": "foo/bar",
+            "href": "http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv",
+            "thumbhref": "content/gallery/ClaritySplash.png"
+        }
+
     ]
 }
 
@@ -64,12 +130,16 @@ describe('directives', function() {
 
   beforeEach(module('appCatalog.directives'));
 
+  beforeEach(module('tpl/updates.html'));
+
+  beforeEach(module('tpl/media.html'));
+
   describe('apptitle', function() {
     var elm, scope;
 
     beforeEach(inject(function($rootScope, $compile) {
       scope = $rootScope.$new();
-      elm = angular.element("<apptitle appl='testapp.titleSection'>");
+      elm = angular.element("<apptitle src='testapp.titleSection'>");
       $compile(elm)(scope);
       scope.testapp = sample_data;
       scope.$digest();
@@ -89,7 +159,7 @@ describe('directives', function() {
 
     beforeEach(inject(function($rootScope, $compile) {
       scope = $rootScope.$new();
-      elm = angular.element("<description appl='testapp.descriptionSection'>");
+      elm = angular.element("<description src='testapp.descriptionSection'>");
       $compile(elm)(scope);
       scope.testapp = sample_data;
       scope.$digest();
@@ -106,7 +176,7 @@ describe('directives', function() {
 
     beforeEach(inject(function($rootScope, $compile) {
       scope = $rootScope.$new();
-      elm = angular.element("<textlinks appl='testapp.linksSection'>");
+      elm = angular.element("<textlinks src='testapp.linksSection'>");
       $compile(elm)(scope);
       scope.testapp = sample_data;
       scope.$digest();
@@ -124,7 +194,90 @@ describe('directives', function() {
 
     it('should use the default icon for unknown types', function() {
       var images = elm.find('img');
-      expect(images.eq(5).attr('ng-src')).toBe('img/genericlink.png');
+      expect(images.eq(5).attr('ng-src')).toBe('img/hypelink.png');
     });
+  });
+
+  describe('updates', function() {
+    var elm, scope;
+
+    beforeEach(inject(function($rootScope, $compile) {
+      elm = angular.element("<updates src='testapp.updatesSection' />");
+
+      scope = $rootScope;
+      $compile(elm)(scope);
+      scope.testapp = sample_data;
+      scope.$digest();
+    }));
+
+    it('should have the correct number of entries', function() {
+      var updates = elm.find('div.update');
+      expect(updates.length).toBe(sample_data.updatesSection.length);
+    });
+
+    it('should be in order by version number', function() {
+      var updates = elm.find('div.version');
+      expect(updates.eq(0).text()).toBeGreaterThan(updates.eq(1).text());
+      expect(updates.eq(1).text()).toBeGreaterThan(updates.eq(2).text());
+    });
+
+    it('should have correct descriptions', function() {
+      var descriptions = elm.find('p');
+      expect(descriptions.eq(0).text()).toBe(sample_data.updatesSection[1].description);
+    });
+  });
+
+  describe('media', function() {
+    var elm, scope;
+
+    beforeEach(inject(function($rootScope, $compile) {
+      scope = $rootScope;
+      elm = angular.element("<media src='testapp.mediaSection'>");
+      $compile(elm)(scope);
+      scope.testapp = sample_data;
+      scope.$digest();
+    }));
+
+    it('should have the correct number of slides', function() {
+      var slides = elm.find('slide');
+      expect(slides.length).toBe(sample_data.mediaSection.length);
+    });
+
+    it('does not use a carousel when there is only one item', function() {
+
+    });    
+
+    it('should use the correct display type for each slide', function() {
+    });
+
+    it('should suppress items with unknown types', function() {
+    });
+
+    it('displays captions for slides that have them', function() {
+    });
+
+    it('hides the caption area if no caption is set', function() {
+/*      var captions = elm.find('.caption');
+      expect(captions.eq(0)).toBeVisible();
+      expect(captions.eq(1)).not.toBeVisible();*/
+    });
+
+    it('uses the correct poster image for videos', function() {
+/*      var posters = elm.find('video');
+      expect(posters.eq(0).attr('poster')).toBe(sample_data.mediaSection[2].thumbhref);
+*/    });
+
+    it('rolls from the first item to the last with back arrow', function() {
+    });
+
+    it('rolls from the last item to the first with next arrow', function() {
+    });
+
+    it('pauses video when told and restarts from the same place', function() {
+    });
+
+    it('pauses video when rolled away', function() {
+    });
+
   });
 });
