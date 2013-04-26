@@ -37,50 +37,25 @@ angular.module('appCatalog.directives', []).
 			templateUrl: 'tpl/media.html',
 			replace: true,
 			controller: function($scope) {
-				$scope.getType = function(item) {
-					return 'image';
-				};
 				$scope.isImage = function(item) {
-					return $scope.getType(item) == 'image';
+					return item.type.split('/')[0] == 'image';
 				};
 				$scope.isVideo = function(item) {
-					return $scope.getType(item) == 'video';
+					return item.type.split('/')[0] == 'video';
 				};
+				$scope.isValid = function(item) {
+					switch (item.type.split('/')[0]) {
+						case 'image':
+							return true;
+						case 'video':
+							return true;
+						default:
+							return false;
+					}
+				}
 			}
 		};
 	}).
-	directive('v1slide', ['$compile', function(compile) {
-		return {
-			restrict: 'E',
-			scope: {slide: '=item'},
-			link: function(scope, element, attrs) {
-				var strTemplate = '<div>';
-				var item = scope.slide;
-				switch(item.type) {
-				case 'image/png':
-					strTemplate += "<img ng-src='{{slide.href}}'/>" 
-					break;
-				case 'video/flv':
-					strTemplate += "<video id='video2' class='video-js vjs-default-skin' " +
-						"controls preload='none' poster='{{slide.thumbhref}}' " +
-						"data-setup='{}'> <source src='{{slide.href}}'" +
-						" type='video/flv'></video>";
-					break;
-				default:
-				}
-				strTemplate += 	
-					"	<div class='label'>" +
-		    		"		<h4 class='title'>{{slide.title}}</h4>" +
-		    		"		<p class='caption'>{{slide.caption}}</p>" +
-		    		"	</div>" +
-		    		"</div>"
-		    	var e = angular.element(strTemplate);
-            	compile(e.contents())(scope);
-
-            	element.replaceWith(e);
-			}
-		}
-	}]).
 	directive('updates', function() {
 		return {
 			restrict: 'E',
