@@ -54,71 +54,99 @@ var sample_data = {
             "title": "Sample configuration"
         }
     ],
-    "updatesSection": [
-        {
-            "date": {
-                "$date": "2013-02-13T17:45:00.000Z"
+ "updatesSection": {
+        "updates": [
+            {
+                "date": {
+                    "$date": "2013-02-13T17:45:00.000Z"
+                },
+                "description": "stabilizing timesheet workflow",
+                "version": "0.3.2.13",
+                "releaseNotes": "http://example.com",
+                "qualityBand": "mature",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
+                "_id": {
+                    "$oid": "516d9a4824a05b205800009a"
+                }
             },
-            "description": "stabilizing timesheet workflow",
-            "version": "0.3.2.13",
-            "releaseNotes": "http://example.com",
-            "qualityBand": "mature",
-            "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
-            "_id": {
-                "$oid": "516d9a4824a05b205800009a"
+            {
+                "date": {
+                    "$date": "2013-01-13T17:45:00.000Z"
+                },
+                "description": "better timesheet support",
+                "version": "0.3.3.5",
+                "releaseNotes": "http://example.com",
+                "qualityBand": "sapling",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
+                "_id": {
+                    "$oid": "516d9a4824a05b2058000099"
+                }
+            },
+            {
+                "date": {
+                    "$date": "2013-01-13T17:45:00.000Z"
+                },
+                "description": "better timesheet support",
+                "version": "0.2.1.10",
+                "releaseNotes": "http://example.com",
+                "qualityBand": "sapling",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
+                "_id": {
+                    "$oid": "516d9a4824a05b2058000099"
+                }
             }
-        },
-        {
-            "date": {
-                "$date": "2013-01-13T17:45:00.000Z"
+        ],
+          "qualityBands": {
+            "seed": {
+                "name": "seed",
+                "shortDesc": "The initial idea of a product. No working code.",
+                "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#seed",
+                "_id": {
+                    "$oid": "516d9a4824a05b205800009d"
+                }
             },
-            "description": "better timesheet support",
-            "version": "0.3.3.5",
-            "releaseNotes": "http://example.com",
-            "qualityBand": "sapling",
-            "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
-            "_id": {
-                "$oid": "516d9a4824a05b2058000099"
-            }
-        },
-        {
-            "date": {
-                "$date": "2013-01-13T17:45:00.000Z"
+            "sapling": {
+                "name": "sapling",
+                "shortDesc": "The product is undergoing rapid growth. The code works but expect major changes.",
+                "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#sapling",
+                "_id": {
+                    "$oid": "516d9a4824a05b205800009c"
+                }
             },
-            "description": "initial public release",
-            "version": "0.2.1.10",
-            "releaseNotes": "http://example.com",
-            "qualityBand": "sapling",
-            "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
-            "_id": {
-                "$oid": "516d9a4824a05b2058000099"
+            "mature": {
+                "name": "mature",
+                "shortDesc": "The product is stable. The code will continue to evolve with minimum breaking changes.",
+                "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature",
+                "_id": {
+                    "$oid": "516d9a4824a05b205800009b"
+                }
             }
         }
-    ],
+    },
     "mediaSection": [
         {
             "title": "Home",
             "caption": "The home image",
-            "mime": "image/png",
+            "type": "image/png",
             "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
             "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
         },
         {
-            "mime": "image/png",
+            "type": "image/png",
             "href": "content/gallery/ppm-roadmap-large.jpg",
             "thumbhref": "content/gallery/ppm-roadmap-large.jpg"
         },
         {
             "title": "Video",
             "caption": "This ia a video",
-            "mime": "video/flv",
+            "type": "video/flv",
             "href": "http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv",
             "thumbhref": "content/gallery/ClaritySplash.png"
         },
         {
             "title": "Junk",
             "caption": "You shouldn't see this!",
-            "mime": "foo/bar",
+            "type": "foo/bar",
             "href": "http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv",
             "thumbhref": "content/gallery/ClaritySplash.png"
         }
@@ -212,7 +240,7 @@ describe('directives', function() {
 
     it('should have the correct number of entries', function() {
       var updates = elm.find('div.update');
-      expect(updates.length).toBe(sample_data.updatesSection.length);
+      expect(updates.length).toBe(sample_data.updatesSection.updates.length);
     });
 
     it('should be in order by version number', function() {
@@ -223,7 +251,7 @@ describe('directives', function() {
 
     it('should have correct descriptions', function() {
       var descriptions = elm.find('p');
-      expect(descriptions.eq(0).text()).toBe(sample_data.updatesSection[1].description);
+      expect(descriptions.eq(0).text()).toBe(sample_data.updatesSection.updates[1].description);
     });
   });
 
@@ -240,7 +268,7 @@ describe('directives', function() {
 
     it('should have the correct number of slides', function() {
       var slides = elm.find('slide');
-      expect(slides.length).toBe(sample_data.mediaSection.length);
+      expect(slides.length).toBe(3);
     });
 
     it('does not use a carousel when there is only one item', function() {
@@ -248,12 +276,18 @@ describe('directives', function() {
     });    
 
     it('should use the correct display type for each slide', function() {
+/*      Needs testing via toBeVisible()*/
     });
 
     it('should suppress items with unknown types', function() {
+/*      Test by inserting a new item with invalid type and verifying 
+      count doesn't change?*/
+
     });
 
     it('displays captions for slides that have them', function() {
+      var captions = elm.find('.caption');
+      expect(captions.eq(0).text()).toBe(sample_data.mediaSection[0].caption);
     });
 
     it('hides the caption area if no caption is set', function() {
@@ -263,9 +297,9 @@ describe('directives', function() {
     });
 
     it('uses the correct poster image for videos', function() {
-/*      var posters = elm.find('video');
-      expect(posters.eq(0).attr('poster')).toBe(sample_data.mediaSection[2].thumbhref);
-*/    });
+      var posters = elm.find('video');
+      expect(posters.eq(2).attr('poster')).toBe(sample_data.mediaSection[2].thumbhref);
+    });
 
     it('rolls from the first item to the last with back arrow', function() {
     });
