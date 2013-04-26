@@ -1,0 +1,19 @@
+<div>
+	<carousel interval=-1>
+		<slide ng-repeat = 'slide in src' active='slide.active'>
+			<div>
+			<img ng-src = '{{slide.href}}' ng-show = 'isImage(slide)'>
+			<video ng-show = 'isVideo(slide)' 
+				class='video-js vjs-default-skin' 
+				controls preload='none' poster='{{slide.thumbhref}}' 
+				data-setup='{}'>
+				<source src='{{slide.href}}' type='video/flv' />
+			</video>
+			<div class='label'>
+			    <h4 class='title'>{{slide.title}}</h4>
+			    <p class='caption'>{{slide.caption}}</p>
+			</div>
+		</div>
+		</slide>
+  	</carousel>
+</div>

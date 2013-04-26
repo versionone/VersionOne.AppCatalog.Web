@@ -8,7 +8,7 @@ angular.module('appCatalog.directives', []).
 		return {
 			restrict: 'E',
 			transclude: false,
-			scope: { src: '=appl' },
+			scope: { src: '=src' },
 			replace: true,
 			template: "<div class='titleView'>" +
 				    "<h1 class='title'>{{src.name}}</h1>" +
@@ -22,7 +22,7 @@ angular.module('appCatalog.directives', []).
 		return {
 			restrict: 'E',
 			transclude: false,
-			scope: { src: '=appl' },
+			scope: { src: '=src' },
 			replace: true,
 			template: "<div class='description'>" +
 					"<h2>Details</h2>" +
@@ -33,14 +33,20 @@ angular.module('appCatalog.directives', []).
 	directive('media', function() {
 		return {
 			restrict: 'E',
-			scope: { contents: '=contents' },
+			scope: { src: '=src' },
+			templateUrl: 'tpl/media.html',
 			replace: true,
-			/*Temporarily exclude custom elements, because they don't display correctly yet*/
-			template: "<div><carousel interval=-1>" +
-		    		"<slide ng-repeat = 'slide in contents | filter: isCustom=false' active='slide.active'>" +
-		    		"<v1slide item=slide />" +
-		    		"</slide>" +
-		    	"</carousel></div>"
+			controller: function($scope) {
+				$scope.getType = function(item) {
+					return 'image';
+				};
+				$scope.isImage = function(item) {
+					return $scope.getType(item) == 'image';
+				};
+				$scope.isVideo = function(item) {
+					return $scope.getType(item) == 'video';
+				};
+			}
 		};
 	}).
 	directive('v1slide', ['$compile', function(compile) {
@@ -50,17 +56,22 @@ angular.module('appCatalog.directives', []).
 			link: function(scope, element, attrs) {
 				var strTemplate = '<div>';
 				var item = scope.slide;
-				if (item.isCustom) {
-					strTemplate += item.content;
-				}
-				else
-				{
-					strTemplate += "<img ng-src='{{slide.href}}'/>"
+				switch(item.type) {
+				case 'image/png':
+					strTemplate += "<img ng-src='{{slide.href}}'/>" 
+					break;
+				case 'video/flv':
+					strTemplate += "<video id='video2' class='video-js vjs-default-skin' " +
+						"controls preload='none' poster='{{slide.thumbhref}}' " +
+						"data-setup='{}'> <source src='{{slide.href}}'" +
+						" type='video/flv'></video>";
+					break;
+				default:
 				}
 				strTemplate += 	
-					"	<div class='carousel-caption'>" +
-		    		"		<h4>{{slide.title}}</h4>" +
-		    		"		<p>{{slide.title}}</p>" +
+					"	<div class='label'>" +
+		    		"		<h4 class='title'>{{slide.title}}</h4>" +
+		    		"		<p class='caption'>{{slide.caption}}</p>" +
 		    		"	</div>" +
 		    		"</div>"
 		    	var e = angular.element(strTemplate);
@@ -74,36 +85,16 @@ angular.module('appCatalog.directives', []).
 		return {
 			restrict: 'E',
 			transclude: false,
-			scope: { app: '=appl' },
-			replace: true,
-			template: "<div><h2>Updates</h2>" +
-				"<div ng-repeat = 'update in app.updates'>" +
-				"        <div>" +
-				"            <p>{{update.date | date:'fullDate'}} - {{update.version}}</p>" +
-				"            <p>{{update.description}}</p>" +
-				"        </div>" +
-				"        <div>" +
-				"            <p>Quality Band: <a " +
-				 "               data-qualityBand='{{update.qualityBand}}'" +
-				"                class='qualityBandPopover'" +
-				"                >{{update.qualityBand}}</a>" +
-				"            </p>" +
-				"            <p>" +
-				"                <a" +
-				"                    href='{{w.downloadUrl}}'" +
-				"                    class='btn download'" +
-				"                >Download</a>" +
-				"            </p>" +
-				"        </div>" +
-				"    <hr ng-show=' ! $last '/>" +
-				"</div></div>"
+			scope: { src: '=src' },
+			templateUrl: 'tpl/updates.html',
+			replace: true
 		};
 	}).
 	directive('textlinks', function() {
 		return {
 			restrict: 'E',
 			transclude: false,
-			scope: { src: '=appl'},
+			scope: { src: '=src'},
 			replace: true,
 			template: "<ul class='textLinks nav nav-tabs nav-stacked'>" +
 				    "    <li ng-repeat = 'link in src'>" +
@@ -125,7 +116,7 @@ angular.module('appCatalog.directives', []).
 			          case "license":
 			            return "img/license.png";
 			          default:
-			            return "img/genericlink.png";
+			            return "img/hypelink.png";
 			        }
         		}
 			}

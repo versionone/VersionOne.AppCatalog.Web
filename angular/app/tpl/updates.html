@@ -1,0 +1,27 @@
+<div>
+	<h2>Updates</h2> 
+	<div class='update' ng-repeat = "update in src | orderBy:'version':true"> 
+		<hr/> 
+        <div class = 'header'> 
+            <div class = 'left version'>{{update.version}}</div> 
+			<div class = 'right'>{{update.date | date:'longDate'}}</div> 
+		</div>
+        <p>{{update.description}}</p> 
+        <div>
+            <div class = 'quality-band' ng-show = 'update.qualityBand'>
+            	Quality Band: 
+            	<a data-qualityBand='{{update.qualityBand}}' class='qualityBandPopover'>
+                	{{update.qualityBand}}
+                </a> 
+            </div>
+            <div class='left'>
+            	<a href='{{update.downloadUrl}}' class='btn download'>
+            		<img src="img/download.png" /> <span>Download</span></a> 
+			</div>
+			<div class='right' ng-show = 'update.releaseNotes'>
+            	<a href='{{update.releaseNotes}}' class='btn releasenotes'>
+            		<img src="img/documentation.png" /> <span>View Release Notes</span></a>
+            </div>
+        </div> 
+	</div>
+</div>
