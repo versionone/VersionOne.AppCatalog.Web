@@ -410,7 +410,9 @@ describe('directives', function() {
     });
 
     it('does not use a carousel when there is only one item', function() {
-
+      scope.testapp = sample_data_one_slide;
+      scope.$digest();
+      expect(elm.find('slide').length).toBe(0);
     });    
 
     it('should use the correct display type for each slide', function() {
@@ -436,7 +438,7 @@ describe('directives', function() {
 
     it('uses the correct poster image for videos', function() {
       var posters = elm.find('video');
-      expect(posters.eq(2).attr('poster')).toBe(sample_data.mediaSection[2].thumbhref);
+      expect(posters.eq(0).attr('poster')).toBe(sample_data.mediaSection[2].thumbhref);
     });
 
     it('rolls from the first item to the last with back arrow', function() {
