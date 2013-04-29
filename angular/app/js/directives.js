@@ -37,12 +37,6 @@ angular.module('appCatalog.directives', []).
 			templateUrl: 'tpl/media.html',
 			replace: true,
 			controller: function($scope) {
-				$scope.isImage = function(item) {
-					return item.type.split('/')[0] == 'image';
-				};
-				$scope.isVideo = function(item) {
-					return item.type.split('/')[0] == 'video';
-				};
 				$scope.isValid = function(item) {
 					switch (item.type.split('/')[0]) {
 						case 'image':
@@ -53,6 +47,20 @@ angular.module('appCatalog.directives', []).
 							return false;
 					}
 				}
+			}
+		};
+	}).
+	directive('mediacontent', function() {
+		return {
+			restrict: 'E',
+			require: '^media',
+			scope: { src: '=src' },
+			templateUrl: 'tpl/mediaContent.html',
+			replace: true,
+			controller: function($scope) {
+				$scope.getType = function(item) {
+					return item.type.split('/')[0];
+				};
 			}
 		};
 	}).

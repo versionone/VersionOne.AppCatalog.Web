@@ -1,19 +1,8 @@
-<div>
-	<carousel interval=-1>
-		<slide ng-repeat = 'slide in src | filter: isValid' active='slide.active'>
-			<div>
-				<img ng-src = '{{slide.href}}' alt='{{slide.caption}}' title='{{slide.title}}' ng-show = 'isImage(slide)' style="margin:auto;">
-				<video ng-show = 'isVideo(slide)' 
-					class='video-js vjs-default-skin' 
-					controls preload='none' poster='{{slide.thumbhref}}' 
-					data-setup='{}'>
-					<source src='{{slide.href}}' type='{{slide.type}}' />
-				</video>
-				<div class='label carousel-caption' ng-show = 'slide.caption'>
-				    <h4 class='title'>{{slide.title}}</h4>
-				    <p class='caption'>{{slide.caption}}</p>
-			</div>
-		</div>
+<div ng-switch='src.length'>
+	<carousel ng-switch-default interval=-1>
+		<slide ng-repeat = 'item in src | filter: isValid' active='item.active'>
+			<mediacontent src='item' />
 		</slide>
   	</carousel>
+  	<mediacontent ng-switch-when='1' src='src[0]' />
 </div>
