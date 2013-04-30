@@ -1,7 +1,10 @@
-<p>This will be the app list.</p>
 
-<ul>
-	<li ng-repeat="app in apps">
-		<a href="index.html#/Details/{{app.id}}">{{app.name}}</a>
-	</li>
-</ul>
+
+<div class="container-fluid"> 
+	<div class="row-fluid section"  ng-repeat="app in apps">
+			<div class="span1">
+				<a href="index.html#/Details/{{app.id}}">View</a>
+			</div>
+			<apptitle class="span11" src='app.titleSection' />
+	</div>
+</div>
