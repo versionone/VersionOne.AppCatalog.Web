@@ -18,10 +18,17 @@
 .cost {
   display: inline-block;
   width: 30%;
+  margin-top: 1em;
 }
+.cost span {
+  font-weight: bold;
+}
+
 .support {
   display: inline-block;
   width: 65%;
+  font-style: italic;
+  margin-bottom: 1em;
 }
 
 .update .header {
@@ -48,4 +55,8 @@
 
 .quality-band span {
   font-weight: bold;
+}
+
+.carousel-caption {
+  z-index: 3;
 }

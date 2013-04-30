@@ -416,13 +416,38 @@ describe('directives', function() {
     });    
 
     it('should use the correct display type for each slide', function() {
-/*      Needs testing via toBeVisible()*/
+      var slides = elm.find('slide');
+      expect(slides.eq(1).find('img').length).toBe(1);
+      expect(slides.eq(1).find('video').length).toBe(0);
+      expect(slides.eq(2).find('img').length).toBe(0);
+      expect(slides.eq(2).find('video').length).toBe(1);      
     });
 
     it('should suppress items with unknown types', function() {
-/*      Test by inserting a new item with invalid type and verifying 
-      count doesn't change?*/
+      var count1 = elm.find('slide').length;
+      var test_item_1 = {
+            "title": "Home",
+            "caption": "The home image",
+            "type": "image/png",
+            "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
+            "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
+        };
+      var test_item_2 = {
+            "title": "Home",
+            "caption": "The home image",
+            "type": "foo/bar",
+            "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
+            "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
+        };
+      scope.testapp.mediaSection.push(test_item_1);
+      scope.$digest();
+      var count2 = elm.find('slide').length;
+      scope.testapp.mediaSection.push(test_item_2);
+      scope.$digest();
+      var count3 = elm.find('slide').length;
 
+      expect(count2).toBe(count1 + 1);
+      expect(count3).toBe(count2);
     });
 
     it('displays captions for slides that have them', function() {
@@ -431,9 +456,10 @@ describe('directives', function() {
     });
 
     it('hides the caption area if no caption is set', function() {
-/*      var captions = elm.find('.caption');
-      expect(captions.eq(0)).toBeVisible();
-      expect(captions.eq(1)).not.toBeVisible();*/
+      var captions = elm.find('.carousel-caption');
+
+      expect(captions.eq(1).css('display')).toBe('none');
+
     });
 
     it('uses the correct poster image for videos', function() {
