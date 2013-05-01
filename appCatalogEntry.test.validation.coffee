@@ -122,7 +122,14 @@ describe 'AppCatalogEntry: descriptionSection', ->
     }
     entry
   , expectTypesInvalid,
-    '#/descriptionSection/description': 'string'  
+    '#/descriptionSection/description': 'string'
+
+  test 'fails when description exceeds maxLength', ->
+    entry = fullyValidEntry()
+    entry.descriptionSection.description = ex(2000)
+    entry
+  , expectMaxLengthsExceeded,
+    '#/descriptionSection/description': 2000
 
 describe 'AppCatalogEntry: linksSection', ->
   test 'fails when linksSection missing', ->

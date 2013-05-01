@@ -51,8 +51,8 @@ createServer = (settings) ->
 
   handleError = (res, err) ->
     if err?
-      if matchesValidationError err 
-        res.send 500, {status:500, message: {title:'Could not process your request due to validation errors'} }
+      if matchesValidationError err
+        res.send 500, {status:500, message: {title:'Could not process your request due to validation errors'}, errors: err }
       else
         res.send 500, {status:500, message: 'Could not process your request due to invalid input data'}
 

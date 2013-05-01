@@ -74,7 +74,8 @@
             status: 500,
             message: {
               title: 'Could not process your request due to validation errors'
-            }
+            },
+            errors: err
           });
         } else {
           return res.send(500, {
