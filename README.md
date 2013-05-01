@@ -1,4 +1,4 @@
 VersionOne.AppCatalog.Web
-=========================
+=====================
 
-Version One App Catalog - web interface for integration with MindTouch
+Node.js and MongoDB based web service for App Catalog with AngularJS based front end.
