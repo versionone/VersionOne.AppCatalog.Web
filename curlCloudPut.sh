@@ -1,0 +1,1 @@
+curl -X PUT http://appcatalog.azurewebsites.net/entry -d @sampledata.json -H "Content-Type: application/json"

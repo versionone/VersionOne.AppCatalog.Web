@@ -1,0 +1,23 @@
+<h2>All Releases</h2>
+{{#each this}}
+    <div>
+        <div>
+            <p>{{dateFormat date}} - {{version}}</p>
+            <p>{{description}}</p>
+        </div>
+        <div>
+            <p>Quality Band: <a 
+                data-qualityBand='{{qualityBand}}'
+                class='qualityBandPopover'
+                >{{qualityBand}}</a>
+            </p>
+            <p>
+                <a
+                    href="{{downloadUrl}}"
+                    class='btn download'
+                >Download</a>
+            </p>
+        </div>
+    </div>
+    <hr />
+{{/each}}

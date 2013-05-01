@@ -61,4 +61,3 @@ Feature: Explore an Application Detail Page from the Catalog
 			| Version      | text field         |
 			| Download     | button             |
 			| Quality Band | label and pop-over |
-

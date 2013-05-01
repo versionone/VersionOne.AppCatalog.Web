@@ -1,0 +1,12 @@
+{
+    "id": "HappyPathWithRequiredData",
+    "titleSection": {        
+        "name": "Happy Path With Required Data",
+        "shortDescription": "a quick summary",
+        "pricing": "Free",
+        "support": {
+            "text": "VersionOne Support",
+            "href": "http://support.versionone.com/home"
+        }
+    }
+}

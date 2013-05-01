@@ -11,4 +11,3 @@ Feature: Title Section
 			| app                   | name     | pricing | support            | hyperlink | short desc | 
 			| example.simple        | Example1 | Free    | VersionOne Support | http://support.versionone.com/home | a quick summary |
 			| example.longshortdesc | Example2 | Free    | VersionOne Support | http://support.versionone.com/home | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. |
-

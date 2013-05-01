@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="appCatalog">
+<head>
+  <meta charset="utf-8">
+  <title>VersionOne App Catalog</title>
+  <link rel="stylesheet" href="css/v1-custom-bootstrap.css" />
+  <link rel='stylesheet' href='css/video-js.css' />
+  <link rel='stylesheet' href='css/appcatalog.css' />
+   <style>
+        /* to show span element display we give each a background color. */
+        .section { background-color: #eee; border-radius: 6px; padding: 1em; margin: 0.4em 0; }
+    </style>
+</head>
+<body>
+  <div ng-view></div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-resource.js"></script>
+  <script src="lib/angular/ui-bootstrap-tpls-0.2.0.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/proto-directives.js"></script> 
+  <script src="lib/video.js"></script>  
+
+</body>
+</html>
