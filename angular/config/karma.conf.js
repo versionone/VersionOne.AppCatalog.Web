@@ -17,4 +17,4 @@ preprocessors = {
 
 autoWatch = true;
 
-browsers = ['C:/Program Files (x86)/Google/Chrome/Application/chrome.exe']
+browsers = ['Chrome','Firefox','IE','PhantomJS']
