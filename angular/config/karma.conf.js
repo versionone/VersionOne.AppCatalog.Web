@@ -17,4 +17,6 @@ preprocessors = {
 
 autoWatch = true;
 
-browsers = ['C:/Program Files (x86)/Google/Chrome/Application/chrome.exe']
+// Full path to executables may be required in matching
+// environment variables: CHROME_BIN, FIREFOX_BIN, etc.
+browsers = ['Chrome','Firefox','PhantomJS','IE']
