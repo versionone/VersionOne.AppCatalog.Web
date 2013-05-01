@@ -69,7 +69,7 @@
     updatesSection: {
       type: {
         updates: {
-          type: []
+          type: [Object]
         },
         qualityBands: {
           type: Object
@@ -138,7 +138,7 @@
         properties: {
           description: {
             type: 'string',
-            maxLength: 1000
+            maxLength: 2000
           }
         }
       },
