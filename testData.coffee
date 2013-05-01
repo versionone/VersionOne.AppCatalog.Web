@@ -90,7 +90,12 @@ data =
   updatesSectionEmpty: () ->
     entry = @fullyValidEntry()
     entry.updatesSection = {}
-    return entry    
+    return entry 
+
+  updatesSectionWithEmptyUpdates: () ->
+    entry = @fullyValidEntry()
+    entry.updatesSection.updates = [{}]
+    entry
 
   updatesSectionComplete: () ->
     return {
@@ -121,5 +126,5 @@ data =
             shortDescription: "The product is stable. The code will continue to evolve with minimum breaking changes."
             href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature"
     }
-    
+
 module.exports = data
