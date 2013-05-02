@@ -49,20 +49,27 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         file = _ref[_i];
         entry = JSON.parse(fs.readFileSync('./examples/' + file, 'utf8'));
-        _results.push(put(entry, 200, function(err, res) {
-          var message;
+        _results.push((function() {
+          var doc;
 
-          count--;
-          console.log(res.text);
-          should.not.exist(err);
-          message = JSON.parse(res.text);
-          should.exist(message);
-          message.status.should.eql(200);
-          message.message.should.eql('Successfully updated entry');
-          if (count === 0) {
-            return done();
-          }
-        }));
+          doc = entry;
+          return put(doc, 200, function(err, res) {
+            var message;
+
+            count--;
+            console.log('id: ' + doc.id);
+            console.log(res.text);
+            console.log(doc);
+            should.not.exist(err);
+            message = JSON.parse(res.text);
+            should.exist(message);
+            message.status.should.eql(200);
+            message.message.should.eql('Successfully updated entry');
+            if (count === 0) {
+              return done();
+            }
+          });
+        })());
       }
       return _results;
     });

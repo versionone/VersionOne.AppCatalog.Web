@@ -33,16 +33,21 @@ describe 'PUT /entry for each examples succeeds', ->
     count = files.length
     for file in fs.readdirSync './examples'
       entry = JSON.parse fs.readFileSync('./examples/' + file, 'utf8')
-      put entry, 200, (err, res) ->
-        count--
-        console.log res.text
-        should.not.exist err
-        message = JSON.parse res.text
-        should.exist message
-        message.status.should.eql 200
-        message.message.should.eql 'Successfully updated entry'
-        if count == 0
-          done()
+      (() ->
+        doc = entry
+        put doc, 200, (err, res) ->
+          count--
+          console.log 'id: ' + doc.id
+          console.log res.text
+          console.log doc
+          should.not.exist err
+          message = JSON.parse res.text
+          should.exist message
+          message.status.should.eql 200
+          message.message.should.eql 'Successfully updated entry'
+          if count == 0
+            done()
+      )()
 
 describe 'PUT /entry for Failure Path With Invalid JSON', ->
   it 'responds with JSON failure message', (done) ->
