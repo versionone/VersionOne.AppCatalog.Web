@@ -7,13 +7,13 @@ config.localPort = 8081
 if not process.env.PORT?
 	#config.mongoUrl = 'mongodb://localhost/test'
   	# to connect to production instance:
-  	config.mongoUrl = 'mongodb://appcatalog:appcatalog101#@ds061237.mongolab.com:61237/appcatalogprod'
+  	config.mongoUrl = 'mongodb://appcatalog:appcatalog101#@ds061787.mongolab.com:61787/appcatalogstage'
 else
   # local:
   #config.mongoUrl = 'mongodb://localhost/test'
   # testing:
   #config.mongoUrl = 'mongodb://v1appCatalog-stage:SU1vOVTfMlua6IaJVkIaqJWOXVUrev3ZeoITHpujRxA-@ds045087.mongolab.com:45087/v1appCatalog-stage'
   # production:
-  config.mongoUrl = 'mongodb://appcatalog:appcatalog101#@ds061237.mongolab.com:61237/appcatalogprod'
+  config.mongoUrl = 'mongodb://appcatalog:appcatalog101#@ds061787.mongolab.com:61787/appcatalogstage'
 
 module.exports = config
