@@ -1,5 +1,4 @@
 {
-    "docVersion": 1,
     "id": "FalconerDevelopment.V1MantisBT",
     "titleSection": {
         "name": "VersionOne Mantis Bug Tracker Integration",
@@ -44,7 +43,7 @@
         "updates": [
             {
                 "date": "2011-07-02T00:00:00.000Z",
-                "description": "Spring 2011",
+                "description": "Summer 2011",
                 "version": "1.2",
                 "qualityBand": "commercial",
                 "downloadUrl": "http://www.falconerdevelopment.com/downloads/V1MantisBT-Setup.exe"
