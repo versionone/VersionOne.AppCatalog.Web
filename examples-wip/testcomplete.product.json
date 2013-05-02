@@ -41,14 +41,14 @@
                 "date": "2011-01-08T00:00:00.000Z",
                 "description": "Summer 2011",
                 "version": "1462",
-                "releaseNotes": "* Added: Support for connecting to VersionOne through a proxy.  * Added: Configuration Utility contains help on the various configuration options to enable quicker setup and configuration.  * Added: Configuration Utility supports a minimum poll interval of one minute for testing. It is not recommended that poll intervals remain this low in a production instance.  * Update: Source code project was dependent on .NET 3.5. Now source code project depends on the latest .NET SDK.  * Updated: Integration depends on Log4Net  * Updated: Poll time interval defaults to 30 minutes  * Fixed: Configuration Utility allows editing of the VersionOne credential fields when Windows Integrated Authentication is enabled. This enables configuring the integrations to connect to VersionOne as a user other than the local service account when the VersionOne instance is configured for Windows integrated authentication.",
+                "releaseNotes": "* Added: Support for connecting to VersionOne through a proxy.\n * Added: Configuration Utility contains help on the various configuration options to enable quicker setup and configuration.\n * Added: Configuration Utility supports a minimum poll interval of one minute for testing. It is not recommended that poll intervals remain this low in a production instance.\n * Update: Source code project was dependent on .NET 3.5. Now source code project depends on the latest .NET SDK.\n * Updated: Integration depends on Log4Net\n * Updated: Poll time interval defaults to 30 minutes\n * Fixed: Configuration Utility allows editing of the VersionOne credential fields when Windows Integrated Authentication is enabled. This enables configuring the integrations to connect to VersionOne as a user other than the local service account when the VersionOne instance is configured for Windows integrated authentication.",
                 "qualityBand": "mature"
             },
             {
                 "date": "2010-08-10T00:00:00.000Z",
                 "description": "Summer 2010",
                 "version": "872",
-                "releaseNotes": "* Added GUI Tool for configuration  * Updated Documentation",
+                "releaseNotes": "* Added GUI Tool for configuration\n * Updated Documentation",
                 "qualityBand": "mature"
             },
             {

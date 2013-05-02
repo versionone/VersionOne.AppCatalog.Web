@@ -55,7 +55,7 @@
                 "date": "2011-07-01T00:00:00.000Z",
                 "description": "Summer 2011",
                 "version": "64",
-                "releaseNotes": "* Added: Support for connecting to VersionOne through a proxy.  * Added: Support for TFS 2010 SP1",
+                "releaseNotes": " * Added: Support for connecting to VersionOne through a proxy.\n * Added: Support for TFS 2010 SP1",
                 "qualityBand": "sapling"
             },
             {
