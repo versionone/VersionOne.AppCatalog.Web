@@ -38,12 +38,13 @@
             "title": "Learn more about OpsHub",
             "href": "http://opshub.com/"
         }
-    ]
+    ],
     "updatesSection": {
         "updates": [
             {
                 "date": "2013-03-20T00:00:00.000Z",
                 "description": "Spring 2013",
+                "version": "IAN:TODO",
                 "qualityBand": "commercial"
             }
         ],
