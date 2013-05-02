@@ -241,6 +241,15 @@ describe 'AppCatalogEntry: updatesSection/updates', ->
     '#/updatesSection/updates/0/qualityBand': 'string'
     '#/updatesSection/updates/0/downloadUrl': 'string'
 
+  test 'fails when updatesSection/updates is missing required properties', ->
+    entry = updatesSectionWithEmptyUpdates()
+  , expectPropertiesMissing,
+    '#/updatesSection/updates/0': [
+      'date'
+      'description'
+      'version'
+    ]
+
   test 'fails on invalid moreInfoUrl in updatesSection/updates', ->
     entry = fullyValidEntry()
     entry.updatesSection.updates[0].moreInfoUrl = "not a url"
@@ -271,7 +280,7 @@ describe 'AppCatalogEntry: updatesSection/qualityBands', ->
   , expectMinPropertiesNotMet,
     '#/updatesSection/qualityBands' : 1
 
-  test 'fails when a qualityBand has missing required properties', ->
+  test 'fails when a qualityBand is missing required properties', ->
     entry = fullyValidEntry()
     entry.updatesSection.qualityBands.sapling = {}
     entry

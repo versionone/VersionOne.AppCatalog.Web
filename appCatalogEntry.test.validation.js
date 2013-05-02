@@ -283,6 +283,13 @@
       '#/updatesSection/updates/0/qualityBand': 'string',
       '#/updatesSection/updates/0/downloadUrl': 'string'
     });
+    test('fails when updatesSection/updates is missing required properties', function() {
+      var entry;
+
+      return entry = updatesSectionWithEmptyUpdates();
+    }, expectPropertiesMissing, {
+      '#/updatesSection/updates/0': ['date', 'description', 'version']
+    });
     test('fails on invalid moreInfoUrl in updatesSection/updates', function() {
       var entry;
 
@@ -319,7 +326,7 @@
     }, expectMinPropertiesNotMet, {
       '#/updatesSection/qualityBands': 1
     });
-    test('fails when a qualityBand has missing required properties', function() {
+    test('fails when a qualityBand is missing required properties', function() {
       var entry;
 
       entry = fullyValidEntry();

@@ -120,7 +120,7 @@ jsonSchema =
           type: 'array'
           items:
             type: 'object'
-            required: ['date', 'description', 'version', 'downloadUrl']
+            required: ['date', 'description', 'version']
             properties:
               date:
                 type: 'string'
