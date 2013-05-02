@@ -43,6 +43,7 @@ appCatalogEntrySchema = mongoose.Schema(
     type:
       updates:
         type: [
+          Object
         ]
       qualityBands:
         type: Object
@@ -95,7 +96,7 @@ jsonSchema =
       properties:
         description: 
           type: 'string'
-          maxLength: 1000
+          maxLength: 2000
     linksSection:
       type: 'array'
       items:
@@ -119,7 +120,7 @@ jsonSchema =
           type: 'array'
           items:
             type: 'object'
-            required: ['date', 'description', 'version', 'downloadUrl']
+            required: ['date', 'description', 'version']
             properties:
               date:
                 type: 'string'

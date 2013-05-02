@@ -116,6 +116,13 @@
       entry.updatesSection = {};
       return entry;
     },
+    updatesSectionWithEmptyUpdates: function() {
+      var entry;
+
+      entry = this.fullyValidEntry();
+      entry.updatesSection.updates = [{}];
+      return entry;
+    },
     updatesSectionComplete: function() {
       return {
         updates: [

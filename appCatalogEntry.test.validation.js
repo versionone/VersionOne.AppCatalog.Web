@@ -131,7 +131,7 @@
     }, expectPropertiesMissing, {
       '#/descriptionSection': ['description']
     });
-    return test('fails on invalid types for descriptionSection', function() {
+    test('fails on invalid types for descriptionSection', function() {
       var entry;
 
       entry = fullyValidEntry();
@@ -141,6 +141,15 @@
       return entry;
     }, expectTypesInvalid, {
       '#/descriptionSection/description': 'string'
+    });
+    return test('fails when description exceeds maxLength', function() {
+      var entry;
+
+      entry = fullyValidEntry();
+      entry.descriptionSection.description = ex(2000);
+      return entry;
+    }, expectMaxLengthsExceeded, {
+      '#/descriptionSection/description': 2000
     });
   });
 
@@ -274,6 +283,13 @@
       '#/updatesSection/updates/0/qualityBand': 'string',
       '#/updatesSection/updates/0/downloadUrl': 'string'
     });
+    test('fails when updatesSection/updates is missing required properties', function() {
+      var entry;
+
+      return entry = updatesSectionWithEmptyUpdates();
+    }, expectPropertiesMissing, {
+      '#/updatesSection/updates/0': ['date', 'description', 'version']
+    });
     test('fails on invalid moreInfoUrl in updatesSection/updates', function() {
       var entry;
 
@@ -310,7 +326,7 @@
     }, expectMinPropertiesNotMet, {
       '#/updatesSection/qualityBands': 1
     });
-    test('fails when a qualityBand has missing required properties', function() {
+    test('fails when a qualityBand is missing required properties', function() {
       var entry;
 
       entry = fullyValidEntry();

@@ -69,7 +69,7 @@
     updatesSection: {
       type: {
         updates: {
-          type: []
+          type: [Object]
         },
         qualityBands: {
           type: Object
@@ -138,7 +138,7 @@
         properties: {
           description: {
             type: 'string',
-            maxLength: 1000
+            maxLength: 2000
           }
         }
       },
@@ -171,7 +171,7 @@
             type: 'array',
             items: {
               type: 'object',
-              required: ['date', 'description', 'version', 'downloadUrl'],
+              required: ['date', 'description', 'version'],
               properties: {
                 date: {
                   type: 'string',
