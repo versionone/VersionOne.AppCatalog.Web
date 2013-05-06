@@ -68,7 +68,7 @@ cd - > /dev/null
 if [[ ! -n "$DEPLOYMENT_TARGET" ]]; then
   DEPLOYMENT_TARGET=$ARTIFACTS/wwwroot
   # gb: If running locally just set to call mocha directly
-  MOCHA_COMMAND="runTests.sh"
+  MOCHA_COMMAND="./runTests.sh"
 else
   # In case we are running on kudu service this is the correct location of kuduSync
   KUDU_SYNC_COMMAND="$APPDATA\\npm\\node_modules\\kuduSync\\bin\\kuduSync"
@@ -81,7 +81,8 @@ echo Handling node.js deployment.
  
 # 1. gb: Run the tests!
 echo Running unit tests
-$MOCHA_COMMAND 
+./runTestsOnAzure.sh
+# $MOCHA_COMMAND 
 exitWithMessageOnError "Unit tests failed"
  
 # 2. KuduSync
