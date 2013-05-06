@@ -59,7 +59,6 @@
             count--;
             console.log('id: ' + doc.id);
             console.log(res.text);
-            console.log(doc);
             should.not.exist(err);
             message = JSON.parse(res.text);
             should.exist(message);
