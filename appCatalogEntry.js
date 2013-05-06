@@ -79,7 +79,7 @@
     mediaSection: {
       type: [
         {
-          type: t(),
+          mediatype: t(),
           title: t(),
           caption: t(),
           href: t(),
@@ -245,7 +245,7 @@
         type: 'array',
         items: {
           type: 'object',
-          required: ['title', 'caption', 'type', 'href', 'thumbhref'],
+          required: ['title', 'caption', 'mediatype', 'href', 'thumbhref'],
           properties: {
             title: {
               type: 'string',
@@ -255,9 +255,9 @@
               type: 'string',
               maxLength: 200
             },
-            'type': {
+            mediatype: {
               type: 'string',
-              maxLength: 50
+              maxLength: 100
             },
             href: {
               type: 'string',

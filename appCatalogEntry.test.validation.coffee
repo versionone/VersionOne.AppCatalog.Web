@@ -347,16 +347,6 @@ describe 'AppCatalogEntry: updatesSection/qualityBands', ->
     '0': 'The qualityBand perfect does not exist in the updates/qualityBands section. Available bands are: sapling, mature'
 
 describe 'AppCatalogEntry: mediaSection', ->
-  '''
-  test 'fails when linksSection missing', ->
-    entry = linksSectionMissing()
-    entry
-  , expectPropertiesMissing,
-    '#': [
-      'linksSection'
-    ]
-  '''
-
   test 'fails when a mediaSection item is missing required properties', ->
     entry = fullyValidEntry()
     entry.mediaSection = [
@@ -367,7 +357,7 @@ describe 'AppCatalogEntry: mediaSection', ->
     '#/mediaSection/0': [
       'title'
       'caption'
-      'type'
+      'mediatype'
       'href'
       'thumbhref'
     ]  
@@ -377,7 +367,7 @@ describe 'AppCatalogEntry: mediaSection', ->
     entry.mediaSection = [
       title: 0
       caption: 0
-      type: 0
+      mediatype: 0
       href: 0
       thumbhref: 0
     ]
@@ -385,7 +375,7 @@ describe 'AppCatalogEntry: mediaSection', ->
   , expectTypesInvalid,
     '#/mediaSection/0/title': 'string'
     '#/mediaSection/0/caption': 'string'
-    '#/mediaSection/0/type': 'string'
+    '#/mediaSection/0/mediatype': 'string'
     '#/mediaSection/0/href': 'string'
     '#/mediaSection/0/thumbhref': 'string'
 
@@ -411,7 +401,7 @@ describe 'AppCatalogEntry: mediaSection', ->
     entry.mediaSection = [
       title: ex(HREF_TEXT_MAX_LENGTH)
       caption: ex(200)
-      type: ex(50)
+      mediatype: ex(100)
       href: ex(HREF_MAX_LENGTH)
       thumbhref: ex(HREF_MAX_LENGTH)
     ]
@@ -419,6 +409,6 @@ describe 'AppCatalogEntry: mediaSection', ->
   , expectMaxLengthsExceeded,
     '#/mediaSection/0/title': HREF_TEXT_MAX_LENGTH
     '#/mediaSection/0/caption': 200
-    '#/mediaSection/0/type': 50
+    '#/mediaSection/0/mediatype': 100
     '#/mediaSection/0/href': HREF_MAX_LENGTH
     '#/mediaSection/0/thumbhref': HREF_MAX_LENGTH

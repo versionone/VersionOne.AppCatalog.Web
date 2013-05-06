@@ -132,7 +132,7 @@ data =
     return [{
         "title": "Home",
         "caption": "The home image",
-        "type": "image/png",
+        "mediatype": "image/png",
         "href": "http://absolute.content.com/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
         "thumbhref": "https://absolute.content.com/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
     }]
