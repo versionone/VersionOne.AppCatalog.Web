@@ -7,6 +7,5 @@ angular.module('appCatalog', ['appCatalog.filters', 'appCatalog.services', 'appC
     $routeProvider.when('/DetailsOld/:appId', {templateUrl: 'partials/details-old.html', controller: 'DetailsCtrl'});
     $routeProvider.when('/Details/:appId', {templateUrl: 'partials/details.html', controller: 'DetailsCtrl'});
     $routeProvider.when('/Proto', {templateUrl: 'partials/details-proto.html', controller: 'ProtoCtrl'});
-    $routeProvider.when('/Test', {templateUrl: 'partials/details.html', controller: 'TestCtrl'});
     $routeProvider.otherwise({redirectTo: '/'});
   }]);

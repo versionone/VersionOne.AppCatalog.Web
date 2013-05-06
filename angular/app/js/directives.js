@@ -26,7 +26,7 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			template: "<div class='description'>" +
 					"<h2>Details</h2>" +
-					"<p ng-bind-html-unsafe='cvtDesc'></p>" +
+					"<p class='markdown' ng-bind-html-unsafe='cvtDesc'></p>" +
 				"</div>",
 			controller: function($scope) {
 				var converter = new Markdown.getSanitizingConverter();

@@ -465,17 +465,5 @@ describe('directives', function() {
       expect(posters.eq(0).attr('poster')).toBe(sample_data.mediaSection[2].thumbhref);
     });
 
-    it('rolls from the first item to the last with back arrow', function() {
-    });
-
-    it('rolls from the last item to the first with next arrow', function() {
-    });
-
-    it('pauses video when told and restarts from the same place', function() {
-    });
-
-    it('pauses video when rolled away', function() {
-    });
-
   });
 });
