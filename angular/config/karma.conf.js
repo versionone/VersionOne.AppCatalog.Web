@@ -5,6 +5,7 @@ files = [
   JASMINE_ADAPTER,
   '../test/lib/jquery-1.8.1.min.js',
   'lib/angular/angular.js',
+  'lib/*.js',
   '../test/lib/angular/angular-mocks.js',
   'js/**/*.js',
   '../test/unit/*.js',

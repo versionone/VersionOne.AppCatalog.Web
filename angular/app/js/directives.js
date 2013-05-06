@@ -26,8 +26,21 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			template: "<div class='description'>" +
 					"<h2>Details</h2>" +
-					"<p>{{src.description}}</p>" +
-				"</div>"
+					"<p ng-bind-html-unsafe='cvtDesc'></p>" +
+				"</div>",
+			controller: function($scope) {
+				var converter = new Markdown.getSanitizingConverter();
+
+				$scope.$watch('src', function(val) {
+					if (val && val.description) {
+						$scope.cvtDesc = converter.makeHtml(val.description);
+					}
+					else
+					{
+						$scope.cvtDesc = '';
+					}
+				});
+			}
 		};
 	}).
 	directive('media', function() {
@@ -106,7 +119,30 @@ angular.module('appCatalog.directives', []).
 			transclude: false,
 			scope: { src: '=src' },
 			templateUrl: 'tpl/updates.html',
-			replace: true
+			replace: true,
+			controller: function($scope) {
+				var converter = new Markdown.getSanitizingConverter();
+
+				function convert(txt) {
+					if (txt) {
+						return converter.makeHtml(txt);
+					}
+					else
+					{
+						return '';
+					}
+				}
+
+				$scope.$watch('src', function(val) {
+					if (val) {
+						for (var i = 0; i< val.updates.length; i++) {
+							var entry = val.updates[i];
+							entry.cvtDescription = convert(entry.description);
+							entry.cvtReleaseNotes = convert(entry.releaseNotes);
+						}
+					}
+				});
+			}
 		};
 	}).
 	directive('textlinks', function() {

@@ -1,14 +1,15 @@
 <div>
 	<h2>Updates</h2> 
-	<div class='update' ng-repeat = "update in src.updates | orderBy:'version':true"> 
+	<div class='update' ng-repeat = "update in src.updates | orderBy:'date':true"> 
 		<hr/> 
         <div class = 'header'> 
             <div class = 'left version'>{{update.version}}</div> 
 			<div class = 'right'>{{update.date | date:'longDate'}}</div> 
 		</div>
-        <p>{{update.description}}</p> 
+        <p ng-bind-html-unsafe='update.cvtDescription'></p> 
+        <p class = 'release-notes' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
         <div>
-            <div class = 'quality-band' ng-show = 'update.qualityBand'>
+             <div class = 'quality-band' ng-show = 'update.qualityBand'>
             	<span>Quality Band:</span> 
             	<a popover="{{src.qualityBands[update.qualityBand].shortDesc}}" popover-title="Quality Band: {{update.qualityBand}}">
                 	{{update.qualityBand}}
@@ -18,9 +19,9 @@
             	<a href='{{update.downloadUrl}}' class='btn download'>
             		<img src="img/download.png" /> <span>Download</span></a> 
 			</div>
-			<div class='right' ng-show = 'update.releaseNotes'>
-            	<a href='{{update.releaseNotes}}' class='btn releasenotes'>
-            		<img src="img/documentation.png" /> <span>View Release Notes</span></a>
+			<div class='right' ng-show = 'update.moreInfoUrl'>
+            	<a href='{{update.moreInfoUrl}}' class='btn releasenotes'>
+            		<img src="img/documentation.png" /> <span>More Information</span></a>
             </div>
         </div> 
 	</div>

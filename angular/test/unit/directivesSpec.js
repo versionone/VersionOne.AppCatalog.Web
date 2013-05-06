@@ -14,7 +14,7 @@ var sample_data = {
         }
     },
     "descriptionSection": {
-        "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu."
+        "description": "<script evilStuff>Lorem</script> <p>ipsum dolor sit amet</p>, **consectetuer adipiscing elit**, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volu."
     },
     "linksSection": [
         {
@@ -57,24 +57,9 @@ var sample_data = {
  "updatesSection": {
         "updates": [
             {
-                "date": {
-                    "$date": "2013-02-13T17:45:00.000Z"
-                },
-                "description": "stabilizing timesheet workflow",
-                "version": "0.3.2.13",
-                "releaseNotes": "http://example.com",
-                "qualityBand": "mature",
-                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
-                "_id": {
-                    "$oid": "516d9a4824a05b205800009a"
-                }
-            },
-            {
-                "date": {
-                    "$date": "2013-01-13T17:45:00.000Z"
-                },
+                "date": "2013-01-13T17:45:00.000Z",
                 "description": "better timesheet support",
-                "version": "0.3.3.5",
+                "version": "c",
                 "releaseNotes": "http://example.com",
                 "qualityBand": "sapling",
                 "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
@@ -83,11 +68,21 @@ var sample_data = {
                 }
             },
             {
-                "date": {
-                    "$date": "2013-01-13T17:45:00.000Z"
-                },
+                "date": "2013-02-13T17:45:00.000Z",
+                "description": "stabilizing timesheet workflow",
+                "version": "b",
+                "releaseNotes": "http://example.com",
+                "qualityBand": "mature",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
+                "_id": {
+                    "$oid": "516d9a4824a05b205800009a"
+                }
+            },
+
+            {
+                "date": "2013-01-10T17:45:00.000Z",
                 "description": "better timesheet support",
-                "version": "0.2.1.10",
+                "version": "a",
                 "releaseNotes": "http://example.com",
                 "qualityBand": "sapling",
                 "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
@@ -213,9 +208,7 @@ var sample_data_one_slide = {
  "updatesSection": {
         "updates": [
             {
-                "date": {
-                    "$date": "2013-02-13T17:45:00.000Z"
-                },
+                "date": "2013-02-13T17:45:00.000Z",
                 "description": "stabilizing timesheet workflow",
                 "version": "0.3.2.13",
                 "releaseNotes": "http://example.com",
@@ -226,9 +219,7 @@ var sample_data_one_slide = {
                 }
             },
             {
-                "date": {
-                    "$date": "2013-01-13T17:45:00.000Z"
-                },
+                "date": "2013-01-13T17:45:00.000Z",
                 "description": "better timesheet support",
                 "version": "0.3.3.5",
                 "releaseNotes": "http://example.com",
@@ -239,9 +230,7 @@ var sample_data_one_slide = {
                 }
             },
             {
-                "date": {
-                    "$date": "2013-01-13T17:45:00.000Z"
-                },
+                "date": "2013-01-13T17:45:00.000Z",
                 "description": "better timesheet support",
                 "version": "0.2.1.10",
                 "releaseNotes": "http://example.com",
@@ -332,8 +321,16 @@ describe('directives', function() {
     }));
 
     it('should bind its content', function() {
-      var desc = elm.find('p');
-      expect(desc.eq(0).text()).toBe(sample_data.descriptionSection.description);
+      var desc = elm.find('.ng-binding');
+      expect(desc.eq(0).text().length).toBeGreaterThan(100);
+    });
+
+    it('should render Markdown as html', function() {
+        expect(elm.html()).toContain('<strong>');
+    });
+
+    it('should exclude forbidden tags from its content', function() {
+        expect(elm.html()).not.toContain('<script>'); 
     });
   });
 
@@ -381,10 +378,11 @@ describe('directives', function() {
       expect(updates.length).toBe(sample_data.updatesSection.updates.length);
     });
 
-    it('should be in order by version number', function() {
-      var updates = elm.find('div.version');
-      expect(updates.eq(0).text()).toBeGreaterThan(updates.eq(1).text());
-      expect(updates.eq(1).text()).toBeGreaterThan(updates.eq(2).text());
+    it('should be in order by date (newest to oldest)', function() {
+        var updates = elm.find('div.version');
+
+        expect(updates.eq(0).text()).toBe(sample_data.updatesSection.updates[1].version);
+        expect(updates.eq(1).text()).toBe(sample_data.updatesSection.updates[0].version);
     });
 
     it('should have correct descriptions', function() {
