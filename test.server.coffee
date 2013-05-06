@@ -37,8 +37,8 @@ describe 'PUT /entry for each examples succeeds', ->
         doc = entry
         put doc, 200, (err, res) ->
           count--
-          console.log 'id: ' + doc.id
-          console.log res.text
+          console.error 'id: ' + doc.id
+          console.error res.text
           should.not.exist err
           message = JSON.parse res.text
           should.exist message
