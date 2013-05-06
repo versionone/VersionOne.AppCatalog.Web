@@ -33,7 +33,7 @@ describe 'PUT /entry for each examples succeeds', ->
     count = files.length
     for file in fs.readdirSync './examples'
       entry = JSON.parse fs.readFileSync('./examples/' + file, 'utf8')
-      (() ->
+      (->
         doc = entry
         put doc, 200, (err, res) ->
           count--
