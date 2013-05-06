@@ -6,8 +6,8 @@
             <div class = 'left version'>{{update.version}}</div> 
 			<div class = 'right'>{{update.date | date:'longDate'}}</div> 
 		</div>
-        <p ng-bind-html-unsafe='update.cvtDescription'></p> 
-        <p class = 'release-notes' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
+        <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p> 
+        <p class = 'release-notes markdown' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
         <div>
              <div class = 'quality-band' ng-show = 'update.qualityBand'>
             	<span>Quality Band:</span> 
