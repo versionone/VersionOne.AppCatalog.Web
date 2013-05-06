@@ -4,6 +4,6 @@
 
 angular.module('appCatalog.services', ['ngResource']).
 	factory('App', function($resource) {
-		var App = $resource("http://appcatalog.azurewebsites.net/entry");
+		var App = $resource("/entry");
 		return App;
 	});
