@@ -47,6 +47,14 @@ appCatalogEntrySchema = mongoose.Schema(
         ]
       qualityBands:
         type: Object
+  mediaSection:
+    type: [
+      type: t()
+      title: t()
+      caption: t()      
+      href: t()
+      thumbhref: t()
+    ]        
 )
 
 HREF_TEXT_MAX_LENGTH = 100
@@ -160,6 +168,27 @@ jsonSchema =
                 href:
                   type: 'string'
                   maxLength: HREF_MAX_LENGTH
+    mediaSection:
+      type: 'array'
+      items:
+        type: 'object'
+        required: ['title', 'caption', 'type', 'href', 'thumbhref']
+        properties:
+          title:
+            type: 'string'
+            maxLength: HREF_TEXT_MAX_LENGTH
+          caption:
+            type: 'string'
+            maxLength: 200
+          'type':
+            type: 'string'
+            maxLength: 50
+          href:
+            type: 'string'
+            maxLength: HREF_MAX_LENGTH
+          thumbhref:
+            type: 'string'
+            maxLength: HREF_MAX_LENGTH
 
 AppCatalogEntry = mongoose.model 'AppCatalogEntry', appCatalogEntrySchema
 
@@ -178,7 +207,7 @@ AppCatalogEntry.validate = (data, callback) ->
       # Validate URL types        
       errors = []
       urls = []
-      for path in ['href', 'downloadUrl', 'moreInfoUrl']
+      for path in ['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']
         urls.push jp(data, '$..' + path)...
       for url in urls
         va = new validator()
