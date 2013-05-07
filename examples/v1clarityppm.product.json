@@ -68,5 +68,14 @@
                 "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature"
             }
         ]
-    }
+    },
+    "mediaSection": [
+        {
+            "title": "CA Clarity PPM Integration",
+            "caption": "Load projects into VersionOne using your CA Clarity PPM Demand Management process and keep project summary data up-to-date with Agile execution.",
+            "mimetype": "video/x-flv",
+            "href": "http://vtv.v1host.com/permalink/?title=Clarity&category=Integrations&edition=enterprise&release=undefined",
+            "thumbhref": "http://community.versionone.com/attachments/imagefolder/gettingstarted/video.png"
+        }
+    ]
 }

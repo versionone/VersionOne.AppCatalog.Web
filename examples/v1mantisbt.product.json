@@ -55,5 +55,14 @@
                 "shortDesc": "The product is stable and supported."
             }
         ]
-    }
+    },
+    "mediaSection": [
+        {
+            "title": "See the Demo",
+            "caption": "Give your agile team everything they need to focus on what’s important: more productivity and less administration.",
+            "mimetype": "video",
+            "href": "http://www.youtube.com/watch?v=VsxwjoQqm_0",
+            "thumbhref": "http://s3.amazonaws.com/falconerdevelopment/wp-content/themes/FreshStart/images/v1mantisbt_firstframe.jpg"
+        }
+    ]
 }

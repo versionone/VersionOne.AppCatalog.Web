@@ -82,5 +82,14 @@
                 "href": "https://github.com/versionone/V1TFS/blob/master/CONTRIBUTING.md#mature"
             }
         ]
-    }
+    },
+    "mediaSection": [
+        {
+            "title": "TFS Integration",
+            "caption": "Integrate code check-ins and builds created by Microsoft's Team Foundation Server into VersionOne.",
+            "mimetype": "video/x-flv",
+            "href": "http://vtv.v1host.com/permalink/?title=SCM%20%26%20Build%3A%20Microsoft%20TFS&category=Integrations&edition=enterprise&release=undefined",
+            "thumbhref": "http://community.versionone.com/attachments/imagefolder/gettingstarted/video.png"
+        }
+    ]
 }
