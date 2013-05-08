@@ -1,6 +1,7 @@
 express = require 'express'
 mongoose = require 'mongoose'
 cors = (require './cors').cors
+nconf = require 'nconf'
 
 createServer = (settings) ->
   mongoose.connect settings.mongoUrl
@@ -23,6 +24,13 @@ createServer = (settings) ->
 
   db.disconnect
 
+  nconf.file('auth.json').env()
+
+  user = nconf.get 'user'
+  password = nconf.get 'password'
+
+  auth = express.basicAuth(user, password)
+
   service = require './service'
 
   app.get settings.entryRoute, (req, res) ->
@@ -33,7 +41,7 @@ createServer = (settings) ->
       service.findById req.query.id, (err, result) ->
         renderQueryResult res, err, result
 
-  app.put settings.entryRoute, (req, res) ->
+  app.put settings.entryRoute, auth, (req, res) ->
     return unless req.body?
     service.put req.body, (err) ->
       if err?
