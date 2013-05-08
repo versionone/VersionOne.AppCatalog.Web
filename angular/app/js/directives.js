@@ -51,7 +51,7 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			controller: function($scope) {
 				$scope.isValid = function(item) {
-					switch (item.type.split('/')[0]) {
+					switch (item.mimetype.split('/')[0]) {
 						case 'image':
 							return true;
 						case 'video':
@@ -72,7 +72,7 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			controller: function($scope,$element) {
 				$scope.getType = function() {
-					return $scope.src.type.split('/')[0];
+					return $scope.src.mimetype.split('/')[0];
 				};
 
 				$scope.isVideo = function() {
