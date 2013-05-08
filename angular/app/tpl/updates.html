@@ -1,13 +1,15 @@
 <div>
 	<h2>Updates</h2> 
-	<div class='update' ng-repeat = "update in src.updates | orderBy:'date':true"> 
+	<div class='update' ng-repeat = "update in src.updates | orderBy:'date':true" > 
 		<hr/> 
         <div class = 'header'> 
             <div class = 'left version'>{{update.version}}</div> 
 			<div class = 'right'>{{update.date | date:'longDate'}}</div> 
 		</div>
-        <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p> 
-        <p class = 'release-notes markdown' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
+        <v1collapse collapsedheight=75>
+            <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p> 
+            <p class = 'release-notes markdown' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
+        </v1collapse>
         <div>
              <div class = 'quality-band' ng-show = 'update.qualityBand'>
             	<span>Quality Band:</span> 
@@ -25,4 +27,5 @@
             </div>
         </div> 
 	</div>
+    
 </div>

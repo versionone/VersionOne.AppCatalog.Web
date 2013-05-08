@@ -26,8 +26,8 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			template: "<div class='description'>" +
 					"<h2>Details</h2>" +
-					"<p class='markdown' ng-bind-html-unsafe='cvtDesc'></p>" +
-				"</div>",
+					"<v1collapse collapsedheight=150><div class='markdown' ng-bind-html-unsafe='cvtDesc' /></v1collapse>" +
+					"</div>",
 			controller: function($scope) {
 				var converter = new Markdown.getSanitizingConverter();
 
@@ -120,7 +120,7 @@ angular.module('appCatalog.directives', []).
 			scope: { src: '=src' },
 			templateUrl: 'tpl/updates.html',
 			replace: true,
-			controller: function($scope) {
+			controller: function($scope,$element) {
 				var converter = new Markdown.getSanitizingConverter();
 
 				function convert(txt) {
@@ -174,6 +174,38 @@ angular.module('appCatalog.directives', []).
 			            return "img/hypelink.png";
 			        }
         		}
+			}
+		};
+	}).
+	directive('v1collapse',function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			scope: { collapsedHeight: '=collapsedheight'},
+			replace: true,
+			template: "<div>" +
+			"	<div collapse='isCollapsed' collapsed-height={{collapsedHeight}} ng-transclude></div>" +
+			"	<div class='collapse-toggle' " +
+			"		ng-show = 'isCollapsible()' " +
+			"		ng-click='isCollapsed = !isCollapsed'>" +
+			"			{{getToggle();}}" +
+			"</div>" +
+			"</div>",
+			controller: function($scope,$element) {
+				$scope.isCollapsed = false;
+
+				$scope.isCollapsible = function()  {
+					return $scope.isCollapsed || 
+						($element[0].scrollHeight > $scope.collapsedHeight);
+				}
+
+				$scope.getToggle = function() {
+					if ($scope.isCollapsed) {
+						return "<< Expand >>";
+					} else {
+						return ">> Collapse <<";
+					}
+				}
 			}
 		};
 	});

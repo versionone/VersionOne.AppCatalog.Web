@@ -60,3 +60,8 @@
 .carousel-caption {
   z-index: 3;
 }
+
+.collapse-toggle {
+  text-align: center;
+  font-weight: bold;
+}
