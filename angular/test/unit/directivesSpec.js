@@ -122,26 +122,26 @@ var sample_data = {
         {
             "title": "Home",
             "caption": "The home image",
-            "type": "image/png",
+            "mimetype": "image/png",
             "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
             "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
         },
         {
-            "type": "image/png",
+            "mimetype": "image/png",
             "href": "content/gallery/ppm-roadmap-large.jpg",
             "thumbhref": "content/gallery/ppm-roadmap-large.jpg"
         },
         {
             "title": "Video",
             "caption": "This ia a video",
-            "type": "video/flv",
+            "mimetype": "video/flv",
             "href": "http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv",
             "thumbhref": "content/gallery/ClaritySplash.png"
         },
         {
             "title": "Junk",
             "caption": "You shouldn't see this!",
-            "type": "foo/bar",
+            "mimetype": "foo/bar",
             "href": "http://www.versionone.tv.s3.amazonaws.com/Clarity/Clarity.flv",
             "thumbhref": "content/gallery/ClaritySplash.png"
         }
@@ -272,7 +272,7 @@ var sample_data_one_slide = {
         {
             "title": "Home",
             "caption": "The home image",
-            "type": "image/png",
+            "mimetype": "image/png",
             "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
             "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
         }
@@ -426,14 +426,14 @@ describe('directives', function() {
       var test_item_1 = {
             "title": "Home",
             "caption": "The home image",
-            "type": "image/png",
+            "mimetype": "image/png",
             "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
             "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
         };
       var test_item_2 = {
             "title": "Home",
             "caption": "The home image",
-            "type": "foo/bar",
+            "mimetype": "foo/bar",
             "href": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
             "thumbhref": "content/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
         };
