@@ -122,6 +122,28 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			controller: function($scope,$element) {
 				var converter = new Markdown.getSanitizingConverter();
+				var collapsedLength = 3;
+				var isCollapsed = true;
+				var isCollapsible = false;
+
+				$scope.visibleUpdates = collapsedLength;
+
+				$scope.getToggleText = function() {
+					if (isCollapsed) {
+						return "Show All Updates";
+					} else {
+						return "Hide Old Updates";
+					}
+				}
+
+				$scope.toggleUpdateList = function() {
+					if (isCollapsed) {
+						$scope.visibleUpdates = $scope.src.updates.length;
+					} else {
+						$scope.visibleUpdates = collapsedLength;
+					}
+					isCollapsed = !isCollapsed;
+				}
 
 				function convert(txt) {
 					if (txt) {
@@ -133,6 +155,7 @@ angular.module('appCatalog.directives', []).
 					}
 				}
 
+
 				$scope.$watch('src', function(val) {
 					if (val) {
 						for (var i = 0; i< val.updates.length; i++) {
@@ -140,6 +163,7 @@ angular.module('appCatalog.directives', []).
 							entry.cvtDescription = convert(entry.description);
 							entry.cvtReleaseNotes = convert(entry.releaseNotes);
 						}
+						$scope.isCollapsible = (val.updates.length > collapsedLength);
 					}
 				});
 			}
