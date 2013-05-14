@@ -132,7 +132,7 @@ angular.module('appCatalog.directives', []).
 					if (isCollapsed) {
 						return "Show All Updates";
 					} else {
-						return "Hide Old Updates";
+						return "Show Fewer Updates";
 					}
 				}
 
@@ -230,6 +230,20 @@ angular.module('appCatalog.directives', []).
 						return ">> Collapse <<";
 					}
 				}
+			}
+		};
+	}).
+	directive('sectionnav', function() {
+		return {
+			restrict: 'E',
+			transclude: false,
+			scope: { src: '=src'},
+			replace: true,
+			template: "<div>" +
+			"	<a class='btn' href='#media'>Media</a>" +
+			"</div>",
+			controller: function($scope,$element) {
+				
 			}
 		};
 	});
