@@ -59,5 +59,14 @@
                 "href": "https://github.com/versionone/V1TFS/blob/master/CONTRIBUTING.md#mature"
             }
         ]
-    }
+    },
+    "mediaSection": [
+        {
+            "title": "Build Integration",
+            "caption": "Integrate your build system to make it very clear which features/defects are contained in which builds.",
+            "mimetype": "video/x-flv",
+            "href": "http://vtv.v1host.com/permalink/?title=Build%20Integration&category=Integrations&edition=enterprise&release=undefined",
+            "thumbhref": "http://community.versionone.com/attachments/imagefolder/gettingstarted/video.png"
+        }
+    ]
 }

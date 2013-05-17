@@ -1,13 +1,15 @@
 <div>
 	<h2>Updates</h2> 
-	<div class='update' ng-repeat = "update in src.updates | orderBy:'date':true"> 
+	<div class='update transitions' ng-repeat = "update in src.updates | orderBy:'date':true | limitTo:visibleUpdates" > 
 		<hr/> 
         <div class = 'header'> 
             <div class = 'left version'>{{update.version}}</div> 
 			<div class = 'right'>{{update.date | date:'longDate'}}</div> 
 		</div>
-        <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p> 
-        <p class = 'release-notes markdown' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
+        <v1collapse collapsedheight=75>
+            <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p> 
+            <p class = 'release-notes markdown' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
+        </v1collapse>
         <div>
              <div class = 'quality-band' ng-show = 'update.qualityBand'>
             	<span>Quality Band:</span> 
@@ -15,7 +17,7 @@
                 	{{update.qualityBand}}
                 </a> 
             </div>
-            <div class='left'>
+            <div class='left' ng-show = 'update.downloadUrl'>
             	<a href='{{update.downloadUrl}}' class='btn download'>
             		<img src="img/download.png" /> <span>Download</span></a> 
 			</div>
@@ -25,4 +27,5 @@
             </div>
         </div> 
 	</div>
+    <div class = 'collapse-toggle' ng-show='isCollapsible' ng-click='toggleUpdateList()'>{{getToggleText()}}</div>
 </div>

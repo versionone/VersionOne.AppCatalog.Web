@@ -26,8 +26,8 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			template: "<div class='description'>" +
 					"<h2>Details</h2>" +
-					"<p class='markdown' ng-bind-html-unsafe='cvtDesc'></p>" +
-				"</div>",
+					"<v1collapse collapsedheight=150><div class='markdown' ng-bind-html-unsafe='cvtDesc' /></v1collapse>" +
+					"</div>",
 			controller: function($scope) {
 				var converter = new Markdown.getSanitizingConverter();
 
@@ -51,7 +51,7 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			controller: function($scope) {
 				$scope.isValid = function(item) {
-					switch (item.type.split('/')[0]) {
+					switch (item.mimetype.split('/')[0]) {
 						case 'image':
 							return true;
 						case 'video':
@@ -72,7 +72,7 @@ angular.module('appCatalog.directives', []).
 			replace: true,
 			controller: function($scope,$element) {
 				$scope.getType = function() {
-					return $scope.src.type.split('/')[0];
+					return $scope.src.mimetype.split('/')[0];
 				};
 
 				$scope.isVideo = function() {
@@ -120,8 +120,30 @@ angular.module('appCatalog.directives', []).
 			scope: { src: '=src' },
 			templateUrl: 'tpl/updates.html',
 			replace: true,
-			controller: function($scope) {
+			controller: function($scope,$element) {
 				var converter = new Markdown.getSanitizingConverter();
+				var collapsedLength = 3;
+				var isCollapsed = true;
+				var isCollapsible = false;
+
+				$scope.visibleUpdates = collapsedLength;
+
+				$scope.getToggleText = function() {
+					if (isCollapsed) {
+						return "Show All Updates";
+					} else {
+						return "Show Fewer Updates";
+					}
+				}
+
+				$scope.toggleUpdateList = function() {
+					if (isCollapsed) {
+						$scope.visibleUpdates = $scope.src.updates.length;
+					} else {
+						$scope.visibleUpdates = collapsedLength;
+					}
+					isCollapsed = !isCollapsed;
+				}
 
 				function convert(txt) {
 					if (txt) {
@@ -133,6 +155,7 @@ angular.module('appCatalog.directives', []).
 					}
 				}
 
+
 				$scope.$watch('src', function(val) {
 					if (val) {
 						for (var i = 0; i< val.updates.length; i++) {
@@ -140,6 +163,7 @@ angular.module('appCatalog.directives', []).
 							entry.cvtDescription = convert(entry.description);
 							entry.cvtReleaseNotes = convert(entry.releaseNotes);
 						}
+						$scope.isCollapsible = (val.updates.length > collapsedLength);
 					}
 				});
 			}
@@ -174,6 +198,52 @@ angular.module('appCatalog.directives', []).
 			            return "img/hypelink.png";
 			        }
         		}
+			}
+		};
+	}).
+	directive('v1collapse',function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			scope: { collapsedHeight: '=collapsedheight'},
+			replace: true,
+			template: "<div>" +
+			"	<div collapse='isCollapsed' collapsed-height={{collapsedHeight}} ng-transclude></div>" +
+			"	<div class='collapse-toggle' " +
+			"		ng-show = 'isCollapsible()' " +
+			"		ng-click='isCollapsed = !isCollapsed'>" +
+			"			{{getToggle();}}" +
+			"</div>" +
+			"</div>",
+			controller: function($scope,$element) {
+				$scope.isCollapsed = false;
+
+				$scope.isCollapsible = function()  {
+					return $scope.isCollapsed || 
+						($element[0].scrollHeight > $scope.collapsedHeight);
+				}
+
+				$scope.getToggle = function() {
+					if ($scope.isCollapsed) {
+						return "<< Expand >>";
+					} else {
+						return ">> Collapse <<";
+					}
+				}
+			}
+		};
+	}).
+	directive('sectionnav', function() {
+		return {
+			restrict: 'E',
+			transclude: false,
+			scope: { src: '=src'},
+			replace: true,
+			template: "<div>" +
+			"	<a class='btn' href='#media'>Media</a>" +
+			"</div>",
+			controller: function($scope,$element) {
+				
 			}
 		};
 	});
