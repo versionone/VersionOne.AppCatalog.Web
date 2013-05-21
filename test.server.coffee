@@ -4,6 +4,12 @@ server = require './serverClass'
 settings = require './settingslocal'
 should = require 'should'
 testData = require './testData'
+nconf = require 'nconf'
+
+nconf.file('auth.json')
+
+user = nconf.get 'user'
+password = nconf.get 'password'
 
 # Run server
 app = server(settings)
@@ -12,9 +18,26 @@ put = (entry, expectStatus, assertCallback) ->
   request(app)
     .put('/entry')
     .type('application/json')
+    .auth(user, password)
     .send(entry)      
     .expect('Content-Type', /json/)
     .end assertCallback
+
+putWithoutAuth = (entry, assertCallback) ->
+  request(app)
+    .put('/entry')
+    .type('application/json')
+    .send(entry)      
+    .end assertCallback
+
+describe 'PUT /entry fails without basic authentication', ->
+  it 'responds with JSON failure message', (done) ->
+    entry = testData.fullyValidEntry()
+    putWithoutAuth entry, (err, res) ->
+      should.not.exist err
+      res.text.should.eql 'Unauthorized'
+      #message.message.title.should.eql 'Could not process your request due to missing authentication'
+      done()
 
 describe 'PUT /entry for Happy Path With Required Data', ->
   it 'responds with JSON success message', (done) ->
@@ -33,13 +56,12 @@ describe 'PUT /entry for each examples succeeds', ->
     count = files.length
     for file in fs.readdirSync './examples'
       entry = JSON.parse fs.readFileSync('./examples/' + file, 'utf8')
-      (() ->
+      (->
         doc = entry
         put doc, 200, (err, res) ->
           count--
-          console.log 'id: ' + doc.id
-          console.log res.text
-          console.log doc
+          console.error 'id: ' + doc.id
+          console.error res.text
           should.not.exist err
           message = JSON.parse res.text
           should.exist message

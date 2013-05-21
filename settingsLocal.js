@@ -9,9 +9,9 @@
   config.localPort = 8088;
 
   if (process.env.PORT == null) {
-    config.mongoUrl = 'mongodb://localhost/test';
+    config.mongoUrl = 'mongodb://appcatalog:appcatalog101#@ds061787.mongolab.com:61787/appcatalogstage';
   } else {
-    config.mongoUrl = 'mongodb://localhost/test';
+    config.mongoUrl = 'mongodb://appcatalog:appcatalog101#@ds061787.mongolab.com:61787/appcatalogstage';
   }
 
   module.exports = config;

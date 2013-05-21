@@ -75,6 +75,17 @@
           type: Object
         }
       }
+    },
+    mediaSection: {
+      type: [
+        {
+          mediatype: t(),
+          title: t(),
+          caption: t(),
+          href: t(),
+          thumbhref: t()
+        }
+      ]
     }
   });
 
@@ -229,6 +240,35 @@
             }
           }
         }
+      },
+      mediaSection: {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['title', 'caption', 'mediatype', 'href', 'thumbhref'],
+          properties: {
+            title: {
+              type: 'string',
+              maxLength: HREF_TEXT_MAX_LENGTH
+            },
+            caption: {
+              type: 'string',
+              maxLength: 200
+            },
+            mediatype: {
+              type: 'string',
+              maxLength: 100
+            },
+            href: {
+              type: 'string',
+              maxLength: HREF_MAX_LENGTH
+            },
+            thumbhref: {
+              type: 'string',
+              maxLength: HREF_MAX_LENGTH
+            }
+          }
+        }
       }
     }
   };
@@ -253,7 +293,7 @@
       } else {
         errors = [];
         urls = [];
-        _ref = ['href', 'downloadUrl', 'moreInfoUrl'];
+        _ref = ['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref'];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           path = _ref[_i];
           urls.push.apply(urls, jp(data, '$..' + path));

@@ -2,7 +2,7 @@
 	"name": "VersionOneAppCatalogService",
 	"version": "0.0.1",
 	"dependencies": { 
-		"express": "*",
+		"express": "3.x",
 		"mongoose": "*",
 		"should": "*",
 		"assert": "*",
@@ -13,6 +13,7 @@
 		"validator": "*",
 		"JSONPath": "*",
 		"uri-js": "*",
-		"underscore": "*"
+		"underscore": "*",
+		"nconf": "*"
 	}
 }
