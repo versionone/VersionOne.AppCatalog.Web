@@ -46,7 +46,6 @@
                 "description": "Winter 2013",
                 "version": "0.3.2.13",
                 "releaseNotes": "stabilizing timesheet workflow",
-                "moreInfoUrl": "",
                 "qualityBand": "sapling",
                 "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip"
             }
