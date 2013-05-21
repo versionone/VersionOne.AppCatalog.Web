@@ -1,13 +1,15 @@
 express = require 'express'
 mongoose = require 'mongoose'
 cors = (require './cors').cors
-nconf = require 'nconf'
+config = require './config'
 
-createServer = (settings) ->
-  mongoose.connect settings.mongoUrl
+createServer = ->
+  console.log config.mongoUri
+
+  mongoose.connect config.mongoUri
   
   app = express()
-  
+
   app.configure ->   
     app.use '/app', express.static(__dirname + '/angular/app')
     app.use express.bodyParser()
@@ -18,22 +20,16 @@ createServer = (settings) ->
 
   db.on 'error', console.error.bind console, 'connection error:'
   db.once 'open', ->
-    port = process.env.PORT || settings.localPort
-    app.listen port, ->
-      console.log "Express server listening on port " + port
+    app.listen config.port, ->
+      console.log "Express server listening on port " + config.port
 
   db.disconnect
 
-  nconf.file('auth.json').env()
-
-  user = nconf.get 'user'
-  password = nconf.get 'password'
-
-  auth = express.basicAuth(user, password)
+  auth = express.basicAuth(config.user, config.password)
 
   service = require './service'
 
-  app.get settings.entryRoute, (req, res) ->
+  app.get config.entryRoute, (req, res) ->
     if not req.query.id?
       service.findAll (err, result) ->
         renderQueryResult res, err, result
@@ -41,7 +37,7 @@ createServer = (settings) ->
       service.findById req.query.id, (err, result) ->
         renderQueryResult res, err, result
 
-  app.put settings.entryRoute, auth, (req, res) ->
+  app.put config.entryRoute, auth, (req, res) ->
     return unless req.body?
     service.put req.body, (err) ->
       if err?

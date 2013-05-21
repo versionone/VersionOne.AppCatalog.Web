@@ -1,0 +1,7 @@
+{
+  "server.auth.user": "catUser",
+  "server.auth.password" : "CatsAreUs",
+  "server.entryRoute": "/entry",
+  "server.localPort": "8081",
+  "mongoDb.uri": "mongodb://localhost/appCatalog"
+}

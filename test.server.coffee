@@ -1,24 +1,18 @@
 fs = require 'fs'
 request = require 'supertest'
 server = require './serverClass'
-settings = require './settingslocal'
 should = require 'should'
 testData = require './testData'
-nconf = require 'nconf'
-
-nconf.file('auth.json')
-
-user = nconf.get 'user'
-password = nconf.get 'password'
+config = require './config'
 
 # Run server
-app = server(settings)
+app = server()
 
 put = (entry, expectStatus, assertCallback) ->
   request(app)
     .put('/entry')
     .type('application/json')
-    .auth(user, password)
+    .auth(config.user, config.password)
     .send(entry)      
     .expect('Content-Type', /json/)
     .end assertCallback
