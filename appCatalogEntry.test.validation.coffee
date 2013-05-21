@@ -357,7 +357,7 @@ describe 'AppCatalogEntry: mediaSection', ->
     '#/mediaSection/0': [
       'title'
       'caption'
-      'mediatype'
+      'mimetype'
       'href'
       'thumbhref'
     ]  
@@ -367,7 +367,7 @@ describe 'AppCatalogEntry: mediaSection', ->
     entry.mediaSection = [
       title: 0
       caption: 0
-      mediatype: 0
+      mimetype: 0
       href: 0
       thumbhref: 0
     ]
@@ -375,7 +375,7 @@ describe 'AppCatalogEntry: mediaSection', ->
   , expectTypesInvalid,
     '#/mediaSection/0/title': 'string'
     '#/mediaSection/0/caption': 'string'
-    '#/mediaSection/0/mediatype': 'string'
+    '#/mediaSection/0/mimetype': 'string'
     '#/mediaSection/0/href': 'string'
     '#/mediaSection/0/thumbhref': 'string'
 
@@ -401,7 +401,7 @@ describe 'AppCatalogEntry: mediaSection', ->
     entry.mediaSection = [
       title: ex(HREF_TEXT_MAX_LENGTH)
       caption: ex(200)
-      mediatype: ex(100)
+      mimetype: ex(100)
       href: ex(HREF_MAX_LENGTH)
       thumbhref: ex(HREF_MAX_LENGTH)
     ]
@@ -409,6 +409,6 @@ describe 'AppCatalogEntry: mediaSection', ->
   , expectMaxLengthsExceeded,
     '#/mediaSection/0/title': HREF_TEXT_MAX_LENGTH
     '#/mediaSection/0/caption': 200
-    '#/mediaSection/0/mediatype': 100
+    '#/mediaSection/0/mimetype': 100
     '#/mediaSection/0/href': HREF_MAX_LENGTH
     '#/mediaSection/0/thumbhref': HREF_MAX_LENGTH

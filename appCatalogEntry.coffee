@@ -49,7 +49,7 @@ appCatalogEntrySchema = mongoose.Schema(
         type: Object
   mediaSection:
     type: [
-      mediatype: t()
+      mimetype: t()
       title: t()
       caption: t()      
       href: t()
@@ -172,7 +172,7 @@ jsonSchema =
       type: 'array'
       items:
         type: 'object'
-        required: ['title', 'caption', 'mediatype', 'href', 'thumbhref']
+        required: ['title', 'caption', 'mimetype', 'href', 'thumbhref']
         properties:
           title:
             type: 'string'
@@ -180,7 +180,7 @@ jsonSchema =
           caption:
             type: 'string'
             maxLength: 200
-          mediatype:
+          mimetype:
             type: 'string'
             maxLength: 100
           href:
