@@ -1,7 +1,7 @@
 {
-  "server.auth.user": "catUser",
-  "server.auth.password" : "CatsAreUs",
-  "server.entryRoute": "/entry",
-  "server.localPort": "8081",
-  "mongoDb.uri": "mongodb://localhost/appCatalog"
+  "server_auth_user": "catUser",
+  "server_auth_password" : "CatsAreUs",
+  "server_entryRoute": "/entry",
+  "server_localPort": "8081",
+  "mongoDb_uri": "mongodb://localhost/appCatalog"
 }
