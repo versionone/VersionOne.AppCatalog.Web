@@ -6,9 +6,7 @@
 
   config = {};
 
-  nconf.file({
-    file: 'config.json'
-  }).env();
+  nconf.file('config.json').env();
 
   config.entryRoute = nconf.get('server.entryRoute') || '/entry';
 
