@@ -31,7 +31,7 @@ exclude = [
 
 // test results reporter to use
 // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-reporters = ['progress','coverage'];
+reporters = ['progress','coverage', 'junit'];
 
 preprocessors = {
   'tpl/*html': 'html2js',
@@ -41,6 +41,10 @@ preprocessors = {
 coverageReporter = {
   type: 'html',
   dir: '../test/coverage'
+}
+
+junitReporter = {
+  outputFile: 'client-test-results.xml'
 }
 
 
@@ -92,5 +96,6 @@ plugins = [
   'karma-firefox-launcher',
   'karma-phantomJS-launcher',
   'karma-ng-html2js-preprocessor',
-  'karma-coverage'
+  'karma-coverage',
+  'karma-junit-reporter'
 ];
