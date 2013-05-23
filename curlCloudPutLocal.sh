@@ -1,0 +1,1 @@
+curl --user $2 -X PUT http://localhost:8088/entry -d @$1 -H "Content-Type: application/json"

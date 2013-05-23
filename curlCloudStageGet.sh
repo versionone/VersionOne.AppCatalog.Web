@@ -1,0 +1,1 @@
+curl http://appcatalogstage.azurewebsites.net/entry

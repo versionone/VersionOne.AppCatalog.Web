@@ -14,8 +14,8 @@ describe 'AppCatalogEntry: overall', ->
     '#': [
       'id'
       'titleSection'
-      'descriptionSection',
-      'linksSection',
+      'descriptionSection'
+      'linksSection'
       'updatesSection'
     ]
 
@@ -139,6 +139,19 @@ describe 'AppCatalogEntry: linksSection', ->
     '#': [
       'linksSection'
     ]
+
+  test 'fails when linkSection link missing required properties', ->
+    entry = fullyValidEntry()
+    entry.linksSection = [
+      {}      
+    ]    
+    entry
+  , expectPropertiesMissing,
+    '#/linksSection/0': [
+      'type'
+      'title'
+      'href'      
+    ]    
 
   test 'fails on invalid types for linksSection', ->
     entry = fullyValidEntry()
@@ -332,3 +345,70 @@ describe 'AppCatalogEntry: updatesSection/qualityBands', ->
     entry
   , expectErrorsEqual,
     '0': 'The qualityBand perfect does not exist in the updates/qualityBands section. Available bands are: sapling, mature'
+
+describe 'AppCatalogEntry: mediaSection', ->
+  test 'fails when a mediaSection item is missing required properties', ->
+    entry = fullyValidEntry()
+    entry.mediaSection = [
+      {}
+    ]
+    entry
+  , expectPropertiesMissing, 
+    '#/mediaSection/0': [
+      'title'
+      'caption'
+      'mimetype'
+      'href'
+      'thumbhref'
+    ]  
+
+  test 'fails on invalid types for mediaSection', ->
+    entry = fullyValidEntry()
+    entry.mediaSection = [
+      title: 0
+      caption: 0
+      mimetype: 0
+      href: 0
+      thumbhref: 0
+    ]
+    entry
+  , expectTypesInvalid,
+    '#/mediaSection/0/title': 'string'
+    '#/mediaSection/0/caption': 'string'
+    '#/mediaSection/0/mimetype': 'string'
+    '#/mediaSection/0/href': 'string'
+    '#/mediaSection/0/thumbhref': 'string'
+
+  test 'fails on invalid href or thumbhref in mediaSection', ->
+    entry = fullyValidEntry()
+    entry.mediaSection[0].href = 'not a valid href URL'
+    entry.mediaSection[0].thumbhref = 'not a valid thumbhref URL'
+    entry
+  , expectErrorsEqual,
+    '0' :
+      href: 'not a valid href URL'
+      errors: [
+        'Invalid URL'
+      ]
+    '1': 
+      href: 'not a valid thumbhref URL'
+      errors: [
+        'Invalid URL'
+      ]
+
+  test 'fails when mediaSection properties exceed maxLength', ->
+    entry = fullyValidEntry()
+    entry.mediaSection = [
+      title: ex(HREF_TEXT_MAX_LENGTH)
+      caption: ex(200)
+      mimetype: ex(100)
+      href: ex(HREF_MAX_LENGTH)
+      thumbhref: ex(HREF_MAX_LENGTH)
+    ]
+    entry
+  , expectMaxLengthsExceeded,
+    '#/mediaSection/0/title': HREF_TEXT_MAX_LENGTH
+    '#/mediaSection/0/caption': 200
+    '#/mediaSection/0/mimetype': 100
+    '#/mediaSection/0/href': HREF_MAX_LENGTH
+    '#/mediaSection/0/thumbhref': HREF_MAX_LENGTH

@@ -1,25 +1,26 @@
 data =
-  fullyValidEntry: () ->
+  fullyValidEntry: ->
     entry = {
       id : 'someIdHere',
       titleSection: @titleSectionComplete(),
       descriptionSection: @descriptionSectionComplete(),
       linksSection: @linksSectionComplete(),
-      updatesSection: @updatesSectionComplete()
+      updatesSection: @updatesSectionComplete(),
+      mediaSection: @mediaSectionComplete()
     }
     return entry
 
-  titleSectionMissing: () ->
+  titleSectionMissing: ->
     entry = @fullyValidEntry()
     delete entry.titleSection
     return entry
 
-  titleSectionEmpty: () ->
+  titleSectionEmpty: ->
     entry = @fullyValidEntry()
     entry.titleSection = {}
     return entry
 
-  titleSectionComplete: () ->
+  titleSectionComplete: ->
     return {
       name: 'String Name',
       shortDescription: 'Free short description',
@@ -30,32 +31,32 @@ data =
       }
     }
 
-  descriptionSectionMissing: () ->
+  descriptionSectionMissing: ->
     entry = @fullyValidEntry()
     delete entry.descriptionSection
     return entry
 
-  descriptionSectionEmpty: () ->
+  descriptionSectionEmpty: ->
     entry = @fullyValidEntry()
     entry.descriptionSection = {}
     return entry
 
-  descriptionSectionComplete: () ->
+  descriptionSectionComplete: ->
     return {
       description: 'This is a valid description for an entry'
     }
 
-  linksSectionMissing: () ->
+  linksSectionMissing: ->
     entry = @fullyValidEntry()    
     delete entry.linksSection
     return entry
 
-  linksSectionEmpty: () ->
+  linksSectionEmpty: ->
     entry = @fullyValidEntry()    
     entry.linksSection = {}
     return entry
 
-  linksSectionComplete: () ->
+  linksSectionComplete: ->
     return [{
       "type" : "download",
       "href" : "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
@@ -82,22 +83,22 @@ data =
       "title" : "Sample configuration"
     }]
 
-  updatesSectionMissing: () ->
+  updatesSectionMissing: ->
     entry = @fullyValidEntry()
     delete entry.updatesSection
     return entry
 
-  updatesSectionEmpty: () ->
+  updatesSectionEmpty: ->
     entry = @fullyValidEntry()
     entry.updatesSection = {}
     return entry 
 
-  updatesSectionWithEmptyUpdates: () ->
+  updatesSectionWithEmptyUpdates: ->
     entry = @fullyValidEntry()
     entry.updatesSection.updates = [{}]
     entry
 
-  updatesSectionComplete: () ->
+  updatesSectionComplete: ->
     return {
       updates: [
           date: "2013-02-14T17:45:00Z"
@@ -126,5 +127,14 @@ data =
             shortDescription: "The product is stable. The code will continue to evolve with minimum breaking changes."
             href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature"
     }
+
+  mediaSectionComplete: ->
+    return [{
+        "title": "Home",
+        "caption": "The home image",
+        "mimetype": "image/png",
+        "href": "http://absolute.content.com/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg",
+        "thumbhref": "https://absolute.content.com/gallery/Projekt_es_Projekt_portfolio_menedzsment_ca_clarity_ppm_masolata.jpg"
+    }]
 
 module.exports = data
