@@ -21,7 +21,7 @@ createServer = ->
   db.on 'error', console.error.bind console, 'connection error:'
   db.once 'open', ->
     app.listen config.port, ->
-      console.log "Express server listening on port " + config.port
+      #console.log "Express server listening on port " + config.port
 
   db.disconnect
 

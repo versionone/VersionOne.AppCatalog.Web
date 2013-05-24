@@ -24,9 +24,7 @@
     db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function() {
-      return app.listen(config.port, function() {
-        return console.log("Express server listening on port " + config.port);
-      });
+      return app.listen(config.port, function() {});
     });
     db.disconnect;
     auth = express.basicAuth(config.user, config.password);
