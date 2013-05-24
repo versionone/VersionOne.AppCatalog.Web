@@ -1,2 +1,3 @@
 #!/usr/bin/sh
-mocha *.tests*js
+mkdir testResults
+mocha -R tap *.tests*js >testResults/testResults.tap
