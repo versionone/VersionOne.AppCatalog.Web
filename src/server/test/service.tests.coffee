@@ -1,8 +1,13 @@
 requireCover = require('./requireCover')('app')
-sarcastic = requireCover 'sarcastic'
-must = sarcastic.must
 should = require 'should'
 sinon = require 'sinon'
+
+must = (name, mock, configCallback) ->
+	it name, (done) ->
+		configCallback()
+		mock.verify()
+		mock.restore()
+		done()
 
 # Declare the external dependencies as a mock object, in this case just 
 # stating the raw facts that it has three functional-level 'class functions'.
@@ -14,50 +19,48 @@ class MockAppCatalogEntry
 	constructor: (body) ->
 		@id = body.id
 		MockAppCatalogEntry.currentInstance = @
-	save: sinon.spy()	
-#		console.log 'we saved'
-#		saveCalled = true
+	save: sinon.spy()
 	this.find = ->
 	this.findOne = ->
 	this.update = ->
 	this.validate = ->
 
-# Configure sarcastic to mock AppCatalogyEntry with
-# our custom mock, all the way down to Node's module loader,
-# because inside of service.coffee, 
-# it uses: AppCatalogEntry = require './appCatalogEntry'
-sarcastic.configTarget './appCatalogEntry', MockAppCatalogEntry
+# Note: the goofy thing here is that when you call sinon.mock,
+# it modifies the target object in place, but returns you the 
+# mock definition, which is where you actually set up your
+# expectations. But, you still consume the original object.
+# I guess.
+mock = sinon.mock MockAppCatalogEntry
 
 # Our actual subject under test is the service class
-subject = requireCover 'service'
+svc = requireCover 'service'
 
 describe 'service', ->
 	
-	describe '#findAll', ->
-		must 'call find', ->
-			sarcastic.getMock().expects('find').once().withArgs {}, ''
+	describe '#findAll', ->		
+		subject = new svc(MockAppCatalogEntry)
+		must 'call find', mock, ->
+			mock.expects('find').once().withArgs {}, ''			
 			subject.findAll()
 
 	describe '#findById', ->
-		must 'call findOne', ->
+		subject = new svc(MockAppCatalogEntry)
+		must 'call findOne', mock, ->
 			id = 'v1clarityppm'
-			sarcastic.getMock().expects('findOne').once().withArgs { id: id }, ''
+			mock.expects('findOne').once().withArgs { id: id }, ''			
 			subject.findById id
 
 	describe '#put', ->
-		must 'call validate and update', ->
+		subject = new svc(MockAppCatalogEntry)
+		must 'call validate and update', mock, ->
 			id = 'v1clarityppm'
-			body = { id: id }			
-			mock = sarcastic.getMock()
-
-			sarcastic.getMock()
-				.expects('update')
-				.once()
-				.withArgs({ id: id }, {$set: {id:id}, $inc: docVersion: 1}, {upsert: true})
-				.callsArg(3)
-			sarcastic.getMock()
-				.expects('validate')
+			body = {id: id}
+			mock.expects('validate')
 				.once()
 				.withArgs(body)
 				.callsArg(1)
-			subject.put { id: id }, (err) ->			
+			mock.expects('update')
+				.once()
+				.withArgs(body, {$set: {id:id}, $inc: docVersion: 1}, {upsert: true})
+				.callsArg(3)
+			subject.put body, (err) ->			

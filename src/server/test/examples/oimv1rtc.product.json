@@ -1,0 +1,58 @@
+{
+    "id": "OpsHub.V1RTC",
+    "titleSection": {
+        "name": "VersionOne IBM/Rational Team Concert Integration",
+        "shortDescription": "Integrating VersionOne and IBM Rational Team Concert helps you leverage your existing tool chain and reach more people.",
+        "pricing": "Paid",
+        "support": {
+            "text": "Supported by OpsHub",
+            "href": "http://www.opshub.com/main/index.php/2012-08-31-18-28-21"
+        }
+    },
+    "descriptionSection": {
+        "description": "Integrating VersionOne and IBM Rational Team Concert helps you leverage your existing tool chain and reach more people. This integration helps manage overlap between tools with a two-way flow of work items so that teams can leverage existing project plans and status reporting, while adding the practice of agile project management."
+    },
+    "linksSection": [
+        {
+            "type": "hyperlink",
+            "title": "About OpsHub Integration Manager",
+            "href": "http://www.opshub.com/main/index.php/2013-03-18-09-27-49/oim-alias"
+        },
+        {
+            "type": "hyperlink",
+            "title": "About the VersionOne Connector",
+            "href": "http://www.opshub.com/main/index.php/alm-systems/versionone"
+        },
+        {
+            "type": "hyperlink",
+            "title": "About the IBM RTC Connector",
+            "href": "http://www.opshub.com/main/index.php/alm-systems/ibm/rtc"
+        },
+        {
+            "type": "documentation",
+            "title": "OpsHub Integration Manager Datasheet",
+            "href": "http://opshub.com/Resources/Datasheets/OpsHubOverviewDatasheet.pdf"
+        },
+        {
+            "type": "hyperlink",
+            "title": "Learn more about OpsHub",
+            "href": "http://opshub.com/"
+        }
+    ],
+    "updatesSection": {
+        "updates": [
+            {
+                "date": "2013-03-20T00:00:00.000Z",
+                "description": "Spring 2013",
+                "version": "5.3",
+                "qualityBand": "commercial"
+            }
+        ],
+        "qualityBands": [
+            {
+                "name": "commercial",
+                "shortDesc": "The product is stable and supported."
+            }
+        ]
+    }
+}

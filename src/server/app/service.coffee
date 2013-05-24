@@ -1,30 +1,29 @@
 AppCatalogEntry = require './appCatalogEntry'
 
-#search for all available AppCatalogEntries
-findAll = (callback) ->
-  AppCatalogEntry.find {}, '', (err, result) ->
-    callback err, result
+class AppCatalogService
+  constructor: (@appCatalogEntry=null)->
+    if not @appCatalogEntry?
+      @appCatalogEntry = AppCatalogEntry
 
-#search for a single AppCatallogEntry by id
-findById = (id, callback) ->
-  AppCatalogEntry.findOne { 'id': id }, '', callback
+  #search for all available AppCatalogEntries
+  findAll: (callback) ->
+    @appCatalogEntry.find {}, '', (err, result) ->
+      callback err, result
 
-put = (body, callback) ->
-  try
-    AppCatalogEntry.validate body, (errs) ->
-      if errs?
-        callback errs
-      else
-        entry = new AppCatalogEntry body
-        AppCatalogEntry.update {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
-          callback err
-  catch ex
-    callback ex
-        
-service = 
-  Model: AppCatalogEntry
-  findAll: findAll
-  findById: findById
-  put: put
+  #search for a single AppCatallogEntry by id
+  findById: (id, callback) ->
+    @appCatalogEntry.findOne { 'id': id }, '', callback
 
-module.exports = service
+  put: (body, callback) ->
+    try
+      @appCatalogEntry.validate body, (errs) =>
+        if errs?
+          callback errs
+        else
+          entry = new @appCatalogEntry(body)
+          @appCatalogEntry.update {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
+            callback err
+    catch ex
+      callback ex  
+
+module.exports = AppCatalogService

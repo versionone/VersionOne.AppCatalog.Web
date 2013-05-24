@@ -8,7 +8,6 @@
 		"mongoose": "*",
 		"should": "*",
 		"assert": "*",
-		"mockery": "*",
 		"sinon": "*",
 		"supertest": "*",
 		"jayschema": "*",

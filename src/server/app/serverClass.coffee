@@ -26,8 +26,8 @@ createServer = ->
   db.disconnect
 
   auth = express.basicAuth(config.user, config.password)
-
-  service = require './service'
+  
+  service = new (require('./service'))
 
   app.get config.entryRoute, (req, res) ->
     if not req.query.id?

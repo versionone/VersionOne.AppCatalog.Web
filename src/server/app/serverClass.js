@@ -30,7 +30,7 @@
     });
     db.disconnect;
     auth = express.basicAuth(config.user, config.password);
-    service = require('./service');
+    service = new (require('./service'));
     app.get(config.entryRoute, function(req, res) {
       if (req.query.id == null) {
         return service.findAll(function(err, result) {
