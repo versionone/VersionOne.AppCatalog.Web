@@ -7,6 +7,69 @@ I'm sure some Jenkins gurus and buildmasters can improve the way I did it, so he
 
 This contains the full code for the Node-based server side code and all its build, test, and coverage support.
 
+### Configuration and deployment
+
+Because the app runs in Azure when deployed, we utilize the `nconf` package to provide hybrid config file / environment 
+variable configuration.
+
+The file `src/server/config.coffee` abstracts this detail as follows:
+
+```coffee
+nconf = require 'nconf'
+
+config = {}
+
+configFile = 'config.json'
+
+if process.env['config_file']?
+  configFile = process.env['config_file']
+
+nconf.file(configFile).env()
+
+config.entryRoute = nconf.get('server_entryRoute') || '/entry'
+
+config.port = nconf.get('server_localPort') || 8081
+if process.env.PORT?
+  config.port = process.env.PORT
+
+config.mongoUri = nconf.get 'mongoDb_uri'
+config.user = nconf.get 'server_auth_user'
+config.password = nconf.get 'server_auth_password'
+
+module.exports = config
+
+```
+
+This does the following:
+
+* It defaults to looking for `config.jon` in the current directory, unless an environment variable specifies otherwise.
+* The lines `nconf.file(configFile).env()` makes nconf read variables first from the config file, and then from the 
+environment variables. **Environment variables** override config file variables. This is important for Azure 
+-- explained below.
+* After that, it reads various parameters or default values.
+
+### Configuration options
+
+#### mongoDb_uri
+
+Contains the uri (with credentials) for the MongoDB instance to use. 
+
+#### user and password
+
+Specifies the user name and password that HTTP PUT requests most specify in order to authenticate when modifying 
+a catalog entry.
+
+### Azure configuration
+
+Because the code in this repository is open source, we cannot simply check config files into the repository with the 
+credentials and passwords, can we? Of course, we do check in a `config.json` and `config.example.json`, but these are 
+for the stagig and/or testing environments, not the production environment!
+
+In Azure, sepcify the three parameteters in the **App Settings** section of the **CONFIGURE** tab. The App Settings 
+parameters get copied to environment variables when running a Node web site. This keeps the secret values secret and 
+out of the repository.
+
+
 ### build.sh
 
 Compiles the CoffeeScript to JavaScript in both the `app` and `test` folders.
