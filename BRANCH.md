@@ -127,3 +127,7 @@ depends on MongoDB being installed locally, or on a properly configured remote M
 
 Provides wrapper on top of `require()` that takes into account whether running with code coverage or not.
 
+## Jenkins
+
+As mentioned above, Jenkins will run the tests and collect the coverage reports and publish them to the dashboard for 
+the project. It does this in a post-build step with a couple of reporting plugins.
