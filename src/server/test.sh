@@ -1,4 +1,4 @@
 #!/usr/bin/sh
 cd test
-test.sh
+./test.sh
 cd ..

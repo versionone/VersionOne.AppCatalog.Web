@@ -1,4 +1,4 @@
 #!/usr/bin/sh
 cd test
-testCoverage.sh
+./testCoverage.sh
 cd ..
