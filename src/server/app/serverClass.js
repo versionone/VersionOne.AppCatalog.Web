@@ -16,7 +16,7 @@
     mongoose.connect(config.mongoUri);
     app = express();
     app.configure(function() {
-      app.use('/app', express["static"]('../../../angular/app'));
+      app.use('/app', express["static"]('../../client/app'));
       app.use(express.bodyParser());
       app.use(cors);
       return app.use(app.router);

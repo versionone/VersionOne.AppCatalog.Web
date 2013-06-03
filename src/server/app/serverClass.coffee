@@ -10,8 +10,8 @@ createServer = ->
   app = express()
 
   app.configure ->   
-    #app.use '/app', express.static(__dirname + '../../../angular/app')
-    app.use '/app', express.static('../../../angular/app')    
+    #app.use '/app', express.static(__dirname + '../../client/app')
+    app.use '/app', express.static('../../client/app')
     app.use express.bodyParser()
     app.use cors
     app.use app.router

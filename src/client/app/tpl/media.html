@@ -1,0 +1,8 @@
+<div ng-switch='src.length'>
+	<carousel ng-switch-default interval=-1>
+		<slide ng-repeat = 'item in src | filter: isValid' active='item.active'>
+			<mediacontent src='item' />
+		</slide>
+  	</carousel>
+  	<mediacontent ng-switch-when='1' src='src[0]' />
+</div>
