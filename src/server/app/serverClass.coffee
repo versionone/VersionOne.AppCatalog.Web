@@ -2,6 +2,35 @@ express = require 'express'
 mongoose = require 'mongoose'
 cors = (require './cors').cors
 config = require './config'
+_ = require 'underscore'
+
+renderQueryResult = (res, err, result) ->
+  unless err?
+    res.send result
+    return true
+  if err?      
+    handleError res, err
+    return false
+
+handleError = (res, err) ->
+  if err?
+    if matchesValidationError err
+      res.send 500, {status:500, message: {title:'Could not process your request due to validation errors'}, errors: err }
+    else
+      res.send 500, {status:500, message: 'Could not process your request due to invalid input data'}
+
+typeIsArray = (value) ->
+  value and
+    typeof value is 'object' and
+    value instanceof Array and
+    typeof value.length is 'number' and
+    typeof value.splice is 'function' and
+    not ( value.propertyIsEnumerable 'length' )
+
+matchesValidationError = (obj) ->
+  return typeIsArray(obj) and
+    obj[0].instanceContext? and
+    obj[0].resolutionScope?
 
 createServer = ->
   
@@ -35,7 +64,11 @@ createServer = ->
         renderQueryResult res, err, result
     else
       service.findById req.query.id, (err, result) ->
-        renderQueryResult res, err, result
+        rv = JSON.stringify result
+        rv = JSON.parse rv
+        delete rv._id
+        delete rv.docVersion
+        renderQueryResult res, err, rv
 
   app.put config.entryRoute, auth, (req, res) ->
     return unless req.body?
@@ -45,34 +78,8 @@ createServer = ->
       else         
         res.send {status: 200, message: 'Successfully updated entry'}
 
-  renderQueryResult = (res, err, result) ->
-    unless err?
-      res.send result
-      return true
-    if err?      
-      handleError res, err
-      return false
-
-  handleError = (res, err) ->
-    if err?
-      if matchesValidationError err
-        res.send 500, {status:500, message: {title:'Could not process your request due to validation errors'}, errors: err }
-      else
-        res.send 500, {status:500, message: 'Could not process your request due to invalid input data'}
-
-  typeIsArray = (value) ->
-    value and
-      typeof value is 'object' and
-      value instanceof Array and
-      typeof value.length is 'number' and
-      typeof value.splice is 'function' and
-      not ( value.propertyIsEnumerable 'length' )
-
-  matchesValidationError = (obj) ->
-    return typeIsArray(obj) and
-      obj[0].instanceContext? and
-      obj[0].resolutionScope?
-
   return app
+
+
 
 module.exports = createServer
