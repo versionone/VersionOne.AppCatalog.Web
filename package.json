@@ -1,0 +1,20 @@
+{
+	"name": "VersionOneAppCatalogService",
+	"version": "0.0.1",
+	"dependencies": {
+		"coffee-script": "*",
+		"mocha": "*",
+		"express": "3.x",
+		"mongoose": "*",
+		"should": "*",
+		"assert": "*",
+		"sinon": "*",
+		"supertest": "*",
+		"jayschema": "*",
+		"validator": "*",
+		"JSONPath": "*",
+		"uri-js": "*",
+		"underscore": "*",
+		"nconf": "*"
+	}
+}
