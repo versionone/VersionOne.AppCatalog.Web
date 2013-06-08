@@ -1,1 +1,0 @@
-curl http://v1appcatalogsvc-stage.azurewebsites.net/entry

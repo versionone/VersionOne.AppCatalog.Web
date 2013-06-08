@@ -1,1 +1,0 @@
-curl http://localhost:8081/entry?id=v1clarityppm
