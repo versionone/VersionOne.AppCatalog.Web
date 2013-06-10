@@ -48,11 +48,10 @@
                 "qualityBand": "commercial"
             }
         ],
-        "qualityBands": [
-            {
-                "name": "commercial",
-                "shortDesc": "The product is stable and supported."
+        "qualityBands": {
+            "commercial": {
+                "shortDescription": "The product is stable and supported."
             }
-        ]
+        }
     }
 }

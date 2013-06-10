@@ -157,11 +157,8 @@ jsonSchema =
           patternProperties:
             "^.*$":
               type: 'object'
-              required: ['name', 'shortDescription', 'href']
+              required: ['shortDescription']
               properties:
-                name:
-                  type: 'string'
-                  maxLength: 100
                 shortDescription:
                   type: 'string'
                   maxLength: SHORT_DESCRIPTION_MAX_LENGTH
@@ -219,8 +216,8 @@ AppCatalogEntry.validate = (data, callback) ->
             errors: validatorErrors
       
       # Ensure no update refers to any nonexistent qualityBand
-      specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')
-      allowableQualityBandsNames = jp(data, '$..qualityBands..name')
+      specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')      
+      allowableQualityBandsNames = _.keys jp(data, '$..qualityBands')[0]
       for rogue in _.difference(specifiedQualityBandNamesInUpdates, allowableQualityBandsNames)
         errors.push 'The qualityBand ' + rogue + ' does not exist in the updates/qualityBands section. Available bands are: ' + 
           allowableQualityBandsNames.join(', ')

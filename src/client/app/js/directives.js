@@ -188,8 +188,8 @@ angular.module('appCatalog.directives', []).
 				    switch(linktype) {
 			          case "download":
 			            return "img/download.png";
-			          case "code":
-			            return "img/code.png";
+			          case "source":
+			            return "img/source.png";
 			          case "documentation":
 			            return "img/documentation.png";
 			          case "license":

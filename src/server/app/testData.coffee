@@ -99,34 +99,35 @@ data =
     entry
 
   updatesSectionComplete: ->
-    return {
+    obj =
       updates: [
-          date: "2013-02-14T17:45:00Z"
-          description: "stabilizing timesheet workflow"
-          version: "0.3.2.13"
-          releaseNotes: "Florum gypsum dimsum"
-          moreInfoUrl: "http://example.com"
-          qualityBand: "mature"
-          downloadUrl: "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip"
-        ,
-          date: "2013-02-14T17:45:00Z"
-          description: "better timesheet support"
-          version: "0.3.3.5"
-          releaseNotes: "Florum gypsum dimsum"
-          moreInfoUrl: "http://more.exampleForYou.com"
-          qualityBand: "sapling"
-          downloadUrl: "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip"
-        ]
-        qualityBands:
-          sapling:
-            name: "sapling"
-            shortDescription: "The product is undergoing rapid growth. The code works but expect major changes."
-            href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#sapling"
-          mature:
-            name: "mature"
-            shortDescription: "The product is stable. The code will continue to evolve with minimum breaking changes."
-            href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature"
-    }
+        date: "2013-02-14T17:45:00Z"
+        description: "stabilizing timesheet workflow"
+        version: "0.3.2.13"
+        releaseNotes: "Florum gypsum dimsum"
+        moreInfoUrl: "http://example.com"
+        qualityBand: "mature"
+        downloadUrl: "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip"
+      ,
+        date: "2013-02-14T17:45:00Z"
+        description: "better timesheet support"
+        version: "0.3.3.5"
+        releaseNotes: "Florum gypsum dimsum"
+        moreInfoUrl: "http://more.exampleForYou.com"
+        qualityBand: "sapling"
+        downloadUrl: "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip"
+      ]
+      qualityBands: {
+        sapling: {
+          shortDescription: "The product is undergoing rapid growth. The code works but expect major changes.",
+          href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#sapling"
+        },
+        mature: {
+          shortDescription: "The product is stable. The code will continue to evolve with minimum breaking changes.",
+          href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature"
+        }
+      }
+    return obj
 
   mediaSectionComplete: ->
     return [{

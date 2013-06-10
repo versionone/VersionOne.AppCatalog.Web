@@ -125,7 +125,9 @@
       return entry;
     },
     updatesSectionComplete: function() {
-      return {
+      var obj;
+
+      obj = {
         updates: [
           {
             date: "2013-02-14T17:45:00Z",
@@ -147,17 +149,16 @@
         ],
         qualityBands: {
           sapling: {
-            name: "sapling",
             shortDescription: "The product is undergoing rapid growth. The code works but expect major changes.",
             href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#sapling"
           },
           mature: {
-            name: "mature",
             shortDescription: "The product is stable. The code will continue to evolve with minimum breaking changes.",
             href: "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature"
           }
         }
       };
+      return obj;
     },
     mediaSectionComplete: function() {
       return [

@@ -344,20 +344,18 @@
       entry.updatesSection.qualityBands.sapling = {};
       return entry;
     }, expectPropertiesMissing, {
-      '#/updatesSection/qualityBands/sapling': ['name', 'shortDescription', 'href']
+      '#/updatesSection/qualityBands/sapling': ['shortDescription']
     });
     test('fails when a qualityBand has invalid types', function() {
       var entry;
 
       entry = fullyValidEntry();
       entry.updatesSection.qualityBands.sapling = {
-        name: 0,
         shortDescription: 0,
         href: 0
       };
       return entry;
     }, expectTypesInvalid, {
-      '#/updatesSection/qualityBands/sapling/name': 'string',
       '#/updatesSection/qualityBands/sapling/shortDescription': 'string',
       '#/updatesSection/qualityBands/sapling/href': 'string'
     });
@@ -366,13 +364,11 @@
 
       entry = fullyValidEntry();
       entry.updatesSection.qualityBands.sapling = {
-        name: ex(100),
         shortDescription: ex(SHORT_DESCRIPTION_MAX_LENGTH),
         href: ex(HREF_MAX_LENGTH)
       };
       return entry;
     }, expectMaxLengthsExceeded, {
-      '#/updatesSection/qualityBands/sapling/name': 100,
       '#/updatesSection/qualityBands/sapling/shortDescription': SHORT_DESCRIPTION_MAX_LENGTH,
       '#/updatesSection/qualityBands/sapling/href': HREF_MAX_LENGTH
     });

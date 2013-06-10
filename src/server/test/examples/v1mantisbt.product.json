@@ -49,12 +49,11 @@
                 "downloadUrl": "http://www.falconerdevelopment.com/downloads/V1MantisBT-Setup.exe"
             }
         ],
-        "qualityBands": [
-            {
-                "name": "commercial",
-                "shortDesc": "The product is stable and supported."
+        "qualityBands": {
+            "commercial": {
+                "shortDescription": "The product is stable and supported."
             }
-        ]
+        }
     },
     "mediaSection": [
         {

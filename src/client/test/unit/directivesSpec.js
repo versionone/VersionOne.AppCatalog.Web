@@ -94,7 +94,7 @@ var sample_data = {
           "qualityBands": {
             "seed": {
                 "name": "seed",
-                "shortDesc": "The initial idea of a product. No working code.",
+                "shortDescription": "The initial idea of a product. No working code.",
                 "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#seed",
                 "_id": {
                     "$oid": "516d9a4824a05b205800009d"
@@ -102,7 +102,7 @@ var sample_data = {
             },
             "sapling": {
                 "name": "sapling",
-                "shortDesc": "The product is undergoing rapid growth. The code works but expect major changes.",
+                "shortDescription": "The product is undergoing rapid growth. The code works but expect major changes.",
                 "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#sapling",
                 "_id": {
                     "$oid": "516d9a4824a05b205800009c"
@@ -110,7 +110,7 @@ var sample_data = {
             },
             "mature": {
                 "name": "mature",
-                "shortDesc": "The product is stable. The code will continue to evolve with minimum breaking changes.",
+                "shortDescription": "The product is stable. The code will continue to evolve with minimum breaking changes.",
                 "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature",
                 "_id": {
                     "$oid": "516d9a4824a05b205800009b"
@@ -244,7 +244,7 @@ var sample_data_one_slide = {
           "qualityBands": {
             "seed": {
                 "name": "seed",
-                "shortDesc": "The initial idea of a product. No working code.",
+                "shortDescription": "The initial idea of a product. No working code.",
                 "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#seed",
                 "_id": {
                     "$oid": "516d9a4824a05b205800009d"
@@ -252,7 +252,7 @@ var sample_data_one_slide = {
             },
             "sapling": {
                 "name": "sapling",
-                "shortDesc": "The product is undergoing rapid growth. The code works but expect major changes.",
+                "shortDescription": "The product is undergoing rapid growth. The code works but expect major changes.",
                 "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#sapling",
                 "_id": {
                     "$oid": "516d9a4824a05b205800009c"
@@ -260,7 +260,7 @@ var sample_data_one_slide = {
             },
             "mature": {
                 "name": "mature",
-                "shortDesc": "The product is stable. The code will continue to evolve with minimum breaking changes.",
+                "shortDescription": "The product is stable. The code will continue to evolve with minimum breaking changes.",
                 "href": "https://github.com/versionone/V1ClarityPPM/blob/master/CONTRIBUTING.md#mature",
                 "_id": {
                     "$oid": "516d9a4824a05b205800009b"
