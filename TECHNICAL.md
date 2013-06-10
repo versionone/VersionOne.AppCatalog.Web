@@ -310,8 +310,69 @@ module.exports = AppCatalogService
 * The constructor for the service actually except an optional parameter to use within. This gets uses as a containerless form of dependency injection that helps with isolating unit tests, as we'll see soon.
 * Before we see that, let's dive now into the actual validation logic that gets called when we invoke the class-level function `@appCatalog.validate`.
 
+## The fun stuff: helper libraries to ease validation
 
+This is where it actually gets fun, codewise.
 
+First, these are the requires in `appCatalogEntry.coffee`:
 
+```coffee
+mongoose = require 'mongoose'
+jayschema = require 'jayschema'
+js = new jayschema jayschema.loaders.http
+uri = require 'uri-js'
+validator = require('validator').Validator
+jp = require('JSONPath').eval
+_ = require 'underscore'
+```
 
+* `mongoose` is a very popular abstraction library over MongoDB that makes it easier to use.
+* `jayschema` is an implementation of JSON Schema
+* `js` is an instance of `jayschema` that can load schema definitions via HTTP
+* `uri-js` helps parse URIs properly (better than fake, brittle regex junk)
+* `validator` is a great validation module
+* `JSONPath` provides simple XPath-like selection and filtering over a JavaScript object in memory or JSON document on disk.
+* `_` needs little introduction, right?
 
+Here's the actual `validate` function:
+
+```coffee
+validator::error = (msg) ->
+    @_errors.push(msg)
+    return @
+
+validator::getErrors = () ->
+    return @_errors;
+
+AppCatalogEntry.validate = (data, callback) ->
+  js.validate data, jsonSchema, (errs) ->
+    if errs
+      callback(errs)
+    else
+      # Validate URL types        
+      errors = []
+      urls = []
+      for path in ['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']
+        urls.push jp(data, '$..' + path)...
+      for url in urls
+        va = new validator()
+        va.check(url).isUrl()
+        validatorErrors = va.getErrors()
+        if validatorErrors.length > 0
+          errors.push
+            href: url
+            errors: validatorErrors
+      
+      # Ensure no update refers to any nonexistent qualityBand
+      specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')      
+      allowableQualityBandsNames = _.keys jp(data, '$..qualityBands')[0]
+      for rogue in _.difference(specifiedQualityBandNamesInUpdates, allowableQualityBandsNames)
+        errors.push 'The qualityBand ' + rogue + ' does not exist in the updates/qualityBands section. Available bands are: ' + 
+          allowableQualityBandsNames.join(', ')
+
+      # return errors or empty
+      if errors.length > 0
+        callback errors
+      else
+        callback null
+```
