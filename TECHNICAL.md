@@ -376,3 +376,13 @@ AppCatalogEntry.validate = (data, callback) ->
       else
         callback null
 ```
+
+* First, we override some 'class level' function in Validator
+* Then, check for any validation errors that come purely from JSON Schema violations, with the call to `js.validate data, jsonSchema`
+* If that passes, we need to do more sophisticated validation that cannot occur by JSON Schema alone. This is where JSONPath saves the day.
+* The array `['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']` is a list of property names that, regardless of where they appear in the document graph, must be a valid URI.
+* This line: `jp(data, '$..href')...` first uses JSONPath to fetch **all** properties named `href` in the document, starting at the root. It's kind of like an XPath that does `//[@href]` or something like that. 
+* The **`...`** is not a mistake. That's CoffeeScript's **splat** operator. It converts the return value from `jp()` into multiple arguments, which is what `Array.push` takes. I'll drink to that.
+* So, once we have all the properties that must be valid URIs, we validate them with the `uri-js` module instance, and we're good.
+* Unless, of course, those crazy catalog entry authors have put **qualityBand** entries that don't actually exist into an **update**. The line `jp(data, '$..updates..qualityBand')` fetches all qualityBand properties underneath the updates section.
+* Finally, we use Underscore's handy `difference` function to determine whether a rogue qualityBand exists in any of the updates.
