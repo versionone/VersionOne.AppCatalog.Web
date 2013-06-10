@@ -242,6 +242,76 @@ app.put config.entryRoute, auth, (req, res) ->
 * Otherwise, delegate to the `service.put` function. The `service` object does the real work, so we'll see it in a second.
 * Since most operations in Node.js are asynchronous, including all the work happening behind the scenes with MongoDB in this situation, we pass in a callback that will eventually get called. If no error exists, we send a simple JSON response message to the client.
 
+## Web service tests
+
+Web service tests are in `test/server.tests.coffee`. These are end-to-end service tests that instantiate the web server and point at a real, locally running, MongoDB instance. We'll explain what the `requireCover` module does when we talk about code coverage and Jenkins. For now, let's just look at one of the more interesting tests:
+
+```coffee
+describe 'PUT /entry for each examples succeeds', ->
+  it 'responds with JSON success message', (done) ->
+    files = fs.readdirSync './examples'
+    count = files.length
+    for file in fs.readdirSync './examples'
+      entry = JSON.parse fs.readFileSync('./examples/' + file, 'utf8')
+      (->
+        doc = entry
+        put doc, 200, (err, res) ->
+          count--
+          console.error 'id: ' + doc.id
+          console.error res.text
+          should.not.exist err
+          message = JSON.parse res.text
+          should.exist message
+          message.status.should.eql 200
+          message.message.should.eql 'Successfully updated entry'
+          if count == 0
+            done()
+      )()
+```
+
+Perhaps there's a better way to do this with Mocha that would not require the callback tracking. There's got to be. This reads sample files that @ianbuchanan has created based on real products. Each file should successfully PUT to the server, pass validation, and get saved into a locally running MongoDB. Unfortunately the way I wrote this, it's hard to see which one failed without scrolling up. So, I'd like to have each file be an independent test. I suppose simply looping and calling `describe` and `it` in the loop might work.
+
+## Application service interacts with Mongoose (and thus MongoLab and MongoDB)
+
+The web service doesn't try to do too much. It delegates most of the *real work* to the application service. This class itself is small, and largely builds upon the facilities of Mongoose. The whole module fits easily in a snippet:
+
+```coffee
+AppCatalogEntry = require './appCatalogEntry'
+
+class AppCatalogService
+  constructor: (@appCatalogEntry=null)->
+    if not @appCatalogEntry?
+      @appCatalogEntry = AppCatalogEntry
+
+  #search for all available AppCatalogEntries
+  findAll: (callback) ->
+    @appCatalogEntry.find {}, '', (err, result) ->
+      callback err, result
+
+  #search for a single AppCatallogEntry by id
+  findById: (id, callback) ->
+    @appCatalogEntry.findOne { 'id': id }, '', callback
+
+  put: (body, callback) ->
+    try
+      @appCatalogEntry.validate body, (errs) =>
+        if errs?
+          callback errs
+        else
+          entry = new @appCatalogEntry(body)
+          @appCatalogEntry.update {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
+            callback err
+    catch ex
+      callback ex  
+
+module.exports = AppCatalogService
+```
+* We talked briefly about `AppCatalogEntry` before. It's where the JSON Schema is that defines what the catalog entry document must resemble.
+* The constructor for the service actually except an optional parameter to use within. This gets uses as a containerless form of dependency injection that helps with isolating unit tests, as we'll see soon.
+* Before we see that, let's dive now into the actual validation logic that gets called when we invoke the class-level function `@appCatalog.validate`.
+
+
+
 
 
 
