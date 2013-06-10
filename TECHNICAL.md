@@ -110,7 +110,7 @@ Also notice `qualityBands\patternProperties`. This allows you specify a regular 
 
 ```coffee
 updatesSection:
-  type: 'object'
+	type: 'object'
 	required: ['updates', 'qualityBands']
 	properties:
 		updates:
@@ -158,5 +158,64 @@ qualityBands:
 		      type: 'string'
 		      maxLength: HREF_MAX_LENGTH
 ```
+
+## Node.js Express-based web service `/entry` PUT handler
+
+The Node.js web service is based on Express, and uses a couple of useful features to simultaneously serve the static HTML and handle the
+service requests for the catalog API. Express is based on the [Connect
+middleware for Node.js](http://www.senchalabs.org/connect/), which afford the easy-to-extend pipeline model for 
+constructing a web server that does `just enough` with very little 
+overhead.
+
+```coffee
+  express = require 'express'
+  mongoose = require 'mongoose'
+  cors = (require './cors').cors
+  config = require './config'
+
+  # ...
+
+  app = express()
+
+  app.configure ->   
+    app.use '/app', express.static('../../client/app')
+    app.use express.bodyParser()
+    app.use cors
+    app.use app.router
+
+  auth = express.basicAuth(config.user, config.password)
+  
+  service = new (require('./service'))
+
+  app.get config.entryRoute, (req, res) ->
+    if not req.query.id?
+      service.findAll (err, result) ->
+        renderQueryResult res, err, result
+    else
+      service.findById req.query.id, (err, result) ->
+        rv = JSON.stringify result
+        rv = JSON.parse rv
+        delete rv._id
+        delete rv.docVersion
+        renderQueryResult res, err, rv
+
+  app.put config.entryRoute, auth, (req, res) ->
+    return unless req.body?
+    service.put req.body, (err) ->
+      if err?
+        handleError res, err
+      else         
+        res.send {status: 200, message: 'Successfully updated entry'}
+
+  return app
+```
+
+* First, we create an actual web server instance with the line `app = express()`, and then we configure the request pipeline. Each `app.use` call shapes the pipeline in some way.
+* `app.use '/app', express.static('../../client/app')` instructs Express to serve everything under the relative path `../../client/app` as plain old static content accessible via the `/app` route.
+* `express.bodyParser` makes it convert incoming requests (that don't get handled by the `/app` static handler) to JSON bodies. Actually, it supports url-encoded, and multi-part forms as well, but tries JSON first.
+* `cors` is a module we wrote ourselves to ensure properly Cross-origin resource sharing support -- explained later.
+* Finally, `app.router` mounts the actual `/app` and `/entry` routes immediately, instead of waiting for the first request from a client to do so.
+
+
 
 
