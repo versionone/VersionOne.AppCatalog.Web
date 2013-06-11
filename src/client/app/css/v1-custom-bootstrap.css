@@ -343,7 +343,7 @@
 	
 	.toggler {
 		border: 1px solid #ccc;
-		bordder-top-color: #ddd;
+		border-top-color: #ddd;
 		border-bottom-color: #bbb;
 		border-radius: 3px;
 		display: inline-block;
@@ -376,3 +376,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		height: 12px;
 		margin: 12px 0;
 	}
+
+    .section { 
+    	background-color: #fff; 
+    	border-radius: 6px; 
+    	padding: 1em; 
+    	margin: 0.4em 0; 
+    	box-shadow: 0 2px 4px #eee; 
+    }
