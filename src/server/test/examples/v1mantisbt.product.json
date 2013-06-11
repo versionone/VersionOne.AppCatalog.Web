@@ -1,0 +1,67 @@
+{
+    "id": "FalconerDevelopment.V1MantisBT",
+    "titleSection": {
+        "name": "VersionOne Mantis Bug Tracker Integration",
+        "shortDescription": "Connecting Mantis Bugs with VersionOne Defects",
+        "pricing": "Paid",
+        "support": {
+            "text": "Falconer Development",
+            "href": "http://www.falconerdevelopment.com/contact-us/"
+        }
+    },
+    "descriptionSection": {
+        "description": "The V1MantisBT puts everything in one place. It's as easy to use as your favorite consumer Web sites and the information you care about most gets pushed to you in real time. Suddenly, project success is not only possible, it’s easy."
+    },
+    "linksSection": [
+        {
+            "type": "hyperlink",
+            "title": "VersionOne Mantis Bug Tracker Integration",
+            "href": "http://www.falconerdevelopment.com/projects/versionone-mantis/"
+        },
+        {
+            "type": "hyperlink",
+            "title": "Pricing",
+            "href": "http://www.falconerdevelopment.com/v1mantisbt-pricing/"
+        },
+        {
+            "type": "download",
+            "title": "Download",
+            "href": "http://www.falconerdevelopment.com/downloads/V1MantisBT-Setup.exe"
+        },
+        {
+            "type": "documentation",
+            "title": "Documentation",
+            "href": "http://www.falconerdevelopment.com/documentation/v1mantisbt/"
+        },
+        {
+            "type": "hyperlink",
+            "title": "Learn more about Falconer Development",
+            "href": "http://www.falconerdevelopment.com/"
+        }
+    ],
+    "updatesSection": {
+        "updates": [
+            {
+                "date": "2011-07-02T00:00:00.000Z",
+                "description": "Summer 2011",
+                "version": "1.2",
+                "qualityBand": "commercial",
+                "downloadUrl": "http://www.falconerdevelopment.com/downloads/V1MantisBT-Setup.exe"
+            }
+        ],
+        "qualityBands": {
+            "commercial": {
+                "shortDescription": "The product is stable and supported."
+            }
+        }
+    },
+    "mediaSection": [
+        {
+            "title": "See the Demo",
+            "caption": "Give your agile team everything they need to focus on what’s important: more productivity and less administration.",
+            "mimetype": "video",
+            "href": "http://www.youtube.com/watch?v=VsxwjoQqm_0",
+            "thumbhref": "http://s3.amazonaws.com/falconerdevelopment/wp-content/themes/FreshStart/images/v1mantisbt_firstframe.jpg"
+        }
+    ]
+}

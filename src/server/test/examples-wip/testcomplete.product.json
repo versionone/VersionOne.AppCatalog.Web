@@ -1,0 +1,73 @@
+{
+    "id": "VersionOne.V1TestComplete",
+    "titleSection": {
+        "name": "V1TestComplete",
+        "shortDescription": "Monitor the quality of your projects more easily by making the latest TestComplete results visible in VersionOne.",        
+        "pricing": "Free",
+        "support": {
+            "text": "Supported by VersionOne",
+            "href": "http://support.versionone.com/home"
+        }
+    },
+    "descriptionSection": {
+        "description": "Monitor the quality of your projects more easily by making the latest TestComplete results visible in VersionOne. Teams can leverage existing test plans and test reporting, while creating new tests based on current user stories/backlog items."
+    },
+    "linksSection": [
+        {
+            "type": "download",
+            "title": "Download Latest Stable Build",
+            "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/V1TestCompleteIntegration.9.0.zip"
+        },
+        {
+            "type": "source",
+            "title": "Source Code",
+            "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/V1TestCompleteIntegration.source.9.0.zip"
+        },
+        {
+            "type": "documentation",
+            "title": "Documentation",
+            "href": "http://community.versionone.com/sdk/DetailedDocumentation/TestComplete/index.html"
+        }
+    ],
+    "updatesSection": {
+        "updates": [
+            {
+                "date": "2013-05-01T00:00:00.000Z",
+                "description": "Sunset Announcement",
+                "releaseNotes": "This integration was last tested against TestComplete 7.0. Since then, the TestComplete's interface to tests has changed from file-based access to an SDK. Therefore the effort to update this integration is similar to a rewrite. Balancing the cost against limited demand, we cannot justify the effort and have decided to sunset this integration. Source code will remain available so customers may apply their own development efforts or hire VersionOne services as a custom development engagement. Similar to QTP/QC, customers can make use of integration between TestComplete and ALMComplete/QAComplete, then from ALMComplete/QAComplete to VersionOne, via OpsHub Integration Manager. For more information see: http://www.opshub.com/main/index.php/alm-systems/smartbear",
+                "qualityBand": "sunset"
+            },
+            {
+                "date": "2011-01-08T00:00:00.000Z",
+                "description": "Summer 2011",
+                "version": "1462",
+                "releaseNotes": "* Added: Support for connecting to VersionOne through a proxy.\n * Added: Configuration Utility contains help on the various configuration options to enable quicker setup and configuration.\n * Added: Configuration Utility supports a minimum poll interval of one minute for testing. It is not recommended that poll intervals remain this low in a production instance.\n * Update: Source code project was dependent on .NET 3.5. Now source code project depends on the latest .NET SDK.\n * Updated: Integration depends on Log4Net\n * Updated: Poll time interval defaults to 30 minutes\n * Fixed: Configuration Utility allows editing of the VersionOne credential fields when Windows Integrated Authentication is enabled. This enables configuring the integrations to connect to VersionOne as a user other than the local service account when the VersionOne instance is configured for Windows integrated authentication.",
+                "qualityBand": "mature"
+            },
+            {
+                "date": "2010-08-10T00:00:00.000Z",
+                "description": "Summer 2010",
+                "version": "872",
+                "releaseNotes": "* Added GUI Tool for configuration\n * Updated Documentation",
+                "qualityBand": "mature"
+            },
+            {
+                "date": "2009-05-27T00:00:00.000Z",
+                "description": "Initial Release",
+                "version": "61",
+                "qualityBand": "mature"
+            }
+        ],
+        "qualityBands": [
+            {
+                "name": "mature",
+                "shortDescription": "The product is stable. The code will continue to evolve with minimum breaking changes."
+            },
+            {
+                "name": "sunset",
+                "shortDescription": "This product is at the end of its life.",
+                "href": "http://community.versionone.com/sdk/Documentation/SunsetPolicy.aspx"
+            }            
+        ]
+    }
+}

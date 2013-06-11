@@ -1,1 +1,0 @@
-curl -X POST http://requestb.in/1ikmdzn1 -H "Content-Type: application/json" -d @data.json

@@ -1,1 +1,0 @@
-curl -X PUT http://appcatalogstage.azurewebsites.net/entry --user zapZatalog:zapsRNotYou -d @ccnet.product.json -H "Content-Type: application/json"

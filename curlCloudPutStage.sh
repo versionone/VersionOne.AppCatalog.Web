@@ -1,1 +1,0 @@
-curl --user $2 -X PUT http://appcatalog.azurewebsites.net/entry -d @$1 -H "Content-Type: application/json"
