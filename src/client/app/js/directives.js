@@ -66,13 +66,15 @@ angular.module('appCatalog.directives', []).
 	directive('mediacontent', function($timeout, $window) {
 		return {
 			restrict: 'E',
-			require: '^media',
+			require: '',
 			scope: { src: '=src'},
 			templateUrl: 'tpl/mediaContent.html',
 			replace: true,
 			controller: function($scope,$element) {
 				$scope.getType = function() {
-					return $scope.src.mimetype.split('/')[0];
+					if ($scope.src.mimetype)
+						return $scope.src.mimetype.split('/')[0];
+					return '';
 				};
 
 				$scope.isVideo = function() {
@@ -157,7 +159,7 @@ angular.module('appCatalog.directives', []).
 
 
 				$scope.$watch('src', function(val) {
-					if (val) {
+					if (val && val.updates) {
 						for (var i = 0; i< val.updates.length; i++) {
 							var entry = val.updates[i];
 							entry.cvtDescription = convert(entry.description);
@@ -188,8 +190,8 @@ angular.module('appCatalog.directives', []).
 				    switch(linktype) {
 			          case "download":
 			            return "img/download.png";
-			          case "source":
-			            return "img/source.png";
+			          case "code":
+			            return "img/code.png";
 			          case "documentation":
 			            return "img/documentation.png";
 			          case "license":
@@ -232,8 +234,8 @@ angular.module('appCatalog.directives', []).
 				}
 			}
 		};
-	}).
-	directive('sectionnav', function() {
+	});
+/*	directive('sectionnav', function() {
 		return {
 			restrict: 'E',
 			transclude: false,
@@ -246,4 +248,4 @@ angular.module('appCatalog.directives', []).
 				
 			}
 		};
-	});
+	});*/

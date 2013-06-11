@@ -1,6 +1,6 @@
 <div ng-switch='getType(src)' style='position: relative'>
 	<img ng-switch-when='image' ng-src = '{{src.href}}' alt='{{src.caption}}' title='{{src.title}}' style="margin:auto;">
-	<video ng-switch-when='video'  
+	<video ng-switch-default  
 		class='video-js vjs-default-skin' 
 		controls preload='none' poster='{{src.thumbhref}}' 
 		data-setup='{}' id='{{getId()}}'>
