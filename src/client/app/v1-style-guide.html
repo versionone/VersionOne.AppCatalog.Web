@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>VersionOne - BootStrap - (Style Guide)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="css/v1-custom-bootstrap.css" rel="stylesheet" media="screen">
+<style>
+body {
+	padding-bottom: 40px;
+}
+.sidebar-nav {
+	padding: 9px 0;
+}
+ @media (max-width: 980px) {
+/* Enable use of floated navbar text */
+.navbar-text.pull-right {
+	float: none;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".sidebar-nav">
+<a id="top"></a>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="brand" href="#">VersionOne Style Guide</a>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right"> Logged in as <a href="#" class="navbar-link">Username</a> </p>
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+  </div>
+</div>
+<!-- navbar -->
+<div class="navbar navbar-fixed-top" style="top:40px;">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="brand" href="#">VersionOne Style Guide</a>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right"> Logged in as <a href="#" class="navbar-link">Username</a> </p>
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+  </div>
+</div>
+<!-- navbar -->
+<div class="container content-top">
+<div class="row">
+  <div class="span3">
+    <div class="well sidebar-nav" data-spy="affix" data-offset-top="200" >
+      <ul class="nav nav-list">
+        <li class="nav-header">Top Section</li>
+        <li class="active"><a href="#">Active Link Example</a></li>
+        <li><a href="#top">Top</a></li>
+        <li><a href="#htag">HTags - V1 Colors</a></li>
+        <li><a href="#paragraph">Paragraph</a></li>
+        <li class="nav-header">Middle Section</li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#forms">Forms - Lists - Misc.</a></li>
+        <li><a href="#button">Buttons</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="nav-header">Sidebar</li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+    </div><!--/.well --> 
+  </div><!--/span-->
+  <div class="span9">
+    <div class="row-fluid">
+    	<div class="hero-unit">
+      <h1>Welcome to the VersionOne - Bootstrap - Style Guide</h1>
+      <p>This Guide explains how we customized the Bootstrap theme for VersionOne's App Catalog site. You may use this as a reference for jump starting your own theme.</p>
+      <p> 
+        <!-- Button to trigger modal --> 
+        <a href="#myModal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Launch a modal</a> 
+        
+        <!-- Modal -->
+      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h3 id="myModalLabel">Modal header</h3>
+        </div>
+        <div class="modal-body">
+          <p>One fine body ...</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      </p>
+    </div> <!-- hero unit -->
+    </div> <!-- /row-fluid -->
+    <div class="row-fluid">
+        <div class="alert">
+          <p>NOTE: this list in not a complete Bootstrap list but only examples pulled from the CSS, for more BootStrap CSS classes refer to <a href="http://twitter.github.com/bootstrap/base-css.html">this page</a>.</p>
+        </div>
+    </div><!-- /row-fluid -->
+    <div class="row-fluid" id="htag">
+      <div class="span4">
+        <h2>H tags</h2>
+        <h1>H1 Title</h1>
+        <h2>H2 Title</h2>
+        <h3>H3 Title</h3>
+        <h4>H4 Title</h4>
+        <h5>H5 Title</h5>
+        <h6>H6 Title</h6>
+      </div>
+      <div class="colors span4">
+        <h2>V1 Colors</h2>
+        <div class="v1-red" data-content="Ah the famous Red that exists in and out of our company mantra" title="" data-toggle="popover" data-original-title="Pantone 216">Red #8E073A</div>
+        <div class="link-blue">Blue #00496B</div>
+        <div class="help-orange">Orange #DB692B</div>
+        <div class="lite-blue">Lite Blue #ACCBDC</div>
+        <div class="faint-gray">Faint Gray #F2F2F2</div>
+        <div class="medium-gray">Medium Gray #AAAAAA</div>
+      </div>
+      <div class="span4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce
+          dapibus, tellus ac cursus commodo, tortor <a href="#">mauris condimentum nibh</a>, ut 
+          fermentum massa justo sit amet risus. Etiam porta sem malesuada magna 
+          mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn" href="#">View details</a></p>
+      </div>
+      <!--/span--> 
+    </div>
+    <!--/row-fluid-->
+    <div class="row-fluid" id="paragraph">
+      <div class="span12">
+        <h2>Paragraphs</h2>
+        <p class="lead">CLASS - LEAD - Our mission is to help teams envision and deliver great software. Today more than 50,000 teams of all sizes use our agile project and lifecycle management tool to scale their agile initiatives faster, easier, and smarter.</p>
+        <p>Leverage a single system for planning and tracking all of your epics, stories, themes, defects, tasks, tests and issues. VersionOne gives you unparalleled visibility across multiple teams, projects and agile portfolios, providing a centralized environment where all your stakeholders – executives, managers, product owners, developers, and testers - can easily work together regardless of location.</p>
+        <p><small>&lt;SMALL&gt; - Built from the ground up to support agile and lean software development processes and workflows, VersionOne accelerates your adoption of agile. Guiding team members through each step of the agile development process – from product and release planning to sprint planning, tracking, and review - VersionOne continually reinforces agile best practices without being prescriptive.</small></p>
+      </div>
+      <!--/span--> 
+    </div>
+    <!--/row-fluid-->
+    <div class="row-fluid" id="tables">
+      <div class="span12">
+        <h2>Table</h2>
+        <table class="table">
+          <tr>
+            <th>Table Normal</th>
+            <th>Heading 2</th>
+            <th>Heading 3</th>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+        </table>
+        <table class="table table-striped">
+          <tr>
+            <th>Table Striped</th>
+            <th>Heading 2</th>
+            <th>Heading 3</th>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+        </table>
+        <table class="table table-bordered">
+          <tr>
+            <th>Table Bordered</th>
+            <th>Heading 2</th>
+            <th>Heading 3</th>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+          <tr>
+            <td>Item 1</td>
+            <td>Item 2</td>
+            <td>Item 3</td>
+          </tr>
+        </table>
+      </div>
+      <!--/span--> 
+    </div>
+    <!--/row-fluid-->
+    <div class="row-fluid" id="forms">
+      <div class="span4">
+        <h2>Form Elements 1</h2>
+        <form>
+          <label for="field">Field </label>
+          <input type="text" name="field" />
+          <label for="checkbox">
+            <input type="checkbox" name="checkbox" />
+            Checkbox </label>
+          <label for="radio">
+            <input type="radio" name="radio" />
+            Radio </label>
+        </form>
+        <form  class="form-search">
+          <input type="text" class="input-medium search-query">
+          <button type="submit" class="btn">Search</button>
+        </form>
+      </div>
+      <!--/span-->
+      <div class="span4">
+        <h2>Form Elements 2</h2>
+        <form>
+          <label for="textare1">Textarea</label>
+          <textarea name="textarea"></textarea>
+          <label for="button">Button</label>
+          <button class="btn" name="button">Button</button>
+        </form>
+      </div>
+      <!--/span-->
+      <div class="span4">
+        <h2>Form Elements 3</h2>
+        <form>
+          <label for="fieldset">Fieldset</label>
+          <fieldset name="fieldset">
+            <legend>A Legend</legend>
+            <label for="select">Select</label>
+            <select>
+              <option>-All-</option>
+              <option>Item1</option>
+              <option>Item2</option>
+              <option>Item3</option>
+            </select>
+          </fieldset>
+        </form>
+      </div>
+      <!--/span--> 
+    </div>
+    <!--/row-fluid-->
+    <div class="row-fluid">
+      <div class="span4">
+        <h2>Unordered List</h2>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+          <li>Item 4</li>
+        </ul>
+      </div>
+      <!--/span-->
+      <div class="span4">
+        <h2>Ordered List</h2>
+        <ol>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+          <li>Item 4</li>
+        </ol>
+      </div>
+      <!--/span-->
+      <div class="span4">
+        <h2>Blockquote</h2>
+        <blockquote cite="http://www.worldwildlife.org/who/index.html"> For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally. </blockquote>
+      </div>
+      <!--/span--> 
+    </div>
+    <!--/row-fluid-->
+    <div class="row-fluid">
+      <div class="span4">
+        <h2>PRE</h2>
+        <pre>
+Text in a pre element is displayed in a fixed-width font, and it preserves both spaces and line breaks
+				</pre>
+      </div>
+      <!--/span-->
+      <div class="span4">
+        <h2>Code</h2>
+        <code> !{assetSummary.PageTitle}
+        ${l("Idea'User'VotedOn'Candidate")}
+        ${l("Idea'User'VotedOn'Planned")
+        ${l("Idea'User'VotedOn'Completed")} </code> </div>
+      <!--/span-->
+      <div class="span4 block-children">
+        <h2>Misc.</h2>
+        <em> &lt;em&gt;Emphasis&lt;/em&gt;</em> <strong>&lt;strong&gt;Strong&lt;/strong&gt;</strong> <dfn>&lt;dfn&gt;Definition&lt;/dfn&gt;</dfn> <samp>&lt;samp&gt;Sample Output&lt;/samp&gt;</samp> <kbd>&lt;kbd&gt;Keyboard Input&lt;/kbd&gt;</kbd> <var>&lt;var&gt;Variable&lt;/var&gt;</var> </div>
+      <!--/span--> 
+    </div>
+    <!--/row-fluid-->
+    <div class="row-fluid" id="button">
+      <div class="span4">
+        <h2>Buttons</h2>
+        <button class="btn">Normal</button>
+        <button class="btn btn-primary btn-large">Primary (Large)</button>
+        <button class="btn btn-info">Info </button>
+        <button class="btn btn-success">Sucess</button>
+        <button class="btn btn-warning btn-block">!!Warning!! (block)</button>
+        <button class="btn btn-danger btn-small">Alarm (Small)</button>
+        <button class="btn btn-inverse btn-mini">Inverse (Mini)</button>
+        <button class="btn btn-link">A Link</button>
+      </div>
+      <div class="span4" style="min-height: 270px;">
+        <h2>Buttons used with dropdowns</h2>
+        <span class="dropdown">
+        <button class="btn dropdown-toggle" data-toggle="dropdown"> Button <i class="icon-chevron-down"></i> </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li> <a tabindex="-1" href="#">Action</a> </li>
+          <li><a tabindex="-1" href="#">Another action</a></li>
+          <li><a tabindex="-1" href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a tabindex="-1" href="#">Separated link</a></li>
+        </ul>
+        </span> 
+        <span class="dropdown">
+        	<div class="btn-group">
+          		<button class="btn">Button</button>
+          		<button class="btn dropdown-toggle" data-toggle="dropdown"> <i class="icon-chevron-down"></i> </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            		<li> <a tabindex="-1" href="#">Action</a> </li>
+            		<li><a tabindex="-1" href="#">Another action</a></li>
+            		<li><a tabindex="-1" href="#">Something else here</a></li>
+            		<li class="divider"></li>
+            		<li><a tabindex="-1" href="#">Separated link</a></li>
+          		</ul>
+            </div>
+          		
+        </span>
+      </div>
+      <div class="span4">
+        <h2>Image</h2>
+        <img class="img-rounded" data-toggle="tooltip" title="You're Awesome!" style="height: 100px;" src="http://leanneellington.com/wp-content/uploads/2012/03/youre-awesome.jpg" /> <img class="img-circle" style="height: 100px;" src="http://leanneellington.com/wp-content/uploads/2012/03/youre-awesome.jpg" /> <img class="img-polaroid" style="height: 100px;" src="http://leanneellington.com/wp-content/uploads/2012/03/youre-awesome.jpg" /> </div>
+    </div>
+    <!--/row-fluid-->
+    <div class="row-fluid" id="carousel">
+      <div class="carousel-container"> 
+        <!-- Carousel nav --> 
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        <div id="myCarousel" class="carousel slide">
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <div class="active item"><img src="http://uniquenaturewallpapers.com/wp-content/uploads/2013/01/Awesome-Face-Wallpaper.jpg" /></div>
+            <div class="item"><img src="http://wallpaper.pickywallpapers.com/1920x1080/planetary-sunrise-with-awesome-space-view.jpg" /></div>
+            <div class="item"><img src="http://www.finewallpaperss.com/wp-content/uploads/2012/10/Moon-Night-Wallpaper-Background-Picture.jpg" /></div>
+          </div>
+        </div><!-- carousel -->
+      </div><!--/row-fluid-->
+  </div><!--/span9--> 
+  </div><!--/row--> 
+  <hr>
+  <footer>
+    <p>&copy; VersionOne Inc. 2013</p>
+  </footer>
+</div>
+<!--/.fluid-container--> 
+
+<script src="http://code.jquery.com/jquery.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script type="text/javascript">
+		$(function(){
+		$('.sidebar-nav').affix()
+		$('.dropdown-toggle').dropdown();
+		$('.img-rounded').tooltip();
+		$('.sidebar-nav').scrollspy();
+		$('.v1-red').popover();
+		});
+	</script>
+</body>
+</html>
