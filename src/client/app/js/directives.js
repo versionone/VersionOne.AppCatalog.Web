@@ -214,7 +214,7 @@ angular.module('appCatalog.directives', []).
 			"	<div class='collapse-toggle' " +
 			"		ng-show = 'isCollapsible()' " +
 			"		ng-click='isCollapsed = !isCollapsed'>" +
-			"			{{getToggle();}}" +
+			"			<span class='toggler'>{{getToggle();}}</span>" +
 			"</div>" +
 			"</div>",
 			controller: function($scope,$element) {
@@ -227,9 +227,9 @@ angular.module('appCatalog.directives', []).
 
 				$scope.getToggle = function() {
 					if ($scope.isCollapsed) {
-						return "<< Expand >>";
+						return "Show More";
 					} else {
-						return ">> Collapse <<";
+						return "Show Less";
 					}
 				}
 			}
