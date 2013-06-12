@@ -386,3 +386,42 @@ AppCatalogEntry.validate = (data, callback) ->
 * So, once we have all the properties that must be valid URIs, we validate them with the `uri-js` module instance, and we're good.
 * Unless, of course, those crazy catalog entry authors have put **qualityBand** entries that don't actually exist into an **update**. The line `jp(data, '$..updates..qualityBand')` fetches all qualityBand properties underneath the updates section.
 * Finally, we use Underscore's handy `difference` function to determine whether a rogue qualityBand exists in any of the updates.
+
+## Mongoose / MongoDB upserts
+
+Now that we're past validation, let's look at this chunk of code again:
+
+```coffee
+@appCatalogEntry.update {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
+    callback err
+```
+
+I didn't find the documentation in the Mongoose documentation, but did [find help on Stackoverflow](http://stackoverflow.com/questions/7267102/how-do-i-update-upsert-a-document-in-mongoose). This line will:
+
+* Find the document with `id = body.id`
+* And, if found, reset its content to `body`
+* Or, if not found, it will create a new document with that id.
+* The `$inc: docVersion: 1` instructs Mongoose to increment the `docVersion` property of the document by one.
+
+# Enter MongoLab
+
+MongoLab describes itself as:
+
+> MongoDB-as-a-Service: Power your app with the most widely-deployed cloud database in the world.
+
+That's really the most important fact about this part. It's MongoDB. It's hosted in MongoLab's cloud.
+
+Connecting to it is facilitated by a standard MongoDB connection string, like this:
+
+`config.mongoUri = 'mongodb://appcatalog:passwordGoesHere@ds065917.mongolab.com:61787/appcatalogstage'`
+
+And, finally, we tell Mongoose to connect to this by passing the string from the configuration:
+
+`mongoose.connect config.mongoUri`
+
+Databases and documents can be managed fully inside of a web-based interface on MongoLab's site, and they also have their own [REST API](https://support.mongolab.com/entries/20433053-REST-API-for-MongoDB) on top of the standard MongoDB API. Our application is not using that, however, since we connect to MongoLab via our REST service running in Azure.
+
+The reason for this is that the MongoLab API is not customizable, so we cannot do the custom validation and such that is necessary to ensure data integrity.
+
+
+
