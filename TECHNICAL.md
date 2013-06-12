@@ -457,7 +457,7 @@ It relies upon several Azure features to make it easy and reliable:
 
 * Built-in support for Node.js
 * Tight integration with GitHub for continous deployment on push to branch
-* App Settings exported as environment variables Node can read with nConf
+* App settings exported as environment variables Node can read with nConf
 * Dashboard, monitoring, logs, and FTP access
 
 ### Built-in support for Node.js
@@ -513,7 +513,7 @@ As of June, 2013, Azure integrates with:
 Note that you'll get to choose either a private repository from your account, or any of the repositories from any 
 organizations to which you belong.
 
-### Using App Settings and nconf to securely store server secrets
+### App settings exported as environment variables Node can read with nConf
 
 Here's the `config.coffee` module:
 
