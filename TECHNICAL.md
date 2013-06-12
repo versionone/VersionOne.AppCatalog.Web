@@ -581,7 +581,7 @@ built-in query API. Note that we do some JSON-wrangling after the `findById` cal
 automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a 
 self-inflicted conflict that can be removed in the next iteration.
 
-## Angular `$resource` to query REST APIs
+## AngularJS mini tutorial
 
 AngularJS is a big subject, and we are definitely not fully utilizing it yet in the first iteration of the App Catalog.
 
@@ -593,11 +593,35 @@ create your own tags, like `<tabs><pane><h1>Hey I'm a tab with an H1 tag</h1></h
 `<carousel><frame>random <b>HTML</b> text</frame></carousel>`.
 * ViewModels are collections of properties (including functions) that the HTML views can see and call.
 
+## AngularJS HTML app template 
+
+Here's a super simple shell for an app built with AngularJS:
+
+```html
+<html lang="en" ng-app="phonecat">
+<head>
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body>
+ 
+  <div ng-view></div>
+ 
+</body>
+</html>
+```
+
+The `ng-app="phonecat"` refers to an Angular module, which we'll see in a second. And, the `<div ng-view></div>` 
+stipulates where Angular will inject partial views in response to browser navigation requests.
+
+## Angular basics
+
 Angular lets you define route handlers to intercept the browser's navigation behavior and then route those paths to 
 controller classes and an associated HTML view template, like this:
 
 ```coffee
-angular.module("phonecat", []).config ["$routeProvider", ($routeProvider) ->
+angular.module("phonecat", []).config ($routeProvider) ->
   $routeProvider.when("/phones",
     templateUrl: "partials/phone-list.html"
     controller: PhoneListCtrl
@@ -605,11 +629,11 @@ angular.module("phonecat", []).config ["$routeProvider", ($routeProvider) ->
     templateUrl: "partials/phone-detail.html"
     controller: PhoneDetailCtrl
   ).otherwise redirectTo: "/phones"
-]
 ```
 
-For example, if `/phones/iphone` were specified, then the app would probably delete your GMail account, since Google 
-created AngularJS. Actually, it would execute the `PhoneDetailCtrl` controller:
+The `$routeProvider` object is provided for you by Angular's dependency injection support. So, in this example, 
+if `/phones/iphone` were specified, then the app would probably delete your GMail account, since Google 
+created AngularJS! Actually, it would execute the `PhoneDetailCtrl` controller:
 
 ```coffee
 PhoneDetailCtrl = ($scope, $routeParams, Phone) ->
@@ -672,8 +696,7 @@ and other template tools, but feel more natural because the HTML is still HTML. 
 you can also use the standard HTML5 `data-` prefix. One strong benefit with AngularJS is that this templating is 
 built into the framework, not layered in as an external dependency.
 
-
-
+## A heavier introduction to AngularJS
 
 The code above is actually from the [AngularJS Tutorial](http://docs.angularjs.org/tutorial). 
 
@@ -683,6 +706,10 @@ get a grasp of the major Angular concepts.
 
 The best part about the tutorial is that it shows you how to create a **Phone Catalog**, with similar requirements to
 App Catalog.
+
+With that out of the way, however, let's look specifically at App Catalog's Angular code.
+
+# How App Catalog is built on AngularJS
 
 
 
