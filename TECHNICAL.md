@@ -448,4 +448,71 @@ automatically-inserted `_id` and the `docVersion` property which conflict with t
 self-inflicted conflict that can be removed in the next iteration.
 
 
+## Configuration and service hosting in Windows Azure
+
+Having walked through the web service implementation, let's look at how the catalog is configured and 
+how it's hosted in Windows Azure.
+
+It relies upon several Azure features to make it easy and reliable:
+
+* App Settings configuration in the management console with automatic copying to **environment variables** 
+visible to Node.js, and accessed through the **nconf** module
+* Built-in support for Node.js
+* Tight integration with GitHub, including automatic per-branch push-triggered deployment
+
+### Using App Settings and nconf to securely store server secrets
+
+Here's the `config.coffee` module:
+
+```coffee
+nconf = require 'nconf'
+
+config = {}
+
+configFile = 'config.json'
+
+if process.env['config_file']?
+  configFile = process.env['config_file']  
+
+nconf.file(configFile).env()
+
+config.entryRoute = nconf.get('server_entryRoute') || '/entry'
+
+config.port = nconf.get('server_localPort') || 8081
+if process.env.PORT?
+  config.port = process.env.PORT
+
+config.mongoUri = nconf.get 'mongoDb_uri'
+config.user = nconf.get 'server_auth_user'
+config.password = nconf.get 'server_auth_password'
+
+module.exports = config
+```
+
+The nconf module provides hierarchical configuration, sourcing from JSON disk files, environment variables, and more. 
+What's more, the line `nconf.file(configFile).env()` means this:
+
+* Load settings from the file pointed to by `configFile`
+* Load additional settings from environment variables. If an environment variable exists with the same name as a setting 
+from `configFile`, then **the environment variable will override it**.
+
+This has made keeping a single code-base a snap, because we use environment variables for our Jenkins tests, which point 
+to a development version of the database in MongoLab, and a JSON config file when running tests locally, which points to
+a local instance of MongoDB. And, when running in Azure, the settings get sourced from environment variables, which are
+automatically populated from the App Settings specified in the management site console shown below.
+
+#### App Settings in Azure console
+
+![App Settings in Azure console](./azureAppSettings.png)
+
+
+
+
+
+
+
+
+
+
+
 
