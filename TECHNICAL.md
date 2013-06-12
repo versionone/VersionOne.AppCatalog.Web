@@ -424,4 +424,28 @@ Databases and documents can be managed fully inside of a web-based interface on 
 The reason for this is that the MongoLab API is not customizable, so we cannot do the custom validation and such that is necessary to ensure data integrity.
 
 
+## GET handler for `/entry` route
+
+Let's return to the `GET` handler in the catalog service. Here's the code:
+
+```coffee
+  app.get config.entryRoute, (req, res) ->
+    if not req.query.id?
+      service.findAll (err, result) ->
+        renderQueryResult res, err, result
+    else
+      service.findById req.query.id, (err, result) ->
+        rv = JSON.stringify result
+        rv = JSON.parse rv
+        delete rv._id
+        delete rv.docVersion
+        renderQueryResult res, err, rv
+```
+
+This is really simple, and just delegates to the sevice class we've already looked at, which itself uses Mongoose's
+built-in query API. Note that we do some JSON-wrangling after the `findById` call. That is to remove the
+automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a 
+self-inflicted conflict that can be removed in the next iteration.
+
+
 
