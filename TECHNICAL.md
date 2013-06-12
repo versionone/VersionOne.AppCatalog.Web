@@ -427,7 +427,7 @@ The reason for this is that the MongoLab API is not customizable, so we cannot d
 
 Here's what the MongoLab site looks like when you want to manually edit a document:
 
-![MongoLab edit document](./mongoLabEdit.png)
+![MongoLab edit document](./doc/images/technical/mongoLabEdit.png)
 
 
 ## Configuration and service hosting in Windows Azure
@@ -467,15 +467,15 @@ repositories. This process was very easy when creating the site in the managemen
 
 #### Create a site with Custom Create option
 
-![Create a site with Custom Create option](./azureCreateSite_01.png)
+![Create a site with Custom Create option](./doc/images/technical/azureCreateSite_01.png)
 
 #### Specify site name and publish from source control
 
-![Specify site name and publish from source control](./azureCreateSite_02.png)
+![Specify site name and publish from source control](./doc/images/technical/azureCreateSite_02.png)
 
 #### Select GitHub as source code provider
 
-![Select GitHub as source code provider](./azureCreateSite_03.png)
+![Select GitHub as source code provider](./doc/images/technical/azureCreateSite_03.png)
 
 As of June, 2013, Azure integrates with:
 
@@ -490,7 +490,7 @@ As of June, 2013, Azure integrates with:
 
 #### Select a GitHub repository and a branch to publish
 
-![Select a GitHub repository and a branch to publish](./azureCreateSite_04.png)
+![Select a GitHub repository and a branch to publish](./doc/images/technical/azureCreateSite_04.png)
 
 Note that you'll get to choose either a private repository from your account, or any of the repositories from any 
 organizations to which you belong.
@@ -538,7 +538,7 @@ automatically populated from the app settings set in the management site console
 
 #### App settings in Azure console
 
-![App Settings in Azure console](./azureAppSettings.png)
+![App Settings in Azure console](./doc/images/technical/azureAppSettings.png)
 
 All app settings values get populated into environment variables that Node.js can see.
 
@@ -549,7 +549,7 @@ was extremely helfpul.
 
 This shows the variety of information and options for monitoring and accessing resources related to the site:
 
-![Azure web site dashboard](./azureDashboard.png)
+![Azure web site dashboard](./doc/images/technical/azureDashboard.png)
 
 
 # Let's GET into AngularJS world
