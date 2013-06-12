@@ -455,10 +455,63 @@ how it's hosted in Windows Azure.
 
 It relies upon several Azure features to make it easy and reliable:
 
+* Built-in support for Node.js
+* Tight integration with GitHub for continous deployment on push to branch
 * App Settings configuration in the management console with automatic copying to **environment variables** 
 visible to Node.js, and accessed through the **nconf** module
-* Built-in support for Node.js
-* Tight integration with GitHub, including automatic per-branch push-triggered deployment
+
+### Built-in support for Node.js
+
+The Azure team has done great work to make developing with Node.js very easy. If you visit the 
+[Node.js developer center](http://www.windowsazure.com/en-us/develop/nodejs/) you'll see the first tutorial text 
+advertised as:
+
+```bash
+npm install azure
+git commit -m "My first Node app"
+git push azure master
+```
+
+There are lots of other very useful tutorials for getting your feet wet, and check out these resources for help:
+
+* [Azure Forums](http://social.msdn.microsoft.com/Forums/en-US/category/windowsazureplatform)
+* [Azure Channel on jabbr.net](https://jabbr.net/#/rooms/Azure) -- David Ebbo was particularly helpful along with a few 
+other people when we faced issues.
+
+### Tight integration with GitHub for continuous deployment on push to branch
+
+Not only is git in your local environment supported, but so is GitHub, as well as other cloud-hosted source control 
+repositories. This process was very easy when creating the site in the management console. Here's what it looks like:
+
+#### Create a site with Custom Create option
+
+![Create a site with Custom Create option](./azureCreateSite_01.png)
+
+#### Specify site name and publish from source control
+
+![Specify site name and publish from source control](./azureCreateSite_02.png)
+
+#### Select GitHub as source code provider
+
+As of June, 2013, Azure integrates with:
+
+* Team Foundation Service (cloud-hosted, or on-premise)
+* Local Git repository
+* GitHub
+* Dropbox
+* Bitbucket
+* CodePlex
+* External repository
+
+![Select GitHub as source code provider](./azureCreateSite_03.png)
+
+#### Select a GitHub repository and a branch to publish
+
+Note that you'll get to choose either a private repository from your account, or any of the repositories from any 
+organizations to which you belong.
+
+![Select a GitHub repository and a branch to publish](./azureCreateSite_04.png)
+
 
 ### Using App Settings and nconf to securely store server secrets
 
@@ -503,12 +556,12 @@ automatically populated from the App Settings specified in the management site c
 
 #### App Settings in Azure console
 
+All App Settings values get populated into environment variables that Node.js can see.
+
 ![App Settings in Azure console](./azureAppSettings.png)
 
-
-
-
-
+Dave Ward's [post on this subject](http://encosia.com/using-nconf-and-azure-to-avoid-leaking-secrets-on-github/) 
+was extremely helfpul.
 
 
 
