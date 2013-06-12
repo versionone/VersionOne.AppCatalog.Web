@@ -317,8 +317,12 @@
 		width: 30px;
 		height: 30px;
 	}
-	
-	
+
+	.carousel-caption {
+		top: 0px;
+		bottom: auto;
+	}
+
 	.content-top {
 		padding-top: 20px;
 	}
@@ -338,7 +342,7 @@
 	}
 	
 	@media (min-width: 1200px) {
-		.sidebar-nav{width: 270px;
+		.sidebar-nav{width: 270px;}
 	}
 	
 	.toggler {
@@ -383,4 +387,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     	padding: 1em; 
     	margin: 0.4em 0; 
     	box-shadow: 0 2px 4px #eee; 
+    }
+
+	.markdown {
+
+	}
+    .markdown h1 {
+		font-size: 14pt;
+    }
+
+    .markdown h2 {
+
+    }
+
+    .markdown h3 {
+
     }
