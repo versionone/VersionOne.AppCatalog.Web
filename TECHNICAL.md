@@ -430,30 +430,6 @@ Here's what the MongoLab site looks like when you want to manually edit a docume
 ![MongoLab edit document](./mongoLabEdit.png)
 
 
-## GET handler for `/entry` route
-
-Let's return to the `GET` handler in the catalog service. Here's the code:
-
-```coffee
-  app.get config.entryRoute, (req, res) ->
-    if not req.query.id?
-      service.findAll (err, result) ->
-        renderQueryResult res, err, result
-    else
-      service.findById req.query.id, (err, result) ->
-        rv = JSON.stringify result
-        rv = JSON.parse rv
-        delete rv._id
-        delete rv.docVersion
-        renderQueryResult res, err, rv
-```
-
-This is really simple, and just delegates to the sevice class we've already looked at, which itself uses Mongoose's
-built-in query API. Note that we do some JSON-wrangling after the `findById` call. That is to remove the
-automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a 
-self-inflicted conflict that can be removed in the next iteration.
-
-
 ## Configuration and service hosting in Windows Azure
 
 Having walked through the web service implementation, let's look at how the catalog is configured and 
@@ -574,3 +550,140 @@ was extremely helfpul.
 This shows the variety of information and options for monitoring and accessing resources related to the site:
 
 ![Azure web site dashboard](./azureDashboard.png)
+
+
+# Let's GET into AngularJS world
+
+We've covered the web service implementation and the technical details of MongoLab and Azure. Now, let's get into the 
+best part: AngularJS on the front-end.
+
+## GET handler for `/entry` route
+
+First, let's remember the service code for the `GET` handler in the catalog service, because this is the handler 
+that all the browser-facing scenarios use. Here it is:
+
+```coffee
+  app.get config.entryRoute, (req, res) ->
+    if not req.query.id?
+      service.findAll (err, result) ->
+        renderQueryResult res, err, result
+    else
+      service.findById req.query.id, (err, result) ->
+        rv = JSON.stringify result
+        rv = JSON.parse rv
+        delete rv._id
+        delete rv.docVersion
+        renderQueryResult res, err, rv
+```
+
+This is really simple, and just delegates to the sevice class we've already looked at, which itself uses Mongoose's
+built-in query API. Note that we do some JSON-wrangling after the `findById` call. That is to remove the
+automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a 
+self-inflicted conflict that can be removed in the next iteration.
+
+## Angular `$resource` to query REST APIs
+
+AngularJS is a big subject, and we are definitely not fully utilizing it yet in the first iteration of the App Catalog.
+
+At its core, AngularJS is a Model-View-ViewModel framework:
+
+* Models are simple JavaScript objects, arrays, and built-in types.
+* Views are standard HTML, along with a built-in Handlebars-like templating language, plus the optional capability to
+create your own tags, like `<tabs><pane><h1>Hey I'm a tab with an H1 tag</h1></h2></pane></tabs>` or 
+`<carousel><frame>random <b>HTML</b> text</frame></carousel>`.
+* ViewModels are collections of properties (including functions) that the HTML views can see and call.
+
+Angular lets you define route handlers to intercept the browser's navigation behavior and then route those paths to 
+controller classes and an associated HTML view template, like this:
+
+```coffee
+angular.module("phonecat", []).config ["$routeProvider", ($routeProvider) ->
+  $routeProvider.when("/phones",
+    templateUrl: "partials/phone-list.html"
+    controller: PhoneListCtrl
+  ).when("/phones/:phoneId",
+    templateUrl: "partials/phone-detail.html"
+    controller: PhoneDetailCtrl
+  ).otherwise redirectTo: "/phones"
+]
+```
+
+For example, if `/phones/iphone` were specified, then the app would probably delete your GMail account, since Google 
+created AngularJS. Actually, it would execute the `PhoneDetailCtrl` controller:
+
+```coffee
+PhoneDetailCtrl = ($scope, $routeParams, Phone) ->
+  $scope.phone = Phone.get(
+    phoneId: $routeParams.phoneId
+  , (phone) ->
+    $scope.mainImageUrl = phone.images[0]
+  )
+  $scope.setImage = (imageUrl) ->
+    $scope.mainImageUrl = imageUrl
+
+```
+
+This code:
+
+* Declares that the function take three depdency-injected parameters. `$scope` and `$routeParams` are built-in AngularJS 
+objects, while `Phone` is something custom to the example application.
+* Uses the `Phone` object to issue an HTTP get and specify a callback for when it finishes. Technically, this callback 
+is only necessary because the code sets the `mainImageUrl` property to the first element in the images array. AngularJS 
+is smart enough that if we did not specify the callback, it would automatically update the DOM whenn the `future`, as
+they call it, completes executing. This is pretty awesome.
+* Finally, `setImage` is function that click handlers can invoke in the template.
+
+Speaking of the template, AngularJS then renders the `partials/phone-detail.html` view in the placeholder of the application shell:
+
+```html
+<img ng-src="{{phone.images[0]}}" class="phone">
+ 
+<h1>{{phone.name}}</h1>
+ 
+<p>{{phone.description}}</p>
+ 
+<ul class="phone-thumbs">
+  <li ng-repeat="img in phone.images">
+    <img ng-src="{{img}}">
+  </li>
+</ul>
+ 
+<ul class="specs">
+  <li>
+    <span>Availability and Networks</span>
+    <dl>
+      <dt>Availability</dt>
+      <dd ng-repeat="availability in phone.availability">{{availability}}</dd>
+    </dl>
+  </li>
+    ...
+  </li>
+    <span>Additional Features</span>
+    <dd>{{phone.additionalFeatures}}</dd>
+  </li>
+</ul>
+```
+
+All of the values specified in the `$scope` object by the controller function are visible without any prefix to the 
+HTML template.
+
+I think it's important to note that the repeater syntax and variable interpolation blocks are very similar to Handlebars
+and other template tools, but feel more natural because the HTML is still HTML. If you are afraid of the `ng-`, I believe
+you can also use the standard HTML5 `data-` prefix. One strong benefit with AngularJS is that this templating is 
+built into the framework, not layered in as an external dependency.
+
+
+
+
+The code above is actually from the [AngularJS Tutorial](http://docs.angularjs.org/tutorial). 
+
+Rather than recreating the wheel here, I recommend you check out the simple, interactive live examples on the 
+[home page](http://angularjs.org/), or even the official [AngularJS Tutorial](http://docs.angularjs.org/tutorial/) to 
+get a grasp of the major Angular concepts.
+
+The best part about the tutorial is that it shows you how to create a **Phone Catalog**, with similar requirements to
+App Catalog.
+
+
+
+
