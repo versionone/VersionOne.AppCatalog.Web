@@ -423,6 +423,12 @@ Databases and documents can be managed fully inside of a web-based interface on 
 
 The reason for this is that the MongoLab API is not customizable, so we cannot do the custom validation and such that is necessary to ensure data integrity.
 
+## MongoLab edit document admin page
+
+Here's what the MongoLab site looks like when you want to manually edit a document:
+
+![MongoLab edit document](./mongoLabEdit.png)
+
 
 ## GET handler for `/entry` route
 
