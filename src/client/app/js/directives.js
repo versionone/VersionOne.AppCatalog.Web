@@ -71,6 +71,8 @@ angular.module('appCatalog.directives', []).
 			templateUrl: 'tpl/mediaContent.html',
 			replace: true,
 			controller: function($scope,$element) {
+				$scope.isHovered = false;
+
 				$scope.getType = function() {
 					if ($scope.src.mimetype)
 						return $scope.src.mimetype.split('/')[0];
