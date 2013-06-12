@@ -457,8 +457,8 @@ It relies upon several Azure features to make it easy and reliable:
 
 * Built-in support for Node.js
 * Tight integration with GitHub for continous deployment on push to branch
-* App Settings configuration in the management console with automatic copying to **environment variables** 
-visible to Node.js, and accessed through the **nconf** module
+* App Settings exported as environment variables Node can read with nConf
+* Dashboard, monitoring, logs, and FTP access
 
 ### Built-in support for Node.js
 
@@ -493,6 +493,8 @@ repositories. This process was very easy when creating the site in the managemen
 
 #### Select GitHub as source code provider
 
+![Select GitHub as source code provider](./azureCreateSite_03.png)
+
 As of June, 2013, Azure integrates with:
 
 * Team Foundation Service (cloud-hosted, or on-premise)
@@ -503,15 +505,13 @@ As of June, 2013, Azure integrates with:
 * CodePlex
 * External repository
 
-![Select GitHub as source code provider](./azureCreateSite_03.png)
 
 #### Select a GitHub repository and a branch to publish
 
-Note that you'll get to choose either a private repository from your account, or any of the repositories from any 
-organizations to which you belong.
-
 ![Select a GitHub repository and a branch to publish](./azureCreateSite_04.png)
 
+Note that you'll get to choose either a private repository from your account, or any of the repositories from any 
+organizations to which you belong.
 
 ### Using App Settings and nconf to securely store server secrets
 
@@ -552,20 +552,19 @@ from `configFile`, then **the environment variable will override it**.
 This has made keeping a single code-base a snap, because we use environment variables for our Jenkins tests, which point 
 to a development version of the database in MongoLab, and a JSON config file when running tests locally, which points to
 a local instance of MongoDB. And, when running in Azure, the settings get sourced from environment variables, which are
-automatically populated from the App Settings specified in the management site console shown below.
+automatically populated from the app settings set in the management site console shown below.
 
-#### App Settings in Azure console
-
-All App Settings values get populated into environment variables that Node.js can see.
+#### App settings in Azure console
 
 ![App Settings in Azure console](./azureAppSettings.png)
+
+All app settings values get populated into environment variables that Node.js can see.
 
 Dave Ward's [post on this subject](http://encosia.com/using-nconf-and-azure-to-avoid-leaking-secrets-on-github/) 
 was extremely helfpul.
 
+### Dashboard, monitoring, logs, and FTP access
 
+This shows the variety of information and options for monitoring and accessing resources related to the site:
 
-
-
-
-
+![Azure web site dashboard](./azureDashboard.png)
