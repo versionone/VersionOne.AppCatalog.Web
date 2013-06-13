@@ -960,7 +960,6 @@ painlessly. So, we pass the supplied `appId` from the route parameters collectio
 callback. I believe we also could have just done `$scope.app = App.get(...)` because of how Angular supports futures.
 
 
-
 ## Details partial template
 
 After the `DetailsCtrl` controller has executed, Angular injects the following HTML template into the shell's `ng-view` 
@@ -997,4 +996,139 @@ element and attached the `$scope` to it:
     </div>
 </div>
 ```
+
+Important observations:
+
+* Since we're using Twitter Bootstrap, we wrap the content with the appropriate `container-fluid`, `row-fluid`, and `span<n>` 
+styles. There's a great [Pluralsight course on Twitter Bootstrap](http://pluralsight.com/training/Courses/TableOfContents/bootstrap-introduction)
+where you can learn all about this.
+* Notice that there are various elements that are actually not in the HTML (not even HTML5) spec: `apptitle`, 
+`description`, `textlinks`, `media`, and `updates`. These are [Angular Directives](http://docs.angularjs.org/guide/directive).
+Directives let you create your own components that Angular parses and handles in a custom way. In our case, this allows
+us to focus on the frame of the layout, without embedding any of the finer-grain markup and behavior into the layout.
+
+## The updates directive and Markdown support
+
+The updates directive is defined like this:
+
+```javascript
+angular.module('appCatalog.directives', []).
+	directive('updates', function() {
+		return {
+			restrict: 'E',
+			transclude: false,
+			scope: { src: '=src' },
+			templateUrl: 'tpl/updates.html',
+			replace: true,
+			controller: function($scope,$element) {
+				var converter = new Markdown.getSanitizingConverter();
+				var collapsedLength = 3;
+				var isCollapsed = true;
+				var isCollapsible = false;
+
+				$scope.visibleUpdates = collapsedLength;
+
+				$scope.getToggleText = function() {
+					if (isCollapsed) {
+						return "Show All Updates";
+					} else {
+						return "Show Fewer Updates";
+					}
+				}
+
+				$scope.toggleUpdateList = function() {
+					if (isCollapsed) {
+						$scope.visibleUpdates = $scope.src.updates.length;
+					} else {
+						$scope.visibleUpdates = collapsedLength;
+					}
+					isCollapsed = !isCollapsed;
+				}
+
+				function convert(txt) {
+					if (txt) {
+						return converter.makeHtml(txt);
+					}
+					else
+					{
+						return '';
+					}
+				}
+
+
+				$scope.$watch('src', function(val) {
+					if (val && val.updates) {
+						for (var i = 0; i< val.updates.length; i++) {
+							var entry = val.updates[i];
+							entry.cvtDescription = convert(entry.description);
+							entry.cvtReleaseNotes = convert(entry.releaseNotes);
+						}
+						$scope.isCollapsible = (val.updates.length > collapsedLength);
+					}
+				});
+			}
+		};
+
+```
+
+Highlights:
+
+* We utilize the `Markdown` third-party library inside the directive's `controller`
+* The property `scope: { src: '=src' }` means: 
+  * Create a brand new, isolated `$scope` for the directive's template to bind to
+  * Populate this new scope with a property named `src`, which is bound to member of the parent scope
+  * specified bye the value in the `src` attribute of the instance declaration
+    in the HTML layout template above: `<updates class="section" src="app.updatesSection" />`
+  * Thus, the new scope's `src` property is bound to `app.updatesSection`
+* At the end, the `$scope.$watch('src', function(val) ...` call does this:
+  * Sets up an [Scope watch](http://docs.angularjs.org/api/ng.$rootScope.Scope) on an expression and executes
+    the passed function when the value of that expression changes. In this case, it means whenver the `src` 
+    property is modified.
+  * This function takes the raw `entry.description` and `entry.releaseNotes`, which are Markdown-formatted, and 
+    converts them to HTML. It then stuffs them into the `cvt`-prefixed properties, which triggers Angular's 
+    two-way data-binding to update the value in the HTML template shown next
+
+## Updates directive template
+
+As explained above in the last highlight, angular will automatically update the content in the template in response 
+to changes in the bound `$scope` object's properties. Note below that for rendering HTML as HTML, not as string, we
+must do it like this: `ng-bind-html-unsafe='update.cvtDescription'`. If we didn't do that, but instead did 
+`<p class='markdown'>{{update.cvtDescription}}</p>` inside the `<p>`, then the literal HTML from the Markdown converter
+would get converted to escaped HTML. Not what we want. Therefore, we use the unsafe directive instead.
+
+```html
+<div>
+	<h2>Updates</h2> 
+	<div class='update transitions' ng-repeat = "update in src.updates | orderBy:'date':true | limitTo:visibleUpdates" > 
+		<hr/> 
+        <div class = 'header'> 
+            <div class = 'left version'>{{update.version}}</div> 
+			<div class = 'right'>{{update.date | date:'longDate'}}</div> 
+		</div>
+        <v1collapse collapsedheight=75>
+            <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p> 
+            <p class = 'release-notes markdown' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
+        </v1collapse>
+        <div>
+             <div class = 'quality-band' ng-show = 'update.qualityBand'>
+            	<span>Quality Band:</span>
+            	<a popover="{{src.qualityBands[update.qualityBand].shortDescription}}" popover-title="Quality Band: {{update.qualityBand}}">
+                	{{update.qualityBand}}
+                </a> 
+            </div>
+            <div class='left' ng-show = 'update.downloadUrl'>
+            	<a href='{{update.downloadUrl}}' class='btn download'>
+            		<img src="img/download.png" /> <span>Download</span></a> 
+			</div>
+			<div class='right' ng-show = 'update.moreInfoUrl'>
+            	<a href='{{update.moreInfoUrl}}' class='btn releasenotes'>
+            		<img src="img/documentation.png" /> <span>More Information</span></a>
+            </div>
+        </div> 
+	</div>
+    <div class = 'collapse-toggle' ng-show='isCollapsible' ng-click='toggleUpdateList()'><span class='toggler'>{{getToggleText()}}</span></div>
+</div>
+```
+
+
 
