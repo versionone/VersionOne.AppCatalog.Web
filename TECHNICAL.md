@@ -159,6 +159,54 @@ qualityBands:
 		      maxLength: HREF_MAX_LENGTH
 ```
 
+## Schema tests
+
+To verify that the schema and the associated custom validation code works, we have a test suite that verifies each
+restriction. This is important for a number of reasons. First of all, Node.js is a dynamic language that has nothing
+in terms of compile-time type-safety, and even at runtime its dynamic nature is very free-form. Second, because we 
+want to have the freedom to modify the internal implementation of the validation, without the fear that doing so 
+would break the system. By having comprehensive unit tests for our implementation we have this confidence.
+
+Here are a couple of examples that aim to be self-explanatory:
+
+```coffee
+  test 'fails on invalid types for titleSection', ->
+    entry = fullyValidEntry()
+    entry.titleSection = {
+      name: 0,
+      shortDescription: 0,
+      pricing: 0,
+      support: 0
+    }
+    entry
+  , expectTypesInvalid,
+    '#/titleSection/name': 'string'
+    '#/titleSection/shortDescription': 'string'
+    '#/titleSection/pricing': 'string'
+    '#/titleSection/support': 'object'
+
+  test 'fails when a titleSection properties exceed maxLength', ->
+    entry = fullyValidEntry()
+    entry.titleSection = {
+      name: exceed(100),
+      shortDescription: exceed(SHORT_DESCRIPTION_MAX_LENGTH),
+      pricing: exceed(50),
+      support: {
+        text: exceed(100),
+        href: exceed(1000)
+      }
+    }
+    entry
+  , expectMaxLengthsExceeded,
+    '#/titleSection/name': 100
+    '#/titleSection/shortDescription': SHORT_DESCRIPTION_MAX_LENGTH
+    '#/titleSection/pricing': 50
+    '#/titleSection/support/text': 100
+    '#/titleSection/support/href': 1000
+```
+
+We'll examine the tests for the custom URL and qualityBand validation later after we look at the web service.
+
 ## Node.js Express-based web service
 
 The Node.js web service is based on Express, and uses a couple of useful features to simultaneously serve the static HTML and handle the
@@ -486,6 +534,68 @@ AppCatalogEntry.validate = (data, callback) ->
 * So, once we have all the properties that must be valid URIs, we validate them with the `uri-js` module instance, and we're good.
 * Unless, of course, those crazy catalog entry authors have put **qualityBand** entries that don't actually exist into an **update**. The line `jp(data, '$..updates..qualityBand')` fetches all qualityBand properties underneath the updates section.
 * Finally, we use Underscore's handy `difference` function to determine whether a rogue qualityBand exists in any of the updates.
+
+## Testing the custom URL and qualityBand validation
+
+Here are some snippets from the unit tests for URLs and qualityBand info:
+
+```coffee
+describe 'AppCatalogEntry: updatesSection/qualityBands', ->  
+  test 'fails when qualityBands has fewer than 1 property', ->
+    entry = fullyValidEntry()
+    entry.updatesSection.qualityBands = {}
+    entry
+  , expectMinPropertiesNotMet,
+    '#/updatesSection/qualityBands' : 1
+
+  test 'fails when a qualityBand is missing required properties', ->
+    entry = fullyValidEntry()
+    entry.updatesSection.qualityBands.sapling = {}
+    entry
+  , expectPropertiesMissing, 
+    '#/updatesSection/qualityBands/sapling': [
+      'shortDescription'
+    ]
+
+  test 'fails when a qualityBand has invalid types', ->
+    entry = fullyValidEntry()
+    entry.updatesSection.qualityBands.sapling =
+      shortDescription: 0
+      href: 0
+    entry
+  , expectTypesInvalid,
+    '#/updatesSection/qualityBands/sapling/shortDescription': 'string'
+    '#/updatesSection/qualityBands/sapling/href': 'string'
+
+  test 'fails when a qualityBand properties exceed maxLength', ->
+    entry = fullyValidEntry()
+    entry.updatesSection.qualityBands.sapling =
+      shortDescription: ex(SHORT_DESCRIPTION_MAX_LENGTH)
+      href: ex(HREF_MAX_LENGTH)
+    entry
+  , expectMaxLengthsExceeded,
+    '#/updatesSection/qualityBands/sapling/shortDescription': SHORT_DESCRIPTION_MAX_LENGTH
+    '#/updatesSection/qualityBands/sapling/href': HREF_MAX_LENGTH
+
+  test 'fails on invalid href in a qualityBand', ->
+    entry = fullyValidEntry()
+    entry.updatesSection.qualityBands.sapling.href = 'not a url'
+    entry
+  , expectErrorsEqual,
+    '0':
+      href: 'not a url'
+      errors: [
+        'Invalid URL'
+      ]
+
+  test 'fails when an update refers to a non-existent qualityBand', ->
+    entry = fullyValidEntry()
+    entry.updatesSection.updates[0].qualityBand = 'perfect'    
+    entry
+  , expectErrorsEqual,
+    '0': 'The qualityBand perfect does not exist in the updates/qualityBands section. Available bands are: sapling, mature'
+
+```
 
 ## Mongoose / MongoDB upserts
 
