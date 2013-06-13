@@ -961,3 +961,40 @@ callback. I believe we also could have just done `$scope.app = App.get(...)` bec
 
 
 
+## Details partial template
+
+After the `DetailsCtrl` controller has executed, Angular injects the following HTML template into the shell's `ng-view` 
+element and attached the `$scope` to it:
+
+
+```html
+<div class="container-fluid">
+    <div class="row-fluid" id="navigation">
+        <div class="span12">
+            <a class="return-link btn" href="http://www.versionone.com/platform/"><img src='img/left.png' /><span>Return to Catalog</span></a>
+        </div>
+    </div>
+    <div class="row-fluid" id="content">
+    	<div class="span8">
+    		<div class="row-fluid">
+				<apptitle class="section" src="app.titleSection" />
+			</div>
+			<div class="row-fluid">
+				<description class="section" src="app.descriptionSection" />
+			</div>		
+			<div class="row-fluid" ng-show="app.linksSection">
+				<textlinks class="section" src="app.linksSection" />
+			</div>
+    	</div>
+    	<div class="span4">
+    		<div class="row-fluid" ng-show="app.mediaSection">
+    			<media class="section" src="app.mediaSection" />
+    		</div>
+    		<div class="row-fluid" ng-show="app.updatesSection">
+    			<updates class="section" src="app.updatesSection" />
+    		</div>
+    	</div>
+    </div>
+</div>
+```
+
