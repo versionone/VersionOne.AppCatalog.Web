@@ -2,11 +2,12 @@
 
 App Catalog is 100% JavaScript / CoffeeScript. In this document, I'll highlight details of the full 
 technical implementation, deployment, and build process. We'll start at the command line to learn how to
-add a catalog entry to the App Catalog with cURL. We'll then zoom all the way into the server-side details, then
-resurface at the web UI, and dig into how the front-end is built with AngularJS and Twitter Bootstrap. Along the 
-way we'll see how the unit, integration, and end-to-end tests work, and how the site is hosted in Windows Azure and 
-MongoLab. Finally, we'll see how the Jenkins build process works, including JS code-coverage and continuous 
-deployment to Azure via GitHub integration.
+add an or update entry in the App Catalog with cURL. We'll then zoom all the way into the server-side details, then
+resurface at the web UI, and dig into how the front-end is built with AngularJS and Twitter Bootstrap. 
+
+Along the way we'll see how the unit, integration, and end-to-end tests work, and how the site is hosted in 
+Windows Azure and MongoLab. Finally, we'll see how the Jenkins build process works, including JS code-coverage 
+and continuous deployment to Azure via GitHub integration.
 
 # Table of Contents
 
