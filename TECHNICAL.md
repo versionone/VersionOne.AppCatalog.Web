@@ -1354,6 +1354,83 @@ would get converted to escaped HTML. Not what we want. Therefore, we use the uns
 The other directives and templates are quite similar to this, but this is the most involved is the media one because
 it uses video.js. We will cover that in the next iteration of documentation, however.
 
+## Tests with Karma
+
+The angular-seed project comes bundled with the Karma test runner, which uses Jasmine.
+
+Here's a screen shot of what the result of running the tests with Firefox, Chrome, and PhantomJS looks like:
+
+![Karma test results](./docs/images/technical/karma.png)
+
+As far as the tests themselves, here's an example of the directives tests:
+
+```coffee
+describe "directives", ->
+  beforeEach module("appCatalog.directives")
+  beforeEach module("tpl/updates.html")
+  beforeEach module("tpl/media.html")
+  beforeEach module("tpl/mediaContent.html")
+  describe "apptitle", ->
+    elm = undefined
+    scope = undefined
+    beforeEach inject(($rootScope, $compile) ->
+      scope = $rootScope.$new()
+      elm = angular.element("<apptitle src='testapp.titleSection'>")
+      $compile(elm) scope
+      scope.testapp = sample_data
+      scope.$digest()
+    )
+    it "should bind its content", ->
+      titles = elm.find("h1.title")
+      summary = elm.find("div.summary")
+      expect(titles.eq(0).text()).toBe sample_data.titleSection.name
+      expect(summary.eq(0).text()).toBe sample_data.titleSection.shortDescription
+
+
+  describe "description", ->
+    elm = undefined
+    scope = undefined
+    beforeEach inject(($rootScope, $compile) ->
+      scope = $rootScope.$new()
+      elm = angular.element("<description src='testapp.descriptionSection'>")
+      $compile(elm) scope
+      scope.testapp = sample_data
+      scope.$digest()
+    )
+    it "should bind its content", ->
+      desc = elm.find(".ng-binding")
+      expect(desc.eq(0).text().length).toBeGreaterThan 100
+
+    it "should render Markdown as html", ->
+      expect(elm.html()).toContain "<strong>"
+
+    it "should exclude forbidden tags from its content", ->
+      expect(elm.html()).not.toContain "<script>"
+
+
+  describe "textlinks", ->
+    elm = undefined
+    scope = undefined
+    beforeEach inject(($rootScope, $compile) ->
+      scope = $rootScope.$new()
+      elm = angular.element("<textlinks src='testapp.linksSection'>")
+      $compile(elm) scope
+      scope.testapp = sample_data
+      scope.$digest()
+    )
+    it "should have the right number of entries", ->
+      items = elm.find("li")
+      expect(items.length).toBe sample_data.linksSection.length
+
+    it "should allow multiple entries of the same type", ->
+      images = elm.find("img")
+      expect(images.eq(0).attr("ng-src")).toBe images.eq(1).attr("ng-src")
+
+    it "should use the default icon for unknown types", ->
+      images = elm.find("img")
+      expect(images.eq(5).attr("ng-src")).toBe "img/hypelink.png"
+```
+
 # Jenkins job with code coverage
 
 The code deployment flow for App Catalog looks like this:
