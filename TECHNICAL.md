@@ -224,10 +224,11 @@ qualityBands:
 ## Schema tests
 
 To verify that the schema and the associated custom validation code works, we have a test suite that verifies each
-restriction. This is important for a number of reasons. First of all, Node.js is a dynamic language that has nothing
-in terms of compile-time type-safety, and even at runtime its dynamic nature is very free-form. Second, because we 
-want to have the freedom to modify the internal implementation of the validation, without the fear that doing so 
-would break the system. By having comprehensive unit tests for our implementation we have this confidence.
+restriction. This is important for a number of reasons. First of all, JavaScript is a dynamic language that has 
+nothing in terms of compile-time type-safety, and even at runtime its dynamic nature is very free-form. Second, 
+because we want to have the freedom to modify the internal implementation of the validation, 
+without the fear that doing so would break the system. By having comprehensive unit tests for our implementation 
+we have this confidence.
 
 Here are a couple of examples that aim to be self-explanatory:
 
