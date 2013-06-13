@@ -677,25 +677,26 @@ built into the framework, not layered in as an external dependency.
 Here's an excerpt from [step 11 in the Angular tutorial](http://docs.angularjs.org/tutorial/step_11) that explains 
 the future object concept:
 
-### Notice how in PhoneListCtrl we replaced:
 
-```javascript
-$http.get('phones/phones.json').success(function(data) {
-  $scope.phones = data;
-});
-```
+> Notice how in PhoneListCtrl we replaced:
 
-with:
-
-```javascript
-$scope.phones = Phone.query();
-```
-
-This is a simple statement that we want to query for all phones.
-
-An important thing to notice in the code above is that we don't pass any callback functions when invoking methods of our Phone service. Although it looks as if the result were returned synchronously, that is not the case at all. What is returned synchronously is a "future" — an object, which will be filled with data when the XHR response returns. Because of the data-binding in Angular, we can use this future and bind it to our template. Then, when the data arrives, the view will automatically update.
-
-Sometimes, relying on the future object and data-binding alone is not sufficient to do everything we require, so in these cases, we can add a callback to process the server response. The PhoneDetailCtrl controller illustrates this by setting the mainImageUrl in a callback.
+> ```javascript
+> $http.get('phones/phones.json').success(function(data) {
+>  $scope.phones = data;
+> });
+> ```
+>
+> with:
+>
+> ```javascript
+> $scope.phones = Phone.query();
+> ```
+>
+> This is a simple statement that we want to query for all phones.
+>
+> An important thing to notice in the code above is that we don't pass any callback functions when invoking methods of our Phone service. Although it looks as if the result were returned synchronously, that is not the case at all. What is returned synchronously is a "future" — an object, which will be filled with data when the XHR response returns. Because of the data-binding in Angular, we can use this future and bind it to our template. Then, when the data arrives, the view will automatically update.
+>
+> Sometimes, relying on the future object and data-binding alone is not sufficient to do everything we require, so in these cases, we can add a callback to process the server response. The PhoneDetailCtrl controller illustrates this by setting the mainImageUrl in a callback.
 
 
 ## A heavier introduction to AngularJS
