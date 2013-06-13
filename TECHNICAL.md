@@ -557,30 +557,6 @@ This shows the variety of information and options for monitoring and accessing r
 We've covered the web service implementation and the technical details of MongoLab and Azure. Now, let's get into the 
 best part: AngularJS on the front-end.
 
-## GET handler for `/entry` route
-
-First, let's remember the service code for the `GET` handler in the catalog service, because this is the handler 
-that all the browser-facing scenarios use. Here it is:
-
-```coffee
-  app.get config.entryRoute, (req, res) ->
-    if not req.query.id?
-      service.findAll (err, result) ->
-        renderQueryResult res, err, result
-    else
-      service.findById req.query.id, (err, result) ->
-        rv = JSON.stringify result
-        rv = JSON.parse rv
-        delete rv._id
-        delete rv.docVersion
-        renderQueryResult res, err, rv
-```
-
-This is really simple, and just delegates to the sevice class we've already looked at, which itself uses Mongoose's
-built-in query API. Note that we do some JSON-wrangling after the `findById` call. That is to remove the
-automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a 
-self-inflicted conflict that can be removed in the next iteration.
-
 ## AngularJS mini tutorial
 
 AngularJS is a big subject, and we are definitely not fully utilizing it yet in the first iteration of the App Catalog.
@@ -711,6 +687,90 @@ With that out of the way, however, let's look specifically at App Catalog's Angu
 
 # How App Catalog is built on AngularJS
 
+First, let's remember the service code for the `GET` handler in the catalog service, because this is the handler 
+that all the browser-facing scenarios use. Here it is:
+
+## GET handler for `/entry` route
+
+```coffee
+  app.get config.entryRoute, (req, res) ->
+    if not req.query.id?
+      service.findAll (err, result) ->
+        renderQueryResult res, err, result
+    else
+      service.findById req.query.id, (err, result) ->
+        rv = JSON.stringify result
+        rv = JSON.parse rv
+        delete rv._id
+        delete rv.docVersion
+        renderQueryResult res, err, rv
+```
+
+This is really simple, and just delegates to the sevice class we've already looked at, which itself uses Mongoose's
+built-in query API. Note that we do some JSON-wrangling after the `findById` call. That is to remove the
+automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a 
+self-inflicted conflict that can be removed in the next iteration.
+
+## App shell from the Angular team's [angular-seed project](https://github.com/angular/angular-seed) on GitHub. 
+
+While the project structure in angular-seed provides a skeleton that is suitable to a front-end as this current 
+iteration of App Catalog, for a more modular design, I'd recommend you look at these:
+
+* [Code Organizaiton Large AngularJS and JavaScript Applications](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
+* [Non-trivial AngularJS App](https://github.com/angular-app/angular-app)
+
+What's more interesting about the latter link is what it actually is:
+
+> The idea is to demonstrate how to write a typical, non-trivial CRUD application using AngularJS. To showcase AngularJS in its most advantageous environment we've set out to write a simplified project management tool supporting teams using the SCRUM methodology. The sample application tries to show best practices when it comes to: folders structure, using modules, testing, communicating with a REST back-end, organizing navigation, addressing security concerns (authentication / authorization).
+
+Furthermore, the technical stack is:
+
+* Persistence store: MongoDB hosted on MongoLab
+* Backend: Node.js
+* Awesome AngularJS on the client
+* CSS based on Twitter's bootstrap
 
 
+Here's the shell for the single page app:
 
+```html
+<!doctype html>
+<html lang="en" ng-app="appCatalog">
+<head>
+  <meta charset="utf-8">
+  <title>VersionOne App Catalog</title>
+  <link rel="stylesheet" href="css/v1-custom-bootstrap.css" />
+  <link rel='stylesheet' href='css/video-js.css' />
+  <link rel='stylesheet' href='css/appcatalog.css' />
+   <style>
+        /* to show span element display we give each a background color. */
+        .section { background-color: #eee; border-radius: 6px; padding: 1em; margin: 0.4em 0; }
+    </style>
+</head>
+<body>
+  <div ng-view></div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-resource.js"></script>
+  <script src="lib/angular/ui-bootstrap-tpls-0.2.0.js"></script>
+  <script src="lib/angular/collapse.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="lib/video.js"></script>  
+  <script src="lib/Markdown.Converter.js"></script>  
+  <script src="lib/Markdown.Sanitizer.js"></script>    
+
+</body>
+</html>
+```
+
+Notice the following:
+
+* The application module name is set in `ng-app='appCatalog'`. This will correspond to where we add controllers and 
+services to modules in the several `.js` files included at the bottom of the shell.
