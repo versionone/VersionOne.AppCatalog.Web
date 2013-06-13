@@ -1351,5 +1351,174 @@ would get converted to escaped HTML. Not what we want. Therefore, we use the uns
 </div>
 ```
 
+The other directives and templates are quite similar to this, but this is the most involved is the media one because
+it uses video.js. We will cover that in the next iteration of documentation, however.
 
+# Jenkins job with code coverage
 
+The code deployment flow for App Catalog looks like this:
+
+![App Catalog Code Deployment Pipeline](http://www.websequencediagrams.com/cgi-bin/cdraw?lz=CnRpdGxlIEFwcCBDYXRhbG9nIENvZGUgRGVwbG95bWVudCBQaXBlbGluZQoKRGV2ZWxvcGVyLT4ABAdpbmcgQnJhbmNoOiBQdXNoADgFACAIABMKLT4rSmVua2luczogQnVpbGQKAAgHLT4tABAJVGVzdABEIE1lcmdlIHRvIFN0YWdpbmcAVxQAFAcAJg4KAAgOLT5BenVyZQA_CDoAgWkHAIFWDQAzFSB0byBQcm9kdWN0aW9uAEURTWFzdGVyAGwPAAgNAHIIADsKAHMKCQkJ&s=qsd)
+
+This is not as automated as we would like, ultimately, but it gets us where we need to be for now. And, all of this
+is greatly simplified by Azure's GitHub integration. First, let's look at the build and test step in Jenkins.
+
+```bash
+echo $WORKSPACE
+cd $WORKSPACE
+cd src/server
+pwd
+export server_auth_user=catUser
+export server_auth_password=CatsAreUs
+export mongoDb_uri=mongodb://appcatalog:passwordGoesHere#@ds055997.mongolab.com:31477/appcatalog
+npm install
+./build.sh
+./test.sh
+./testCoverage2.sh
+./testCoverage.sh
+
+```
+
+There are some non-ideal things here, like running the tests three times. But, I have not found a way to get the three
+reports from one test run using mocha.
+
+## Test Anything Protocol report
+
+The first test run uses the Test Anything Protocol plugin for mocha, and produces this result, which we archive in 
+Jenkins:
+
+```text
+1..41
+ok 1 AppCatalogEntry: overall fails for an empty entry
+ok 2 AppCatalogEntry: overall fails when id exceeds maxLength
+ok 3 AppCatalogEntry: titleSection fails on titleSection empty
+ok 4 AppCatalogEntry: titleSection succeeds on valid titleSection
+ok 5 AppCatalogEntry: titleSection fails on invalid types for titleSection
+ok 6 AppCatalogEntry: titleSection fails when a titleSection properties exceed maxLength
+ok 7 AppCatalogEntry: titleSection fails on invalid types for titleSection/support
+ok 8 AppCatalogEntry: titleSection fails on invalid URI in titleSection/support/href
+ok 9 AppCatalogEntry: descriptionSection fails when descriptionSection missing
+ok 10 AppCatalogEntry: descriptionSection fails on empty descriptionSection
+ok 11 AppCatalogEntry: descriptionSection fails on invalid types for descriptionSection
+ok 12 AppCatalogEntry: descriptionSection fails when description exceeds maxLength
+ok 13 AppCatalogEntry: linksSection fails when linksSection missing
+ok 14 AppCatalogEntry: linksSection fails when linkSection link missing required properties
+ok 15 AppCatalogEntry: linksSection fails on invalid types for linksSection
+ok 16 AppCatalogEntry: linksSection fails on invalid href in linksSection
+ok 17 AppCatalogEntry: linksSection fails when linksSection properties exceed maxLength
+ok 18 AppCatalogEntry: updatesSection/updates fails when updatesSection missing
+ok 19 AppCatalogEntry: updatesSection/updates fails when updatesSection empty
+ok 20 AppCatalogEntry: updatesSection/updates fails when updatesSection/updates properties exceed maxLength
+ok 21 AppCatalogEntry: updatesSection/updates fails on invalid types for updatesSection/updates
+ok 22 AppCatalogEntry: updatesSection/updates fails when updatesSection/updates is missing required properties
+ok 23 AppCatalogEntry: updatesSection/updates fails on invalid moreInfoUrl in updatesSection/updates
+ok 24 AppCatalogEntry: updatesSection/updates fails on invalid downloadUrl in updatesSection/updates
+ok 25 AppCatalogEntry: updatesSection/qualityBands fails when qualityBands has fewer than 1 property
+ok 26 AppCatalogEntry: updatesSection/qualityBands fails when a qualityBand is missing required properties
+ok 27 AppCatalogEntry: updatesSection/qualityBands fails when a qualityBand has invalid types
+ok 28 AppCatalogEntry: updatesSection/qualityBands fails when a qualityBand properties exceed maxLength
+ok 29 AppCatalogEntry: updatesSection/qualityBands fails on invalid href in a qualityBand
+ok 30 AppCatalogEntry: updatesSection/qualityBands fails when an update refers to a non-existent qualityBand
+ok 31 AppCatalogEntry: mediaSection fails when a mediaSection item is missing required properties
+ok 32 AppCatalogEntry: mediaSection fails on invalid types for mediaSection
+ok 33 AppCatalogEntry: mediaSection fails on invalid href or thumbhref in mediaSection
+ok 34 AppCatalogEntry: mediaSection fails when mediaSection properties exceed maxLength
+ok 35 PUT /entry fails without basic authentication responds with JSON failure message
+ok 36 PUT /entry for Happy Path With Required Data responds with JSON success message
+ok 37 PUT /entry for each examples succeeds responds with JSON success message
+ok 38 PUT /entry for Failure Path With Invalid JSON responds with JSON failure message
+ok 39 service findAll call find
+ok 40 service findById call findOne
+ok 41 service put call validate and update
+# tests 41
+# pass 41
+# fail 0
+```
+
+## JSCoverage for line-by-line coverage
+
+The `testCoverage.sh` script:
+
+```
+#!/usr/bin/sh
+rm -rf ../app_cov
+export app_cov=1
+../../lib/jscoverage --no-highlight ../app ../app_cov
+mkdir testResults
+mocha -R html-cov *.tests*js >testResults/coverage.html
+```
+
+This uses the binary `jscoverage` to first produce a covered version of all the files in `../app` and store 
+them in `../app_cov`. THen, it uses mocha to run the tests and produce the report.
+
+### Covered code example
+
+After JSCoverage runs, `app_cov/service.js` looks like this:
+
+```javascript
+if (typeof _$jscoverage !== 'object') {
+  _$jscoverage = {};
+}
+if (! _$jscoverage['service.js']) {
+  _$jscoverage['service.js'] = [];
+  _$jscoverage['service.js'][2] = 0;
+  _$jscoverage['service.js'][3] = 0;
+  _$jscoverage['service.js'][5] = 0;
+  _$jscoverage['service.js'][7] = 0;
+  _$jscoverage['service.js'][8] = 0;
+  _$jscoverage['service.js'][9] = 0;
+  _$jscoverage['service.js'][10] = 0;
+  _$jscoverage['service.js'][11] = 0;
+  _$jscoverage['service.js'][15] = 0;
+  _$jscoverage['service.js'][16] = 0;
+  _$jscoverage['service.js'][17] = 0;
+  _$jscoverage['service.js'][21] = 0;
+  _$jscoverage['service.js'][22] = 0;
+  _$jscoverage['service.js'][27] = 0;
+  _$jscoverage['service.js'][28] = 0;
+  _$jscoverage['service.js'][31] = 0;
+  _$jscoverage['service.js'][32] = 0;
+  _$jscoverage['service.js'][33] = 0;
+  _$jscoverage['service.js'][35] = 0;
+  _$jscoverage['service.js'][36] = 0;
+  _$jscoverage['service.js'][38] = 0;
+  _$jscoverage['service.js'][39] = 0;
+  _$jscoverage['service.js'][49] = 0;
+  _$jscoverage['service.js'][54] = 0;
+  _$jscoverage['service.js'][55] = 0;
+  _$jscoverage['service.js'][59] = 0;
+  _$jscoverage['service.js'][63] = 0;
+}
+_$jscoverage['service.js'].source = ["// Generated by CoffeeScript 1.6.2","(function() {","  var AppCatalogEntry, AppCatalogService;","","  AppCatalogEntry = require('./appCatalogEntry');","","  AppCatalogService = (function() {","    function AppCatalogService(appCatalogEntry) {","      this.appCatalogEntry = appCatalogEntry != null ? appCatalogEntry : null;","      if (this.appCatalogEntry == null) {","        this.appCatalogEntry = AppCatalogEntry;","      }","    }","","    AppCatalogService.prototype.findAll = function(callback) {","      return this.appCatalogEntry.find({}, '', function(err, result) {","        return callback(err, result);","      });","    };","","    AppCatalogService.prototype.findById = function(id, callback) {","      return this.appCatalogEntry.findOne({","        'id': id","      }, '', callback);","    };","","    AppCatalogService.prototype.put = function(body, callback) {","      var ex,","        _this = this;","","      try {","        return this.appCatalogEntry.validate(body, function(errs) {","          var entry;","","          if (errs != null) {","            return callback(errs);","          } else {","            entry = new _this.appCatalogEntry(body);","            return _this.appCatalogEntry.update({","              'id': body.id","            }, {","              $set: body,","              $inc: {","                docVersion: 1","              }","            }, {","              upsert: true","            }, function(err, data) {","              return callback(err);","            });","          }","        });","      } catch (_error) {","        ex = _error;","        return callback(ex);","      }","    };","","    return AppCatalogService;","","  })();","","  module.exports = AppCatalogService;","","}).call(this);"];
+_$jscoverage['service.js'][2]++;
+(function () {
+  _$jscoverage['service.js'][3]++;
+  var AppCatalogEntry, AppCatalogService;
+  _$jscoverage['service.js'][5]++;
+  AppCatalogEntry = require("./appCatalogEntry");
+  _$jscoverage['service.js'][7]++;
+  AppCatalogService = (function () {
+  _$jscoverage['service.js'][8]++;
+  function AppCatalogService(appCatalogEntry) {
+    _$jscoverage['service.js'][9]++;
+    this.appCatalogEntry = ((appCatalogEntry != null)? appCatalogEntry: null);
+    _$jscoverage['service.js'][10]++;
+    if ((this.appCatalogEntry == null)) {
+      _$jscoverage['service.js'][11]++;
+      this.appCatalogEntry = AppCatalogEntry;
+    }
+}
+  _$jscoverage['service.js'][15]++;
+  AppCatalogService.prototype.findAll = (function (callback) {
+  _$jscoverage['service.js'][16]++;
+  return this.appCatalogEntry.find({}, "", (function (err, result) {
+  _$jscoverage['service.js'][17]++;
+  return callback(err, result);
+}));
+});
+```
+
+So, JSCoverage basically counts how many times each line of code gets called. And, then it produces a report like 
+this:
+
+![JSCoverage report](./doc/images/technical/jscoverage.png)
