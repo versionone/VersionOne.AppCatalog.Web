@@ -11,10 +11,18 @@ and continuous deployment to Azure via GitHub integration.
 
 # Table of Contents
 
+## Command line scenario
+
 * How to Publish an Entry
 * Deep dive on Publish an Entry
+
+## Catalog entry schema
+
 * JSON Schema exceprt
   * Schema tests
+
+## Web service
+
 * Node.js Express-based web service
   * Configuration
   * Security
@@ -25,12 +33,18 @@ and continuous deployment to Azure via GitHub integration.
 * The fun stuff: helper libraries to ease validation
   * Testing custom URL and qualityBand validation
   * Mongoose / MongoDB upserts
+
+## Data storage
+
 * Enter MongoLab
   * MongoLab edit document admin page
 * Configuration and service hosting in Windows Azure
   * Built-in support for Node.js
   * Tight integration with GitHub for continuous deployment on push to branch
   * Dashboard, monitoring, logs, and FTP access
+  
+## Front-end 
+
 * Let's GET into the AngularJS world
  * AngularJS mini tutorial 
  * The simplest app that could possibly work works better than you'd think
