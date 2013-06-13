@@ -842,9 +842,42 @@ create your own tags, like `<tabs><pane><h1>Hey I'm a tab with an H1 tag</h1></h
 `<carousel><frame>random <b>HTML</b> text</frame></carousel>`.
 * ViewModels are collections of properties (including functions) that the HTML views can see and call.
 
+## The simplest app that could possibly work works better than you'd think
+
+This is from the main AngularJS web site:
+
+```html
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <h1>Hello {{yourName}}!</h1>
+    </div>
+  </body>
+</html>
+```
+
+What's happening here that's impressive?
+
+* First of all, there is no "script-behind". The `input` tag has the custom `ng-model="yourName"` and the `h1` tag
+has the Handlebarsy `{{yourName}}` expression. 
+* As soon as you start typing into the form, the two-way data-binding in Angular will cause the `h1` to update.
+* No jQuery, no Handlebars, no event-handlers. It just works.
+
+If you're the least bit interested, I encourage you to watch the 12-minute tutorial on YouTube that goes through their 
+entire front-page sample: [AngularJS Hello World](http://www.youtube.com/watch?feature=player_embedded&v=uFTFsKmkQnQ)
+
+
 ## AngularJS HTML app template 
 
-Here's a super simple shell for an app built with AngularJS:
+Aside from the hello world sample on the home page, there is a more in-depth tutorial, which begins with this 
+super simple shell for a single-page application:
 
 ```html
 <html lang="en" ng-app="phonecat">
