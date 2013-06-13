@@ -1,7 +1,54 @@
 # Technical Details
 
-App Catalog is comprised of several major parts:
+App Catalog is 100% JavaScript / CoffeeScript. In this document, I'll highlight details of the full 
+technical implementation, deployment, and build process. We'll start at the command line to learn how to
+add a catalog entry to the App Catalog with cURL. We'll then zoom all the way into the server-side details, then
+resurface at the web UI, and dig into how the front-end is built with AngularJS and Twitter Bootstrap. Along the 
+way we'll see how the unit, integration, and end-to-end tests work, and how the site is hosted in Windows Azure and 
+MongoLab. Finally, we'll see how the Jenkins build process works, including JS code-coverage and continuous 
+deployment to Azure via GitHub integration.
 
+# Table of Contents
+
+* How to Publish an Entry
+* Deep dive on Publish an Entry
+* JSON Schema exceprt
+  * Schema tests
+* Node.js Express-based web service
+  * Configuration
+  * Security
+  * Route handlers
+  * Web service tests
+* Application service with Mongoose, MongoLab, MongoDB
+  * Application service tests with SinonJS and code coverage
+* The fun stuff: helper libraries to ease validation
+  * Testing custom URL and qualityBand validation
+  * Mongoose / MongoDB upserts
+* Enter MongoLab
+  * MongoLab edit document admin page
+* Configuration and service hosting in Windows Azure
+  * Built-in support for Node.js
+  * Tight integration with GitHub for continuous deployment on push to branch
+  * Dashboard, monitoring, logs, and FTP access
+* Let's GET into the AngularJS world
+ * AngularJS mini tutorial 
+ * The simplest app that could possibly work works better than you'd think
+ * AngularJS HTML app template
+ * Angular basics
+ * More about futures
+ * A heavier introduction to AngularJS
+* How App Catalog is built on AngularJS
+ * GET handler for /entry web service route
+ * App shell from the Angular team's angular-seed project on GitHub
+ * Aside: better modularity with AngularJS apps
+ * Application routes
+ * DetailsCtrl controller
+ * App service
+ * Details partial template
+ * The updates directive and Markdown support
+ * Updates directive template
+
+NOTES TO SELF:
 * Gherkin Feature files describing the original intentions for the system scenarios (not used for automation)
 * UI built with AngularJS
 * Karma and Jasmin provide client-side testing
