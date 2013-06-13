@@ -630,7 +630,7 @@ objects, while `Phone` is something custom to the example application.
 * Uses the `Phone` object to issue an HTTP get and specify a callback for when it finishes. Technically, this callback 
 is only necessary because the code sets the `mainImageUrl` property to the first element in the images array. AngularJS 
 is smart enough that if we did not specify the callback, it would automatically update the DOM whenn the `future`, as
-they call it, completes executing. This is pretty awesome.
+they call it, completes executing. This is pretty awesome. **See `More about futures` below for a snippet from the tutorial that explains this.**
 * Finally, `setImage` is function that click handlers can invoke in the template.
 
 Speaking of the template, AngularJS then renders the `partials/phone-detail.html` view in the placeholder of the application shell:
@@ -671,6 +671,32 @@ I think it's important to note that the repeater syntax and variable interpolati
 and other template tools, but feel more natural because the HTML is still HTML. If you are afraid of the `ng-`, I believe
 you can also use the standard HTML5 `data-` prefix. One strong benefit with AngularJS is that this templating is 
 built into the framework, not layered in as an external dependency.
+
+## More about futures
+
+Here's an excerpt from [step 11 in the Angular tutorial](http://docs.angularjs.org/tutorial/step_11) that explains 
+the future object concept:
+
+### Notice how in PhoneListCtrl we replaced:
+
+```javascript
+$http.get('phones/phones.json').success(function(data) {
+  $scope.phones = data;
+});
+```
+
+with:
+
+```javascript
+$scope.phones = Phone.query();
+```
+
+This is a simple statement that we want to query for all phones.
+
+An important thing to notice in the code above is that we don't pass any callback functions when invoking methods of our Phone service. Although it looks as if the result were returned synchronously, that is not the case at all. What is returned synchronously is a "future" — an object, which will be filled with data when the XHR response returns. Because of the data-binding in Angular, we can use this future and bind it to our template. Then, when the data arrives, the view will automatically update.
+
+Sometimes, relying on the future object and data-binding alone is not sufficient to do everything we require, so in these cases, we can add a callback to process the server response. The PhoneDetailCtrl controller illustrates this by setting the mainImageUrl in a callback.
+
 
 ## A heavier introduction to AngularJS
 
@@ -713,25 +739,7 @@ self-inflicted conflict that can be removed in the next iteration.
 
 ## App shell from the Angular team's [angular-seed project](https://github.com/angular/angular-seed) on GitHub. 
 
-While the project structure in angular-seed provides a skeleton that is suitable to a front-end as this current 
-iteration of App Catalog, for a more modular design, I'd recommend you look at these:
-
-* [Code Organizaiton Large AngularJS and JavaScript Applications](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
-* [Non-trivial AngularJS App](https://github.com/angular-app/angular-app)
-
-What's more interesting about the latter link is what it actually is:
-
-> The idea is to demonstrate how to write a typical, non-trivial CRUD application using AngularJS. To showcase AngularJS in its most advantageous environment we've set out to write a simplified project management tool supporting teams using the SCRUM methodology. The sample application tries to show best practices when it comes to: folders structure, using modules, testing, communicating with a REST back-end, organizing navigation, addressing security concerns (authentication / authorization).
-
-Furthermore, the technical stack is:
-
-* Persistence store: MongoDB hosted on MongoLab
-* Backend: Node.js
-* Awesome AngularJS on the client
-* CSS based on Twitter's bootstrap
-
-
-Here's the shell for the single page app:
+Based on the angular-seed project, here's the shell for the single page app:
 
 ```html
 <!doctype html>
@@ -774,3 +782,81 @@ Notice the following:
 
 * The application module name is set in `ng-app='appCatalog'`. This will correspond to where we add controllers and 
 services to modules in the several `.js` files included at the bottom of the shell.
+* We include a couple of extra third-party libraries, for video support and Markdown.
+* The first and only `<div>` in the code is where `ng-view` is placed, and is where all partial views will be injected.
+
+## Aside: better modularity with AngularJS apps
+
+While the project structure in angular-seed provides a skeleton that is suitable to a front-end as this current 
+iteration of App Catalog, for a more modular design, I'd recommend you look at these:
+
+* [Code Organizaiton Large AngularJS and JavaScript Applications](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
+* [Non-trivial AngularJS App](https://github.com/angular-app/angular-app)
+
+What's more interesting about the latter link is what it actually is:
+
+> The idea is to demonstrate how to write a typical, non-trivial CRUD application using AngularJS. To showcase AngularJS in its most advantageous environment we've set out to write a simplified project management tool supporting teams using the SCRUM methodology. The sample application tries to show best practices when it comes to: folders structure, using modules, testing, communicating with a REST back-end, organizing navigation, addressing security concerns (authentication / authorization).
+
+Furthermore, the technical stack is:
+
+* Persistence store: MongoDB hosted on MongoLab
+* Backend: Node.js
+* Awesome AngularJS on the client
+* CSS based on Twitter's bootstrap
+
+We should explore these in more depth when App Catalog grows larger, or for other projects spinning up using 
+AngularJS.
+
+## Application routes
+
+In `app.js`, we define the routes for the application:
+
+```javascript
+'use strict';
+
+// Declare app level module which depends on filters, and services
+angular.module('appCatalog', ['appCatalog.filters', 'appCatalog.services', 'appCatalog.directives', 'appCatalog.protodirectives', 'appCatalog.controllers', 'ui.bootstrap']).
+  config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});   
+    $routeProvider.when('/Details/:appId', {templateUrl: 'partials/details.html', controller: 'DetailsCtrl'});
+    $routeProvider.otherwise({redirectTo: '/'});
+  }]);
+
+```
+
+This is quite simple, just as in the sample tutorial's code we looked at above. Iteration one of App Catalog focuses on
+the details route, such that when someone navigates from [http://www.versionone.com/platform](http://www.versionone.com/platform) 
+to here to `/Details/VersionOne.V1TFS`, Angular will call the `DetailsCtl` controller and inject the `partials/details.html` 
+partial into the shell's `ng-view` element.
+
+## DetailsCtrl controller
+
+The controller for this is quite simple:
+
+```javascript
+'use strict';
+
+angular.module('appCatalog.controllers', []).
+  .controller('DetailsCtrl', ['$scope','$routeParams','App',function($scope,$routeParams,App) {
+  		App.get( {id:$routeParams.appId}, function(app) {
+  			$scope.app = app;
+  		});
+  }])
+  // other controlers ...
+```
+
+Here's what's going on:
+
+* Unlike the sample code in the mini tutorial, we use a more isolating way of defining a module: instead of polluting 
+the global namespace, we call `angular.module(name, dependenciesArray)`, and then use the fluent API to define a 
+controller named `DetailsCtrl`. This controller itself takes three dependency-injected parameters. The first two are 
+built into Angular, and the last, `App` is one of our own that we'll see in a second.
+* The bizarre looking double listing of parameter names, with the first being strings, is so that if you use a minifier
+with full name-minification, then the dependency-injection mechanism can still inject the right named registrations 
+into your function.
+* `App` is much like `Phone` from the mini tutorial. It uses Angular's `$resource` service to access REST resources
+painlessly. So, we pass the supplied `appId` from the route parameters collection, then set the result in the completion
+callback. I believe we also could have just done `$scope.app = App.get(...)` because of how Angular supports futures.
+
+
+
