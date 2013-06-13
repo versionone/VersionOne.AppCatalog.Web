@@ -959,6 +959,21 @@ into your function.
 painlessly. So, we pass the supplied `appId` from the route parameters collection, then set the result in the completion
 callback. I believe we also could have just done `$scope.app = App.get(...)` because of how Angular supports futures.
 
+## App service
+
+Here's the definition for the `App` service we just saw. It is an instance of `$resource`, configured to access
+resources at the `/entry` resource relative to the web server's root. This, of course, corresponds to the Node.js 
+service we spent the first half of this documentation detailing. While not quite the same, this plays a similar 
+role to what Backbone provides with collections and sync.
+
+```javascript
+angular.module('appCatalog.services', ['ngResource']).
+	factory('App', function($resource) {
+		var App = $resource("/entry");
+		return App;
+	});
+```	
+
 
 ## Details partial template
 
