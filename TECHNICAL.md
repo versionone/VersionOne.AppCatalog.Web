@@ -1451,9 +1451,26 @@ mocha -R html-cov *.tests*js >testResults/coverage.html
 This uses the binary `jscoverage` to first produce a covered version of all the files in `../app` and store 
 them in `../app_cov`. THen, it uses mocha to run the tests and produce the report.
 
+This should now explain how the `requireCover` module from way back in the beginning helps us make testing easier.
+Recall:
+
+```coffee
+module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathToCoveredFiles='') ->  
+    return (moduleName) ->      
+      envVarCoverageToggleName = "#{appName}_cov" if envVarCoverageToggleName is ''
+      pathToRawFiles = "../#{appName}" if pathToRawFiles is ''
+      pathToCoveredFiles = "../#{appName}_cov" if pathToCoveredFiles is ''
+      modulesPath = if process.env[envVarCoverageToggleName]? then pathToCoveredFiles else pathToRawFiles
+      modulePath = "#{modulesPath}/#{moduleName}"
+      return require(modulePath)
+```
+
+Because we do `export app_cov=1` in the shell script, requireCover will load the 
+JSCoverage-produced files from `app_cov` instead of `app`.
+
 ### Covered code example
 
-After JSCoverage runs, `app_cov/service.js` looks like this:
+Speaking of JSCoverage-produced files, here's what `app_cov/service.js` looks like after JSCoverage does its deed:
 
 ```javascript
 if (typeof _$jscoverage !== 'object') {
@@ -1524,6 +1541,7 @@ So, JSCoverage basically counts how many times each line of code gets called. An
 this:
 
 ![JSCoverage report](./doc/images/technical/jscoverage.png)
+
 
 ## Cobertura plugin for code coverage summary
 
