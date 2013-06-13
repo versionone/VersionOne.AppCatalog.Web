@@ -306,9 +306,109 @@ class AppCatalogService
 
 module.exports = AppCatalogService
 ```
-* We talked briefly about `AppCatalogEntry` before. It's where the JSON Schema is that defines what the catalog entry document must resemble.
-* The constructor for the service actually except an optional parameter to use within. This gets uses as a containerless form of dependency injection that helps with isolating unit tests, as we'll see soon.
-* Before we see that, let's dive now into the actual validation logic that gets called when we invoke the class-level function `@appCatalog.validate`.
+* We talked briefly about `AppCatalogEntry` before. It's where the JSON Schema is that defines what the catalog 
+entry document must resemble.
+* The constructor for the service actually except an optional parameter to use within. This gets uses as a 
+containerless form of dependency injection that helps with isolating unit tests, as we'll see soon.
+* Before we see that, let's dive now into the actual validation logic that gets called when we invoke the 
+class-level function `@appCatalog.validate`.
+
+## Application service tests with SinonJS and code coverage
+
+The application service class we just examined has a dependency on Mongoose. Mongoose depends on a running instance of 
+MongoDB to execute. At the unit level or integration level, we don't want to test our service class with the real 
+data. Instead, we verify that an instance of our class, when passed certain inputs, makes the correct calls into its
+injected dependencies. We used Sinon.JS to achieve this as follows:
+
+```coffee
+requireCover = require('./requireCover')('app')
+should = require 'should'
+sinon = require 'sinon'
+
+must = (name, mock, configCallback) ->
+	it name, (done) ->
+		configCallback()
+		mock.verify()
+		mock.restore()
+		done()
+
+# Declare the external dependencies as a mock object, in this case just 
+# stating the raw facts that it has three functional-level 'class functions'.
+# We don't even care what the arguments are, really, because sinon will help 
+# us verify the correct arguments later. Also mock out the constructor and the 
+# save instance method to help verify behavior
+class MockAppCatalogEntry
+	this.currentInstance = {}
+	constructor: (body) ->
+		@id = body.id
+		MockAppCatalogEntry.currentInstance = @
+	save: sinon.spy()
+	this.find = ->
+	this.findOne = ->
+	this.update = ->
+	this.validate = ->
+
+# Note: the goofy thing here is that when you call sinon.mock,
+# it modifies the target object in place, but returns you the 
+# mock definition, which is where you actually set up your
+# expectations. But, you still consume the original object.
+# I guess.
+mock = sinon.mock MockAppCatalogEntry
+
+# Our actual subject under test is the service class
+svc = requireCover 'service'
+
+describe 'service', ->
+
+	describe '#findAll', ->		
+		subject = new svc(MockAppCatalogEntry)
+		must 'call find', mock, ->
+			mock.expects('find').once().withArgs {}, ''			
+			subject.findAll()
+
+	describe '#findById', ->
+		subject = new svc(MockAppCatalogEntry)
+		must 'call findOne', mock, ->
+			id = 'v1clarityppm'
+			mock.expects('findOne').once().withArgs { id: id }, ''			
+			subject.findById id
+
+	describe '#put', ->
+		subject = new svc(MockAppCatalogEntry)
+		must 'call validate and update', mock, ->
+			id = 'v1clarityppm'
+			body = {id: id}
+			mock.expects('validate')
+				.once()
+				.withArgs(body)
+				.callsArg(1)
+			mock.expects('update')
+				.once()
+				.withArgs(body, {$set: {id:id}, $inc: docVersion: 1}, {upsert: true})
+				.callsArg(3)
+			subject.put body, (err) ->	
+
+```
+
+You can learn more about Sinon's features at [its web site](http://sinonjs.org/). It provides most of the features you would expect and feels 
+similar to something like Moq in the .NET world.
+
+The `requireCover` module does this:
+
+```coffee
+module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathToCoveredFiles='') ->  
+    return (moduleName) ->      
+      envVarCoverageToggleName = "#{appName}_cov" if envVarCoverageToggleName is ''
+      pathToRawFiles = "../#{appName}" if pathToRawFiles is ''
+      pathToCoveredFiles = "../#{appName}_cov" if pathToCoveredFiles is ''
+      modulesPath = if process.env[envVarCoverageToggleName]? then pathToCoveredFiles else pathToRawFiles
+      modulePath = "#{modulesPath}/#{moduleName}"
+      return require(modulePath)
+```
+
+We'll examine this in depth when we cover the Jenkins job and code coverages, but what this does is to load 
+dependencies from an alternatve, "covered", folder when running under test with code-coverage. We cover Jenkins at the 
+end of this document.
 
 ## The fun stuff: helper libraries to ease validation
 
