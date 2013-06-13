@@ -1518,7 +1518,16 @@ _$jscoverage['service.js'][2]++;
 });
 ```
 
+### Coverage report
+
 So, JSCoverage basically counts how many times each line of code gets called. And, then it produces a report like 
 this:
 
 ![JSCoverage report](./doc/images/technical/jscoverage.png)
+
+## Cobertura plugin for code coverage summary
+
+The other coverage run produces a smaller, summarized report used by the Cobertura plugin in Jenkins to 
+provide a dashboard view of the coverage status for recent builds:
+
+![Cobertura code coverage summary](./doc/images/technical/cobertura.png)
