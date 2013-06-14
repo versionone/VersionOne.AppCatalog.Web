@@ -1,7 +1,7 @@
 {
-    "id": "VersionOne.ccnet.VersionOnePublisher.plugin",
+    "id": "Example.VersionOne.ccnet.VersionOnePublisher.plugin",
     "titleSection": {
-        "name": "V1CruiseControl.NET Publisher",
+        "name": "Example V1CruiseControl.NET Publisher",
         "shortDescription": "Link agile workitems to tangible, working software in the form of builds.",
         "pricing": "Free",
         "support": {
