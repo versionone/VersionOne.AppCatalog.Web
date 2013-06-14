@@ -599,7 +599,7 @@ This is where our that bad boy JSONPath saves the day.
 regardless of where they appear in the document graph, must be a valid URI.
 * This line: `jp(data, '$..href')...` first uses JSONPath to fetch **all** properties named `href` in the document, 
 starting at the root. It's kind of like an XPath that does `//[@href]` or something like that. 
-* The **`...`** is not a mistake. That's CoffeeScript's **splat** operator. It converts the return value 
+* The `...` is not a mistake. That's CoffeeScript's **splat** operator. It converts the return value 
 from `jp()` into multiple arguments, which is what `Array.push` takes. I'll drink to that.
 * So, once we have all the properties that must be valid URIs, we validate them with the `uri-js` module instance, 
 and we're good.
