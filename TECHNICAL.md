@@ -377,7 +377,12 @@ describe 'PUT /entry for each examples succeeds', ->
       )()
 ```
 
-Perhaps there's a better way to do this with Mocha that would not require the callback tracking. There's got to be. This reads sample files that @ianbuchanan has created based on real products. Each file should successfully PUT to the server, pass validation, and get saved into a locally running MongoDB. Unfortunately the way I wrote this, it's hard to see which one failed without scrolling up. So, I'd like to have each file be an independent test. I suppose simply looping and calling `describe` and `it` in the loop might work.
+Perhaps there's a better way to do this with Mocha that would not require the callback tracking. 
+There's got to be. This reads sample files that @ianbuchanan has created based on real products. 
+Each file should successfully PUT to the server, pass validation, and get saved into a locally running MongoDB. 
+Unfortunately the way I wrote this, it's hard to see which one failed without scrolling up. 
+So, I'd like to have each file be an independent test. I suppose simply looping and calling `describe` and `it` in 
+the loop might work.
 
 ## Application service interacts with Mongoose (and thus MongoLab and MongoDB)
 
@@ -416,17 +421,17 @@ module.exports = AppCatalogService
 ```
 * We talked briefly about `AppCatalogEntry` before. It's where the JSON Schema is that defines what the catalog 
 entry document must resemble.
-* The constructor for the service actually except an optional parameter to use within. This gets uses as a 
+* The constructor for the service accepts an optional parameter to use within. This acts like a 
 containerless form of dependency injection that helps with isolating unit tests, as we'll see soon.
 * Before we see that, let's dive now into the actual validation logic that gets called when we invoke the 
 class-level function `@appCatalog.validate`.
 
 ## Application service tests with SinonJS and code coverage
 
-The application service class we just examined has a dependency on Mongoose. Mongoose depends on a running instance of 
-MongoDB to execute. At the unit level or integration level, we don't want to test our service class with the real 
-data. Instead, we verify that an instance of our class, when passed certain inputs, makes the correct calls into its
-injected dependencies. We used Sinon.JS to achieve this as follows:
+The application service class we just examined has a dependency on Mongoose. Mongoose depends on a running 
+instance of MongoDB to execute. At the unit level or integration level, we don't want to test our service class 
+with the real data. Instead, we verify that an instance of our class, when passed certain inputs, makes the correct 
+calls into its injected dependencies. We used Sinon.JS to achieve this as follows:
 
 ```coffee
 requireCover = require('./requireCover')('app')
@@ -498,8 +503,8 @@ describe 'service', ->
 
 ```
 
-You can learn more about Sinon's features at [its web site](http://sinonjs.org/). It provides most of the features you would expect and feels 
-similar to something like Moq in the .NET world.
+You can learn more about Sinon's features at [its web site](http://sinonjs.org/). It provides most of the features
+you've come to know, and enjoy, in such tools as Moq in the .NET world.
 
 The `requireCover` module does this:
 
@@ -515,8 +520,8 @@ module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathT
 ```
 
 We'll examine this in depth when we cover the Jenkins job and code coverages, but what this does is to load 
-dependencies from an alternatve, "covered", folder when running under test with code-coverage. We cover Jenkins at the 
-end of this document.
+dependencies from an alternatve, "covered", folder when running under test with code-coverage. 
+We cover Jenkins at the end of this document.
 
 ## The fun stuff: helper libraries to ease validation
 
