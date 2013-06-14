@@ -45,7 +45,7 @@ and continuous deployment to Azure via GitHub integration.
   
 ## Front-end 
 
-* Let's GET into the AngularJS world
+* GET into the AngularJS world
  * AngularJS mini tutorial 
  * The simplest app that could possibly work works better than you'd think
  * AngularJS HTML app template
@@ -58,10 +58,12 @@ and continuous deployment to Azure via GitHub integration.
  * Aside: better modularity with AngularJS apps
  * Application routes
  * DetailsCtrl controller
- * App service
+ * App service for consumgin the /entry web service route
  * Details partial template
  * The updates directive and Markdown support
  * Updates directive template
+ * Testing is good Karma
+ * Debunking AngularJS vs. Backbone myths
 
 NOTES TO SELF:
 * Gherkin Feature files describing the original intentions for the system scenarios (not used for automation)
@@ -837,7 +839,7 @@ This shows the variety of information and options for monitoring and accessing r
 ![Azure web site dashboard](./doc/images/technical/azureDashboard.png)
 
 
-# Let's GET into AngularJS world
+# GET into the AngularJS world
 
 We've covered the web service implementation and the technical details of MongoLab and Azure. Now, let's get into the 
 best part: AngularJS on the front-end.
@@ -1175,9 +1177,10 @@ with full name-minification, then the dependency-injection mechanism can still i
 into your function.
 * `App` is much like `Phone` from the mini tutorial. It uses Angular's `$resource` service to access REST resources
 painlessly. So, we pass the supplied `appId` from the route parameters collection, then set the result in the completion
-callback. I believe we also could have just done `$scope.app = App.get(...)` because of how Angular supports futures.
+callback. As we saw above, we also could have just done `$scope.app = App.get(...)` because of how Angular supports 
+futures.
 
-## App service
+## App service for consumgin the /entry web service route
 
 Here's the definition for the `App` service we just saw. It is an instance of `$resource`, configured to access
 resources at the `/entry` resource relative to the web server's root. This, of course, corresponds to the Node.js 
@@ -1366,7 +1369,7 @@ would get converted to escaped HTML. Not what we want. Therefore, we use the uns
 The other directives and templates are quite similar to this, but this is the most involved is the media one because
 it uses video.js. We will cover that in the next iteration of documentation, however.
 
-## Tests with Karma
+## Testing is good Karma
 
 The angular-seed project comes bundled with the Karma test runner, which uses Jasmine.
 
@@ -1442,6 +1445,21 @@ describe "directives", ->
       images = elm.find("img")
       expect(images.eq(5).attr("ng-src")).toBe "img/hypelink.png"
 ```
+
+## Debunking AngularJS vs. Backbone myths
+
+Having uses Backbone for the VersionOne Requestor, and a number of blog post samples, I was really enjoying it. 
+Backbone Forms (a free script on GitHub) really makes it easy to create quick entry forms, even with nested objects.
+Yet, the drumbeat of AngularJS and its growing popularity was in the back of my mind, so when it came time to build
+App Catalog, we looked into it and found it to be a comprehensive choice. This post really made it clear for me and
+dispelled any lingering doubts as to whether we should try it:
+
+[Backbonejs vs Angularjs : Demystifying the myths](http://www.nebithi.com/2012/12/27/backbone-and-angular-demystifying-the-myths/)
+
+This is also a good post: [Lessons Learned: A Year with a Large AngularJS Project](http://joelhooks.com/blog/2013/05/22/lessons-learned-kicking-off-an-angularjs-project/)
+
+You can find all kinds of resources for AngularJS now, including books, courses, meetups, etc. There is a recent
+course on Pluralsight that looks good, but I have not tried it yet.
 
 # Jenkins job with code coverage
 
