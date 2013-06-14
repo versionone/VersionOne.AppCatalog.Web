@@ -311,52 +311,6 @@ var sample_data_one_slide = {
     ]
 };
 
-describe('app', function(){
-    beforeEach(module('appCatalog'));
-    // This is probably best tested via e2e testing?
-});
-
-describe('controllers', function() {
-    beforeEach(module('appCatalog.controllers'));
-    beforeEach(module('appCatalog.services'));
-
-    beforeEach(inject(function($controller,$rootScope,$httpBackend,App) {
-        scope = $rootScope.$new();
-        $httpBackend.when('GET', '/entry?id=test').respond({test: 'test response'});
-        $httpBackend.when('GET', '/entry').respond([{test: 'test response'}]);
-        app = App;
-        detailsCtrl = $controller('DetailsCtrl', {$scope: scope, 
-            $routeParams: {appId: 'test'}, 
-            App: app});
-        listCtrl = $controller('ListCtrl', {$scope: scope, 
-            App: app});
-    }));
-
-    it('should load', function() {
-        expect(detailsCtrl).toBeDefined();
-        expect(listCtrl).toBeDefined();
-    });
-});
-
-describe('services', function() {
-    beforeEach(module('appCatalog.services'));
-
-    beforeEach(inject(function($rootScope,$httpBackend,App) {
-        scope = $rootScope.$new();
-        app = App;
-        httpB = $httpBackend;
-        httpB.when('GET', '/entry?id=test').respond({test: 'test response'});
-    }));
-
-    it('should make a query', function() {
-        httpB.expectGET('/entry?id=test');
-        app.get({id:'test'},function(resp) {
-        });
-        httpB.flush();
-    });
-
-});
-
 describe('directives', function() {
 
   beforeEach(module('appCatalog.directives'));
