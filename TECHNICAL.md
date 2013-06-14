@@ -38,6 +38,9 @@ and continuous deployment to Azure via GitHub integration.
 
 * Enter MongoLab
   * MongoLab edit document admin page
+
+## Application hosting
+  
 * Configuration and service hosting in Windows Azure
   * Built-in support for Node.js
   * Tight integration with GitHub for continuous deployment on push to branch
@@ -64,22 +67,6 @@ and continuous deployment to Azure via GitHub integration.
  * Updates directive template
  * Testing is good Karma
  * Debunking AngularJS vs. Backbone myths
-
-NOTES TO SELF:
-* Gherkin Feature files describing the original intentions for the system scenarios (not used for automation)
-* UI built with AngularJS
-* Karma and Jasmin provide client-side testing
-* REST service made with Node.js, Express, and hosted on Windows Azure
-* Document storage in MongoDB, hosted on MongoLab, and abstracted by Mongoose.js and a bit of JSON Schema
-* Mocha and Sinon for server-side testing
-* JSCoverage and the Cobertura and Test Anything Protocol (TAP) Jenkins plugins for code coverage reports
-
-There is a lot to cover, so let's start by looking at one of the Gherkin files, and then follow the path of two kinds
-of users, a pulisher, and a site visitor, following the execution all the way down to MongoDB.
-
-After that, we'll look more closely at the Jenkins configuration and the physical deployment of the system.
-
-The remaining details will zoom into interesting technical details about different parts like testing and AngularJS.
 
 # How to Publish an Entry
 
