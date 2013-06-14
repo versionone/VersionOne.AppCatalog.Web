@@ -1,7 +1,7 @@
 {
-    "id": "VersionOne.V1Jenkins",
+    "id": "Example.VersionOne.V1Jenkins",
     "titleSection": {
-        "name": "V1Jenkins",
+        "name": "Example V1Jenkins",
         "shortDescription": "Link agile workitems to tangible, working software in the form of builds.",
         "pricing": "Free",
         "support": {

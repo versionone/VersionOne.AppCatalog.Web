@@ -1,7 +1,7 @@
 {
-    "id": "VersionOne.V1Hudson",
+    "id": "Example.VersionOne.V1Hudson",
     "titleSection": {
-        "name": "V1Hudson",
+        "name": "Example V1Hudson",
         "shortDescription": "Link agile workitems to tangible, working software in the form of builds.",
         "pricing": "Free",
         "support": {

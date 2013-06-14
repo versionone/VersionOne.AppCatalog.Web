@@ -1,7 +1,7 @@
 {
-    "id": "FalconerDevelopment.V1MantisBT",
+    "id": "Example.FalconerDevelopment.V1MantisBT",
     "titleSection": {
-        "name": "VersionOne Mantis Bug Tracker Integration",
+        "name": "Example VersionOne Mantis Bug Tracker Integration",
         "shortDescription": "Connecting Mantis Bugs with VersionOne Defects",
         "pricing": "Paid",
         "support": {

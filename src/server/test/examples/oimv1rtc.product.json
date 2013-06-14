@@ -1,7 +1,7 @@
 {
-    "id": "OpsHub.V1RTC",
+    "id": "Example.OpsHub.V1RTC",
     "titleSection": {
-        "name": "VersionOne IBM/Rational Team Concert Integration",
+        "name": "Example VersionOne IBM/Rational Team Concert Integration",
         "shortDescription": "Integrating VersionOne and IBM Rational Team Concert helps you leverage your existing tool chain and reach more people.",
         "pricing": "Paid",
         "support": {

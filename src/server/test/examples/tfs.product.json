@@ -1,7 +1,7 @@
 {
-    "id": "VersionOne.V1TFS",
+    "id": "Example.VersionOne.V1TFS",
     "titleSection": {
-        "name": "V1TFS",
+        "name": "Example V1TFS",
         "shortDescription": "Links VersionOne Workitems to TFS Check-ins and Builds.",
         "pricing": "Free",
         "support": {
