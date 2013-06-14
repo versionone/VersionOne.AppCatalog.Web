@@ -68,6 +68,15 @@ and continuous deployment to Azure via GitHub integration.
  * Testing is good Karma
  * Debunking AngularJS vs. Backbone myths
 
+## Jenkins build 
+
+* Jenkins job with JavaScript code coverage 
+  * Test Anyting Protocol report
+  * JSCoverage for line-by-line coverage
+    * Covered code example
+    * Coverage report
+  * Cobertura plugin for code coverage summary
+
 # How to Publish an Entry
 
 Using cURL, you can PUT a catalog entry into the catalog if you specify the password like so:
@@ -1448,7 +1457,7 @@ This is also a good post: [Lessons Learned: A Year with a Large AngularJS Projec
 You can find all kinds of resources for AngularJS now, including books, courses, meetups, etc. There is a recent
 course on Pluralsight that looks good, but I have not tried it yet.
 
-# Jenkins job with code coverage
+# Jenkins job with JavaScript code coverage
 
 The code deployment flow for App Catalog looks like this:
 
