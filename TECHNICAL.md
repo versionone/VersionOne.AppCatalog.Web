@@ -773,7 +773,6 @@ As of June, 2013, Azure integrates with:
 * CodePlex
 * External repository
 
-
 #### Select a GitHub repository and a branch to publish
 
 ![Select a GitHub repository and a branch to publish](./doc/images/technical/azureCreateSite_04.png)
@@ -1373,7 +1372,7 @@ The angular-seed project comes bundled with the Karma test runner, which uses Ja
 
 Here's a screen shot of what the result of running the tests with Firefox, Chrome, and PhantomJS looks like:
 
-![Karma test results](./docs/images/technical/karma.png)
+![Karma test results](./doc/images/technical/karma.png)
 
 As far as the tests themselves, here's an example of the directives tests:
 
