@@ -594,7 +594,7 @@ AppCatalogEntry.validate = (data, callback) ->
 * Then, check for any validation errors that come purely from JSON Schema violations, with the call to 
 `js.validate data, jsonSchema`
 * If that passes, we need to do more sophisticated validation that cannot occur by JSON Schema alone. 
-This is where our that bad boy JSONPath saves the day.
+This is where that bad boy JSONPath saves the day.
 * The array `['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']` is a list of property names that, 
 regardless of where they appear in the document graph, must be a valid URI.
 * This line: `jp(data, '$..href')...` first uses JSONPath to fetch **all** properties named `href` in the document, 
@@ -680,7 +680,9 @@ Now that we're past validation, let's look at this chunk of code again:
     callback err
 ```
 
-I didn't find the documentation in the Mongoose documentation, but did [find help on Stackoverflow](http://stackoverflow.com/questions/7267102/how-do-i-update-upsert-a-document-in-mongoose). This line will:
+I didn't find the documentation in the Mongoose documentation, 
+but did [find help on Stackoverflow](http://stackoverflow.com/questions/7267102/how-do-i-update-upsert-a-document-in-mongoose). 
+This line will:
 
 * Find the document with `id = body.id`
 * And, if found, reset its content to `body`
