@@ -71,11 +71,11 @@ and continuous deployment to Azure via GitHub integration.
 ## Jenkins build 
 
 * Jenkins job with JavaScript code coverage 
-  * Test Anyting Protocol report
-  * JSCoverage for line-by-line coverage
-    * Covered code example
-    * Coverage report
-  * Cobertura plugin for code coverage summary
+	* Test Anyting Protocol report
+  	* JSCoverage for line-by-line coverage
+    		* Covered code example
+    		* Coverage report
+  	* Cobertura plugin for code coverage summary
 
 # How to Publish an Entry
 
