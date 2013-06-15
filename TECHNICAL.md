@@ -82,7 +82,7 @@ and continuous deployment to Azure via GitHub integration.
 Using cURL, you can PUT a catalog entry into the catalog if you specify the password like so:
 
 ```bash
-curl -X PUT http://appcatalogstage.azurewebsites.net/entry --user catUser:CatsRUs -d @product.json -H "Content-Type: application/json"
+curl -X PUT http://appcatalogstage.azurewebsites.net/entry --user catUser:CatsAreUs -d @product.json -H "Content-Type: application/json"
 ```
 # Deep dive on Publish an Entry
 
