@@ -12,16 +12,32 @@
 		<p>The following sequence diagram illustrates the code deployment pipeline.<br />
 			<div class=wsd wsd_style="qsd">
 <pre>
-title Code Pipeline
+title App Catalog Code Deployment Pipeline
 
+Developer->Developing Branch: Push Code
+Developing Branch->+Jenkins: Build
+Jenkins->-Jenkins: Test
+
+Developer->Developing Branch: Merge to Staging
+Developing Branch->Staging Branch: Merge
+Staging Branch->Azure Staging: Deploy
+
+Developer->Staging Branch: Merge to Production
+Staging Branch->Master Branch: Merge
+Master Branch->Azure Production: Deploy
 </pre>
 			</div>
 
 		<p>The following sequence diagram illustrates the data deployment pipeline.<br />
 			<div class=wsd wsd_style="qsd">
 <pre>
-title Data Pipeline
+title App Catalog Data Deployment Pipeline
 
+Publisher->Azure Staging: Push Data
+Administrator->Azure Staging: Review Data
+Administrator->Script: Publish Data
+Script->Azure Staging: Copy to Prod
+Azure Staging -> Azure Production: Push Data
 </pre>
 			</div>
 			<script type="text/javascript"
