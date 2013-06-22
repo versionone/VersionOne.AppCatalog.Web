@@ -224,7 +224,7 @@ angular.module('appCatalog.directives', []).
 
 				$scope.isCollapsible = function()  {
 					return $scope.isCollapsed || 
-						($element[0].scrollHeight > $scope.collapsedHeight);
+						($element[0].scrollHeight > $scope.collapsedHeight * 1.25);
 				}
 
 				$scope.getToggle = function() {
