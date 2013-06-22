@@ -1176,7 +1176,7 @@ painlessly. So, we pass the supplied `appId` from the route parameters collectio
 callback. As we saw above, we also could have just done `$scope.app = App.get(...)` because of how Angular supports
 futures.
 
-## App service for consumgin the /entry web service route
+## App service for consuming the /entry web service route
 
 Here's the definition for the `App` service we just saw. It is an instance of `$resource`, configured to access
 resources at the `/entry` resource relative to the web server's root. This, of course, corresponds to the Node.js
