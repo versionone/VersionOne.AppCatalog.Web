@@ -221,12 +221,8 @@
             patternProperties: {
               "^.*$": {
                 type: 'object',
-                required: ['name', 'shortDescription', 'href'],
+                required: ['shortDescription'],
                 properties: {
-                  name: {
-                    type: 'string',
-                    maxLength: 100
-                  },
                   shortDescription: {
                     type: 'string',
                     maxLength: SHORT_DESCRIPTION_MAX_LENGTH
@@ -311,7 +307,7 @@
           }
         }
         specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand');
-        allowableQualityBandsNames = jp(data, '$..qualityBands..name');
+        allowableQualityBandsNames = _.keys(jp(data, '$..qualityBands')[0]);
         _ref1 = _.difference(specifiedQualityBandNamesInUpdates, allowableQualityBandsNames);
         for (_k = 0, _len2 = _ref1.length; _k < _len2; _k++) {
           rogue = _ref1[_k];

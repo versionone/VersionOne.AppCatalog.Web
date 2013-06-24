@@ -61,11 +61,11 @@
         "qualityBands": [
             {
                 "name": "mature",
-                "shortDesc": "The product is stable. The code will continue to evolve with minimum breaking changes."
+                "shortDescription": "The product is stable. The code will continue to evolve with minimum breaking changes."
             },
             {
                 "name": "sunset",
-                "shortDesc": "This product is at the end of its life.",
+                "shortDescription": "This product is at the end of its life.",
                 "href": "http://community.versionone.com/sdk/Documentation/SunsetPolicy.aspx"
             }            
         ]

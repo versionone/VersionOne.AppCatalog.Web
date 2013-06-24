@@ -78,7 +78,6 @@ var sample_data = {
                     "$oid": "516d9a4824a05b205800009a"
                 }
             },
-
             {
                 "date": "2013-01-10T17:45:00.000Z",
                 "description": "better timesheet support",
@@ -89,7 +88,40 @@ var sample_data = {
                 "_id": {
                     "$oid": "516d9a4824a05b2058000099"
                 }
-            }
+            },
+            {
+                "date": "2010-01-13T17:45:00.000Z",
+                "description": "better timesheet support",
+                "version": "c",
+                "releaseNotes": "http://example.com",
+                "qualityBand": "sapling",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
+                "_id": {
+                    "$oid": "516d9a4824a05b2058000099"
+                }
+            },
+            {
+                "date": "2010-02-13T17:45:00.000Z",
+                "description": "stabilizing timesheet workflow",
+                "version": "b",
+                "releaseNotes": "http://example.com",
+                "qualityBand": "mature",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.3.2.13.zip",
+                "_id": {
+                    "$oid": "516d9a4824a05b205800009a"
+                }
+            },
+            {
+                "date": "2010-01-10T17:45:00.000Z",
+                "description": "better timesheet support",
+                "version": "a",
+                "releaseNotes": "http://example.com",
+                "qualityBand": "sapling",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/v1clarityppm_0.2.1.10.zip",
+                "_id": {
+                    "$oid": "516d9a4824a05b2058000099"
+                }
+            },
         ],
           "qualityBands": {
             "seed": {
@@ -332,6 +364,16 @@ describe('directives', function() {
     it('should exclude forbidden tags from its content', function() {
         expect(elm.html()).not.toContain('<script>'); 
     });
+
+    it('should handle empty data', function($compile) {
+      var empty = {descriptionSection: {test: 'Test'}};  
+
+      scope.testapp = empty;
+      scope.$digest();
+
+      var text = elm.find('div.markdown');
+      expect(text.html()).toBe('');
+    });
   });
 
   describe('textlinks', function() {
@@ -373,9 +415,20 @@ describe('directives', function() {
       scope.$digest();
     }));
 
-    it('should have the correct number of entries', function() {
-      var updates = elm.find('div.update');
-      expect(updates.length).toBe(sample_data.updatesSection.updates.length);
+    it('should have the correct number of entries initially', function() {
+        var updates = elm.find('div.update');
+        expect(updates.length).toBe(3);
+    });
+
+    it('should have the correct number of entries expanded', function() {
+        elm.scope().toggleUpdateList();
+        expect(elm.scope().visibleUpdates).toBe(sample_data.updatesSection.updates.length);
+    });
+
+    it('should have the correct number of entries collapsed', function() {
+        elm.scope().toggleUpdateList();
+        elm.scope().toggleUpdateList();
+        expect(elm.scope().visibleUpdates).toBe(3);
     });
 
     it('should be in order by date (newest to oldest)', function() {
@@ -389,6 +442,33 @@ describe('directives', function() {
       var descriptions = elm.find('p');
       expect(descriptions.eq(0).text()).toBe(sample_data.updatesSection.updates[1].description);
     });
+
+
+    it('should handle empty data', function($compile) {
+      var empty = {updatesSection: {updates: [{test: 'Test'}]}};  
+
+      scope.testapp = empty;
+      scope.$digest();
+      var text = elm.find('p.markdown');
+      expect(text.html()).toBe('');
+    });
+  });
+
+  describe('mediaContent', function() {
+    var elm, scope;
+ 
+    beforeEach(inject(function($rootScope, $compile) {
+      scope = $rootScope;
+      elm = angular.element("<mediaContent src='test'>");
+      $compile(elm)(scope);
+      scope.test = sample_data.mediaSection[2];
+      scope.$digest();
+    }));
+
+    it('should know what type of media it has', function() {
+        expect(elm.scope().isVideo()).toBe(true);
+    });
+
   });
 
   describe('media', function() {
@@ -411,7 +491,7 @@ describe('directives', function() {
       scope.testapp = sample_data_one_slide;
       scope.$digest();
       expect(elm.find('slide').length).toBe(0);
-    });    
+    });   
 
     it('should use the correct display type for each slide', function() {
       var slides = elm.find('slide');

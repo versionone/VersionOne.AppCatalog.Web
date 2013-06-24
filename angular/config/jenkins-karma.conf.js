@@ -77,7 +77,7 @@ autoWatch = true;
 // - Safari (only Mac)
 // - PhantomJS
 // - IE (only Windows)
-browsers = ['Chrome','Firefox','PhantomJS'];
+browsers = ['PhantomJS'];
 
 
 // If browser does not capture in given timeout [ms], kill it
@@ -86,14 +86,12 @@ captureTimeout = 60000;
 
 // Continuous Integration mode
 // if true, it capture browsers, run tests and exit
-singleRun = false;
+singleRun = true;
 
 
 // plugins to load
 plugins = [
   'karma-jasmine',
-  'karma-chrome-launcher',
-  'karma-firefox-launcher',
   'karma-phantomJS-launcher',
   'karma-ng-html2js-preprocessor',
   'karma-coverage',

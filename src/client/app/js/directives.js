@@ -66,13 +66,17 @@ angular.module('appCatalog.directives', []).
 	directive('mediacontent', function($timeout, $window) {
 		return {
 			restrict: 'E',
-			require: '^media',
+			require: '',
 			scope: { src: '=src'},
 			templateUrl: 'tpl/mediaContent.html',
 			replace: true,
 			controller: function($scope,$element) {
+				$scope.isHovered = false;
+
 				$scope.getType = function() {
-					return $scope.src.mimetype.split('/')[0];
+					if ($scope.src.mimetype)
+						return $scope.src.mimetype.split('/')[0];
+					return '';
 				};
 
 				$scope.isVideo = function() {
@@ -157,7 +161,7 @@ angular.module('appCatalog.directives', []).
 
 
 				$scope.$watch('src', function(val) {
-					if (val) {
+					if (val && val.updates) {
 						for (var i = 0; i< val.updates.length; i++) {
 							var entry = val.updates[i];
 							entry.cvtDescription = convert(entry.description);
@@ -212,7 +216,7 @@ angular.module('appCatalog.directives', []).
 			"	<div class='collapse-toggle' " +
 			"		ng-show = 'isCollapsible()' " +
 			"		ng-click='isCollapsed = !isCollapsed'>" +
-			"			{{getToggle();}}" +
+			"			<span class='toggler'>{{getToggle();}}</span>" +
 			"</div>" +
 			"</div>",
 			controller: function($scope,$element) {
@@ -225,15 +229,15 @@ angular.module('appCatalog.directives', []).
 
 				$scope.getToggle = function() {
 					if ($scope.isCollapsed) {
-						return "<< Expand >>";
+						return "Show More";
 					} else {
-						return ">> Collapse <<";
+						return "Show Less";
 					}
 				}
 			}
 		};
-	}).
-	directive('sectionnav', function() {
+	});
+/*	directive('sectionnav', function() {
 		return {
 			restrict: 'E',
 			transclude: false,
@@ -246,4 +250,4 @@ angular.module('appCatalog.directives', []).
 				
 			}
 		};
-	});
+	});*/
