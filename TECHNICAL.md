@@ -1,12 +1,12 @@
 # Technical Details
 
-App Catalog is 100% JavaScript / CoffeeScript. In this document, I'll highlight details of the full 
+App Catalog is 100% JavaScript / CoffeeScript. In this document, I'll highlight details of the full
 technical implementation, deployment, and build process. We'll start at the command line to learn how to
 add an or update an entry in the App Catalog with cURL. We'll then zoom all the way into the server-side details, then
-resurface at the web UI, and dig into how the front-end is built with AngularJS and Twitter Bootstrap. 
+resurface at the web UI, and dig into how the front-end is built with AngularJS and Twitter Bootstrap.
 
-Along the way we'll see how the unit, integration, and end-to-end tests work, and how the site is hosted in 
-Windows Azure and MongoLab. Finally, we'll see how the Jenkins build process works, including JS code-coverage 
+Along the way we'll see how the unit, integration, and end-to-end tests work, and how the site is hosted in
+Windows Azure and MongoLab. Finally, we'll see how the Jenkins build process works, including JS code-coverage
 and continuous deployment to Azure via GitHub integration.
 
 # Table of Contents
@@ -18,7 +18,7 @@ and continuous deployment to Azure via GitHub integration.
 
 ## Catalog entry schema
 
-* JSON Schema exceprt
+* JSON Schema excerpt
   * Schema tests
 
 ## Web service
@@ -40,16 +40,16 @@ and continuous deployment to Azure via GitHub integration.
   * MongoLab edit document admin page
 
 ## Application hosting
-  
+
 * Configuration and service hosting in Windows Azure
   * Built-in support for Node.js
   * Tight integration with GitHub for continuous deployment on push to branch
   * Dashboard, monitoring, logs, and FTP access
-  
-## Front-end 
+
+## Front-end
 
 * GET into the AngularJS world
- * AngularJS mini tutorial 
+ * AngularJS mini tutorial
  * The simplest app that could possibly work works better than you'd think
  * AngularJS HTML app template
  * Angular basics
@@ -61,17 +61,17 @@ and continuous deployment to Azure via GitHub integration.
  * Aside: better modularity with AngularJS apps
  * Application routes
  * DetailsCtrl controller
- * App service for consumgin the /entry web service route
+ * App service for consuming the /entry web service route
  * Details partial template
  * The updates directive and Markdown support
  * Updates directive template
  * Testing is good Karma
  * Debunking AngularJS vs. Backbone myths
 
-## Jenkins build 
+## Jenkins build
 
-* Jenkins job with JavaScript code coverage 
- * Test Anyting Protocol report
+* Jenkins job with JavaScript code coverage
+ * Test Anything Protocol report
  * JSCoverage for line-by-line coverage
    * Covered code example
    * Coverage report
@@ -82,7 +82,7 @@ and continuous deployment to Azure via GitHub integration.
 Using cURL, you can PUT a catalog entry into the catalog if you specify the password like so:
 
 ```bash
-curl -X PUT http://appcatalogstage.azurewebsites.net --user catUser:CatsRUs @product.json -H "Content-Type: application/json"
+curl -X PUT http://appcatalogstage.azurewebsites.net/entry --user catUser:CatsAreUs -d @product.json -H "Content-Type: application/json"
 ```
 # Deep dive on Publish an Entry
 
@@ -219,10 +219,10 @@ qualityBands:
 ## Schema tests
 
 To verify that the schema and the associated custom validation code works, we have a test suite that verifies each
-restriction. This is important for a number of reasons. First of all, JavaScript is a dynamic language that has 
-nothing in terms of compile-time type-safety, and even at runtime its dynamic nature is very free-form. Second, 
-because we want to have the freedom to modify the internal implementation of the validation, 
-without the fear that doing so would break the system. By having comprehensive unit tests for our implementation 
+restriction. This is important for a number of reasons. First of all, JavaScript is a dynamic language that has
+nothing in terms of compile-time type-safety, and even at runtime its dynamic nature is very free-form. Second,
+because we want to have the freedom to modify the internal implementation of the validation,
+without the fear that doing so would break the system. By having comprehensive unit tests for our implementation
 we have this confidence.
 
 Here are a couple of examples that aim to be self-explanatory:
@@ -269,8 +269,8 @@ We'll examine the tests for the custom URL and qualityBand validation later afte
 
 The Node.js web service is based on Express, and uses a couple of useful features to simultaneously serve the static HTML and handle the
 service requests for the catalog API. Express is based on the [Connect
-middleware for Node.js](http://www.senchalabs.org/connect/), which afford the easy-to-extend pipeline model for 
-constructing a web server that does `just enough` with very little 
+middleware for Node.js](http://www.senchalabs.org/connect/), which afford the easy-to-extend pipeline model for
+constructing a web server that does `just enough` with very little
 overhead.
 
 ```coffee
@@ -283,14 +283,14 @@ overhead.
 
   app = express()
 
-  app.configure ->   
+  app.configure ->
     app.use '/app', express.static('../../client/app')
     app.use express.bodyParser()
     app.use cors
     app.use app.router
 
   auth = express.basicAuth(config.user, config.password)
-  
+
   service = new (require('./service'))
 
   app.get config.entryRoute, (req, res) ->
@@ -310,7 +310,7 @@ overhead.
     service.put req.body, (err) ->
       if err?
         handleError res, err
-      else         
+      else
         res.send {status: 200, message: 'Successfully updated entry'}
 
   return app
@@ -340,9 +340,9 @@ app.put config.entryRoute, auth, (req, res) ->
     service.put req.body, (err) ->
       if err?
         handleError res, err
-      else         
+      else
         res.send {status: 200, message: 'Successfully updated entry'}
-```		
+```
 
 * If no body exists, simply return
 * Otherwise, delegate to the `service.put` function. The `service` object does the real work, so we'll see it in a second.
@@ -375,11 +375,11 @@ describe 'PUT /entry for each examples succeeds', ->
       )()
 ```
 
-Perhaps there's a better way to do this with Mocha that would not require the callback tracking. 
-There's got to be. This reads sample files that @ianbuchanan has created based on real products. 
-Each file should successfully PUT to the server, pass validation, and get saved into a locally running MongoDB. 
-Unfortunately the way I wrote this, it's hard to see which one failed without scrolling up. 
-So, I'd like to have each file be an independent test. I suppose simply looping and calling `describe` and `it` in 
+Perhaps there's a better way to do this with Mocha that would not require the callback tracking.
+There's got to be. This reads sample files that @ianbuchanan has created based on real products.
+Each file should successfully PUT to the server, pass validation, and get saved into a locally running MongoDB.
+Unfortunately the way I wrote this, it's hard to see which one failed without scrolling up.
+So, I'd like to have each file be an independent test. I suppose simply looping and calling `describe` and `it` in
 the loop might work.
 
 ## Application service interacts with Mongoose (and thus MongoLab and MongoDB)
@@ -413,22 +413,22 @@ class AppCatalogService
           @appCatalogEntry.update {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
             callback err
     catch ex
-      callback ex  
+      callback ex
 
 module.exports = AppCatalogService
 ```
-* We talked briefly about `AppCatalogEntry` before. It's where the JSON Schema is that defines what the catalog 
+* We talked briefly about `AppCatalogEntry` before. It's where the JSON Schema is that defines what the catalog
 entry document must resemble.
-* The constructor for the service accepts an optional parameter to use within. This acts like a 
+* The constructor for the service accepts an optional parameter to use within. This acts like a
 containerless form of dependency injection that helps with isolating unit tests, as we'll see soon.
-* Before we see that, let's dive now into the actual validation logic that gets called when we invoke the 
+* Before we see that, let's dive now into the actual validation logic that gets called when we invoke the
 class-level function `@appCatalog.validate`.
 
 ## Application service tests with SinonJS and code coverage
 
-The application service class we just examined has a dependency on Mongoose. Mongoose depends on a running 
-instance of MongoDB to execute. At the unit level or integration level, we don't want to test our service class 
-with the real data. Instead, we verify that an instance of our class, when passed certain inputs, makes the correct 
+The application service class we just examined has a dependency on Mongoose. Mongoose depends on a running
+instance of MongoDB to execute. At the unit level or integration level, we don't want to test our service class
+with the real data. Instead, we verify that an instance of our class, when passed certain inputs, makes the correct
 calls into its injected dependencies. We used Sinon.JS to achieve this as follows:
 
 ```coffee
@@ -443,10 +443,10 @@ must = (name, mock, configCallback) ->
 		mock.restore()
 		done()
 
-# Declare the external dependencies as a mock object, in this case just 
+# Declare the external dependencies as a mock object, in this case just
 # stating the raw facts that it has three functional-level 'class functions'.
-# We don't even care what the arguments are, really, because sinon will help 
-# us verify the correct arguments later. Also mock out the constructor and the 
+# We don't even care what the arguments are, really, because sinon will help
+# us verify the correct arguments later. Also mock out the constructor and the
 # save instance method to help verify behavior
 class MockAppCatalogEntry
 	this.currentInstance = {}
@@ -460,7 +460,7 @@ class MockAppCatalogEntry
 	this.validate = ->
 
 # Note: the goofy thing here is that when you call sinon.mock,
-# it modifies the target object in place, but returns you the 
+# it modifies the target object in place, but returns you the
 # mock definition, which is where you actually set up your
 # expectations. But, you still consume the original object.
 # I guess.
@@ -471,17 +471,17 @@ svc = requireCover 'service'
 
 describe 'service', ->
 
-	describe '#findAll', ->		
+	describe '#findAll', ->
 		subject = new svc(MockAppCatalogEntry)
 		must 'call find', mock, ->
-			mock.expects('find').once().withArgs {}, ''			
+			mock.expects('find').once().withArgs {}, ''
 			subject.findAll()
 
 	describe '#findById', ->
 		subject = new svc(MockAppCatalogEntry)
 		must 'call findOne', mock, ->
 			id = 'v1clarityppm'
-			mock.expects('findOne').once().withArgs { id: id }, ''			
+			mock.expects('findOne').once().withArgs { id: id }, ''
 			subject.findById id
 
 	describe '#put', ->
@@ -497,7 +497,7 @@ describe 'service', ->
 				.once()
 				.withArgs(body, {$set: {id:id}, $inc: docVersion: 1}, {upsert: true})
 				.callsArg(3)
-			subject.put body, (err) ->	
+			subject.put body, (err) ->
 
 ```
 
@@ -507,8 +507,8 @@ you've come to know, and enjoy, in such tools as Moq in the .NET world.
 The `requireCover` module does this:
 
 ```coffee
-module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathToCoveredFiles='') ->  
-    return (moduleName) ->      
+module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathToCoveredFiles='') ->
+    return (moduleName) ->
       envVarCoverageToggleName = "#{appName}_cov" if envVarCoverageToggleName is ''
       pathToRawFiles = "../#{appName}" if pathToRawFiles is ''
       pathToCoveredFiles = "../#{appName}_cov" if pathToCoveredFiles is ''
@@ -517,8 +517,8 @@ module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathT
       return require(modulePath)
 ```
 
-We'll examine this in depth when we cover the Jenkins job and code coverages, but what this does is to load 
-dependencies from an alternatve, "covered", folder when running under test with code-coverage. 
+We'll examine this in depth when we cover the Jenkins job and code coverages, but what this does is to load
+dependencies from an alternatve, "covered", folder when running under test with code-coverage.
 We cover Jenkins at the end of this document.
 
 ## The fun stuff: helper libraries to ease validation
@@ -560,7 +560,7 @@ AppCatalogEntry.validate = (data, callback) ->
     if errs
       callback(errs)
     else
-      # Validate URL types        
+      # Validate URL types
       errors = []
       urls = []
       for path in ['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']
@@ -573,12 +573,12 @@ AppCatalogEntry.validate = (data, callback) ->
           errors.push
             href: url
             errors: validatorErrors
-      
+
       # Ensure no update refers to any nonexistent qualityBand
-      specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')      
+      specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')
       allowableQualityBandsNames = _.keys jp(data, '$..qualityBands')[0]
       for rogue in _.difference(specifiedQualityBandNamesInUpdates, allowableQualityBandsNames)
-        errors.push 'The qualityBand ' + rogue + ' does not exist in the updates/qualityBands section. Available bands are: ' + 
+        errors.push 'The qualityBand ' + rogue + ' does not exist in the updates/qualityBands section. Available bands are: ' +
           allowableQualityBandsNames.join(', ')
 
       # return errors or empty
@@ -589,22 +589,22 @@ AppCatalogEntry.validate = (data, callback) ->
 ```
 
 * First, we override some 'class level' functions in Validator
-* Then, check for any validation errors that come purely from JSON Schema violations, with the call to 
+* Then, check for any validation errors that come purely from JSON Schema violations, with the call to
 `js.validate data, jsonSchema`
-* If that passes, we need to do more sophisticated validation that cannot occur by JSON Schema alone. 
+* If that passes, we need to do more sophisticated validation that cannot occur by JSON Schema alone.
 This is where that bad boy JSONPath saves the day.
-* The array `['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']` is a list of property names that, 
+* The array `['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']` is a list of property names that,
 regardless of where they appear in the document graph, must be a valid URI.
-* This line: `jp(data, '$..href')...` first uses JSONPath to fetch **all** properties named `href` in the document, 
-starting at the root. It's kind of like an XPath that does `//[@href]` or something like that. 
-* The `...` is not a mistake. That's CoffeeScript's **splat** operator. It converts the return value 
+* This line: `jp(data, '$..href')...` first uses JSONPath to fetch **all** properties named `href` in the document,
+starting at the root. It's kind of like an XPath that does `//[@href]` or something like that.
+* The `...` is not a mistake. That's CoffeeScript's **splat** operator. It converts the return value
 from `jp()` into multiple arguments, which is what `Array.push` takes. I'll drink to that.
-* So, once we have all the properties that must be valid URIs, we validate them with the `uri-js` module instance, 
+* So, once we have all the properties that must be valid URIs, we validate them with the `uri-js` module instance,
 and we're good.
-* Unless, of course, those crazy catalog entry authors have put **qualityBand** entries that don't actually exist 
-into an **update**. The line `jp(data, '$..updates..qualityBand')` fetches all qualityBand properties underneath 
+* Unless, of course, those crazy catalog entry authors have put **qualityBand** entries that don't actually exist
+into an **update**. The line `jp(data, '$..updates..qualityBand')` fetches all qualityBand properties underneath
 the updates section.
-* Finally, we use Underscore's handy `difference` function to determine whether a rogue qualityBand exists in 
+* Finally, we use Underscore's handy `difference` function to determine whether a rogue qualityBand exists in
 any of the updates.
 
 ## Testing the custom URL and qualityBand validation
@@ -612,7 +612,7 @@ any of the updates.
 Here are some snippets from the unit tests for URLs and qualityBand info:
 
 ```coffee
-describe 'AppCatalogEntry: updatesSection/qualityBands', ->  
+describe 'AppCatalogEntry: updatesSection/qualityBands', ->
   test 'fails when qualityBands has fewer than 1 property', ->
     entry = fullyValidEntry()
     entry.updatesSection.qualityBands = {}
@@ -624,7 +624,7 @@ describe 'AppCatalogEntry: updatesSection/qualityBands', ->
     entry = fullyValidEntry()
     entry.updatesSection.qualityBands.sapling = {}
     entry
-  , expectPropertiesMissing, 
+  , expectPropertiesMissing,
     '#/updatesSection/qualityBands/sapling': [
       'shortDescription'
     ]
@@ -662,7 +662,7 @@ describe 'AppCatalogEntry: updatesSection/qualityBands', ->
 
   test 'fails when an update refers to a non-existent qualityBand', ->
     entry = fullyValidEntry()
-    entry.updatesSection.updates[0].qualityBand = 'perfect'    
+    entry.updatesSection.updates[0].qualityBand = 'perfect'
     entry
   , expectErrorsEqual,
     '0': 'The qualityBand perfect does not exist in the updates/qualityBands section. Available bands are: sapling, mature'
@@ -678,8 +678,8 @@ Now that we're past validation, let's look at this chunk of code again:
     callback err
 ```
 
-I didn't find the documentation in the Mongoose documentation, 
-but did [find help on Stackoverflow](http://stackoverflow.com/questions/7267102/how-do-i-update-upsert-a-document-in-mongoose). 
+I didn't find the documentation in the Mongoose documentation,
+but did [find help on Stackoverflow](http://stackoverflow.com/questions/7267102/how-do-i-update-upsert-a-document-in-mongoose).
 This line will:
 
 * Find the document with `id = body.id`
@@ -716,7 +716,7 @@ Here's what the MongoLab site looks like when you want to manually edit a docume
 
 ## Configuration and service hosting in Windows Azure
 
-Having walked through the web service implementation, let's look at how the catalog is configured and 
+Having walked through the web service implementation, let's look at how the catalog is configured and
 how it's hosted in Windows Azure.
 
 It relies upon several Azure features to make it easy and reliable:
@@ -728,8 +728,8 @@ It relies upon several Azure features to make it easy and reliable:
 
 ### Built-in support for Node.js
 
-The Azure team has done great work to make developing with Node.js very easy. If you visit the 
-[Node.js developer center](http://www.windowsazure.com/en-us/develop/nodejs/) you'll see the first tutorial text 
+The Azure team has done great work to make developing with Node.js very easy. If you visit the
+[Node.js developer center](http://www.windowsazure.com/en-us/develop/nodejs/) you'll see the first tutorial text
 advertised as:
 
 ```bash
@@ -741,12 +741,12 @@ git push azure master
 There are lots of other very useful tutorials for getting your feet wet, and check out these resources for help:
 
 * [Azure Forums](http://social.msdn.microsoft.com/Forums/en-US/category/windowsazureplatform)
-* [Azure Channel on jabbr.net](https://jabbr.net/#/rooms/Azure) -- David Ebbo was particularly helpful along with a few 
+* [Azure Channel on jabbr.net](https://jabbr.net/#/rooms/Azure) -- David Ebbo was particularly helpful along with a few
 other people when we faced issues.
 
 ### Tight integration with GitHub for continuous deployment on push to branch
 
-Not only is git in your local environment supported, but so is GitHub, as well as other cloud-hosted source control 
+Not only is git in your local environment supported, but so is GitHub, as well as other cloud-hosted source control
 repositories. This process was very easy when creating the site in the management console. Here's what it looks like:
 
 #### Create a site with Custom Create option
@@ -775,7 +775,7 @@ As of June, 2013, Azure integrates with:
 
 ![Select a GitHub repository and a branch to publish](./doc/images/technical/azureCreateSite_04.png)
 
-Note that you'll get to choose either a private repository from your account, or any of the repositories from any 
+Note that you'll get to choose either a private repository from your account, or any of the repositories from any
 organizations to which you belong.
 
 ### App settings exported as environment variables Node can read with nConf
@@ -790,7 +790,7 @@ config = {}
 configFile = 'config.json'
 
 if process.env['config_file']?
-  configFile = process.env['config_file']  
+  configFile = process.env['config_file']
 
 nconf.file(configFile).env()
 
@@ -807,14 +807,14 @@ config.password = nconf.get 'server_auth_password'
 module.exports = config
 ```
 
-The nconf module provides hierarchical configuration, sourcing from JSON disk files, environment variables, and more. 
+The nconf module provides hierarchical configuration, sourcing from JSON disk files, environment variables, and more.
 What's more, the line `nconf.file(configFile).env()` means this:
 
 * Load settings from the file pointed to by `configFile`
-* Load additional settings from environment variables. If an environment variable exists with the same name as a setting 
+* Load additional settings from environment variables. If an environment variable exists with the same name as a setting
 from `configFile`, then **the environment variable will override it**.
 
-This has made keeping a single code-base a snap, because we use environment variables for our Jenkins tests, which point 
+This has made keeping a single code-base a snap, because we use environment variables for our Jenkins tests, which point
 to a development version of the database in MongoLab, and a JSON config file when running tests locally, which points to
 a local instance of MongoDB. And, when running in Azure, the settings get sourced from environment variables, which are
 automatically populated from the app settings set in the management site console shown below.
@@ -825,7 +825,7 @@ automatically populated from the app settings set in the management site console
 
 All app settings values get populated into environment variables that Node.js can see.
 
-Dave Ward's [post on this subject](http://encosia.com/using-nconf-and-azure-to-avoid-leaking-secrets-on-github/) 
+Dave Ward's [post on this subject](http://encosia.com/using-nconf-and-azure-to-avoid-leaking-secrets-on-github/)
 was extremely helfpul.
 
 ### Dashboard, monitoring, logs, and FTP access
@@ -837,7 +837,7 @@ This shows the variety of information and options for monitoring and accessing r
 
 # GET into the AngularJS world
 
-We've covered the web service implementation and the technical details of MongoLab and Azure. Now, let's get into the 
+We've covered the web service implementation and the technical details of MongoLab and Azure. Now, let's get into the
 best part: AngularJS on the front-end.
 
 ## AngularJS mini tutorial
@@ -848,7 +848,7 @@ At its core, AngularJS is a Model-View-ViewModel framework:
 
 * Models are simple JavaScript objects, arrays, and built-in types.
 * Views are standard HTML, along with a built-in Handlebars-like templating language, plus the optional capability to
-create your own tags, like `<tabs><pane><h1>Hey I'm a tab with an H1 tag</h1></h2></pane></tabs>` or 
+create your own tags, like `<tabs><pane><h1>Hey I'm a tab with an H1 tag</h1></h2></pane></tabs>` or
 `<carousel><frame>random <b>HTML</b> text</frame></carousel>`.
 * ViewModels are collections of properties (including functions) that the HTML views can see and call.
 
@@ -876,17 +876,17 @@ This is from the main AngularJS web site:
 What's happening here that's impressive?
 
 * First of all, there is no "script-behind". The `input` tag has the custom `ng-model="yourName"` and the `h1` tag
-has the Handlebarsy `{{yourName}}` expression. 
+has the Handlebarsy `{{yourName}}` expression.
 * As soon as you start typing into the form, the two-way data-binding in Angular will cause the `h1` to update.
 * No jQuery, no Handlebars, no event-handlers. It just works.
 
-If you're the least bit interested, I encourage you to watch the 12-minute tutorial on YouTube that goes through their 
+If you're the least bit interested, I encourage you to watch the 12-minute tutorial on YouTube that goes through their
 entire front-page sample: [AngularJS Hello World](http://www.youtube.com/watch?feature=player_embedded&v=uFTFsKmkQnQ)
 
 
-## AngularJS HTML app template 
+## AngularJS HTML app template
 
-Aside from the hello world sample on the home page, there is a more in-depth tutorial, which begins with this 
+Aside from the hello world sample on the home page, there is a more in-depth tutorial, which begins with this
 super simple shell for a single-page application:
 
 ```html
@@ -897,19 +897,19 @@ super simple shell for a single-page application:
   <script src="js/controllers.js"></script>
 </head>
 <body>
- 
+
   <div ng-view></div>
- 
+
 </body>
 </html>
 ```
 
-The `ng-app="phonecat"` refers to an Angular module, which we'll see in a second. And, the `<div ng-view></div>` 
+The `ng-app="phonecat"` refers to an Angular module, which we'll see in a second. And, the `<div ng-view></div>`
 stipulates where Angular will inject partial views in response to browser navigation requests.
 
 ## Angular basics
 
-Angular lets you define route handlers to intercept the browser's navigation behavior and then route those paths to 
+Angular lets you define route handlers to intercept the browser's navigation behavior and then route those paths to
 controller classes and an associated HTML view template, like this:
 
 ```coffee
@@ -923,8 +923,8 @@ angular.module("phonecat", []).config ($routeProvider) ->
   ).otherwise redirectTo: "/phones"
 ```
 
-The `$routeProvider` object is provided for you by Angular's dependency injection support. So, in this example, 
-if `/phones/iphone` were specified, then the app would probably delete your GMail account, since Google 
+The `$routeProvider` object is provided for you by Angular's dependency injection support. So, in this example,
+if `/phones/iphone` were specified, then the app would probably delete your GMail account, since Google
 created AngularJS! Actually, it would execute the `PhoneDetailCtrl` controller:
 
 ```coffee
@@ -941,10 +941,10 @@ PhoneDetailCtrl = ($scope, $routeParams, Phone) ->
 
 This code:
 
-* Declares that the function take three depdency-injected parameters. `$scope` and `$routeParams` are built-in AngularJS 
+* Declares that the function take three depdency-injected parameters. `$scope` and `$routeParams` are built-in AngularJS
 objects, while `Phone` is something custom to the example application.
-* Uses the `Phone` object to issue an HTTP get and specify a callback for when it finishes. Technically, this callback 
-is only necessary because the code sets the `mainImageUrl` property to the first element in the images array. AngularJS 
+* Uses the `Phone` object to issue an HTTP get and specify a callback for when it finishes. Technically, this callback
+is only necessary because the code sets the `mainImageUrl` property to the first element in the images array. AngularJS
 is smart enough that if we did not specify the callback, it would automatically update the DOM whenn the `future`, as
 they call it, completes executing. This is pretty awesome. **See `More about futures` below for a snippet from the tutorial that explains this.**
 * Finally, `setImage` is function that click handlers can invoke in the template.
@@ -953,17 +953,17 @@ Speaking of the template, AngularJS then renders the `partials/phone-detail.html
 
 ```html
 <img ng-src="{{phone.images[0]}}" class="phone">
- 
+
 <h1>{{phone.name}}</h1>
- 
+
 <p>{{phone.description}}</p>
- 
+
 <ul class="phone-thumbs">
   <li ng-repeat="img in phone.images">
     <img ng-src="{{img}}">
   </li>
 </ul>
- 
+
 <ul class="specs">
   <li>
     <span>Availability and Networks</span>
@@ -980,17 +980,17 @@ Speaking of the template, AngularJS then renders the `partials/phone-detail.html
 </ul>
 ```
 
-All of the values specified in the `$scope` object by the controller function are visible without any prefix to the 
+All of the values specified in the `$scope` object by the controller function are visible without any prefix to the
 HTML template.
 
 I think it's important to note that the repeater syntax and variable interpolation blocks are very similar to Handlebars
 and other template tools, but feel more natural because the HTML is still HTML. If you are afraid of the `ng-`, I believe
-you can also use the standard HTML5 `data-` prefix. One strong benefit with AngularJS is that this templating is 
+you can also use the standard HTML5 `data-` prefix. One strong benefit with AngularJS is that this templating is
 built into the framework, not layered in as an external dependency.
 
 ## More about futures
 
-Here's an excerpt from [step 11 in the Angular tutorial](http://docs.angularjs.org/tutorial/step_11) that explains 
+Here's an excerpt from [step 11 in the Angular tutorial](http://docs.angularjs.org/tutorial/step_11) that explains
 the future object concept:
 
 
@@ -1017,10 +1017,10 @@ the future object concept:
 
 ## A heavier introduction to AngularJS
 
-The code above is actually from the [AngularJS Tutorial](http://docs.angularjs.org/tutorial). 
+The code above is actually from the [AngularJS Tutorial](http://docs.angularjs.org/tutorial).
 
-Rather than recreating the wheel here, I recommend you check out the simple, interactive live examples on the 
-[home page](http://angularjs.org/), or even the official [AngularJS Tutorial](http://docs.angularjs.org/tutorial/) to 
+Rather than recreating the wheel here, I recommend you check out the simple, interactive live examples on the
+[home page](http://angularjs.org/), or even the official [AngularJS Tutorial](http://docs.angularjs.org/tutorial/) to
 get a grasp of the major Angular concepts.
 
 The best part about the tutorial is that it shows you how to create a **Phone Catalog**, with similar requirements to
@@ -1030,7 +1030,7 @@ With that out of the way, however, let's look specifically at App Catalog's Angu
 
 # How App Catalog is built on AngularJS
 
-First, let's remember the service code for the `GET` handler in the catalog service, because this is the handler 
+First, let's remember the service code for the `GET` handler in the catalog service, because this is the handler
 that all the browser-facing scenarios use. Here it is:
 
 ## GET handler for `/entry` route
@@ -1051,10 +1051,10 @@ that all the browser-facing scenarios use. Here it is:
 
 This is really simple, and just delegates to the sevice class we've already looked at, which itself uses Mongoose's
 built-in query API. Note that we do some JSON-wrangling after the `findById` call. That is to remove the
-automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a 
+automatically-inserted `_id` and the `docVersion` property which conflict with the JSON schema. TODO: this is just a
 self-inflicted conflict that can be removed in the next iteration.
 
-## App shell from the Angular team's [angular-seed project](https://github.com/angular/angular-seed) on GitHub. 
+## App shell from the Angular team's [angular-seed project](https://github.com/angular/angular-seed) on GitHub.
 
 Based on the angular-seed project, here's the shell for the single page app:
 
@@ -1087,9 +1087,9 @@ Based on the angular-seed project, here's the shell for the single page app:
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
-  <script src="lib/video.js"></script>  
-  <script src="lib/Markdown.Converter.js"></script>  
-  <script src="lib/Markdown.Sanitizer.js"></script>    
+  <script src="lib/video.js"></script>
+  <script src="lib/Markdown.Converter.js"></script>
+  <script src="lib/Markdown.Sanitizer.js"></script>
 
 </body>
 </html>
@@ -1097,14 +1097,14 @@ Based on the angular-seed project, here's the shell for the single page app:
 
 Notice the following:
 
-* The application module name is set in `ng-app='appCatalog'`. This will correspond to where we add controllers and 
+* The application module name is set in `ng-app='appCatalog'`. This will correspond to where we add controllers and
 services to modules in the several `.js` files included at the bottom of the shell.
 * We include a couple of extra third-party libraries, for video support and Markdown.
 * The first and only `<div>` in the code is where `ng-view` is placed, and is where all partial views will be injected.
 
 ## Aside: better modularity with AngularJS apps
 
-While the project structure in angular-seed provides a skeleton that is suitable to a front-end as this current 
+While the project structure in angular-seed provides a skeleton that is suitable to a front-end as this current
 iteration of App Catalog, for a more modular design, I'd recommend you look at these:
 
 * [Code Organizaiton Large AngularJS and JavaScript Applications](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
@@ -1121,7 +1121,7 @@ Furthermore, the technical stack is:
 * Awesome AngularJS on the client
 * CSS based on Twitter's bootstrap
 
-We should explore these in more depth when App Catalog grows larger, or for other projects spinning up using 
+We should explore these in more depth when App Catalog grows larger, or for other projects spinning up using
 AngularJS.
 
 ## Application routes
@@ -1134,7 +1134,7 @@ In `app.js`, we define the routes for the application:
 // Declare app level module which depends on filters, and services
 angular.module('appCatalog', ['appCatalog.filters', 'appCatalog.services', 'appCatalog.directives', 'appCatalog.protodirectives', 'appCatalog.controllers', 'ui.bootstrap']).
   config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});   
+    $routeProvider.when('/', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});
     $routeProvider.when('/Details/:appId', {templateUrl: 'partials/details.html', controller: 'DetailsCtrl'});
     $routeProvider.otherwise({redirectTo: '/'});
   }]);
@@ -1142,8 +1142,8 @@ angular.module('appCatalog', ['appCatalog.filters', 'appCatalog.services', 'appC
 ```
 
 This is quite simple, just as in the sample tutorial's code we looked at above. Iteration one of App Catalog focuses on
-the details route, such that when someone navigates from [http://www.versionone.com/platform](http://www.versionone.com/platform) 
-to here to `/Details/VersionOne.V1TFS`, Angular will call the `DetailsCtl` controller and inject the `partials/details.html` 
+the details route, such that when someone navigates from [http://www.versionone.com/platform](http://www.versionone.com/platform)
+to here to `/Details/VersionOne.V1TFS`, Angular will call the `DetailsCtl` controller and inject the `partials/details.html`
 partial into the shell's `ng-view` element.
 
 ## DetailsCtrl controller
@@ -1164,23 +1164,23 @@ angular.module('appCatalog.controllers', []).
 
 Here's what's going on:
 
-* Unlike the sample code in the mini tutorial, we use a more isolating way of defining a module: instead of polluting 
-the global namespace, we call `angular.module(name, dependenciesArray)`, and then use the fluent API to define a 
-controller named `DetailsCtrl`. This controller itself takes three dependency-injected parameters. The first two are 
+* Unlike the sample code in the mini tutorial, we use a more isolating way of defining a module: instead of polluting
+the global namespace, we call `angular.module(name, dependenciesArray)`, and then use the fluent API to define a
+controller named `DetailsCtrl`. This controller itself takes three dependency-injected parameters. The first two are
 built into Angular, and the last, `App` is one of our own that we'll see in a second.
 * The bizarre looking double listing of parameter names, with the first being strings, is so that if you use a minifier
-with full name-minification, then the dependency-injection mechanism can still inject the right named registrations 
+with full name-minification, then the dependency-injection mechanism can still inject the right named registrations
 into your function.
 * `App` is much like `Phone` from the mini tutorial. It uses Angular's `$resource` service to access REST resources
 painlessly. So, we pass the supplied `appId` from the route parameters collection, then set the result in the completion
-callback. As we saw above, we also could have just done `$scope.app = App.get(...)` because of how Angular supports 
+callback. As we saw above, we also could have just done `$scope.app = App.get(...)` because of how Angular supports
 futures.
 
-## App service for consumgin the /entry web service route
+## App service for consuming the /entry web service route
 
 Here's the definition for the `App` service we just saw. It is an instance of `$resource`, configured to access
-resources at the `/entry` resource relative to the web server's root. This, of course, corresponds to the Node.js 
-service we spent the first half of this documentation detailing. While not quite the same, this plays a similar 
+resources at the `/entry` resource relative to the web server's root. This, of course, corresponds to the Node.js
+service we spent the first half of this documentation detailing. While not quite the same, this plays a similar
 role to what Backbone provides with collections and sync.
 
 ```javascript
@@ -1189,12 +1189,12 @@ angular.module('appCatalog.services', ['ngResource']).
 		var App = $resource("/entry");
 		return App;
 	});
-```	
+```
 
 
 ## Details partial template
 
-After the `DetailsCtrl` controller has executed, Angular injects the following HTML template into the shell's `ng-view` 
+After the `DetailsCtrl` controller has executed, Angular injects the following HTML template into the shell's `ng-view`
 element and attached the `$scope` to it:
 
 
@@ -1212,7 +1212,7 @@ element and attached the `$scope` to it:
 			</div>
 			<div class="row-fluid">
 				<description class="section" src="app.descriptionSection" />
-			</div>		
+			</div>
 			<div class="row-fluid" ng-show="app.linksSection">
 				<textlinks class="section" src="app.linksSection" />
 			</div>
@@ -1231,10 +1231,10 @@ element and attached the `$scope` to it:
 
 Important observations:
 
-* Since we're using Twitter Bootstrap, we wrap the content with the appropriate `container-fluid`, `row-fluid`, and `span<n>` 
+* Since we're using Twitter Bootstrap, we wrap the content with the appropriate `container-fluid`, `row-fluid`, and `span<n>`
 styles. There's a great [Pluralsight course on Twitter Bootstrap](http://pluralsight.com/training/Courses/TableOfContents/bootstrap-introduction)
 where you can learn all about this.
-* Notice that there are various elements that are actually not in the HTML (not even HTML5) spec: `apptitle`, 
+* Notice that there are various elements that are actually not in the HTML (not even HTML5) spec: `apptitle`,
 `description`, `textlinks`, `media`, and `updates`. These are [Angular Directives](http://docs.angularjs.org/guide/directive).
 Directives let you create your own components that Angular parses and handles in a custom way. In our case, this allows
 us to focus on the frame of the layout, without embedding any of the finer-grain markup and behavior into the layout.
@@ -1306,7 +1306,7 @@ angular.module('appCatalog.directives', []).
 Highlights:
 
 * We utilize the `Markdown` third-party library inside the directive's `controller`
-* The property `scope: { src: '=src' }` means: 
+* The property `scope: { src: '=src' }` means:
   * Create a brand new, isolated `$scope` for the directive's template to bind to
   * Populate this new scope with a property named `src`, which is bound to member of the parent scope
   * specified bye the value in the `src` attribute of the instance declaration
@@ -1314,31 +1314,31 @@ Highlights:
   * Thus, the new scope's `src` property is bound to `app.updatesSection`
 * At the end, the `$scope.$watch('src', function(val) ...` call does this:
   * Sets up an [Scope watch](http://docs.angularjs.org/api/ng.$rootScope.Scope) on an expression and executes
-    the passed function when the value of that expression changes. In this case, it means whenver the `src` 
+    the passed function when the value of that expression changes. In this case, it means whenver the `src`
     property is modified.
-  * This function takes the raw `entry.description` and `entry.releaseNotes`, which are Markdown-formatted, and 
-    converts them to HTML. It then stuffs them into the `cvt`-prefixed properties, which triggers Angular's 
+  * This function takes the raw `entry.description` and `entry.releaseNotes`, which are Markdown-formatted, and
+    converts them to HTML. It then stuffs them into the `cvt`-prefixed properties, which triggers Angular's
     two-way data-binding to update the value in the HTML template shown next
 
 ## Updates directive template
 
-As explained above in the last highlight, angular will automatically update the content in the template in response 
+As explained above in the last highlight, angular will automatically update the content in the template in response
 to changes in the bound `$scope` object's properties. Note below that for rendering HTML as HTML, not as string, we
-must do it like this: `ng-bind-html-unsafe='update.cvtDescription'`. If we didn't do that, but instead did 
+must do it like this: `ng-bind-html-unsafe='update.cvtDescription'`. If we didn't do that, but instead did
 `<p class='markdown'>{{update.cvtDescription}}</p>` inside the `<p>`, then the literal HTML from the Markdown converter
 would get converted to escaped HTML. Not what we want. Therefore, we use the unsafe directive instead.
 
 ```html
 <div>
-	<h2>Updates</h2> 
-	<div class='update transitions' ng-repeat = "update in src.updates | orderBy:'date':true | limitTo:visibleUpdates" > 
-		<hr/> 
-        <div class = 'header'> 
-            <div class = 'left version'>{{update.version}}</div> 
-			<div class = 'right'>{{update.date | date:'longDate'}}</div> 
+	<h2>Updates</h2>
+	<div class='update transitions' ng-repeat = "update in src.updates | orderBy:'date':true | limitTo:visibleUpdates" >
+		<hr/>
+        <div class = 'header'>
+            <div class = 'left version'>{{update.version}}</div>
+			<div class = 'right'>{{update.date | date:'longDate'}}</div>
 		</div>
         <v1collapse collapsedheight=75>
-            <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p> 
+            <p class = 'markdown' ng-bind-html-unsafe='update.cvtDescription'></p>
             <p class = 'release-notes markdown' ng-show = 'update.releaseNotes' ng-bind-html-unsafe='update.cvtReleaseNotes'></p>
         </v1collapse>
         <div>
@@ -1346,17 +1346,17 @@ would get converted to escaped HTML. Not what we want. Therefore, we use the uns
             	<span>Quality Band:</span>
             	<a popover="{{src.qualityBands[update.qualityBand].shortDescription}}" popover-title="Quality Band: {{update.qualityBand}}">
                 	{{update.qualityBand}}
-                </a> 
+                </a>
             </div>
             <div class='left' ng-show = 'update.downloadUrl'>
             	<a href='{{update.downloadUrl}}' class='btn download'>
-            		<img src="img/download.png" /> <span>Download</span></a> 
+            		<img src="img/download.png" /> <span>Download</span></a>
 			</div>
 			<div class='right' ng-show = 'update.moreInfoUrl'>
             	<a href='{{update.moreInfoUrl}}' class='btn releasenotes'>
             		<img src="img/documentation.png" /> <span>More Information</span></a>
             </div>
-        </div> 
+        </div>
 	</div>
     <div class = 'collapse-toggle' ng-show='isCollapsible' ng-click='toggleUpdateList()'><span class='toggler'>{{getToggleText()}}</span></div>
 </div>
@@ -1444,7 +1444,7 @@ describe "directives", ->
 
 ## Debunking AngularJS vs. Backbone myths
 
-Having uses Backbone for the VersionOne Requestor, and a number of blog post samples, I was really enjoying it. 
+Having uses Backbone for the VersionOne Requestor, and a number of blog post samples, I was really enjoying it.
 Backbone Forms (a free script on GitHub) really makes it easy to create quick entry forms, even with nested objects.
 Yet, the drumbeat of AngularJS and its growing popularity was in the back of my mind, so when it came time to build
 App Catalog, we looked into it and found it to be a comprehensive choice. This post really made it clear for me and
@@ -1487,7 +1487,7 @@ reports from one test run using mocha.
 
 ## Test Anything Protocol report
 
-The first test run uses the Test Anything Protocol plugin for mocha, and produces this result, which we archive in 
+The first test run uses the Test Anything Protocol plugin for mocha, and produces this result, which we archive in
 Jenkins:
 
 ```text
@@ -1551,15 +1551,15 @@ mkdir testResults
 mocha -R html-cov *.tests*js >testResults/coverage.html
 ```
 
-This uses the binary `jscoverage` to first produce a covered version of all the files in `../app` and store 
+This uses the binary `jscoverage` to first produce a covered version of all the files in `../app` and store
 them in `../app_cov`. THen, it uses mocha to run the tests and produce the report.
 
 This should now explain how the `requireCover` module from way back in the beginning helps us make testing easier.
 Recall:
 
 ```coffee
-module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathToCoveredFiles='') ->  
-    return (moduleName) ->      
+module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathToCoveredFiles='') ->
+    return (moduleName) ->
       envVarCoverageToggleName = "#{appName}_cov" if envVarCoverageToggleName is ''
       pathToRawFiles = "../#{appName}" if pathToRawFiles is ''
       pathToCoveredFiles = "../#{appName}_cov" if pathToCoveredFiles is ''
@@ -1568,7 +1568,7 @@ module.exports = (appName, envVarCoverageToggleName='', pathToRawFiles='', pathT
       return require(modulePath)
 ```
 
-Because we do `export app_cov=1` in the shell script, requireCover will load the 
+Because we do `export app_cov=1` in the shell script, requireCover will load the
 JSCoverage-produced files from `app_cov` instead of `app`.
 
 ### Covered code example
@@ -1640,7 +1640,7 @@ _$jscoverage['service.js'][2]++;
 
 ### Coverage report
 
-So, JSCoverage basically counts how many times each line of code gets called. And, then it produces a report like 
+So, JSCoverage basically counts how many times each line of code gets called. And, then it produces a report like
 this:
 
 ![JSCoverage report](./doc/images/technical/jscoverage.png)
@@ -1648,7 +1648,7 @@ this:
 
 ## Cobertura plugin for code coverage summary
 
-The other coverage run produces a smaller, summarized report used by the Cobertura plugin in Jenkins to 
+The other coverage run produces a smaller, summarized report used by the Cobertura plugin in Jenkins to
 provide a dashboard view of the coverage status for recent builds:
 
 ![Cobertura code coverage summary](./doc/images/technical/cobertura.png)

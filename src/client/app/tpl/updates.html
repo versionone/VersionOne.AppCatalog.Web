@@ -13,7 +13,7 @@
         <div>
              <div class = 'quality-band' ng-show = 'update.qualityBand'>
             	<span>Quality Band:</span>
-            	<a popover="{{src.qualityBands[update.qualityBand].shortDescription}}" popover-title="Quality Band: {{update.qualityBand}}">
+            	<a popover="{{src.qualityBands[update.qualityBand].shortDescription}}" popover-title="Quality Band: {{update.qualityBand}}" popover-trigger="mouseenter" popover-placement="bottom" popover-animation="true" ng-click="navigate(src.qualityBands[update.qualityBand])">
                 	{{update.qualityBand}}
                 </a> 
             </div>
