@@ -124,7 +124,7 @@ angular.module('appCatalog.directives', []).
 			scope: { src: '=src' },
 			templateUrl: 'tpl/updates.html',
 			replace: true,
-			controller: function($scope,$element) {
+			controller: function($scope,$element,$window) {
 				var converter = new Markdown.getSanitizingConverter();
 				var collapsedLength = 3;
 				var isCollapsed = true;
@@ -147,6 +147,12 @@ angular.module('appCatalog.directives', []).
 						$scope.visibleUpdates = collapsedLength;
 					}
 					isCollapsed = !isCollapsed;
+				}
+
+				$scope.navigate = function(update) {
+					if (update.href) {
+						$window.location = update.href;
+					}
 				}
 
 				function convert(txt) {
