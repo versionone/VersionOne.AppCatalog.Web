@@ -79,13 +79,38 @@ describe 'PUT /entry for Failure Path With Invalid JSON', ->
       message.message.title.should.eql 'Could not process your request due to validation errors'
       done()
 
-'''
-TODO:
 get = (entryId, expectStatus, assertCallback) ->
   request(app)
-    .get('/entry/id=' + entryId)
+    .get('/entry?id=' + entryId)
     .expect('Content-type', /json/)
+    .end assertCallback
+
+getList = (expectStatus, assertCallback) ->
+  request(app)
+    .get('/entry')
+    .expect('Content-type', /json/)
+    .end assertCallback
 
 describe 'GET /entry returns all entries', ->
   it 'returns entries list', (done) ->
-'''
+    getList 200, (err, res) ->
+      should.not.exist err
+      data = JSON.parse res.text
+      len = data.length
+      len.should.be.above 0            
+      done()
+
+describe 'GET /entry?id=:id returns a single entry', ->
+  it 'returns a single entry', (done) ->
+    entry = testData.fullyValidEntry()
+    id = entry.id
+    put entry, 200, (err, res) ->
+      should.not.exist err
+      message = JSON.parse res.text
+      should.exist message
+      message.status.should.eql 200
+      get id, 200, (err, res) ->
+        should.not.exist err
+        data = JSON.parse res.text        
+        data.id.should.eql id
+        done()
