@@ -60,6 +60,7 @@ appCatalogEntrySchema = mongoose.Schema(
 HREF_TEXT_MAX_LENGTH = 100
 HREF_MAX_LENGTH = 1000
 SHORT_DESCRIPTION_MAX_LENGTH = 140
+DESCRIPTION_AND_RELNOTES_MAX_LENGTH = 2000
 
 jsonSchema =
   title: 'Catalog Entry'
@@ -104,7 +105,7 @@ jsonSchema =
       properties:
         description: 
           type: 'string'
-          maxLength: 2000
+          maxLength: DESCRIPTION_AND_RELNOTES_MAX_LENGTH
     linksSection:
       type: 'array'
       items:
@@ -136,13 +137,13 @@ jsonSchema =
                 maxLength: 100
               description:
                 type: 'string'
-                maxLength: 1000
+                maxLength: DESCRIPTION_AND_RELNOTES_MAX_LENGTH
               version:
                 type: 'string'
                 maxLength: 50
               releaseNotes:
                 type: 'string'
-                maxLength: 1000
+                maxLength: DESCRIPTION_AND_RELNOTES_MAX_LENGTH
               moreInfoUrl:
                 type: 'string'
                 maxLength: HREF_MAX_LENGTH

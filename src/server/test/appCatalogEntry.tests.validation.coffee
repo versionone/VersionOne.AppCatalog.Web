@@ -7,6 +7,7 @@ importer(require './appCatalogEntry.test.base')
 HREF_MAX_LENGTH = 1000
 HREF_TEXT_MAX_LENGTH = 100
 SHORT_DESCRIPTION_MAX_LENGTH = 140
+DESCRIPTION_AND_RELNOTES_MAX_LENGTH = 2000
 
 describe 'AppCatalogEntry: overall', ->
   test 'fails for an empty entry', ->
@@ -66,7 +67,7 @@ describe 'AppCatalogEntry: titleSection', ->
       pricing: ex(50),
       support: {
         text: ex(100),
-        href: ex(1000)
+        href: ex(HREF_MAX_LENGTH)
       }
     }
     entry
@@ -75,7 +76,7 @@ describe 'AppCatalogEntry: titleSection', ->
     '#/titleSection/shortDescription': SHORT_DESCRIPTION_MAX_LENGTH
     '#/titleSection/pricing': 50
     '#/titleSection/support/text': 100
-    '#/titleSection/support/href': 1000
+    '#/titleSection/support/href': HREF_MAX_LENGTH
 
   test 'fails on invalid types for titleSection/support', ->
     entry = fullyValidEntry()
@@ -127,10 +128,10 @@ describe 'AppCatalogEntry: descriptionSection', ->
 
   test 'fails when description exceeds maxLength', ->
     entry = fullyValidEntry()
-    entry.descriptionSection.description = ex(2000)
+    entry.descriptionSection.description = ex(DESCRIPTION_AND_RELNOTES_MAX_LENGTH)
     entry
   , expectMaxLengthsExceeded,
-    '#/descriptionSection/description': 2000
+    '#/descriptionSection/description': DESCRIPTION_AND_RELNOTES_MAX_LENGTH
 
 describe 'AppCatalogEntry: linksSection', ->
   test 'fails when linksSection missing', ->
@@ -217,9 +218,9 @@ describe 'AppCatalogEntry: updatesSection/updates', ->
     entry = fullyValidEntry()
     entry.updatesSection.updates = [
       date: ex(100),
-      description: ex(1000),
+      description: ex(DESCRIPTION_AND_RELNOTES_MAX_LENGTH),
       version: ex(50),
-      releaseNotes: ex(1000),
+      releaseNotes: ex(DESCRIPTION_AND_RELNOTES_MAX_LENGTH),
       moreInfoUrl: ex(HREF_MAX_LENGTH),
       qualityBand: ex(50),
       downloadUrl: ex(HREF_MAX_LENGTH)
@@ -227,9 +228,9 @@ describe 'AppCatalogEntry: updatesSection/updates', ->
     entry
   , expectMaxLengthsExceeded,
     '#/updatesSection/updates/0/date': 100
-    '#/updatesSection/updates/0/description': 1000
+    '#/updatesSection/updates/0/description': DESCRIPTION_AND_RELNOTES_MAX_LENGTH
     '#/updatesSection/updates/0/version': 50
-    '#/updatesSection/updates/0/releaseNotes': 1000
+    '#/updatesSection/updates/0/releaseNotes': DESCRIPTION_AND_RELNOTES_MAX_LENGTH
     '#/updatesSection/updates/0/moreInfoUrl': HREF_MAX_LENGTH
     '#/updatesSection/updates/0/qualityBand': 50
     '#/updatesSection/updates/0/downloadUrl': HREF_MAX_LENGTH
