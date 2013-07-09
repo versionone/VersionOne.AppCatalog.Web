@@ -60,9 +60,9 @@
     "mediaSection": [
         {
             "title": "Build Integration",
-            "caption": "Integrate your build system to make it very clear which features/defects are contained in which builds.",
+            "caption": "Integrate your build system to make it clear which workitems are contained in which builds.",
             "mimetype": "video/x-flv",
-            "href": "http://vtv.v1host.com/permalink/?title=Build%20Integration&category=Integrations&edition=enterprise&release=undefined",
+            "href": "http://www.versionone.tv.s3.amazonaws.com/BuildIntegration/BuildIntegration.flv",
             "thumbhref": "http://community.versionone.com/attachments/imagefolder/gettingstarted/video.png"
         }
     ]
