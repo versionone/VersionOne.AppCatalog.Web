@@ -1,4 +1,5 @@
 express = require 'express'
+mongoDb = require('mongodb').Db
 mongoose = require 'mongoose'
 cors = (require './cors').cors
 config = require './config'
@@ -32,10 +33,20 @@ matchesValidationError = (obj) ->
     obj[0].instanceContext? and
     obj[0].resolutionScope?
 
-createServer = ->
-  
-  mongoose.connect config.mongoUri
-  
+createServer = ->  
+  mongoOptions =
+    db: safe: true
+    server:  
+      auto_reconnect: true, 
+      socketOptions: keepAlive: 1
+
+  mongoDb.connect config.mongoUri, mongoOptions, (err, db) ->
+    if err?
+      console.log 'Could not connect: '
+      console.log err
+    else
+      mongoose.connect config.mongoUri, mongoOptions
+
   app = express()
 
   app.configure ->   
