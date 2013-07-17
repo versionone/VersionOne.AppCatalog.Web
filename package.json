@@ -5,6 +5,7 @@
 		"coffee-script": "*",
 		"mocha": "*",
 		"express": "3.x",
+		"mongodb": "*",
 		"mongoose": "*",
 		"should": "*",
 		"assert": "*",
