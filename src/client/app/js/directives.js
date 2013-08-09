@@ -199,6 +199,7 @@ angular.module('appCatalog.directives', []).
 			          case "download":
 			            return "img/download.png";
 			          case "code":
+			          case "source":
 			            return "img/code.png";
 			          case "documentation":
 			            return "img/documentation.png";
