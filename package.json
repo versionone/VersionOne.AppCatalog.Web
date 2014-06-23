@@ -13,7 +13,7 @@
 		"supertest": "*",
 		"request": "*",
 		"jayschema": "*",
-		"validator": "*",
+		"validator": "1.4.0",
 		"JSONPath": "*",
 		"uri-js": "*",
 		"underscore": "*",
