@@ -7,7 +7,8 @@ importer(require './appCatalogEntry.test.base')
 HREF_MAX_LENGTH = 1000
 HREF_TEXT_MAX_LENGTH = 100
 SHORT_DESCRIPTION_MAX_LENGTH = 140
-DESCRIPTION_AND_RELNOTES_MAX_LENGTH = 2000
+RELNOTES_MAX_LENGTH = 2000
+DESCRIPTION_MAX_LENGTH = 4000
 
 describe 'AppCatalogEntry: overall', ->
   test 'fails for an empty entry', ->
@@ -128,10 +129,10 @@ describe 'AppCatalogEntry: descriptionSection', ->
 
   test 'fails when description exceeds maxLength', ->
     entry = fullyValidEntry()
-    entry.descriptionSection.description = ex(DESCRIPTION_AND_RELNOTES_MAX_LENGTH)
+    entry.descriptionSection.description = ex(DESCRIPTION_MAX_LENGTH)
     entry
   , expectMaxLengthsExceeded,
-    '#/descriptionSection/description': DESCRIPTION_AND_RELNOTES_MAX_LENGTH
+    '#/descriptionSection/description': DESCRIPTION_MAX_LENGTH
 
 describe 'AppCatalogEntry: linksSection', ->
   test 'fails when linksSection missing', ->
@@ -218,9 +219,9 @@ describe 'AppCatalogEntry: updatesSection/updates', ->
     entry = fullyValidEntry()
     entry.updatesSection.updates = [
       date: ex(100),
-      description: ex(DESCRIPTION_AND_RELNOTES_MAX_LENGTH),
+      description: ex(DESCRIPTION_MAX_LENGTH),
       version: ex(50),
-      releaseNotes: ex(DESCRIPTION_AND_RELNOTES_MAX_LENGTH),
+      releaseNotes: ex(RELNOTES_MAX_LENGTH),
       moreInfoUrl: ex(HREF_MAX_LENGTH),
       qualityBand: ex(50),
       downloadUrl: ex(HREF_MAX_LENGTH)
@@ -228,9 +229,9 @@ describe 'AppCatalogEntry: updatesSection/updates', ->
     entry
   , expectMaxLengthsExceeded,
     '#/updatesSection/updates/0/date': 100
-    '#/updatesSection/updates/0/description': DESCRIPTION_AND_RELNOTES_MAX_LENGTH
+    '#/updatesSection/updates/0/description': DESCRIPTION_MAX_LENGTH
     '#/updatesSection/updates/0/version': 50
-    '#/updatesSection/updates/0/releaseNotes': DESCRIPTION_AND_RELNOTES_MAX_LENGTH
+    '#/updatesSection/updates/0/releaseNotes': RELNOTES_MAX_LENGTH
     '#/updatesSection/updates/0/moreInfoUrl': HREF_MAX_LENGTH
     '#/updatesSection/updates/0/qualityBand': 50
     '#/updatesSection/updates/0/downloadUrl': HREF_MAX_LENGTH
