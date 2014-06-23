@@ -4,6 +4,7 @@
 	"dependencies": {
 		"coffee-script": "*",
 		"mocha": "*",
+		"mocha-cobertura-reporter" : "*",
 		"express": "3.x",
 		"mongodb": "*",
 		"mongoose": "*",
