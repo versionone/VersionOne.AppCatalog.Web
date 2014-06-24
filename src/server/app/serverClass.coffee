@@ -37,8 +37,10 @@ createServer = ->
   mongoOptions =
     db: safe: true
     server:  
-      auto_reconnect: true, 
-      socketOptions: keepAlive: 1
+      auto_reconnect: true
+      socketOptions:
+        keepAlive: 1
+        connectTimeoutMS : 30000
 
   mongoDb.connect config.mongoUri, mongoOptions, (err, db) ->
     if err?

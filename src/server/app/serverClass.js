@@ -61,7 +61,8 @@
       server: {
         auto_reconnect: true,
         socketOptions: {
-          keepAlive: 1
+          keepAlive: 1,
+          connectTimeoutMS: 30000
         }
       }
     };
