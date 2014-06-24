@@ -4,6 +4,7 @@
 	"dependencies": {
 		"coffee-script": "*",
 		"mocha": "*",
+		"mocha-cobertura-reporter" : "*",
 		"express": "3.x",
 		"mongodb": "*",
 		"mongoose": "*",
@@ -13,7 +14,7 @@
 		"supertest": "*",
 		"request": "*",
 		"jayschema": "*",
-		"validator": "*",
+		"validator": "1.4.0",
 		"JSONPath": "*",
 		"uri-js": "*",
 		"underscore": "*",
