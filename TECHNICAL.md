@@ -86,13 +86,13 @@ curl -X PUT http://appcatalogstage.azurewebsites.net/entry --user catUser:CatsAr
 ```
 # Deep dive on Publish an Entry
 
-The `product.json` file must contain JSON that conforms to the JSON Schema defined in [appCatalogEntry.coffee](https://github.com/versionone/VersionOne.AppCatalog.Web/blob/master/src/server/app/appCatalogEntry.coffee#L64). Here's an excerpt of the [TFS example entry](https://github.com/versionone/VersionOne.AppCatalog.Web/blob/master/src/server/test/examples/tfs.product.json):
+The `product.json` file must contain JSON that conforms to the JSON Schema defined in [appCatalogEntry.coffee](https://github.com/versionone/VersionOne.AppCatalog.Web/blob/master/src/server/app/appCatalogEntry.coffee#L64). Here's an excerpt of the [TFS example entry](https://github.com/versionone/VersionOne.Integration.VSTFS/blob/master/product.json):
 
 ```json
 {
-    "id": "VersionOne.V1TFS",
+    "id": "VersionOne.Integration.VSTFS",
     "titleSection": {
-        "name": "V1TFS",
+        "name": "VersionOne Integration for Team Foundation Server",
         "shortDescription": "Links VersionOne Workitems to TFS Check-ins and Builds.",
         "pricing": "Free",
         "support": {
@@ -101,22 +101,45 @@ The `product.json` file must contain JSON that conforms to the JSON Schema defin
         }
     },
     "descriptionSection": {
-        "description": "V1TFS links VersionOne Workitems to TFS Check-ins and Builds. The link from Workitems to Check-ins makes it easier to track down the source of a defect and perform code reviews. The link from Workitems to Builds enables teams to measure progress in terms of working software and to identify problems sooner. Using the links from Workitems to Builds, the VersionOne BuildRun Report can help a Release Manager select an appropriate build for release and can be the starting point for release notes."
+        "description": "VersionOne Integration for Team Foundation Server links VersionOne Workitems to TFS Check-ins and Builds. The link from Workitems to Check-ins makes it easier to track down the source of a defect and perform code reviews. The link from Workitems to Builds enables teams to measure progress in terms of working software and to identify problems sooner. Using the links from Workitems to Builds, the VersionOne BuildRun Report can help a Release Manager select an appropriate build for release and can be the starting point for release notes."
     },
     "linksSection": [
         {
             "type": "download",
             "title": "Download Latest Stable Build",
-            "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/V1TFS2012.zip"
+            "href": "http://platform.versionone.com.s3.amazonaws.com/downloads/VersionOne.Integration.VSTFS_4.0.0.472.zip"
+        },
+        {
+            "type": "documentation",
+            "title": "Documentation",
+            "href": "http://versionone.github.io/VersionOne.Integration.VSTFS"
+        },
+        {
+            "type": "documentation",
+            "title": "README",
+            "href": "https://github.com/versionone/VersionOne.Integration.VSTFS/blob/master/README.md"
         },
         {
             "type": "source",
-            "title": "Source Code",
-            "href": "https://github.com/versionone/V1TFS"
+            "title": "GitHub Project for Source Code and Issues",
+            "href": "https://github.com/versionone/VersionOne.Integration.VSTFS"
+        },
+        {
+            "type": "license",
+            "title": "Modified BSD (3-clause) License",
+            "href": "https://github.com/versionone/VersionOne.Integration.VSTFS/blob/master/LICENSE.md"
         }
     ],
     "updatesSection": {
         "updates": [
+            {
+                "date": "2014-05-16T00:00:00.000Z",
+                "description": "Spring 2014",
+                "version": "4.0.0.475",
+                "releaseNotes": "Added: Listener now works with TFS 2013",
+                "qualityBand": "sapling",
+                "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/VersionOne.Integration.VSTFS_4.0.0.475.zip"
+            },
             {
                 "date": "2012-11-01T00:00:00.000Z",
                 "description": "Fall 2012",
@@ -126,38 +149,42 @@ The `product.json` file must contain JSON that conforms to the JSON Schema defin
                 "downloadUrl": "http://platform.versionone.com.s3.amazonaws.com/downloads/V1TFS2012.zip"
             },
             {
+                "date": "2012-08-08T00:00:00.000Z",
+                "description": "Fall 2012",
+                "version": "96",
+                "releaseNotes": "Fixed: Performance problems exacerbated by unclosed sprints.",
+                "qualityBand": "sapling"
+            },
+            {
+                "date": "2011-07-01T00:00:00.000Z",
+                "description": "Summer 2011",
+                "version": "64",
+                "releaseNotes": " * Added: Support for connecting to VersionOne through a proxy.\n * Added: Support for TFS 2010 SP1",
+                "qualityBand": "sapling"
+            },
+            {
                 "date": "2010-11-14T00:00:00.000Z",
                 "description": "Initial Release",
                 "version": "52",
                 "qualityBand": "sapling"
             }
         ],
-        "qualityBands": [
-            {
-                "name": "seed",
-                "shortDesc": "The initial idea of a product. No working code.",
+        "qualityBands": {
+            "seed": {
+                "shortDescription": "The initial idea of a product. No working code.",
                 "href": "https://github.com/versionone/V1TFS/blob/master/CONTRIBUTING.md#seed"
             },
-            {
-                "name": "sapling",
-                "shortDesc": "The product is undergoing rapid growth. The code works but expect major changes.",
+            "sapling": {
+                "shortDescription": "The product is undergoing rapid growth. The code works but expect major changes.",
                 "href": "https://github.com/versionone/V1TFS/blob/master/CONTRIBUTING.md#sapling"
             },
-            {
-                "name": "mature",
-                "shortDesc": "The product is stable. The code will continue to evolve with minimum breaking changes.",
+            "mature": {
+                "shortDescription": "The product is stable. The code will continue to evolve with minimum breaking changes.",
                 "href": "https://github.com/versionone/V1TFS/blob/master/CONTRIBUTING.md#mature"
             }
-        ]
+        }
     },
     "mediaSection": [
-        {
-            "title": "TFS Integration",
-            "caption": "Integrate code check-ins and builds created by Microsoft's Team Foundation Server into VersionOne.",
-            "mimetype": "video/x-flv",
-            "href": "http://vtv.v1host.com/permalink/?title=SCM%20%26%20Build%3A%20Microsoft%20TFS&category=Integrations&edition=enterprise&release=undefined",
-            "thumbhref": "http://community.versionone.com/attachments/imagefolder/gettingstarted/video.png"
-        }
     ]
 }
 ```
