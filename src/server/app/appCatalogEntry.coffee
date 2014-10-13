@@ -89,7 +89,7 @@ jsonSchema =
           maxLength: SHORT_DESCRIPTION_MAX_LENGTH
         pricing:
           type: 'string'
-          maxLength: 100
+          maxLength: SHORT_DESCRIPTION_MAX_LENGTH
         support:
           type: 'object'
           required: ['text', 'href']
