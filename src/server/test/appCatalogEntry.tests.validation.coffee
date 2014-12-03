@@ -65,7 +65,7 @@ describe 'AppCatalogEntry: titleSection', ->
     entry.titleSection = {
       name: ex(100),
       shortDescription: ex(SHORT_DESCRIPTION_MAX_LENGTH),
-      pricing: ex(50),
+      pricing: ex(SHORT_DESCRIPTION_MAX_LENGTH),
       support: {
         text: ex(100),
         href: ex(HREF_MAX_LENGTH)
@@ -75,7 +75,7 @@ describe 'AppCatalogEntry: titleSection', ->
   , expectMaxLengthsExceeded,
     '#/titleSection/name': 100
     '#/titleSection/shortDescription': SHORT_DESCRIPTION_MAX_LENGTH
-    '#/titleSection/pricing': 50
+    '#/titleSection/pricing': SHORT_DESCRIPTION_MAX_LENGTH
     '#/titleSection/support/text': 100
     '#/titleSection/support/href': HREF_MAX_LENGTH
 
