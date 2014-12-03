@@ -148,4 +148,16 @@
     });
   });
 
+  describe('GET / redirects to /app/index.html', function() {
+    return it('redirects properly', function(done) {
+      return request(app).get('/').expect(302).expect('Location', '/app/index.html', done);
+    });
+  });
+
+  describe('GET /VersionOne.Integration.Bugzilla to /app/index.html#/Details/VersionOne.Integration.Bugzilla', function() {
+    return it('redirects properly', function(done) {
+      return request(app).get('/VersionOne.Integration.Bugzilla').expect(302).expect('Location', '/app/index.html#/Details/VersionOne.Integration.Bugzilla', done);
+    });
+  });
+
 }).call(this);
