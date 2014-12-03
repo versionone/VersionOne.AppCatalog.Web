@@ -128,7 +128,7 @@
           },
           pricing: {
             type: 'string',
-            maxLength: 50
+            maxLength: SHORT_DESCRIPTION_MAX_LENGTH
           },
           support: {
             type: 'object',

@@ -114,3 +114,17 @@ describe 'GET /entry?id=:id returns a single entry', ->
         data = JSON.parse res.text        
         data.id.should.eql id
         done()
+
+describe 'GET / redirects to /app/index.html', ->
+  it 'redirects properly', (done) ->
+    request(app)
+      .get('/')
+      .expect(302)
+      .expect('Location', '/app/index.html', done)
+
+describe 'GET /VersionOne.Integration.Bugzilla to /app/index.html#/Details/VersionOne.Integration.Bugzilla', ->
+  it 'redirects properly', (done) ->
+    request(app)
+      .get('/VersionOne.Integration.Bugzilla')
+      .expect(302)
+      .expect('Location', '/app/index.html#/Details/VersionOne.Integration.Bugzilla', done)
