@@ -52,10 +52,6 @@ createServer = ->
   app = express()
 
   app.configure ->   
-    #app.use '/app', express.static(__dirname + '../../client/app')
-    app.get '/', (req, res) ->
-      res.redirect '/app/index.html'
-
     app.use '/app', express.static('../../client/app')
     app.use express.bodyParser()
     app.use cors
@@ -93,6 +89,9 @@ createServer = ->
         handleError res, err
       else         
         res.send {status: 200, message: 'Successfully updated entry'}
+
+  app.get '/', (req, res) ->
+    res.redirect '/app/index.html'
 
   app.get '/:id', (req, res) ->
     res.redirect '/app/index.html#/Details/' + req.params.id

@@ -76,9 +76,6 @@
     });
     app = express();
     app.configure(function() {
-      app.get('/', function(req, res) {
-        return res.redirect('/app/index.html');
-      });
       app.use('/app', express["static"]('../../client/app'));
       app.use(express.bodyParser());
       app.use(cors);
@@ -122,6 +119,9 @@
           });
         }
       });
+    });
+    app.get('/', function(req, res) {
+      return res.redirect('/app/index.html');
     });
     app.get('/:id', function(req, res) {
       return res.redirect('/app/index.html#/Details/' + req.params.id);
