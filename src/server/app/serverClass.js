@@ -120,6 +120,12 @@
         }
       });
     });
+    app.get('/', function(req, res) {
+      return res.redirect('/app/index.html');
+    });
+    app.get('/:id', function(req, res) {
+      return res.redirect('/app/index.html#/Details/' + req.params.id);
+    });
     return app;
   };
 
