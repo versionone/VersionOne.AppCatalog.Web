@@ -1,5 +1,5 @@
 express = require 'express'
-mongoDb = require('mongodb').Db
+mongoDb = require('mongodb').MongoClient
 mongoose = require 'mongoose'
 cors = (require './cors').cors
 config = require './config'
@@ -41,7 +41,6 @@ createServer = ->
       socketOptions:
         keepAlive: 1
         connectTimeoutMS : 30000
-
   mongoDb.connect config.mongoUri, mongoOptions, (err, db) ->
     if err?
       console.log 'Could not connect: '
