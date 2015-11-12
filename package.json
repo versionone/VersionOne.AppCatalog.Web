@@ -9,6 +9,7 @@
     "coffee-script": "1.10.0",
     "express": "4.13.3",
     "jayschema": "0.3.1",
+    "kerberos": "0.0.17",
     "mocha": "2.3.3",
     "mocha-cobertura-reporter": "1.0.4",
     "mongodb": "2.0.48",
