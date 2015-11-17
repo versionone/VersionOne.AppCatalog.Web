@@ -1,13 +1,15 @@
 express = require 'express'
-mongoDb = require('mongodb').Db
+mongoDb = require('mongodb').MongoClient
 mongoose = require 'mongoose'
 cors = (require './cors').cors
 config = require './config'
+bodyParser = require 'body-parser'
+basicAuth = require 'basic-auth-connect'
 _ = require 'underscore'
 
 renderQueryResult = (res, err, result) ->
   unless err?
-    res.send result
+    res.status(200).send(result)
     return true
   if err?      
     handleError res, err
@@ -16,9 +18,9 @@ renderQueryResult = (res, err, result) ->
 handleError = (res, err) ->
   if err?
     if matchesValidationError err
-      res.send 500, {status:500, message: {title:'Could not process your request due to validation errors'}, errors: err }
+      res.status(500).send({status:500, message: {title:'Could not process your request due to validation errors'}, errors: err })
     else
-      res.send 500, {status:500, message: 'Could not process your request due to invalid input data'}
+      res.status(500).send({status:500, message: 'Could not process your request due to invalid input data'})
 
 typeIsArray = (value) ->
   value and
@@ -41,7 +43,6 @@ createServer = ->
       socketOptions:
         keepAlive: 1
         connectTimeoutMS : 30000
-
   mongoDb.connect config.mongoUri, mongoOptions, (err, db) ->
     if err?
       console.log 'Could not connect: '
@@ -51,11 +52,9 @@ createServer = ->
 
   app = express()
 
-  app.configure ->   
-    app.use '/app', express.static('../../client/app')
-    app.use express.bodyParser()
-    app.use cors
-    app.use app.router
+  app.use '/app', express.static('../../client/app')
+  app.use bodyParser.json()
+  app.use cors
 
   db = mongoose.connection
 
@@ -66,7 +65,7 @@ createServer = ->
 
   db.disconnect
 
-  auth = express.basicAuth(config.user, config.password)
+  auth = basicAuth(config.user, config.password)
   
   service = new (require('./service'))
 
@@ -88,7 +87,7 @@ createServer = ->
       if err?
         handleError res, err
       else         
-        res.send {status: 200, message: 'Successfully updated entry'}
+        res.status(200).send({ status: 200, message: 'Successfully updated entry'})
 
   app.get '/', (req, res) ->
     res.redirect '/app/index.html'
