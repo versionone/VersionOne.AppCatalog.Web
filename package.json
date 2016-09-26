@@ -1,5 +1,8 @@
 {
   "name": "VersionOneAppCatalogService",
+  "engines": {
+    "node": "4.5.0"
+  },
   "version": "0.0.2",
   "dependencies": {
     "JSONPath": "0.10.0",
