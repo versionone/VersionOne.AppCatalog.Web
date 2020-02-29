@@ -1,6 +1,5 @@
 requireCover = require('./requireCover')('app')
 fs = require 'fs'
-request = require 'supertest'
 server = requireCover 'serverClass'
 should = require 'should'
 testData = requireCover 'testData'

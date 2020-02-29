@@ -22,7 +22,7 @@ class MockAppCatalogEntry
 	save: sinon.spy()
 	this.find = ->
 	this.findOne = ->
-	this.update = ->
+	this.updateOne = ->
 	this.validate = ->
 
 # Note: the goofy thing here is that when you call sinon.mock,
@@ -52,14 +52,14 @@ describe 'service', ->
 
 	describe '#put', ->
 		subject = new svc(MockAppCatalogEntry)
-		must 'call validate and update', mock, ->
+		must 'call validate and updateOne', mock, ->
 			id = 'v1clarityppm'
 			body = {id: id}
 			mock.expects('validate')
 				.once()
 				.withArgs(body)
 				.callsArg(1)
-			mock.expects('update')
+			mock.expects('updateOne')
 				.once()
 				.withArgs(body, {$set: {id:id}, $inc: docVersion: 1}, {upsert: true})
 				.callsArg(3)

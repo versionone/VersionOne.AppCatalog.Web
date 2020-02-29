@@ -1,7 +1,6 @@
 mongoose = require 'mongoose'
 jayschema = require 'jayschema'
 js = new jayschema jayschema.loaders.http
-uri = require 'uri-js'
 validator = require('validator').Validator
 jp = require('JSONPath').eval
 _ = require 'underscore'
@@ -192,11 +191,12 @@ jsonSchema =
 AppCatalogEntry = mongoose.model 'AppCatalogEntry', appCatalogEntrySchema
 
 validator::error = (msg) ->
-    @_errors.push(msg)
-    return @
+  @_errors ||= [];
+  @_errors.push(msg)
+  return @
 
 validator::getErrors = () ->
-    return @_errors;
+  return @_errors;
 
 AppCatalogEntry.validate = (data, callback) ->
   js.validate data, jsonSchema, (errs) ->
@@ -212,11 +212,10 @@ AppCatalogEntry.validate = (data, callback) ->
         va = new validator()
         va.check(url).isUrl()
         validatorErrors = va.getErrors()
-        if validatorErrors.length > 0
+        if validatorErrors?.length > 0
           errors.push
             href: url
             errors: validatorErrors
-      
       # Ensure no update refers to any nonexistent qualityBand
       specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')      
       allowableQualityBandsNames = _.keys jp(data, '$..qualityBands')[0]
