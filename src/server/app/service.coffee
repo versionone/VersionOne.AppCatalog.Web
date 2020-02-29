@@ -21,9 +21,9 @@ class AppCatalogService
           callback errs
         else
           entry = new @appCatalogEntry(body)
-          @appCatalogEntry.update {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
+          @appCatalogEntry.updateOne {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
             callback err
     catch ex
-      callback ex  
+      callback ex
 
 module.exports = AppCatalogService

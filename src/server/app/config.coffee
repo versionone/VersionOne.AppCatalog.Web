@@ -5,7 +5,7 @@ config = {}
 configFile = 'config.json'
 
 if process.env['config_file']?
-  configFile = process.env['config_file']  
+  configFile = process.env['config_file']
 
 nconf.file(configFile).env()
 

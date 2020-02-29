@@ -1,7 +1,6 @@
 mongoose = require 'mongoose'
 jayschema = require 'jayschema'
 js = new jayschema jayschema.loaders.http
-uri = require 'uri-js'
 validator = require('validator').Validator
 jp = require('JSONPath').eval
 _ = require 'underscore'
@@ -26,7 +25,7 @@ appCatalogEntrySchema = mongoose.Schema(
       name: t()
       shortDescription: t()
       pricing: t()
-      support: 
+      support:
         type:
           text: t()
           href: t()
@@ -51,10 +50,10 @@ appCatalogEntrySchema = mongoose.Schema(
     type: [
       mimetype: t()
       title: t()
-      caption: t()      
+      caption: t()
       href: t()
       thumbhref: t()
-    ]        
+    ]
 )
 
 HREF_TEXT_MAX_LENGTH = 100
@@ -75,7 +74,7 @@ jsonSchema =
     id:
       description: 'The unique id for this catalog entry'
       type: 'string'
-      maxLength: 100      
+      maxLength: 100
     titleSection:
       description: 'The data for the title section'
       type: 'object'
@@ -94,17 +93,17 @@ jsonSchema =
           type: 'object'
           required: ['text', 'href']
           properties:
-            text: 
+            text:
               type: 'string'
               maxLength: HREF_TEXT_MAX_LENGTH
-            href: 
+            href:
               type: 'string'
               maxLength: HREF_MAX_LENGTH
     descriptionSection:
       type: 'object'
       required: ['description']
       properties:
-        description: 
+        description:
           type: 'string'
           maxLength: DESCRIPTION_MAX_LENGTH
     linksSection:
@@ -192,18 +191,19 @@ jsonSchema =
 AppCatalogEntry = mongoose.model 'AppCatalogEntry', appCatalogEntrySchema
 
 validator::error = (msg) ->
-    @_errors.push(msg)
-    return @
+  @_errors ||= [];
+  @_errors.push(msg)
+  return @
 
 validator::getErrors = () ->
-    return @_errors;
+  return @_errors;
 
 AppCatalogEntry.validate = (data, callback) ->
   js.validate data, jsonSchema, (errs) ->
     if errs
       callback(errs)
     else
-      # Validate URL types        
+      # Validate URL types
       errors = []
       urls = []
       for path in ['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']
@@ -212,16 +212,16 @@ AppCatalogEntry.validate = (data, callback) ->
         va = new validator()
         va.check(url).isUrl()
         validatorErrors = va.getErrors()
-        if validatorErrors.length > 0
+        if validatorErrors?.length > 0
           errors.push
             href: url
             errors: validatorErrors
-      
+
       # Ensure no update refers to any nonexistent qualityBand
-      specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')      
+      specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')
       allowableQualityBandsNames = _.keys jp(data, '$..qualityBands')[0]
       for rogue in _.difference(specifiedQualityBandNamesInUpdates, allowableQualityBandsNames)
-        errors.push 'The qualityBand ' + rogue + ' does not exist in the updates/qualityBands section. Available bands are: ' + 
+        errors.push 'The qualityBand ' + rogue + ' does not exist in the updates/qualityBands section. Available bands are: ' +
           allowableQualityBandsNames.join(', ')
 
       # return errors or empty
