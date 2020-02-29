@@ -9,10 +9,10 @@ must = (name, mock, configCallback) ->
 		mock.restore()
 		done()
 
-# Declare the external dependencies as a mock object, in this case just 
+# Declare the external dependencies as a mock object, in this case just
 # stating the raw facts that it has three functional-level 'class functions'.
-# We don't even care what the arguments are, really, because sinon will help 
-# us verify the correct arguments later. Also mock out the constructor and the 
+# We don't even care what the arguments are, really, because sinon will help
+# us verify the correct arguments later. Also mock out the constructor and the
 # save instance method to help verify behavior
 class MockAppCatalogEntry
 	this.currentInstance = {}
@@ -26,7 +26,7 @@ class MockAppCatalogEntry
 	this.validate = ->
 
 # Note: the goofy thing here is that when you call sinon.mock,
-# it modifies the target object in place, but returns you the 
+# it modifies the target object in place, but returns you the
 # mock definition, which is where you actually set up your
 # expectations. But, you still consume the original object.
 # I guess.
@@ -36,18 +36,18 @@ mock = sinon.mock MockAppCatalogEntry
 svc = requireCover 'service'
 
 describe 'service', ->
-	
-	describe '#findAll', ->		
+
+	describe '#findAll', ->
 		subject = new svc(MockAppCatalogEntry)
 		must 'call find', mock, ->
-			mock.expects('find').once().withArgs {}, ''			
+			mock.expects('find').once().withArgs {}, ''
 			subject.findAll()
 
 	describe '#findById', ->
 		subject = new svc(MockAppCatalogEntry)
 		must 'call findOne', mock, ->
 			id = 'v1clarityppm'
-			mock.expects('findOne').once().withArgs { id: id }, ''			
+			mock.expects('findOne').once().withArgs { id: id }, ''
 			subject.findById id
 
 	describe '#put', ->
@@ -63,4 +63,4 @@ describe 'service', ->
 				.once()
 				.withArgs(body, {$set: {id:id}, $inc: docVersion: 1}, {upsert: true})
 				.callsArg(3)
-			subject.put body, (err) ->			
+			subject.put body, (err) ->

@@ -17,7 +17,7 @@ checkLinkReturns200 = (url, linkRequestComplete) ->
   , (err, res, body) ->
     if err?
       console.log 'Error: '
-      console.dir err      
+      console.dir err
     else
       if res.statusCode is 200
         console.log "200 OK for: #{url}"
@@ -25,8 +25,8 @@ checkLinkReturns200 = (url, linkRequestComplete) ->
         console.log "#{res.statusCode} NOT OK for: #{url}"
     linkRequestComplete()
 
-describe "Link checking", -> 
-  it 'works well...', (done) -> 
+describe "Link checking", ->
+  it 'works well...', (done) ->
     @timeout(180000)
     req
       uri: 'http://v1appcatalog.azurewebsites.net/entry',
@@ -43,16 +43,16 @@ describe "Link checking", ->
           urls.push jp(data, '$..' + path)...
 
         count = urls.length * 1
-        
+
         linkRequestComplete = ->
           count--
           console.log 'Count: ' + count
           if count == 0
             console.log 'Apparently done...' + count
             done()
-        
-        for url in urls 
-          #checkSiteReturns404ForBadLink url, linkRequestComplete      
+
+        for url in urls
+          #checkSiteReturns404ForBadLink url, linkRequestComplete
           checkLinkReturns200 url, linkRequestComplete
 
 
@@ -73,9 +73,9 @@ describe 'GET /entry returns all entries', ->
         urls = []
         for path in ['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']
           urls.push jp(data, '$..' + path)...
-        
+
         count = urls.length * 1
-        
+
         linkRequestComplete = ->
           count--
           console.log 'Count: ' + count
@@ -83,7 +83,7 @@ describe 'GET /entry returns all entries', ->
             console.log 'Apparently done...' + count
             done()
 
-        for url in urls 
+        for url in urls
           #checkSiteReturns404ForBadLink url, linkRequestComplete
           checkLinkReturns200 url, linkRequestComplete
-'''          
+'''

@@ -24,6 +24,6 @@ class AppCatalogService
           @appCatalogEntry.updateOne {'id': body.id}, {$set: body, $inc: docVersion: 1}, {upsert: true}, (err, data) ->
             callback err
     catch ex
-      callback ex  
+      callback ex
 
 module.exports = AppCatalogService
