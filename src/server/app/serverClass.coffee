@@ -1,5 +1,4 @@
 express = require 'express'
-mongoDb = require('mongodb').MongoClient
 mongoose = require 'mongoose'
 cors = (require './cors').cors
 config = require './config'
@@ -11,7 +10,7 @@ renderQueryResult = (res, err, result) ->
   unless err?
     res.status(200).send(result)
     return true
-  if err?      
+  if err?
     handleError res, err
     return false
 
@@ -35,20 +34,16 @@ matchesValidationError = (obj) ->
     obj[0].instanceContext? and
     obj[0].resolutionScope?
 
-createServer = ->  
+createServer = ->
   mongoOptions =
-    db: safe: true
-    server:  
-      auto_reconnect: true
-      socketOptions:
-        keepAlive: 1
-        connectTimeoutMS : 30000
-  mongoDb.connect config.mongoUri, mongoOptions, (err, db) ->
+    useUnifiedTopology: true
+    keepAlive: 1
+    connectTimeoutMS : 30000
+
+  mongoose.connect config.mongoUri, mongoOptions, (err, db) ->
     if err?
       console.log 'Could not connect: '
-      console.log err
-    else
-      mongoose.connect config.mongoUri, mongoOptions
+      throw err
 
   app = express()
 
@@ -66,7 +61,7 @@ createServer = ->
   db.disconnect
 
   auth = basicAuth(config.user, config.password)
-  
+
   service = new (require('./service'))
 
   app.get config.entryRoute, (req, res) ->
@@ -86,7 +81,7 @@ createServer = ->
     service.put req.body, (err) ->
       if err?
         handleError res, err
-      else         
+      else
         res.status(200).send({ status: 200, message: 'Successfully updated entry'})
 
   app.get '/', (req, res) ->
