@@ -1030,6 +1030,11 @@
         "ipaddr.js": "1.9.1"
       }
     },
+    "punycode": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz",
+      "integrity": "sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A=="
+    },
     "qs": {
       "version": "6.7.0",
       "resolved": "https://registry.npmjs.org/qs/-/qs-6.7.0.tgz",
@@ -1489,9 +1494,12 @@
       "integrity": "sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw="
     },
     "uri-js": {
-      "version": "2.1.1",
-      "resolved": "https://registry.npmjs.org/uri-js/-/uri-js-2.1.1.tgz",
-      "integrity": "sha1-6z+FBfRolpv5LLec6M6qwu1mdmE="
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/uri-js/-/uri-js-3.0.0.tgz",
+      "integrity": "sha1-63KtpjxmbIY6qbYi8D+976C70h4=",
+      "requires": {
+        "punycode": "^2.1.0"
+      }
     },
     "util": {
       "version": "0.10.3",
