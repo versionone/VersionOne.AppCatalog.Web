@@ -1,4 +1,4 @@
 #!/usr/bin/sh
-mkdir testResults
+mkdir -p testResults
 mocha -R tap *.tests*js >testResults/testResults.tap
 cat testResults/testResults.tap
