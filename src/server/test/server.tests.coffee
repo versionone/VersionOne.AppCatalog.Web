@@ -14,7 +14,7 @@ put = (entry, expectStatus, assertCallback) ->
     .put('/entry')
     .type('application/json')
     .auth(config.user, config.password)
-    .send(entry)      
+    .send(entry)
     .expect('Content-Type', /json/)
     .end assertCallback
 
@@ -22,7 +22,7 @@ putWithoutAuth = (entry, assertCallback) ->
   request(app)
     .put('/entry')
     .type('application/json')
-    .send(entry)      
+    .send(entry)
     .end assertCallback
 
 describe 'PUT /entry fails without basic authentication', ->
@@ -97,7 +97,7 @@ describe 'GET /entry returns all entries', ->
       should.not.exist err
       data = JSON.parse res.text
       len = data.length
-      len.should.be.above 0            
+      len.should.be.above 0
       done()
 
 describe 'GET /entry?id=:id returns a single entry', ->
@@ -111,7 +111,7 @@ describe 'GET /entry?id=:id returns a single entry', ->
       message.status.should.eql 200
       get id, 200, (err, res) ->
         should.not.exist err
-        data = JSON.parse res.text        
+        data = JSON.parse res.text
         data.id.should.eql id
         done()
 

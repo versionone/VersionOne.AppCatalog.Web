@@ -34,7 +34,7 @@
               return callback(errs);
             } else {
               entry = new _this.appCatalogEntry(body);
-              return _this.appCatalogEntry.update({
+              return _this.appCatalogEntry.updateOne({
                 'id': body.id
               }, {
                 $set: body,

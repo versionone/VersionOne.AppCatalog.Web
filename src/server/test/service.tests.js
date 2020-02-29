@@ -31,7 +31,7 @@
 
     MockAppCatalogEntry.findOne = function() {};
 
-    MockAppCatalogEntry.update = function() {};
+    MockAppCatalogEntry.updateOne = function() {};
 
     MockAppCatalogEntry.validate = function() {};
 
@@ -67,14 +67,14 @@
     return describe('#put', function() {
       var subject;
       subject = new svc(MockAppCatalogEntry);
-      return must('call validate and update', mock, function() {
+      return must('call validate and updateOne', mock, function() {
         var body, id;
         id = 'v1clarityppm';
         body = {
           id: id
         };
         mock.expects('validate').once().withArgs(body).callsArg(1);
-        mock.expects('update').once().withArgs(body, {
+        mock.expects('updateOne').once().withArgs(body, {
           $set: {
             id: id
           },
