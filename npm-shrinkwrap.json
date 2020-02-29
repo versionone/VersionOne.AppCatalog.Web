@@ -1513,9 +1513,9 @@
       "integrity": "sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM="
     },
     "validator": {
-      "version": "1.4.0",
-      "resolved": "https://registry.npmjs.org/validator/-/validator-1.4.0.tgz",
-      "integrity": "sha1-DzjhpAd0+EZGu+WeizQQ8hTpCKg="
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/validator/-/validator-2.0.0.tgz",
+      "integrity": "sha1-v/0mZ/rC95Z3dQVDsQoPtvm6B4w="
     },
     "vary": {
       "version": "1.1.2",
