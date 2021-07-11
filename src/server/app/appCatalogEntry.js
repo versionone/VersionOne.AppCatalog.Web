@@ -8,7 +8,7 @@
 
   js = new jayschema(jayschema.loaders.http);
 
-  validator = require('validator').Validator;
+  validator = require('validator');
 
   jp = require('JSONPath')["eval"];
 
@@ -272,19 +272,9 @@
 
   AppCatalogEntry = mongoose.model('AppCatalogEntry', appCatalogEntrySchema);
 
-  validator.prototype.error = function(msg) {
-    this._errors || (this._errors = []);
-    this._errors.push(msg);
-    return this;
-  };
-
-  validator.prototype.getErrors = function() {
-    return this._errors;
-  };
-
   AppCatalogEntry.validate = function(data, callback) {
     return js.validate(data, jsonSchema, function(errs) {
-      var allowableQualityBandsNames, errors, i, j, k, len, len1, len2, path, ref, ref1, rogue, specifiedQualityBandNamesInUpdates, url, urls, va, validatorErrors;
+      var allowableQualityBandsNames, errors, i, j, k, len, len1, len2, path, ref, ref1, rogue, specifiedQualityBandNamesInUpdates, url, urls, validUrl;
       if (errs) {
         return callback(errs);
       } else {
@@ -297,13 +287,11 @@
         }
         for (j = 0, len1 = urls.length; j < len1; j++) {
           url = urls[j];
-          va = new validator();
-          va.check(url).isUrl();
-          validatorErrors = va.getErrors();
-          if ((validatorErrors != null ? validatorErrors.length : void 0) > 0) {
+          validUrl = validator.isUrl(validator.trim(url));
+          if (!validUrl) {
             errors.push({
               href: url,
-              errors: validatorErrors
+              errors: ["Not a valid url"]
             });
           }
         }
