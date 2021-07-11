@@ -11,7 +11,7 @@
     "coffee-script": "1.10.0",
     "express": "^4.17.1",
     "jayschema": "0.3.1",
-    "kerberos": "0.0.17",
+    "kerberos": "1.0.0",
     "mongodb": "^3.5.4",
     "mongoose": "^5.9.2",
     "nconf": "0.8.2",
