@@ -575,12 +575,6 @@ _ = require 'underscore'
 Here's the actual `validate` function:
 
 ```coffee
-validator::error = (msg) ->
-    @_errors.push(msg)
-    return @
-
-validator::getErrors = () ->
-    return @_errors
 
 AppCatalogEntry.validate = (data, callback) ->
   js.validate data, jsonSchema, (errs) ->
@@ -593,13 +587,9 @@ AppCatalogEntry.validate = (data, callback) ->
       for path in ['href', 'downloadUrl', 'moreInfoUrl', 'thumbhref']
         urls.push jp(data, '$..' + path)...
       for url in urls
-        va = new validator()
-        va.check(url).isUrl()
-        validatorErrors = va.getErrors()
-        if validatorErrors.length > 0
-          errors.push
-            href: url
-            errors: validatorErrors
+        validUrl = validator.isUrl(validator.trim(url))
+        if (!validUrl)
+          errors.push({ href: url, errors : ["Not a valid url"] })
 
       # Ensure no update refers to any nonexistent qualityBand
       specifiedQualityBandNamesInUpdates = jp(data, '$..updates..qualityBand')
