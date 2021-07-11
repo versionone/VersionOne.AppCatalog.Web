@@ -1522,9 +1522,9 @@
       "dev": true
     },
     "validator": {
-      "version": "2.1.0",
-      "resolved": "https://registry.npmjs.org/validator/-/validator-2.1.0.tgz",
-      "integrity": "sha1-YydlcN7yCK3PHAMsH05qF9K9jYs="
+      "version": "3.22.1",
+      "resolved": "https://registry.npmjs.org/validator/-/validator-3.22.1.tgz",
+      "integrity": "sha1-fVPFb/h7P4lOAkhDs6/buIuK6yk="
     },
     "vary": {
       "version": "1.1.2",
