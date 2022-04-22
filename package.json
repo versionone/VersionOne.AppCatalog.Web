@@ -14,7 +14,7 @@
     "kerberos": "1.0.0",
     "mongodb": "^3.5.4",
     "mongoose": "^5.9.2",
-    "nconf": "0.8.2",
+    "nconf": "0.11.4",
     "underscore": "1.8.3",
     "validator": "^3.22.1"
   },
